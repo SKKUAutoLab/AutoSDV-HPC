@@ -1,0 +1,25 @@
+[1.688s] Invoking command in '/home/sungbhin/hpc_v2/build/debug_pkg': PYTHONPATH=/home/sungbhin/hpc_v2/build/debug_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/sungbhin/hpc_v2/install/debug_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/sungbhin/hpc_v2/build/debug_pkg/build --no-deps symlink_data
+[2.016s] running develop
+[2.223s] running egg_info
+[2.224s] creating debug_pkg.egg-info
+[2.224s] writing debug_pkg.egg-info/PKG-INFO
+[2.224s] writing dependency_links to debug_pkg.egg-info/dependency_links.txt
+[2.224s] writing entry points to debug_pkg.egg-info/entry_points.txt
+[2.224s] writing requirements to debug_pkg.egg-info/requires.txt
+[2.225s] writing top-level names to debug_pkg.egg-info/top_level.txt
+[2.225s] writing manifest file 'debug_pkg.egg-info/SOURCES.txt'
+[2.227s] reading manifest file 'debug_pkg.egg-info/SOURCES.txt'
+[2.228s] writing manifest file 'debug_pkg.egg-info/SOURCES.txt'
+[2.230s] running build_ext
+[2.230s] Creating /home/sungbhin/hpc_v2/install/debug_pkg/lib/python3.10/site-packages/debug-pkg.egg-link (link to .)
+[2.232s] Installing path_visualizer_node script to /home/sungbhin/hpc_v2/install/debug_pkg/lib/debug_pkg
+[2.232s] Installing yolov8_visualizer_node script to /home/sungbhin/hpc_v2/install/debug_pkg/lib/debug_pkg
+[2.232s] 
+[2.232s] Installed /home/sungbhin/hpc_v2/build/debug_pkg
+[2.232s] running symlink_data
+[2.232s] creating /home/sungbhin/hpc_v2/install/debug_pkg/share/ament_index
+[2.232s] creating /home/sungbhin/hpc_v2/install/debug_pkg/share/ament_index/resource_index
+[2.232s] creating /home/sungbhin/hpc_v2/install/debug_pkg/share/ament_index/resource_index/packages
+[2.232s] symbolically linking /home/sungbhin/hpc_v2/build/debug_pkg/resource/debug_pkg -> /home/sungbhin/hpc_v2/install/debug_pkg/share/ament_index/resource_index/packages
+[2.233s] symbolically linking /home/sungbhin/hpc_v2/build/debug_pkg/package.xml -> /home/sungbhin/hpc_v2/install/debug_pkg/share/debug_pkg
+[2.286s] Invoked command in '/home/sungbhin/hpc_v2/build/debug_pkg' returned '0': PYTHONPATH=/home/sungbhin/hpc_v2/build/debug_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/sungbhin/hpc_v2/install/debug_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/sungbhin/hpc_v2/build/debug_pkg/build --no-deps symlink_data

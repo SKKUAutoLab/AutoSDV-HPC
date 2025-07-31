@@ -1,0 +1,26 @@
+[1.697s] Invoking command in '/home/sungbhin/hpc_v2/build/lidar_perception_pkg': PYTHONPATH=/home/sungbhin/hpc_v2/build/lidar_perception_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/sungbhin/hpc_v2/install/lidar_perception_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/sungbhin/hpc_v2/build/lidar_perception_pkg/build --no-deps symlink_data
+[2.031s] running develop
+[2.246s] running egg_info
+[2.246s] creating lidar_perception_pkg.egg-info
+[2.246s] writing lidar_perception_pkg.egg-info/PKG-INFO
+[2.247s] writing dependency_links to lidar_perception_pkg.egg-info/dependency_links.txt
+[2.247s] writing entry points to lidar_perception_pkg.egg-info/entry_points.txt
+[2.247s] writing requirements to lidar_perception_pkg.egg-info/requires.txt
+[2.247s] writing top-level names to lidar_perception_pkg.egg-info/top_level.txt
+[2.247s] writing manifest file 'lidar_perception_pkg.egg-info/SOURCES.txt'
+[2.250s] reading manifest file 'lidar_perception_pkg.egg-info/SOURCES.txt'
+[2.251s] writing manifest file 'lidar_perception_pkg.egg-info/SOURCES.txt'
+[2.252s] running build_ext
+[2.253s] Creating /home/sungbhin/hpc_v2/install/lidar_perception_pkg/lib/python3.10/site-packages/lidar-perception-pkg.egg-link (link to .)
+[2.254s] Installing lidar_obstacle_detector_node script to /home/sungbhin/hpc_v2/install/lidar_perception_pkg/lib/lidar_perception_pkg
+[2.254s] Installing lidar_processor_node script to /home/sungbhin/hpc_v2/install/lidar_perception_pkg/lib/lidar_perception_pkg
+[2.254s] Installing lidar_publisher_node script to /home/sungbhin/hpc_v2/install/lidar_perception_pkg/lib/lidar_perception_pkg
+[2.254s] 
+[2.254s] Installed /home/sungbhin/hpc_v2/build/lidar_perception_pkg
+[2.254s] running symlink_data
+[2.254s] creating /home/sungbhin/hpc_v2/install/lidar_perception_pkg/share/ament_index
+[2.255s] creating /home/sungbhin/hpc_v2/install/lidar_perception_pkg/share/ament_index/resource_index
+[2.255s] creating /home/sungbhin/hpc_v2/install/lidar_perception_pkg/share/ament_index/resource_index/packages
+[2.255s] symbolically linking /home/sungbhin/hpc_v2/build/lidar_perception_pkg/resource/lidar_perception_pkg -> /home/sungbhin/hpc_v2/install/lidar_perception_pkg/share/ament_index/resource_index/packages
+[2.255s] symbolically linking /home/sungbhin/hpc_v2/build/lidar_perception_pkg/package.xml -> /home/sungbhin/hpc_v2/install/lidar_perception_pkg/share/lidar_perception_pkg
+[2.326s] Invoked command in '/home/sungbhin/hpc_v2/build/lidar_perception_pkg' returned '0': PYTHONPATH=/home/sungbhin/hpc_v2/build/lidar_perception_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/sungbhin/hpc_v2/install/lidar_perception_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/sungbhin/hpc_v2/build/lidar_perception_pkg/build --no-deps symlink_data

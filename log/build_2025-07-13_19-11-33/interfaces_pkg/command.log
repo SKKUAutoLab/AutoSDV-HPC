@@ -1,0 +1,6 @@
+Invoking command in '/home/sungbhin/hpc_v2/build/interfaces_pkg': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/local/bin/cmake /home/sungbhin/hpc_v2/src/interfaces_pkg -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/sungbhin/hpc_v2/install/interfaces_pkg
+Invoked command in '/home/sungbhin/hpc_v2/build/interfaces_pkg' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/local/bin/cmake /home/sungbhin/hpc_v2/src/interfaces_pkg -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/sungbhin/hpc_v2/install/interfaces_pkg
+Invoking command in '/home/sungbhin/hpc_v2/build/interfaces_pkg': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/local/bin/cmake --build /home/sungbhin/hpc_v2/build/interfaces_pkg -- -j16 -l16
+Invoked command in '/home/sungbhin/hpc_v2/build/interfaces_pkg' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/local/bin/cmake --build /home/sungbhin/hpc_v2/build/interfaces_pkg -- -j16 -l16
+Invoking command in '/home/sungbhin/hpc_v2/build/interfaces_pkg': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/local/bin/cmake --install /home/sungbhin/hpc_v2/build/interfaces_pkg
+Invoked command in '/home/sungbhin/hpc_v2/build/interfaces_pkg' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/local/bin/cmake --install /home/sungbhin/hpc_v2/build/interfaces_pkg

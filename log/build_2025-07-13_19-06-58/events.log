@@ -1,0 +1,120 @@
+[0.000000] (-) TimerEvent: {}
+[0.000175] (camera_perception_pkg) JobQueued: {'identifier': 'camera_perception_pkg', 'dependencies': OrderedDict()}
+[0.000228] (debug_pkg) JobQueued: {'identifier': 'debug_pkg', 'dependencies': OrderedDict()}
+[0.000242] (decision_making_pkg) JobQueued: {'identifier': 'decision_making_pkg', 'dependencies': OrderedDict()}
+[0.000254] (interfaces_pkg) JobQueued: {'identifier': 'interfaces_pkg', 'dependencies': OrderedDict()}
+[0.000265] (launch_pkg) JobQueued: {'identifier': 'launch_pkg', 'dependencies': OrderedDict()}
+[0.000275] (lidar_perception_pkg) JobQueued: {'identifier': 'lidar_perception_pkg', 'dependencies': OrderedDict()}
+[0.000292] (serial_communication_pkg) JobQueued: {'identifier': 'serial_communication_pkg', 'dependencies': OrderedDict()}
+[0.000302] (data_collection_pkg) JobQueued: {'identifier': 'data_collection_pkg', 'dependencies': OrderedDict([('interfaces_pkg', '/home/sungbhin/hpc_v2/install/interfaces_pkg')])}
+[0.000314] (interfaces_pkg) JobStarted: {'identifier': 'interfaces_pkg'}
+[0.004509] (camera_perception_pkg) JobStarted: {'identifier': 'camera_perception_pkg'}
+[0.007228] (debug_pkg) JobStarted: {'identifier': 'debug_pkg'}
+[0.010373] (decision_making_pkg) JobStarted: {'identifier': 'decision_making_pkg'}
+[0.012963] (launch_pkg) JobStarted: {'identifier': 'launch_pkg'}
+[0.014958] (lidar_perception_pkg) JobStarted: {'identifier': 'lidar_perception_pkg'}
+[0.017227] (serial_communication_pkg) JobStarted: {'identifier': 'serial_communication_pkg'}
+[0.022865] (interfaces_pkg) JobProgress: {'identifier': 'interfaces_pkg', 'progress': 'cmake'}
+[0.023378] (interfaces_pkg) Command: {'cmd': ['/usr/local/bin/cmake', '/home/sungbhin/hpc_v2/src/interfaces_pkg', '-DAMENT_CMAKE_SYMLINK_INSTALL=1', '-DCMAKE_INSTALL_PREFIX=/home/sungbhin/hpc_v2/install/interfaces_pkg'], 'cwd': '/home/sungbhin/hpc_v2/build/interfaces_pkg', 'env': OrderedDict([('GJS_DEBUG_TOPICS', 'JS ERROR;JS LOG'), ('LC_TIME', 'ko_KR.UTF-8'), ('USER', 'sungbhin'), ('XDG_SESSION_TYPE', 'x11'), ('GIT_ASKPASS', '/usr/share/code/resources/app/extensions/git/dist/askpass.sh'), ('SHLVL', '1'), ('HOME', '/home/sungbhin'), ('CHROME_DESKTOP', 'code.desktop'), ('OLDPWD', '/home/sungbhin/hpc_v2'), ('LESS', '-R'), ('DESKTOP_SESSION', 'ubuntu'), ('TERM_PROGRAM_VERSION', '1.102.0'), ('GIO_LAUNCHED_DESKTOP_FILE', '/usr/share/applications/code.desktop'), ('ZSH', '/home/sungbhin/.oh-my-zsh'), ('LSCOLORS', 'Gxfxcxdxbxegedabagacad'), ('GTK_MODULES', 'gail:atk-bridge'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('PAGER', 'less'), ('VSCODE_GIT_ASKPASS_MAIN', '/usr/share/code/resources/app/extensions/git/dist/askpass-main.js'), ('LC_MONETARY', 'ko_KR.UTF-8'), ('MANAGERPID', '1805'), ('VSCODE_GIT_ASKPASS_NODE', '/usr/share/code/code'), ('SYSTEMD_EXEC_PID', '2168'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('P9K_TTY', 'old'), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '7335'), ('COLORTERM', 'truecolor'), ('LOGNAME', 'sungbhin'), ('GTK_IM_MODULE', 'ibus'), ('JOURNAL_STREAM', '8:1940'), ('_P9K_SSH_TTY', '/dev/pts/0'), ('_', '/usr/bin/colcon'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'sungbhin'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('WINDOWPATH', '2'), ('PATH', '/home/sungbhin/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/osb-lnx:@/tmp/.ICE-unix/2145,unix/osb-lnx:/tmp/.ICE-unix/2145'), ('INVOCATION_ID', 'a14c1aceb77642bdb6f997cb0fc09291'), ('LC_ADDRESS', 'ko_KR.UTF-8'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('XDG_MENU_PREFIX', 'gnome-'), ('GDK_BACKEND', 'x11'), ('DISPLAY', ':1'), ('LANG', 'en_US.UTF-8'), ('LC_TELEPHONE', 'ko_KR.UTF-8'), ('XDG_CURRENT_DESKTOP', 'Unity'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XMODIFIERS', '@im=ibus'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('TERM_PROGRAM', 'vscode'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-945bb16715.sock'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('ORIGINAL_XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('LC_NAME', 'ko_KR.UTF-8'), ('SHELL', '/usr/bin/zsh'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LC_MEASUREMENT', 'ko_KR.UTF-8'), ('LC_IDENTIFICATION', 'ko_KR.UTF-8'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('GJS_DEBUG_OUTPUT', 'stderr'), ('P9K_SSH', '0'), ('QT_IM_MODULE', 'ibus'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('LC_ALL', 'en_US.UTF-8'), ('PWD', '/home/sungbhin/hpc_v2/build/interfaces_pkg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('_P9K_TTY', '/dev/pts/0'), ('LC_NUMERIC', 'ko_KR.UTF-8'), ('LC_PAPER', 'ko_KR.UTF-8'), ('COLCON', '1')]), 'shell': False}
+[0.099251] (-) TimerEvent: {}
+[0.199568] (-) TimerEvent: {}
+[0.299992] (-) TimerEvent: {}
+[0.400456] (-) TimerEvent: {}
+[0.500805] (-) TimerEvent: {}
+[0.586374] (launch_pkg) JobProgress: {'identifier': 'launch_pkg', 'progress': 'cmake'}
+[0.587636] (launch_pkg) Command: {'cmd': ['/usr/local/bin/cmake', '/home/sungbhin/hpc_v2/src/launch_pkg', '-DAMENT_CMAKE_SYMLINK_INSTALL=1', '-DCMAKE_INSTALL_PREFIX=/home/sungbhin/hpc_v2/install/launch_pkg'], 'cwd': '/home/sungbhin/hpc_v2/build/launch_pkg', 'env': OrderedDict([('GJS_DEBUG_TOPICS', 'JS ERROR;JS LOG'), ('LC_TIME', 'ko_KR.UTF-8'), ('USER', 'sungbhin'), ('XDG_SESSION_TYPE', 'x11'), ('GIT_ASKPASS', '/usr/share/code/resources/app/extensions/git/dist/askpass.sh'), ('SHLVL', '1'), ('HOME', '/home/sungbhin'), ('CHROME_DESKTOP', 'code.desktop'), ('OLDPWD', '/home/sungbhin/hpc_v2'), ('LESS', '-R'), ('DESKTOP_SESSION', 'ubuntu'), ('TERM_PROGRAM_VERSION', '1.102.0'), ('GIO_LAUNCHED_DESKTOP_FILE', '/usr/share/applications/code.desktop'), ('ZSH', '/home/sungbhin/.oh-my-zsh'), ('LSCOLORS', 'Gxfxcxdxbxegedabagacad'), ('GTK_MODULES', 'gail:atk-bridge'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('PAGER', 'less'), ('VSCODE_GIT_ASKPASS_MAIN', '/usr/share/code/resources/app/extensions/git/dist/askpass-main.js'), ('LC_MONETARY', 'ko_KR.UTF-8'), ('MANAGERPID', '1805'), ('VSCODE_GIT_ASKPASS_NODE', '/usr/share/code/code'), ('SYSTEMD_EXEC_PID', '2168'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('P9K_TTY', 'old'), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '7335'), ('COLORTERM', 'truecolor'), ('LOGNAME', 'sungbhin'), ('GTK_IM_MODULE', 'ibus'), ('JOURNAL_STREAM', '8:1940'), ('_P9K_SSH_TTY', '/dev/pts/0'), ('_', '/usr/bin/colcon'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'sungbhin'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('WINDOWPATH', '2'), ('PATH', '/home/sungbhin/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/osb-lnx:@/tmp/.ICE-unix/2145,unix/osb-lnx:/tmp/.ICE-unix/2145'), ('INVOCATION_ID', 'a14c1aceb77642bdb6f997cb0fc09291'), ('LC_ADDRESS', 'ko_KR.UTF-8'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('XDG_MENU_PREFIX', 'gnome-'), ('GDK_BACKEND', 'x11'), ('DISPLAY', ':1'), ('LANG', 'en_US.UTF-8'), ('LC_TELEPHONE', 'ko_KR.UTF-8'), ('XDG_CURRENT_DESKTOP', 'Unity'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XMODIFIERS', '@im=ibus'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('TERM_PROGRAM', 'vscode'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-945bb16715.sock'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('ORIGINAL_XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('LC_NAME', 'ko_KR.UTF-8'), ('SHELL', '/usr/bin/zsh'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LC_MEASUREMENT', 'ko_KR.UTF-8'), ('LC_IDENTIFICATION', 'ko_KR.UTF-8'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('GJS_DEBUG_OUTPUT', 'stderr'), ('P9K_SSH', '0'), ('QT_IM_MODULE', 'ibus'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('LC_ALL', 'en_US.UTF-8'), ('PWD', '/home/sungbhin/hpc_v2/build/launch_pkg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('_P9K_TTY', '/dev/pts/0'), ('LC_NUMERIC', 'ko_KR.UTF-8'), ('LC_PAPER', 'ko_KR.UTF-8'), ('COLCON', '1')]), 'shell': False}
+[0.600933] (-) TimerEvent: {}
+[0.701408] (-) TimerEvent: {}
+[0.801787] (-) TimerEvent: {}
+[0.902152] (-) TimerEvent: {}
+[0.962745] (interfaces_pkg) StdoutLine: {'line': b'-- The C compiler identification is GNU 11.4.0\n'}
+[0.963746] (interfaces_pkg) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 11.4.0\n'}
+[0.963808] (interfaces_pkg) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[0.963868] (interfaces_pkg) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[0.964132] (interfaces_pkg) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc - skipped\n'}
+[0.964530] (interfaces_pkg) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[0.964621] (interfaces_pkg) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[0.964673] (interfaces_pkg) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[0.964744] (interfaces_pkg) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[0.965036] (interfaces_pkg) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ - skipped\n'}
+[0.965441] (interfaces_pkg) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[0.965523] (interfaces_pkg) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[0.966522] (interfaces_pkg) StdoutLine: {'line': b'-- Configuring incomplete, errors occurred!\n'}
+[0.966677] (interfaces_pkg) StderrLine: {'line': b'\x1b[0mCMake Deprecation Warning at CMakeLists.txt:1 (cmake_minimum_required):\n'}
+[0.967033] (interfaces_pkg) StderrLine: {'line': b'  Compatibility with CMake < 3.10 will be removed from a future version of\n'}
+[0.967078] (interfaces_pkg) StderrLine: {'line': b'  CMake.\n'}
+[0.967123] (interfaces_pkg) StderrLine: {'line': b'\n'}
+[0.967271] (interfaces_pkg) StderrLine: {'line': b'  Update the VERSION argument <min> value or use a ...<max> suffix to tell\n'}
+[0.967312] (interfaces_pkg) StderrLine: {'line': b'  CMake that the project does not need compatibility with older versions.\n'}
+[0.967350] (interfaces_pkg) StderrLine: {'line': b'\n'}
+[0.967387] (interfaces_pkg) StderrLine: {'line': b'\x1b[0m\n'}
+[0.967423] (interfaces_pkg) StderrLine: {'line': b'\x1b[31mCMake Error at CMakeLists.txt:5 (find_package):\n'}
+[0.967459] (interfaces_pkg) StderrLine: {'line': b'  By not providing "Findament_cmake.cmake" in CMAKE_MODULE_PATH this project\n'}
+[0.967495] (interfaces_pkg) StderrLine: {'line': b'  has asked CMake to find a package configuration file provided by\n'}
+[0.967531] (interfaces_pkg) StderrLine: {'line': b'  "ament_cmake", but CMake did not find one.\n'}
+[0.967567] (interfaces_pkg) StderrLine: {'line': b'\n'}
+[0.967603] (interfaces_pkg) StderrLine: {'line': b'  Could not find a package configuration file provided by "ament_cmake" with\n'}
+[0.967638] (interfaces_pkg) StderrLine: {'line': b'  any of the following names:\n'}
+[0.967672] (interfaces_pkg) StderrLine: {'line': b'\n'}
+[0.967706] (interfaces_pkg) StderrLine: {'line': b'    ament_cmakeConfig.cmake\n'}
+[0.967742] (interfaces_pkg) StderrLine: {'line': b'    ament_cmake-config.cmake\n'}
+[0.967778] (interfaces_pkg) StderrLine: {'line': b'\n'}
+[0.967813] (interfaces_pkg) StderrLine: {'line': b'  Add the installation prefix of "ament_cmake" to CMAKE_PREFIX_PATH or set\n'}
+[0.967849] (interfaces_pkg) StderrLine: {'line': b'  "ament_cmake_DIR" to a directory containing one of the above files.  If\n'}
+[0.967884] (interfaces_pkg) StderrLine: {'line': b'  "ament_cmake" provides a separate development package or SDK, be sure it\n'}
+[0.967919] (interfaces_pkg) StderrLine: {'line': b'  has been installed.\n'}
+[0.967954] (interfaces_pkg) StderrLine: {'line': b'\n'}
+[0.968004] (interfaces_pkg) StderrLine: {'line': b'\x1b[0m\n'}
+[0.968043] (launch_pkg) StdoutLine: {'line': b'-- The C compiler identification is GNU 11.4.0\n'}
+[0.968126] (launch_pkg) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 11.4.0\n'}
+[0.968184] (launch_pkg) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[0.968230] (launch_pkg) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[0.968272] (launch_pkg) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc - skipped\n'}
+[0.968312] (launch_pkg) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[0.968351] (launch_pkg) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[0.968390] (launch_pkg) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[0.968429] (launch_pkg) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[0.968467] (launch_pkg) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ - skipped\n'}
+[0.968506] (launch_pkg) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[0.968545] (launch_pkg) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[0.968582] (launch_pkg) StdoutLine: {'line': b'-- Configuring incomplete, errors occurred!\n'}
+[0.968620] (launch_pkg) StderrLine: {'line': b'\x1b[0mCMake Deprecation Warning at CMakeLists.txt:1 (cmake_minimum_required):\n'}
+[0.968937] (launch_pkg) StderrLine: {'line': b'  Compatibility with CMake < 3.10 will be removed from a future version of\n'}
+[0.968984] (launch_pkg) StderrLine: {'line': b'  CMake.\n'}
+[0.969024] (launch_pkg) StderrLine: {'line': b'\n'}
+[0.969063] (launch_pkg) StderrLine: {'line': b'  Update the VERSION argument <min> value or use a ...<max> suffix to tell\n'}
+[0.969111] (launch_pkg) StderrLine: {'line': b'  CMake that the project does not need compatibility with older versions.\n'}
+[0.969191] (launch_pkg) StderrLine: {'line': b'\n'}
+[0.969234] (launch_pkg) StderrLine: {'line': b'\x1b[0m\n'}
+[0.969272] (launch_pkg) StderrLine: {'line': b'\x1b[31mCMake Error at CMakeLists.txt:9 (find_package):\n'}
+[0.969310] (launch_pkg) StderrLine: {'line': b'  By not providing "Findament_cmake.cmake" in CMAKE_MODULE_PATH this project\n'}
+[0.969348] (launch_pkg) StderrLine: {'line': b'  has asked CMake to find a package configuration file provided by\n'}
+[0.969386] (launch_pkg) StderrLine: {'line': b'  "ament_cmake", but CMake did not find one.\n'}
+[0.969424] (launch_pkg) StderrLine: {'line': b'\n'}
+[0.969460] (launch_pkg) StderrLine: {'line': b'  Could not find a package configuration file provided by "ament_cmake" with\n'}
+[0.969497] (launch_pkg) StderrLine: {'line': b'  any of the following names:\n'}
+[0.969532] (launch_pkg) StderrLine: {'line': b'\n'}
+[0.969568] (launch_pkg) StderrLine: {'line': b'    ament_cmakeConfig.cmake\n'}
+[0.969602] (launch_pkg) StderrLine: {'line': b'    ament_cmake-config.cmake\n'}
+[0.969635] (launch_pkg) StderrLine: {'line': b'\n'}
+[0.969669] (launch_pkg) StderrLine: {'line': b'  Add the installation prefix of "ament_cmake" to CMAKE_PREFIX_PATH or set\n'}
+[0.969702] (launch_pkg) StderrLine: {'line': b'  "ament_cmake_DIR" to a directory containing one of the above files.  If\n'}
+[0.969735] (launch_pkg) StderrLine: {'line': b'  "ament_cmake" provides a separate development package or SDK, be sure it\n'}
+[0.969768] (launch_pkg) StderrLine: {'line': b'  has been installed.\n'}
+[0.969801] (launch_pkg) StderrLine: {'line': b'\n'}
+[0.969833] (launch_pkg) StderrLine: {'line': b'\x1b[0m\n'}
+[0.969866] (interfaces_pkg) CommandEnded: {'returncode': 1}
+[0.970729] (launch_pkg) CommandEnded: {'returncode': 1}
+[0.994594] (interfaces_pkg) JobEnded: {'identifier': 'interfaces_pkg', 'rc': 1}
+[0.998351] (launch_pkg) JobEnded: {'identifier': 'launch_pkg', 'rc': 1}
+[1.002241] (-) TimerEvent: {}
+[1.102563] (-) TimerEvent: {}
+[1.202990] (-) TimerEvent: {}
+[1.303450] (-) TimerEvent: {}
+[1.369639] (lidar_perception_pkg) JobEnded: {'identifier': 'lidar_perception_pkg', 'rc': 'SIGINT'}
+[1.370206] (debug_pkg) JobEnded: {'identifier': 'debug_pkg', 'rc': 'SIGINT'}
+[1.370387] (camera_perception_pkg) JobEnded: {'identifier': 'camera_perception_pkg', 'rc': 'SIGINT'}
+[1.370530] (decision_making_pkg) JobEnded: {'identifier': 'decision_making_pkg', 'rc': 'SIGINT'}
+[1.376557] (serial_communication_pkg) JobEnded: {'identifier': 'serial_communication_pkg', 'rc': 'SIGINT'}
+[1.387303] (data_collection_pkg) JobSkipped: {'identifier': 'data_collection_pkg'}
+[1.387428] (-) EventReactorShutdown: {}

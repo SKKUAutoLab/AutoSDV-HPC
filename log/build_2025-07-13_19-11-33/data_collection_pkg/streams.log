@@ -1,0 +1,25 @@
+[0.636s] Invoking command in '/home/sungbhin/hpc_v2/build/data_collection_pkg': AMENT_PREFIX_PATH=/home/sungbhin/hpc_v2/install/interfaces_pkg:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/sungbhin/hpc_v2/install/interfaces_pkg LD_LIBRARY_PATH=/home/sungbhin/hpc_v2/install/interfaces_pkg/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/sungbhin/hpc_v2/build/data_collection_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/sungbhin/hpc_v2/install/data_collection_pkg/lib/python3.10/site-packages:/home/sungbhin/hpc_v2/install/interfaces_pkg/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/sungbhin/hpc_v2/build/data_collection_pkg/build --no-deps symlink_data
+[0.879s] running develop
+[1.038s] running egg_info
+[1.039s] creating data_collection_pkg.egg-info
+[1.039s] writing data_collection_pkg.egg-info/PKG-INFO
+[1.039s] writing dependency_links to data_collection_pkg.egg-info/dependency_links.txt
+[1.039s] writing entry points to data_collection_pkg.egg-info/entry_points.txt
+[1.039s] writing requirements to data_collection_pkg.egg-info/requires.txt
+[1.039s] writing top-level names to data_collection_pkg.egg-info/top_level.txt
+[1.039s] writing manifest file 'data_collection_pkg.egg-info/SOURCES.txt'
+[1.041s] reading manifest file 'data_collection_pkg.egg-info/SOURCES.txt'
+[1.042s] writing manifest file 'data_collection_pkg.egg-info/SOURCES.txt'
+[1.045s] running build_ext
+[1.046s] Creating /home/sungbhin/hpc_v2/install/data_collection_pkg/lib/python3.10/site-packages/data-collection-pkg.egg-link (link to .)
+[1.047s] Installing data_collection_node script to /home/sungbhin/hpc_v2/install/data_collection_pkg/lib/data_collection_pkg
+[1.048s] 
+[1.048s] Installed /home/sungbhin/hpc_v2/build/data_collection_pkg
+[1.048s] running symlink_data
+[1.048s] creating /home/sungbhin/hpc_v2/install/data_collection_pkg/share/ament_index
+[1.048s] creating /home/sungbhin/hpc_v2/install/data_collection_pkg/share/ament_index/resource_index
+[1.048s] creating /home/sungbhin/hpc_v2/install/data_collection_pkg/share/ament_index/resource_index/packages
+[1.049s] symbolically linking /home/sungbhin/hpc_v2/build/data_collection_pkg/resource/data_collection_pkg -> /home/sungbhin/hpc_v2/install/data_collection_pkg/share/ament_index/resource_index/packages
+[1.049s] symbolically linking /home/sungbhin/hpc_v2/build/data_collection_pkg/package.xml -> /home/sungbhin/hpc_v2/install/data_collection_pkg/share/data_collection_pkg
+[1.049s] symbolically linking /home/sungbhin/hpc_v2/build/data_collection_pkg/data_collection_pkg/data_collection_func_lib.cpython-310.pyc -> /home/sungbhin/hpc_v2/install/data_collection_pkg/lib/data_collection_pkg
+[1.095s] Invoked command in '/home/sungbhin/hpc_v2/build/data_collection_pkg' returned '0': AMENT_PREFIX_PATH=/home/sungbhin/hpc_v2/install/interfaces_pkg:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/sungbhin/hpc_v2/install/interfaces_pkg LD_LIBRARY_PATH=/home/sungbhin/hpc_v2/install/interfaces_pkg/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/sungbhin/hpc_v2/build/data_collection_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/sungbhin/hpc_v2/install/data_collection_pkg/lib/python3.10/site-packages:/home/sungbhin/hpc_v2/install/interfaces_pkg/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/sungbhin/hpc_v2/build/data_collection_pkg/build --no-deps symlink_data
