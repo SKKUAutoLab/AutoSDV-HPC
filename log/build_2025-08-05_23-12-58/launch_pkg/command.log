@@ -1,0 +1,4 @@
+Invoking command in '/home/sungbhin/AutoSDV_HPC/build/launch_pkg': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/local/bin/cmake --build /home/sungbhin/AutoSDV_HPC/build/launch_pkg -- -j16 -l16
+Invoked command in '/home/sungbhin/AutoSDV_HPC/build/launch_pkg' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/local/bin/cmake --build /home/sungbhin/AutoSDV_HPC/build/launch_pkg -- -j16 -l16
+Invoking command in '/home/sungbhin/AutoSDV_HPC/build/launch_pkg': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/local/bin/cmake --install /home/sungbhin/AutoSDV_HPC/build/launch_pkg
+Invoked command in '/home/sungbhin/AutoSDV_HPC/build/launch_pkg' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/local/bin/cmake --install /home/sungbhin/AutoSDV_HPC/build/launch_pkg

@@ -1,1 +1,1 @@
-/home/sungbhin/hpc_v2/src/serial_communication_pkg/setup.py
+/home/sungbhin/AutoSDV_HPC/src/serial_communication_pkg/setup.py

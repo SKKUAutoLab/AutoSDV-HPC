@@ -12,9 +12,9 @@ class DDSImageListener(Node):
         self.bridge = CvBridge()
 
         # 'image_number'라는 이름의 파라미터를 선언하고 기본값을 'image_topic'으로 설정합니다.
-        self.declare_parameter('image_num', 'image_num01')
+        self.declare_parameter('image', 'image_01')
         # 파라미터 값을 가져옵니다.
-        topic_name = self.get_parameter('image_num').get_parameter_value().string_value
+        topic_name = self.get_parameter('image').get_parameter_value().string_value
         
         # 가져온 파라미터 값(topic_name)을 사용하여 퍼블리셔를 생성합니다.
         self.publisher_ = self.create_publisher(Image, topic_name, 10)

@@ -1,0 +1,15 @@
+running develop
+running egg_info
+writing data_collection_pkg.egg-info/PKG-INFO
+writing dependency_links to data_collection_pkg.egg-info/dependency_links.txt
+writing entry points to data_collection_pkg.egg-info/entry_points.txt
+writing requirements to data_collection_pkg.egg-info/requires.txt
+writing top-level names to data_collection_pkg.egg-info/top_level.txt
+reading manifest file 'data_collection_pkg.egg-info/SOURCES.txt'
+writing manifest file 'data_collection_pkg.egg-info/SOURCES.txt'
+running build_ext
+Creating /home/sungbhin/AutoSDV_HPC/install/data_collection_pkg/lib/python3.10/site-packages/data-collection-pkg.egg-link (link to .)
+Installing data_collection_node script to /home/sungbhin/AutoSDV_HPC/install/data_collection_pkg/lib/data_collection_pkg
+
+Installed /home/sungbhin/AutoSDV_HPC/build/data_collection_pkg
+running symlink_data

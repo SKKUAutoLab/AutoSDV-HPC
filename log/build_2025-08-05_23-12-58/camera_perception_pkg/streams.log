@@ -1,0 +1,21 @@
+[1.809s] Invoking command in '/home/sungbhin/AutoSDV_HPC/build/camera_perception_pkg': PYTHONPATH=/home/sungbhin/AutoSDV_HPC/build/camera_perception_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/sungbhin/AutoSDV_HPC/install/camera_perception_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/sungbhin/AutoSDV_HPC/build/camera_perception_pkg/build --no-deps symlink_data
+[2.139s] running develop
+[2.342s] running egg_info
+[2.343s] writing camera_perception_pkg.egg-info/PKG-INFO
+[2.343s] writing dependency_links to camera_perception_pkg.egg-info/dependency_links.txt
+[2.343s] writing entry points to camera_perception_pkg.egg-info/entry_points.txt
+[2.343s] writing requirements to camera_perception_pkg.egg-info/requires.txt
+[2.343s] writing top-level names to camera_perception_pkg.egg-info/top_level.txt
+[2.347s] reading manifest file 'camera_perception_pkg.egg-info/SOURCES.txt'
+[2.348s] writing manifest file 'camera_perception_pkg.egg-info/SOURCES.txt'
+[2.350s] running build_ext
+[2.350s] Creating /home/sungbhin/AutoSDV_HPC/install/camera_perception_pkg/lib/python3.10/site-packages/camera-perception-pkg.egg-link (link to .)
+[2.351s] Installing ethernet_image_publisher_node script to /home/sungbhin/AutoSDV_HPC/install/camera_perception_pkg/lib/camera_perception_pkg
+[2.351s] Installing image_publisher_node script to /home/sungbhin/AutoSDV_HPC/install/camera_perception_pkg/lib/camera_perception_pkg
+[2.351s] Installing lane_info_extractor_node script to /home/sungbhin/AutoSDV_HPC/install/camera_perception_pkg/lib/camera_perception_pkg
+[2.351s] Installing traffic_light_detector_node script to /home/sungbhin/AutoSDV_HPC/install/camera_perception_pkg/lib/camera_perception_pkg
+[2.351s] Installing yolov8_node script to /home/sungbhin/AutoSDV_HPC/install/camera_perception_pkg/lib/camera_perception_pkg
+[2.352s] 
+[2.352s] Installed /home/sungbhin/AutoSDV_HPC/build/camera_perception_pkg
+[2.352s] running symlink_data
+[2.517s] Invoked command in '/home/sungbhin/AutoSDV_HPC/build/camera_perception_pkg' returned '0': PYTHONPATH=/home/sungbhin/AutoSDV_HPC/build/camera_perception_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/sungbhin/AutoSDV_HPC/install/camera_perception_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/sungbhin/AutoSDV_HPC/build/camera_perception_pkg/build --no-deps symlink_data

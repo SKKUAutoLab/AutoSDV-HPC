@@ -1,0 +1,19 @@
+[1.787s] Invoking command in '/home/sungbhin/AutoSDV_HPC/build/lidar_perception_pkg': PYTHONPATH=/home/sungbhin/AutoSDV_HPC/build/lidar_perception_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/sungbhin/AutoSDV_HPC/install/lidar_perception_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/sungbhin/AutoSDV_HPC/build/lidar_perception_pkg/build --no-deps symlink_data
+[2.124s] running develop
+[2.326s] running egg_info
+[2.327s] writing lidar_perception_pkg.egg-info/PKG-INFO
+[2.327s] writing dependency_links to lidar_perception_pkg.egg-info/dependency_links.txt
+[2.327s] writing entry points to lidar_perception_pkg.egg-info/entry_points.txt
+[2.327s] writing requirements to lidar_perception_pkg.egg-info/requires.txt
+[2.327s] writing top-level names to lidar_perception_pkg.egg-info/top_level.txt
+[2.330s] reading manifest file 'lidar_perception_pkg.egg-info/SOURCES.txt'
+[2.332s] writing manifest file 'lidar_perception_pkg.egg-info/SOURCES.txt'
+[2.334s] running build_ext
+[2.334s] Creating /home/sungbhin/AutoSDV_HPC/install/lidar_perception_pkg/lib/python3.10/site-packages/lidar-perception-pkg.egg-link (link to .)
+[2.335s] Installing lidar_obstacle_detector_node script to /home/sungbhin/AutoSDV_HPC/install/lidar_perception_pkg/lib/lidar_perception_pkg
+[2.335s] Installing lidar_processor_node script to /home/sungbhin/AutoSDV_HPC/install/lidar_perception_pkg/lib/lidar_perception_pkg
+[2.335s] Installing lidar_publisher_node script to /home/sungbhin/AutoSDV_HPC/install/lidar_perception_pkg/lib/lidar_perception_pkg
+[2.335s] 
+[2.335s] Installed /home/sungbhin/AutoSDV_HPC/build/lidar_perception_pkg
+[2.335s] running symlink_data
+[2.460s] Invoked command in '/home/sungbhin/AutoSDV_HPC/build/lidar_perception_pkg' returned '0': PYTHONPATH=/home/sungbhin/AutoSDV_HPC/build/lidar_perception_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/sungbhin/AutoSDV_HPC/install/lidar_perception_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/sungbhin/AutoSDV_HPC/build/lidar_perception_pkg/build --no-deps symlink_data

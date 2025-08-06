@@ -1,0 +1,4 @@
+[0mCMake Error: The current CMakeCache.txt directory /home/sungbhin/AutoSDV_HPC/build/interfaces_pkg/CMakeCache.txt is different than the directory /home/sungbhin/hpc_v2/build/interfaces_pkg where CMakeCache.txt was created. This may result in binaries being created in the wrong place. If you are not sure, reedit the CMakeCache.txt[0m
+[0mCMake Error: The source directory "/home/sungbhin/hpc_v2/src/interfaces_pkg" does not exist.
+Specify --help for usage, or press the help button on the CMake GUI.[0m
+gmake: *** [Makefile:3987: cmake_check_build_system] Error 1

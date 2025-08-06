@@ -1,0 +1,18 @@
+[1.801s] Invoking command in '/home/sungbhin/AutoSDV_HPC/build/debug_pkg': PYTHONPATH=/home/sungbhin/AutoSDV_HPC/build/debug_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/sungbhin/AutoSDV_HPC/install/debug_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/sungbhin/AutoSDV_HPC/build/debug_pkg/build --no-deps symlink_data
+[2.134s] running develop
+[2.335s] running egg_info
+[2.335s] writing debug_pkg.egg-info/PKG-INFO
+[2.335s] writing dependency_links to debug_pkg.egg-info/dependency_links.txt
+[2.336s] writing entry points to debug_pkg.egg-info/entry_points.txt
+[2.337s] writing requirements to debug_pkg.egg-info/requires.txt
+[2.337s] writing top-level names to debug_pkg.egg-info/top_level.txt
+[2.339s] reading manifest file 'debug_pkg.egg-info/SOURCES.txt'
+[2.340s] writing manifest file 'debug_pkg.egg-info/SOURCES.txt'
+[2.342s] running build_ext
+[2.342s] Creating /home/sungbhin/AutoSDV_HPC/install/debug_pkg/lib/python3.10/site-packages/debug-pkg.egg-link (link to .)
+[2.343s] Installing path_visualizer_node script to /home/sungbhin/AutoSDV_HPC/install/debug_pkg/lib/debug_pkg
+[2.344s] Installing yolov8_visualizer_node script to /home/sungbhin/AutoSDV_HPC/install/debug_pkg/lib/debug_pkg
+[2.344s] 
+[2.344s] Installed /home/sungbhin/AutoSDV_HPC/build/debug_pkg
+[2.344s] running symlink_data
+[2.485s] Invoked command in '/home/sungbhin/AutoSDV_HPC/build/debug_pkg' returned '0': PYTHONPATH=/home/sungbhin/AutoSDV_HPC/build/debug_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/sungbhin/AutoSDV_HPC/install/debug_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/sungbhin/AutoSDV_HPC/build/debug_pkg/build --no-deps symlink_data

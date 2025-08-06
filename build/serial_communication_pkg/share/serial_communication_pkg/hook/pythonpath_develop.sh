@@ -1,3 +1,3 @@
 # generated from colcon_core/shell/template/hook_prepend_value.sh.em
 
-_colcon_prepend_unique_value PYTHONPATH "/home/sungbhin/hpc_v2/build/serial_communication_pkg"
+_colcon_prepend_unique_value PYTHONPATH "/home/sungbhin/AutoSDV_HPC/build/serial_communication_pkg"
