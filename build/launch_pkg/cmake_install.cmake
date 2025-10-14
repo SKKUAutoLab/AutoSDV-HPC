@@ -1,8 +1,8 @@
-# Install script for directory: /home/sungbhin/hpc_v2/src/launch_pkg
+# Install script for directory: /home/sungbhin/AutoSDV_HPC/src/launch_pkg
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/sungbhin/hpc_v2/install/launch_pkg")
+  set(CMAKE_INSTALL_PREFIX "/home/sungbhin/AutoSDV_HPC/install/launch_pkg")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -43,13 +43,13 @@ if(NOT DEFINED CMAKE_OBJDUMP)
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  include("/home/sungbhin/hpc_v2/build/launch_pkg/ament_cmake_symlink_install/ament_cmake_symlink_install.cmake")
+  include("/home/sungbhin/AutoSDV_HPC/build/launch_pkg/ament_cmake_symlink_install/ament_cmake_symlink_install.cmake")
 endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
 if(CMAKE_INSTALL_LOCAL_ONLY)
-  file(WRITE "/home/sungbhin/hpc_v2/build/launch_pkg/install_local_manifest.txt"
+  file(WRITE "/home/sungbhin/AutoSDV_HPC/build/launch_pkg/install_local_manifest.txt"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
 endif()
 if(CMAKE_INSTALL_COMPONENT)
@@ -65,6 +65,6 @@ else()
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
-  file(WRITE "/home/sungbhin/hpc_v2/build/launch_pkg/${CMAKE_INSTALL_MANIFEST}"
+  file(WRITE "/home/sungbhin/AutoSDV_HPC/build/launch_pkg/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
 endif()

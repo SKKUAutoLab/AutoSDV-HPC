@@ -23,7 +23,7 @@ function(ament_cmake_symlink_install_directory cmake_current_source_dir)
 
   # make destination absolute path and ensure that it exists
   if(NOT IS_ABSOLUTE "${ARG_DESTINATION}")
-    set(ARG_DESTINATION "/home/sungbhin/hpc_v2/install/launch_pkg/${ARG_DESTINATION}")
+    set(ARG_DESTINATION "/home/sungbhin/AutoSDV_HPC/install/launch_pkg/${ARG_DESTINATION}")
   endif()
   if(NOT EXISTS "${ARG_DESTINATION}")
     file(MAKE_DIRECTORY "${ARG_DESTINATION}")
@@ -123,7 +123,7 @@ function(ament_cmake_symlink_install_files cmake_current_source_dir)
 
   # make destination an absolute path and ensure that it exists
   if(NOT IS_ABSOLUTE "${ARG_DESTINATION}")
-    set(ARG_DESTINATION "/home/sungbhin/hpc_v2/install/launch_pkg/${ARG_DESTINATION}")
+    set(ARG_DESTINATION "/home/sungbhin/AutoSDV_HPC/install/launch_pkg/${ARG_DESTINATION}")
   endif()
   if(NOT EXISTS "${ARG_DESTINATION}")
     file(MAKE_DIRECTORY "${ARG_DESTINATION}")
@@ -181,7 +181,7 @@ function(ament_cmake_symlink_install_programs cmake_current_source_dir)
 
   # make destination an absolute path and ensure that it exists
   if(NOT IS_ABSOLUTE "${ARG_DESTINATION}")
-    set(ARG_DESTINATION "/home/sungbhin/hpc_v2/install/launch_pkg/${ARG_DESTINATION}")
+    set(ARG_DESTINATION "/home/sungbhin/AutoSDV_HPC/install/launch_pkg/${ARG_DESTINATION}")
   endif()
   if(NOT EXISTS "${ARG_DESTINATION}")
     file(MAKE_DIRECTORY "${ARG_DESTINATION}")
@@ -251,7 +251,7 @@ function(ament_cmake_symlink_install_targets)
 
     # make destination an absolute path and ensure that it exists
     if(NOT IS_ABSOLUTE "${destination}")
-      set(destination "/home/sungbhin/hpc_v2/install/launch_pkg/${destination}")
+      set(destination "/home/sungbhin/AutoSDV_HPC/install/launch_pkg/${destination}")
     endif()
     if(NOT EXISTS "${destination}")
       file(MAKE_DIRECTORY "${destination}")
@@ -311,46 +311,46 @@ message(STATUS "Execute custom install script")
 # begin of custom install code
 
 # install(DIRECTORY "launch" "DESTINATION" "share/launch_pkg/")
-ament_cmake_symlink_install_directory("/home/sungbhin/hpc_v2/src/launch_pkg" DIRECTORY "launch" "DESTINATION" "share/launch_pkg/")
+ament_cmake_symlink_install_directory("/home/sungbhin/AutoSDV_HPC/src/launch_pkg" DIRECTORY "launch" "DESTINATION" "share/launch_pkg/")
 
-# install(FILES "/home/sungbhin/hpc_v2/build/launch_pkg/ament_cmake_index/share/ament_index/resource_index/package_run_dependencies/launch_pkg" "DESTINATION" "share/ament_index/resource_index/package_run_dependencies")
-ament_cmake_symlink_install_files("/home/sungbhin/hpc_v2/src/launch_pkg" FILES "/home/sungbhin/hpc_v2/build/launch_pkg/ament_cmake_index/share/ament_index/resource_index/package_run_dependencies/launch_pkg" "DESTINATION" "share/ament_index/resource_index/package_run_dependencies")
+# install(FILES "/home/sungbhin/AutoSDV_HPC/build/launch_pkg/ament_cmake_index/share/ament_index/resource_index/package_run_dependencies/launch_pkg" "DESTINATION" "share/ament_index/resource_index/package_run_dependencies")
+ament_cmake_symlink_install_files("/home/sungbhin/AutoSDV_HPC/src/launch_pkg" FILES "/home/sungbhin/AutoSDV_HPC/build/launch_pkg/ament_cmake_index/share/ament_index/resource_index/package_run_dependencies/launch_pkg" "DESTINATION" "share/ament_index/resource_index/package_run_dependencies")
 
-# install(FILES "/home/sungbhin/hpc_v2/build/launch_pkg/ament_cmake_index/share/ament_index/resource_index/parent_prefix_path/launch_pkg" "DESTINATION" "share/ament_index/resource_index/parent_prefix_path")
-ament_cmake_symlink_install_files("/home/sungbhin/hpc_v2/src/launch_pkg" FILES "/home/sungbhin/hpc_v2/build/launch_pkg/ament_cmake_index/share/ament_index/resource_index/parent_prefix_path/launch_pkg" "DESTINATION" "share/ament_index/resource_index/parent_prefix_path")
+# install(FILES "/home/sungbhin/AutoSDV_HPC/build/launch_pkg/ament_cmake_index/share/ament_index/resource_index/parent_prefix_path/launch_pkg" "DESTINATION" "share/ament_index/resource_index/parent_prefix_path")
+ament_cmake_symlink_install_files("/home/sungbhin/AutoSDV_HPC/src/launch_pkg" FILES "/home/sungbhin/AutoSDV_HPC/build/launch_pkg/ament_cmake_index/share/ament_index/resource_index/parent_prefix_path/launch_pkg" "DESTINATION" "share/ament_index/resource_index/parent_prefix_path")
 
 # install(FILES "/opt/ros/humble/share/ament_cmake_core/cmake/environment_hooks/environment/ament_prefix_path.sh" "DESTINATION" "share/launch_pkg/environment")
-ament_cmake_symlink_install_files("/home/sungbhin/hpc_v2/src/launch_pkg" FILES "/opt/ros/humble/share/ament_cmake_core/cmake/environment_hooks/environment/ament_prefix_path.sh" "DESTINATION" "share/launch_pkg/environment")
+ament_cmake_symlink_install_files("/home/sungbhin/AutoSDV_HPC/src/launch_pkg" FILES "/opt/ros/humble/share/ament_cmake_core/cmake/environment_hooks/environment/ament_prefix_path.sh" "DESTINATION" "share/launch_pkg/environment")
 
-# install(FILES "/home/sungbhin/hpc_v2/build/launch_pkg/ament_cmake_environment_hooks/ament_prefix_path.dsv" "DESTINATION" "share/launch_pkg/environment")
-ament_cmake_symlink_install_files("/home/sungbhin/hpc_v2/src/launch_pkg" FILES "/home/sungbhin/hpc_v2/build/launch_pkg/ament_cmake_environment_hooks/ament_prefix_path.dsv" "DESTINATION" "share/launch_pkg/environment")
+# install(FILES "/home/sungbhin/AutoSDV_HPC/build/launch_pkg/ament_cmake_environment_hooks/ament_prefix_path.dsv" "DESTINATION" "share/launch_pkg/environment")
+ament_cmake_symlink_install_files("/home/sungbhin/AutoSDV_HPC/src/launch_pkg" FILES "/home/sungbhin/AutoSDV_HPC/build/launch_pkg/ament_cmake_environment_hooks/ament_prefix_path.dsv" "DESTINATION" "share/launch_pkg/environment")
 
 # install(FILES "/opt/ros/humble/share/ament_cmake_core/cmake/environment_hooks/environment/path.sh" "DESTINATION" "share/launch_pkg/environment")
-ament_cmake_symlink_install_files("/home/sungbhin/hpc_v2/src/launch_pkg" FILES "/opt/ros/humble/share/ament_cmake_core/cmake/environment_hooks/environment/path.sh" "DESTINATION" "share/launch_pkg/environment")
+ament_cmake_symlink_install_files("/home/sungbhin/AutoSDV_HPC/src/launch_pkg" FILES "/opt/ros/humble/share/ament_cmake_core/cmake/environment_hooks/environment/path.sh" "DESTINATION" "share/launch_pkg/environment")
 
-# install(FILES "/home/sungbhin/hpc_v2/build/launch_pkg/ament_cmake_environment_hooks/path.dsv" "DESTINATION" "share/launch_pkg/environment")
-ament_cmake_symlink_install_files("/home/sungbhin/hpc_v2/src/launch_pkg" FILES "/home/sungbhin/hpc_v2/build/launch_pkg/ament_cmake_environment_hooks/path.dsv" "DESTINATION" "share/launch_pkg/environment")
+# install(FILES "/home/sungbhin/AutoSDV_HPC/build/launch_pkg/ament_cmake_environment_hooks/path.dsv" "DESTINATION" "share/launch_pkg/environment")
+ament_cmake_symlink_install_files("/home/sungbhin/AutoSDV_HPC/src/launch_pkg" FILES "/home/sungbhin/AutoSDV_HPC/build/launch_pkg/ament_cmake_environment_hooks/path.dsv" "DESTINATION" "share/launch_pkg/environment")
 
-# install(FILES "/home/sungbhin/hpc_v2/build/launch_pkg/ament_cmake_environment_hooks/local_setup.bash" "DESTINATION" "share/launch_pkg")
-ament_cmake_symlink_install_files("/home/sungbhin/hpc_v2/src/launch_pkg" FILES "/home/sungbhin/hpc_v2/build/launch_pkg/ament_cmake_environment_hooks/local_setup.bash" "DESTINATION" "share/launch_pkg")
+# install(FILES "/home/sungbhin/AutoSDV_HPC/build/launch_pkg/ament_cmake_environment_hooks/local_setup.bash" "DESTINATION" "share/launch_pkg")
+ament_cmake_symlink_install_files("/home/sungbhin/AutoSDV_HPC/src/launch_pkg" FILES "/home/sungbhin/AutoSDV_HPC/build/launch_pkg/ament_cmake_environment_hooks/local_setup.bash" "DESTINATION" "share/launch_pkg")
 
-# install(FILES "/home/sungbhin/hpc_v2/build/launch_pkg/ament_cmake_environment_hooks/local_setup.sh" "DESTINATION" "share/launch_pkg")
-ament_cmake_symlink_install_files("/home/sungbhin/hpc_v2/src/launch_pkg" FILES "/home/sungbhin/hpc_v2/build/launch_pkg/ament_cmake_environment_hooks/local_setup.sh" "DESTINATION" "share/launch_pkg")
+# install(FILES "/home/sungbhin/AutoSDV_HPC/build/launch_pkg/ament_cmake_environment_hooks/local_setup.sh" "DESTINATION" "share/launch_pkg")
+ament_cmake_symlink_install_files("/home/sungbhin/AutoSDV_HPC/src/launch_pkg" FILES "/home/sungbhin/AutoSDV_HPC/build/launch_pkg/ament_cmake_environment_hooks/local_setup.sh" "DESTINATION" "share/launch_pkg")
 
-# install(FILES "/home/sungbhin/hpc_v2/build/launch_pkg/ament_cmake_environment_hooks/local_setup.zsh" "DESTINATION" "share/launch_pkg")
-ament_cmake_symlink_install_files("/home/sungbhin/hpc_v2/src/launch_pkg" FILES "/home/sungbhin/hpc_v2/build/launch_pkg/ament_cmake_environment_hooks/local_setup.zsh" "DESTINATION" "share/launch_pkg")
+# install(FILES "/home/sungbhin/AutoSDV_HPC/build/launch_pkg/ament_cmake_environment_hooks/local_setup.zsh" "DESTINATION" "share/launch_pkg")
+ament_cmake_symlink_install_files("/home/sungbhin/AutoSDV_HPC/src/launch_pkg" FILES "/home/sungbhin/AutoSDV_HPC/build/launch_pkg/ament_cmake_environment_hooks/local_setup.zsh" "DESTINATION" "share/launch_pkg")
 
-# install(FILES "/home/sungbhin/hpc_v2/build/launch_pkg/ament_cmake_environment_hooks/local_setup.dsv" "DESTINATION" "share/launch_pkg")
-ament_cmake_symlink_install_files("/home/sungbhin/hpc_v2/src/launch_pkg" FILES "/home/sungbhin/hpc_v2/build/launch_pkg/ament_cmake_environment_hooks/local_setup.dsv" "DESTINATION" "share/launch_pkg")
+# install(FILES "/home/sungbhin/AutoSDV_HPC/build/launch_pkg/ament_cmake_environment_hooks/local_setup.dsv" "DESTINATION" "share/launch_pkg")
+ament_cmake_symlink_install_files("/home/sungbhin/AutoSDV_HPC/src/launch_pkg" FILES "/home/sungbhin/AutoSDV_HPC/build/launch_pkg/ament_cmake_environment_hooks/local_setup.dsv" "DESTINATION" "share/launch_pkg")
 
-# install(FILES "/home/sungbhin/hpc_v2/build/launch_pkg/ament_cmake_environment_hooks/package.dsv" "DESTINATION" "share/launch_pkg")
-ament_cmake_symlink_install_files("/home/sungbhin/hpc_v2/src/launch_pkg" FILES "/home/sungbhin/hpc_v2/build/launch_pkg/ament_cmake_environment_hooks/package.dsv" "DESTINATION" "share/launch_pkg")
+# install(FILES "/home/sungbhin/AutoSDV_HPC/build/launch_pkg/ament_cmake_environment_hooks/package.dsv" "DESTINATION" "share/launch_pkg")
+ament_cmake_symlink_install_files("/home/sungbhin/AutoSDV_HPC/src/launch_pkg" FILES "/home/sungbhin/AutoSDV_HPC/build/launch_pkg/ament_cmake_environment_hooks/package.dsv" "DESTINATION" "share/launch_pkg")
 
-# install(FILES "/home/sungbhin/hpc_v2/build/launch_pkg/ament_cmake_index/share/ament_index/resource_index/packages/launch_pkg" "DESTINATION" "share/ament_index/resource_index/packages")
-ament_cmake_symlink_install_files("/home/sungbhin/hpc_v2/src/launch_pkg" FILES "/home/sungbhin/hpc_v2/build/launch_pkg/ament_cmake_index/share/ament_index/resource_index/packages/launch_pkg" "DESTINATION" "share/ament_index/resource_index/packages")
+# install(FILES "/home/sungbhin/AutoSDV_HPC/build/launch_pkg/ament_cmake_index/share/ament_index/resource_index/packages/launch_pkg" "DESTINATION" "share/ament_index/resource_index/packages")
+ament_cmake_symlink_install_files("/home/sungbhin/AutoSDV_HPC/src/launch_pkg" FILES "/home/sungbhin/AutoSDV_HPC/build/launch_pkg/ament_cmake_index/share/ament_index/resource_index/packages/launch_pkg" "DESTINATION" "share/ament_index/resource_index/packages")
 
-# install(FILES "/home/sungbhin/hpc_v2/build/launch_pkg/ament_cmake_core/launch_pkgConfig.cmake" "/home/sungbhin/hpc_v2/build/launch_pkg/ament_cmake_core/launch_pkgConfig-version.cmake" "DESTINATION" "share/launch_pkg/cmake")
-ament_cmake_symlink_install_files("/home/sungbhin/hpc_v2/src/launch_pkg" FILES "/home/sungbhin/hpc_v2/build/launch_pkg/ament_cmake_core/launch_pkgConfig.cmake" "/home/sungbhin/hpc_v2/build/launch_pkg/ament_cmake_core/launch_pkgConfig-version.cmake" "DESTINATION" "share/launch_pkg/cmake")
+# install(FILES "/home/sungbhin/AutoSDV_HPC/build/launch_pkg/ament_cmake_core/launch_pkgConfig.cmake" "/home/sungbhin/AutoSDV_HPC/build/launch_pkg/ament_cmake_core/launch_pkgConfig-version.cmake" "DESTINATION" "share/launch_pkg/cmake")
+ament_cmake_symlink_install_files("/home/sungbhin/AutoSDV_HPC/src/launch_pkg" FILES "/home/sungbhin/AutoSDV_HPC/build/launch_pkg/ament_cmake_core/launch_pkgConfig.cmake" "/home/sungbhin/AutoSDV_HPC/build/launch_pkg/ament_cmake_core/launch_pkgConfig-version.cmake" "DESTINATION" "share/launch_pkg/cmake")
 
-# install(FILES "/home/sungbhin/hpc_v2/src/launch_pkg/package.xml" "DESTINATION" "share/launch_pkg")
-ament_cmake_symlink_install_files("/home/sungbhin/hpc_v2/src/launch_pkg" FILES "/home/sungbhin/hpc_v2/src/launch_pkg/package.xml" "DESTINATION" "share/launch_pkg")
+# install(FILES "/home/sungbhin/AutoSDV_HPC/src/launch_pkg/package.xml" "DESTINATION" "share/launch_pkg")
+ament_cmake_symlink_install_files("/home/sungbhin/AutoSDV_HPC/src/launch_pkg" FILES "/home/sungbhin/AutoSDV_HPC/src/launch_pkg/package.xml" "DESTINATION" "share/launch_pkg")

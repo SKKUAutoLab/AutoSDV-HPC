@@ -2,6 +2,7 @@ package.xml
 setup.cfg
 setup.py
 debug_pkg/__init__.py
+debug_pkg/image_saver_node.py
 debug_pkg/path_visualizer_node.py
 debug_pkg/yolov8_visualizer_node.py
 debug_pkg.egg-info/PKG-INFO

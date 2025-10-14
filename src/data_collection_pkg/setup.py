@@ -26,6 +26,7 @@ setup(
     entry_points={
         'console_scripts': [
             'data_collection_node = data_collection_pkg.data_collection_node:main',
+            'drive_node = data_collection_pkg.drive_node:main',
         ],
     },
 )

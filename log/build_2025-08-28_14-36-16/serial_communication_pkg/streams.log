@@ -1,0 +1,24 @@
+[1.926s] Invoking command in '/home/sungbhin/AutoSDV_HPC/build/serial_communication_pkg': PYTHONPATH=/home/sungbhin/AutoSDV_HPC/build/serial_communication_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/sungbhin/AutoSDV_HPC/install/serial_communication_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/sungbhin/AutoSDV_HPC/build/serial_communication_pkg/build --no-deps symlink_data
+[2.263s] running develop
+[2.476s] running egg_info
+[2.476s] creating serial_communication_pkg.egg-info
+[2.477s] writing serial_communication_pkg.egg-info/PKG-INFO
+[2.477s] writing dependency_links to serial_communication_pkg.egg-info/dependency_links.txt
+[2.477s] writing entry points to serial_communication_pkg.egg-info/entry_points.txt
+[2.477s] writing requirements to serial_communication_pkg.egg-info/requires.txt
+[2.477s] writing top-level names to serial_communication_pkg.egg-info/top_level.txt
+[2.478s] writing manifest file 'serial_communication_pkg.egg-info/SOURCES.txt'
+[2.480s] reading manifest file 'serial_communication_pkg.egg-info/SOURCES.txt'
+[2.481s] writing manifest file 'serial_communication_pkg.egg-info/SOURCES.txt'
+[2.483s] running build_ext
+[2.483s] Creating /home/sungbhin/AutoSDV_HPC/install/serial_communication_pkg/lib/python3.10/site-packages/serial-communication-pkg.egg-link (link to .)
+[2.484s] Installing serial_sender_node script to /home/sungbhin/AutoSDV_HPC/install/serial_communication_pkg/lib/serial_communication_pkg
+[2.485s] 
+[2.485s] Installed /home/sungbhin/AutoSDV_HPC/build/serial_communication_pkg
+[2.485s] running symlink_data
+[2.485s] creating /home/sungbhin/AutoSDV_HPC/install/serial_communication_pkg/share/ament_index
+[2.485s] creating /home/sungbhin/AutoSDV_HPC/install/serial_communication_pkg/share/ament_index/resource_index
+[2.485s] creating /home/sungbhin/AutoSDV_HPC/install/serial_communication_pkg/share/ament_index/resource_index/packages
+[2.485s] symbolically linking /home/sungbhin/AutoSDV_HPC/build/serial_communication_pkg/resource/serial_communication_pkg -> /home/sungbhin/AutoSDV_HPC/install/serial_communication_pkg/share/ament_index/resource_index/packages
+[2.486s] symbolically linking /home/sungbhin/AutoSDV_HPC/build/serial_communication_pkg/package.xml -> /home/sungbhin/AutoSDV_HPC/install/serial_communication_pkg/share/serial_communication_pkg
+[2.547s] Invoked command in '/home/sungbhin/AutoSDV_HPC/build/serial_communication_pkg' returned '0': PYTHONPATH=/home/sungbhin/AutoSDV_HPC/build/serial_communication_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/sungbhin/AutoSDV_HPC/install/serial_communication_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/sungbhin/AutoSDV_HPC/build/serial_communication_pkg/build --no-deps symlink_data

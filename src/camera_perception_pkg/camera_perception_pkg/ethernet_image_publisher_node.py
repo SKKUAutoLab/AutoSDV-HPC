@@ -5,6 +5,7 @@ from cv_bridge import CvBridge
 import cv2
 import numpy as np
 from rclpy.parameter import Parameter
+from rclpy.qos import QoSProfile, QoSReliabilityPolicy, QoSHistoryPolicy, QoSDurabilityPolicy
 
 class DDSImageListener(Node):
     def __init__(self):
@@ -20,13 +21,18 @@ class DDSImageListener(Node):
         self.publisher_ = self.create_publisher(Image, topic_name, 10)
         self.get_logger().info(f'Publishing to topic: {topic_name}')
 
+        qos_profile = QoSProfile(
+            reliability=QoSReliabilityPolicy.BEST_EFFORT,
+            history=QoSHistoryPolicy.KEEP_LAST, depth=1,
+            durability=QoSDurabilityPolicy.VOLATILE
+        )
 
         # DDS와 유사한 토픽(DDS 입력을 시뮬레이션하는 ROS 2 토픽)을 구독합니다.
         self.subscription = self.create_subscription(
             Image,
             topic_name+'_raw',
             self.listener_callback,
-            10
+            qos_profile
         )
         self.get_logger().info('DDS Image Listener Node has started.')
 

@@ -57,10 +57,10 @@ RM = /usr/local/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/sungbhin/hpc_v2/src/launch_pkg
+CMAKE_SOURCE_DIR = /home/sungbhin/AutoSDV_HPC/src/launch_pkg
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/sungbhin/hpc_v2/build/launch_pkg
+CMAKE_BINARY_DIR = /home/sungbhin/AutoSDV_HPC/build/launch_pkg
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -142,9 +142,9 @@ install/strip/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/sungbhin/hpc_v2/build/launch_pkg/CMakeFiles /home/sungbhin/hpc_v2/build/launch_pkg//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/sungbhin/AutoSDV_HPC/build/launch_pkg/CMakeFiles /home/sungbhin/AutoSDV_HPC/build/launch_pkg//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/sungbhin/hpc_v2/build/launch_pkg/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/sungbhin/AutoSDV_HPC/build/launch_pkg/CMakeFiles 0
 .PHONY : all
 
 # The main clean target

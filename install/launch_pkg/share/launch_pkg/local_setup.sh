@@ -1,1 +1,1 @@
-/home/sungbhin/hpc_v2/build/launch_pkg/ament_cmake_environment_hooks/local_setup.sh
+/home/sungbhin/AutoSDV_HPC/build/launch_pkg/ament_cmake_environment_hooks/local_setup.sh

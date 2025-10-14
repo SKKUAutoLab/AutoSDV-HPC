@@ -53,10 +53,10 @@ RM = /usr/local/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/sungbhin/hpc_v2/src/launch_pkg
+CMAKE_SOURCE_DIR = /home/sungbhin/AutoSDV_HPC/src/launch_pkg
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/sungbhin/hpc_v2/build/launch_pkg
+CMAKE_BINARY_DIR = /home/sungbhin/AutoSDV_HPC/build/launch_pkg
 
 # Utility rule file for uninstall.
 
@@ -81,6 +81,6 @@ CMakeFiles/uninstall.dir/clean:
 .PHONY : CMakeFiles/uninstall.dir/clean
 
 CMakeFiles/uninstall.dir/depend:
-	cd /home/sungbhin/hpc_v2/build/launch_pkg && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/sungbhin/hpc_v2/src/launch_pkg /home/sungbhin/hpc_v2/src/launch_pkg /home/sungbhin/hpc_v2/build/launch_pkg /home/sungbhin/hpc_v2/build/launch_pkg /home/sungbhin/hpc_v2/build/launch_pkg/CMakeFiles/uninstall.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd /home/sungbhin/AutoSDV_HPC/build/launch_pkg && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/sungbhin/AutoSDV_HPC/src/launch_pkg /home/sungbhin/AutoSDV_HPC/src/launch_pkg /home/sungbhin/AutoSDV_HPC/build/launch_pkg /home/sungbhin/AutoSDV_HPC/build/launch_pkg /home/sungbhin/AutoSDV_HPC/build/launch_pkg/CMakeFiles/uninstall.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/uninstall.dir/depend
 

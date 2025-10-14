@@ -1,20 +1,10 @@
 import rclpy
 from rclpy.node import Node
-from rclpy.qos import QoSProfile
-from rclpy.qos import QoSHistoryPolicy
-from rclpy.qos import QoSDurabilityPolicy
-from rclpy.qos import QoSReliabilityPolicy
-import marshal
-import types
-import os
+from rclpy.qos import QoSProfile, QoSHistoryPolicy, QoSDurabilityPolicy, QoSReliabilityPolicy
 import sys
 import tty
 import termios
 import threading
-import cv2
-import numpy as np
-import time
-from datetime import datetime
 from interfaces_pkg.msg import MotionCommand
 
 def getch():
@@ -29,101 +19,80 @@ def getch():
     return ch
 
 class DataCollector:
-    def __init__(self, path="./Collected_Datasets", cam_num=0, max_steering=7, capture_interval=0.5):
-        self.path = path
-        self.cam_num = cam_num
-        self.max_steering = max_steering
-        self.capture_interval = capture_interval
+    def __init__(self):
+        # --- [수정 1] 타이머와 상태 변수 다시 추가 ---
+        self.action_active = False # 동작 활성화 상태
+        self.action_timer = None   # 타이머 객체
         self.reset_values()
-        
-        # Initialize camera
-        self.cap = cv2.VideoCapture(self.cam_num)
-        if not self.cap.isOpened():
-            raise RuntimeError(f"Failed to open camera {self.cam_num}")
-            
-        # Create save directory if it doesn't exist
-        os.makedirs(self.path, exist_ok=True)
-        
-        # Start camera thread
-        self.camera_thread = threading.Thread(target=self.camera_loop)
-        self.camera_thread.daemon = True
-        self.camera_thread.start()
-        
-        self.frame = None
-        self.continuous_capture = False
-        self.last_capture_time = 0
 
     def reset_values(self):
-        self.steering = 0
-        self.left_speed = 0
-        self.right_speed = 0
         self.exit_flag = False
-
-    def process_key(self, key):
-        if key == 'q':
-            self.exit_flag = True
-        elif key == 'r':  # Reset all values
-            self.reset_values()
-            print("\nReset all values to zero. Continuing...\n")
-        elif key == 'c':  # Toggle continuous capture
-            self.continuous_capture = not self.continuous_capture
-            status = "started" if self.continuous_capture else "stopped"
-            print(f"\nContinuous capture {status}\n")
-        elif key == 'a':  # Left
-            self.steering = max(-self.max_steering, self.steering - 1)
-        elif key == 'd':  # Right
-            self.steering = min(self.max_steering, self.steering + 1)
-        elif key == 'w':  # Speed up
-            self.left_speed = min(255, self.left_speed + 5)
-            self.right_speed = min(255, self.right_speed + 5)
-        elif key == 's':  # Speed down
-            self.left_speed = max(-255, self.left_speed - 5)
-            self.right_speed = max(-255, self.right_speed - 5)
-        elif key == ' ':  # Space for emergency stop
+        # 동작 중이 아닐 때만 값을 초기화
+        if not self.action_active:
             self.steering = 0
             self.left_speed = 0
             self.right_speed = 0
+    
+    # --- [추가 1] 시간제한 동작을 시작하는 일반 함수 ---
+    def start_timed_action(self, node, steering, speed, duration, description):
+        if self.action_active:
+            node.get_logger().info("Another action is already in progress.")
+            return
 
-    def camera_loop(self):
-        # Create info window
-        cv2.namedWindow('Control Info', cv2.WINDOW_NORMAL)
-        cv2.resizeWindow('Control Info', 400, 100)
+        node.get_logger().info(f"Starting action: {description} for {duration} seconds...")
+        self.action_active = True
+        self.steering = steering
+        self.left_speed = speed
+        self.right_speed = speed
         
-        while not self.exit_flag:
-            ret, self.frame = self.cap.read()
-            if not ret:
-                continue
-            
-            if self.frame is not None:
-                # Show original frame without text
-                cv2.imshow('Camera Feed', self.frame)
-                
-                # Create and update info window
-                info_img = np.zeros((100, 400, 3), dtype=np.uint8)
-                text = f"Steering: {self.steering}"
-                cv2.putText(info_img, text, (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 
-                           0.7, (0, 255, 0), 2)
-                text = f"Speed L/R: {self.left_speed}/{self.right_speed}"
-                cv2.putText(info_img, text, (10, 70), cv2.FONT_HERSHEY_SIMPLEX, 
-                           0.7, (0, 255, 0), 2)
-                
-                # Add capture status
-                capture_status = "Recording" if self.continuous_capture else "Stopped"
-                cv2.putText(info_img, capture_status, (300, 30), cv2.FONT_HERSHEY_SIMPLEX,
-                           0.7, (0, 0, 255) if self.continuous_capture else (128, 128, 128), 2)
-                
-                cv2.imshow('Control Info', info_img)
-                
-            # Handle continuous capture
-            current_time = time.time()
-            if self.continuous_capture and (current_time - self.last_capture_time) >= self.capture_interval:
-                timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-                filename = os.path.join(self.path, f"{timestamp}_{self.steering}.jpg")
-                cv2.imwrite(filename, self.frame)
-                print(f"\nImage saved: {filename}\n")
-                self.last_capture_time = current_time
-                
-            cv2.waitKey(1)
+        # 주어진 시간(duration) 후에 stop_action 함수를 호출
+        self.action_timer = threading.Timer(duration, self.stop_action, [node])
+        self.action_timer.start()
+
+    # --- [추가 2] 동작을 멈추는 함수 ---
+    def stop_action(self, node):
+        node.get_logger().info("Action finished. Stopping.")
+        self.action_active = False
+        self.reset_values()
+
+    def process_key(self, key, node):
+        # --- [수정 2] 키 처리 로직을 start_timed_action 호출로 변경 ---
+        if self.action_active:
+            if key == 'q' or key == 'z': # q 또는 z로 종료
+                self.exit_flag = True
+                if self.action_timer: self.action_timer.cancel()
+                print("\nExiting...\n")
+            elif key == ' ':
+                if self.action_timer: self.action_timer.cancel()
+                self.stop_action(node)
+                print("\nEmergency Stop!")
+            return
+
+        # 각 키에 맞는 동작과 시간 설정
+        if key == 'a': # 정방향 1단계 (7초)
+            self.start_timed_action(node, steering=0, speed=100, duration=6.0, description="Forward Straight")
+        elif key == 's': # 정방향 2단계 (5초)
+            self.start_timed_action(node, steering=-6, speed=30, duration=5.0, description="Forward Left Turn")
+        elif key == 'd': # 정방향 3단계 (9초)
+            self.start_timed_action(node, steering=7, speed=-30, duration=8.0, description="Reverse Right Turn")
+        elif key == 'e': # 역방향 1단계 (9초)
+            self.start_timed_action(node, steering=7, speed=30, duration=8.0, description="Reverse Sequence's Forward Right")
+        elif key == 'w': # 역방향 2단계 (5초)
+            self.start_timed_action(node, steering=-6, speed=-30, duration=5.0, description="Reverse Left Turn")
+        elif key == 'q': # 역방향 3단계 (7초)
+            self.start_timed_action(node, steering=0, speed=-30, duration= 8.0, description="Reverse Straight")
+        
+        # 기타 제어 키
+        elif key == ' ':
+            self.reset_values()
+            print("\nEmergency Stop!")
+        elif key == 'r':
+            self.reset_values()
+            print(f"\nReset all values to zero")
+        elif key == 'z': # 종료 키
+            self.exit_flag = True
+            print("\nExiting...\n")
+        # --- [수정 2 끝] ---
 
     def get_control_values(self):
         return {
@@ -132,23 +101,10 @@ class DataCollector:
             'right_speed': self.right_speed
         }
 
-    def cleanup(self):
-        self.exit_flag = True
-        if self.cap is not None:
-            self.cap.release()
-        cv2.destroyAllWindows()
-
 class DataCollectionNode(Node):
     def __init__(self):
         super().__init__('data_collection_node')
         
-        # Parameters
-        self.DATA_PATH = "./Collected_Datasets"
-        self.CAMERA_NUM = 0
-        self.MAX_STEERING = 7
-        self.CAPTURE_INTERVAL = 0.5  # Capture interval in seconds
-        
-        # QoS Profile
         self.qos_profile = QoSProfile(
             reliability=QoSReliabilityPolicy.RELIABLE,
             history=QoSHistoryPolicy.KEEP_LAST,
@@ -156,43 +112,43 @@ class DataCollectionNode(Node):
             depth=1
         )
         
-        # Publisher
-        self.publisher = self.create_publisher(
-            MotionCommand,
-            'topic_control_signal',
-            self.qos_profile
-        )
+        self.publisher = self.create_publisher(MotionCommand, 'topic_control_signal', self.qos_profile)
+        self.data_collector = DataCollector()
+        self.timer = self.create_timer(0.1, self.timer_callback)
         
-        # Initialize data collector
-        self.data_collector = DataCollector(
-            path=self.DATA_PATH,
-            cam_num=self.CAMERA_NUM,
-            max_steering=self.MAX_STEERING,
-            capture_interval=self.CAPTURE_INTERVAL
-        )
-        
-        # Create timer for regular publishing
-        self.timer = self.create_timer(0.1, self.timer_callback)  # 10Hz
-        
-        # Start input thread
         self.input_thread = threading.Thread(target=self.input_loop)
         self.input_thread.daemon = True
         self.input_thread.start()
 
-        # Print instructions
-        print("\nControls:")
-        print("W/S: Increase/Decrease speed (including reverse)")
-        print("A/D: Turn left/right")
-        print("Space: Emergency stop")
-        print("C: Toggle continuous capture mode")
-        print("R: Reset all values to zero")
-        print("Q: Quit\n")
+        self.print_instructions()
+
+    # --- [수정 3] 키보드 조작 설명에 시간 추가 ---
+    def print_instructions(self):
+        print("\n" + "="*60)
+        print("ROBOT MOTION CONTROL - 6 TIMED ACTIONS")
+        print("="*60)
+        print("Forward Actions:")
+        print("  A : Forward Straight (7s)")
+        print("  S : Forward Left   (5s)")
+        print("  D : Reverse Right  (9s)")
+        print("\nReverse Actions:")
+        print("  E : Forward Right  (9s)")
+        print("  W : Reverse Left   (5s)")
+        print("  Q : Reverse Straight (7s)")
+        print("\nOther Controls:")
+        print("  SPACE: Emergency stop")
+        print("  R    : Reset all values to zero")
+        print("  Z    : Quit")
+        print("="*60)
         
     def input_loop(self):
         while rclpy.ok():
-            key = getch()
-            self.data_collector.process_key(key)
-            if self.data_collector.exit_flag:
+            try:
+                key = getch()
+                self.data_collector.process_key(key, self)
+                if self.data_collector.exit_flag:
+                    break
+            except KeyboardInterrupt:
                 break
         
     def timer_callback(self):
@@ -201,10 +157,8 @@ class DataCollectionNode(Node):
             rclpy.shutdown()
             return
             
-        # Get current control values
         control_values = self.data_collector.get_control_values()
         
-        # Create and publish ROS2 message
         msg = MotionCommand()
         msg.steering = control_values['steering']
         msg.left_speed = control_values['left_speed']
@@ -224,7 +178,6 @@ class DataCollectionNode(Node):
         if self.input_thread.is_alive():
             self.input_thread.join(timeout=1.0)
         self.publish_stop_command()
-        self.data_collector.cleanup()
 
 def main(args=None):
     rclpy.init(args=args)

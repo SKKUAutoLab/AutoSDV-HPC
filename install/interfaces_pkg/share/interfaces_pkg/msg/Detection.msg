@@ -1,1 +1,1 @@
-/home/sungbhin/hpc_v2/src/interfaces_pkg/msg/Detection.msg
+/home/sungbhin/AutoSDV_HPC/src/interfaces_pkg/msg/Detection.msg
