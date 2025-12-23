@@ -1,0 +1,759 @@
+[0.089s] DEBUG:colcon:Command line arguments: ['/usr/bin/colcon', 'build', '--symlink-install']
+[0.089s] DEBUG:colcon:Parsed command line arguments: Namespace(log_base=None, log_level=None, verb_name='build', build_base='build', install_base='install', merge_install=False, symlink_install=True, test_result_base=None, continue_on_error=False, executor='parallel', parallel_workers=16, event_handlers=None, ignore_user_meta=False, metas=['./colcon.meta'], base_paths=['.'], packages_ignore=None, packages_ignore_regex=None, paths=None, packages_up_to=None, packages_up_to_regex=None, packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_select_by_dep=None, packages_skip_by_dep=None, packages_skip_up_to=None, packages_select_build_failed=False, packages_skip_build_finished=False, packages_select_test_failures=False, packages_skip_test_passed=False, packages_select=None, packages_skip=None, packages_select_regex=None, packages_skip_regex=None, packages_start=None, packages_end=None, allow_overriding=[], cmake_args=None, cmake_target=None, cmake_target_skip_unavailable=False, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, ament_cmake_args=None, catkin_cmake_args=None, catkin_skip_building_tests=False, mixin_files=None, mixin=None, verb_parser=<colcon_mixin.mixin.mixin_argument.MixinArgumentDecorator object at 0x76479d279300>, verb_extension=<colcon_core.verb.build.BuildVerb object at 0x76479d278e50>, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0x76479d278e50>>, mixin_verb=('build',))
+[0.232s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) check parameters
+[0.232s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) check parameters
+[0.232s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) check parameters
+[0.232s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) check parameters
+[0.232s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) discover
+[0.232s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) discover
+[0.232s] INFO:colcon.colcon_core.package_discovery:Crawling recursively for packages in '/home/sungbhin/AutoSDV_HPC'
+[0.232s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ignore', 'ignore_ament_install']
+[0.232s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore'
+[0.232s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore_ament_install'
+[0.232s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_pkg']
+[0.232s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_pkg'
+[0.232s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_meta']
+[0.232s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_meta'
+[0.232s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ros']
+[0.232s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ros'
+[0.252s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['cmake', 'python']
+[0.252s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'cmake'
+[0.252s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python'
+[0.252s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['python_setup_py']
+[0.252s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python_setup_py'
+[0.253s] Level 1:colcon.colcon_core.package_identification:_identify(Collected_Datasets) by extensions ['ignore', 'ignore_ament_install']
+[0.253s] Level 1:colcon.colcon_core.package_identification:_identify(Collected_Datasets) by extension 'ignore'
+[0.253s] Level 1:colcon.colcon_core.package_identification:_identify(Collected_Datasets) by extension 'ignore_ament_install'
+[0.253s] Level 1:colcon.colcon_core.package_identification:_identify(Collected_Datasets) by extensions ['colcon_pkg']
+[0.253s] Level 1:colcon.colcon_core.package_identification:_identify(Collected_Datasets) by extension 'colcon_pkg'
+[0.253s] Level 1:colcon.colcon_core.package_identification:_identify(Collected_Datasets) by extensions ['colcon_meta']
+[0.253s] Level 1:colcon.colcon_core.package_identification:_identify(Collected_Datasets) by extension 'colcon_meta'
+[0.253s] Level 1:colcon.colcon_core.package_identification:_identify(Collected_Datasets) by extensions ['ros']
+[0.253s] Level 1:colcon.colcon_core.package_identification:_identify(Collected_Datasets) by extension 'ros'
+[0.253s] Level 1:colcon.colcon_core.package_identification:_identify(Collected_Datasets) by extensions ['cmake', 'python']
+[0.253s] Level 1:colcon.colcon_core.package_identification:_identify(Collected_Datasets) by extension 'cmake'
+[0.253s] Level 1:colcon.colcon_core.package_identification:_identify(Collected_Datasets) by extension 'python'
+[0.253s] Level 1:colcon.colcon_core.package_identification:_identify(Collected_Datasets) by extensions ['python_setup_py']
+[0.253s] Level 1:colcon.colcon_core.package_identification:_identify(Collected_Datasets) by extension 'python_setup_py'
+[0.253s] Level 1:colcon.colcon_core.package_identification:_identify(Updates) by extensions ['ignore', 'ignore_ament_install']
+[0.253s] Level 1:colcon.colcon_core.package_identification:_identify(Updates) by extension 'ignore'
+[0.253s] Level 1:colcon.colcon_core.package_identification:_identify(Updates) by extension 'ignore_ament_install'
+[0.253s] Level 1:colcon.colcon_core.package_identification:_identify(Updates) by extensions ['colcon_pkg']
+[0.253s] Level 1:colcon.colcon_core.package_identification:_identify(Updates) by extension 'colcon_pkg'
+[0.253s] Level 1:colcon.colcon_core.package_identification:_identify(Updates) by extensions ['colcon_meta']
+[0.253s] Level 1:colcon.colcon_core.package_identification:_identify(Updates) by extension 'colcon_meta'
+[0.254s] Level 1:colcon.colcon_core.package_identification:_identify(Updates) by extensions ['ros']
+[0.254s] Level 1:colcon.colcon_core.package_identification:_identify(Updates) by extension 'ros'
+[0.254s] Level 1:colcon.colcon_core.package_identification:_identify(Updates) by extensions ['cmake', 'python']
+[0.254s] Level 1:colcon.colcon_core.package_identification:_identify(Updates) by extension 'cmake'
+[0.254s] Level 1:colcon.colcon_core.package_identification:_identify(Updates) by extension 'python'
+[0.254s] Level 1:colcon.colcon_core.package_identification:_identify(Updates) by extensions ['python_setup_py']
+[0.254s] Level 1:colcon.colcon_core.package_identification:_identify(Updates) by extension 'python_setup_py'
+[0.254s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extensions ['ignore', 'ignore_ament_install']
+[0.254s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extension 'ignore'
+[0.254s] Level 1:colcon.colcon_core.package_identification:_identify(build) ignored
+[0.254s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extensions ['ignore', 'ignore_ament_install']
+[0.254s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extension 'ignore'
+[0.254s] Level 1:colcon.colcon_core.package_identification:_identify(install) ignored
+[0.254s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extensions ['ignore', 'ignore_ament_install']
+[0.254s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extension 'ignore'
+[0.254s] Level 1:colcon.colcon_core.package_identification:_identify(log) ignored
+[0.254s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ignore', 'ignore_ament_install']
+[0.254s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore'
+[0.254s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore_ament_install'
+[0.254s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_pkg']
+[0.254s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_pkg'
+[0.255s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_meta']
+[0.255s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_meta'
+[0.255s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ros']
+[0.255s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ros'
+[0.255s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['cmake', 'python']
+[0.255s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'cmake'
+[0.255s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python'
+[0.255s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['python_setup_py']
+[0.255s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python_setup_py'
+[0.255s] Level 1:colcon.colcon_core.package_identification:_identify(src/camera_perception_pkg) by extensions ['ignore', 'ignore_ament_install']
+[0.255s] Level 1:colcon.colcon_core.package_identification:_identify(src/camera_perception_pkg) by extension 'ignore'
+[0.255s] Level 1:colcon.colcon_core.package_identification:_identify(src/camera_perception_pkg) by extension 'ignore_ament_install'
+[0.255s] Level 1:colcon.colcon_core.package_identification:_identify(src/camera_perception_pkg) by extensions ['colcon_pkg']
+[0.255s] Level 1:colcon.colcon_core.package_identification:_identify(src/camera_perception_pkg) by extension 'colcon_pkg'
+[0.255s] Level 1:colcon.colcon_core.package_identification:_identify(src/camera_perception_pkg) by extensions ['colcon_meta']
+[0.255s] Level 1:colcon.colcon_core.package_identification:_identify(src/camera_perception_pkg) by extension 'colcon_meta'
+[0.255s] Level 1:colcon.colcon_core.package_identification:_identify(src/camera_perception_pkg) by extensions ['ros']
+[0.255s] Level 1:colcon.colcon_core.package_identification:_identify(src/camera_perception_pkg) by extension 'ros'
+[0.258s] DEBUG:colcon.colcon_core.package_identification:Package 'src/camera_perception_pkg' with type 'ros.ament_python' and name 'camera_perception_pkg'
+[0.258s] Level 1:colcon.colcon_core.package_identification:_identify(src/control) by extensions ['ignore', 'ignore_ament_install']
+[0.258s] Level 1:colcon.colcon_core.package_identification:_identify(src/control) by extension 'ignore'
+[0.258s] Level 1:colcon.colcon_core.package_identification:_identify(src/control) by extension 'ignore_ament_install'
+[0.258s] Level 1:colcon.colcon_core.package_identification:_identify(src/control) by extensions ['colcon_pkg']
+[0.258s] Level 1:colcon.colcon_core.package_identification:_identify(src/control) by extension 'colcon_pkg'
+[0.258s] Level 1:colcon.colcon_core.package_identification:_identify(src/control) by extensions ['colcon_meta']
+[0.258s] Level 1:colcon.colcon_core.package_identification:_identify(src/control) by extension 'colcon_meta'
+[0.258s] Level 1:colcon.colcon_core.package_identification:_identify(src/control) by extensions ['ros']
+[0.258s] Level 1:colcon.colcon_core.package_identification:_identify(src/control) by extension 'ros'
+[0.258s] Level 1:colcon.colcon_core.package_identification:_identify(src/control) by extensions ['cmake', 'python']
+[0.258s] Level 1:colcon.colcon_core.package_identification:_identify(src/control) by extension 'cmake'
+[0.258s] Level 1:colcon.colcon_core.package_identification:_identify(src/control) by extension 'python'
+[0.258s] Level 1:colcon.colcon_core.package_identification:_identify(src/control) by extensions ['python_setup_py']
+[0.258s] Level 1:colcon.colcon_core.package_identification:_identify(src/control) by extension 'python_setup_py'
+[0.258s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/check_variable_resistor) by extensions ['ignore', 'ignore_ament_install']
+[0.259s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/check_variable_resistor) by extension 'ignore'
+[0.259s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/check_variable_resistor) by extension 'ignore_ament_install'
+[0.259s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/check_variable_resistor) by extensions ['colcon_pkg']
+[0.259s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/check_variable_resistor) by extension 'colcon_pkg'
+[0.259s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/check_variable_resistor) by extensions ['colcon_meta']
+[0.259s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/check_variable_resistor) by extension 'colcon_meta'
+[0.259s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/check_variable_resistor) by extensions ['ros']
+[0.259s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/check_variable_resistor) by extension 'ros'
+[0.259s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/check_variable_resistor) by extensions ['cmake', 'python']
+[0.259s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/check_variable_resistor) by extension 'cmake'
+[0.259s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/check_variable_resistor) by extension 'python'
+[0.259s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/check_variable_resistor) by extensions ['python_setup_py']
+[0.259s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/check_variable_resistor) by extension 'python_setup_py'
+[0.259s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/driving) by extensions ['ignore', 'ignore_ament_install']
+[0.259s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/driving) by extension 'ignore'
+[0.259s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/driving) by extension 'ignore_ament_install'
+[0.260s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/driving) by extensions ['colcon_pkg']
+[0.260s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/driving) by extension 'colcon_pkg'
+[0.260s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/driving) by extensions ['colcon_meta']
+[0.260s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/driving) by extension 'colcon_meta'
+[0.260s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/driving) by extensions ['ros']
+[0.260s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/driving) by extension 'ros'
+[0.260s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/driving) by extensions ['cmake', 'python']
+[0.260s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/driving) by extension 'cmake'
+[0.260s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/driving) by extension 'python'
+[0.260s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/driving) by extensions ['python_setup_py']
+[0.260s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/driving) by extension 'python_setup_py'
+[0.260s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/motor_test) by extensions ['ignore', 'ignore_ament_install']
+[0.260s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/motor_test) by extension 'ignore'
+[0.260s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/motor_test) by extension 'ignore_ament_install'
+[0.260s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/motor_test) by extensions ['colcon_pkg']
+[0.260s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/motor_test) by extension 'colcon_pkg'
+[0.260s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/motor_test) by extensions ['colcon_meta']
+[0.260s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/motor_test) by extension 'colcon_meta'
+[0.260s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/motor_test) by extensions ['ros']
+[0.260s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/motor_test) by extension 'ros'
+[0.260s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/motor_test) by extensions ['cmake', 'python']
+[0.260s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/motor_test) by extension 'cmake'
+[0.261s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/motor_test) by extension 'python'
+[0.261s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/motor_test) by extensions ['python_setup_py']
+[0.261s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/motor_test) by extension 'python_setup_py'
+[0.261s] Level 1:colcon.colcon_core.package_identification:_identify(src/data_collection) by extensions ['ignore', 'ignore_ament_install']
+[0.261s] Level 1:colcon.colcon_core.package_identification:_identify(src/data_collection) by extension 'ignore'
+[0.261s] Level 1:colcon.colcon_core.package_identification:_identify(src/data_collection) by extension 'ignore_ament_install'
+[0.261s] Level 1:colcon.colcon_core.package_identification:_identify(src/data_collection) by extensions ['colcon_pkg']
+[0.261s] Level 1:colcon.colcon_core.package_identification:_identify(src/data_collection) by extension 'colcon_pkg'
+[0.261s] Level 1:colcon.colcon_core.package_identification:_identify(src/data_collection) by extensions ['colcon_meta']
+[0.261s] Level 1:colcon.colcon_core.package_identification:_identify(src/data_collection) by extension 'colcon_meta'
+[0.261s] Level 1:colcon.colcon_core.package_identification:_identify(src/data_collection) by extensions ['ros']
+[0.261s] Level 1:colcon.colcon_core.package_identification:_identify(src/data_collection) by extension 'ros'
+[0.261s] Level 1:colcon.colcon_core.package_identification:_identify(src/data_collection) by extensions ['cmake', 'python']
+[0.261s] Level 1:colcon.colcon_core.package_identification:_identify(src/data_collection) by extension 'cmake'
+[0.261s] Level 1:colcon.colcon_core.package_identification:_identify(src/data_collection) by extension 'python'
+[0.261s] Level 1:colcon.colcon_core.package_identification:_identify(src/data_collection) by extensions ['python_setup_py']
+[0.261s] Level 1:colcon.colcon_core.package_identification:_identify(src/data_collection) by extension 'python_setup_py'
+[0.261s] Level 1:colcon.colcon_core.package_identification:_identify(src/data_collection_pkg) by extensions ['ignore', 'ignore_ament_install']
+[0.261s] Level 1:colcon.colcon_core.package_identification:_identify(src/data_collection_pkg) by extension 'ignore'
+[0.261s] Level 1:colcon.colcon_core.package_identification:_identify(src/data_collection_pkg) by extension 'ignore_ament_install'
+[0.261s] Level 1:colcon.colcon_core.package_identification:_identify(src/data_collection_pkg) by extensions ['colcon_pkg']
+[0.261s] Level 1:colcon.colcon_core.package_identification:_identify(src/data_collection_pkg) by extension 'colcon_pkg'
+[0.261s] Level 1:colcon.colcon_core.package_identification:_identify(src/data_collection_pkg) by extensions ['colcon_meta']
+[0.261s] Level 1:colcon.colcon_core.package_identification:_identify(src/data_collection_pkg) by extension 'colcon_meta'
+[0.262s] Level 1:colcon.colcon_core.package_identification:_identify(src/data_collection_pkg) by extensions ['ros']
+[0.262s] Level 1:colcon.colcon_core.package_identification:_identify(src/data_collection_pkg) by extension 'ros'
+[0.262s] DEBUG:colcon.colcon_core.package_identification:Package 'src/data_collection_pkg' with type 'ros.ament_python' and name 'data_collection_pkg'
+[0.262s] Level 1:colcon.colcon_core.package_identification:_identify(src/debug_pkg) by extensions ['ignore', 'ignore_ament_install']
+[0.262s] Level 1:colcon.colcon_core.package_identification:_identify(src/debug_pkg) by extension 'ignore'
+[0.262s] Level 1:colcon.colcon_core.package_identification:_identify(src/debug_pkg) by extension 'ignore_ament_install'
+[0.262s] Level 1:colcon.colcon_core.package_identification:_identify(src/debug_pkg) by extensions ['colcon_pkg']
+[0.262s] Level 1:colcon.colcon_core.package_identification:_identify(src/debug_pkg) by extension 'colcon_pkg'
+[0.262s] Level 1:colcon.colcon_core.package_identification:_identify(src/debug_pkg) by extensions ['colcon_meta']
+[0.262s] Level 1:colcon.colcon_core.package_identification:_identify(src/debug_pkg) by extension 'colcon_meta'
+[0.262s] Level 1:colcon.colcon_core.package_identification:_identify(src/debug_pkg) by extensions ['ros']
+[0.262s] Level 1:colcon.colcon_core.package_identification:_identify(src/debug_pkg) by extension 'ros'
+[0.263s] DEBUG:colcon.colcon_core.package_identification:Package 'src/debug_pkg' with type 'ros.ament_python' and name 'debug_pkg'
+[0.263s] Level 1:colcon.colcon_core.package_identification:_identify(src/decision_making_pkg) by extensions ['ignore', 'ignore_ament_install']
+[0.263s] Level 1:colcon.colcon_core.package_identification:_identify(src/decision_making_pkg) by extension 'ignore'
+[0.263s] Level 1:colcon.colcon_core.package_identification:_identify(src/decision_making_pkg) by extension 'ignore_ament_install'
+[0.263s] Level 1:colcon.colcon_core.package_identification:_identify(src/decision_making_pkg) by extensions ['colcon_pkg']
+[0.263s] Level 1:colcon.colcon_core.package_identification:_identify(src/decision_making_pkg) by extension 'colcon_pkg'
+[0.263s] Level 1:colcon.colcon_core.package_identification:_identify(src/decision_making_pkg) by extensions ['colcon_meta']
+[0.263s] Level 1:colcon.colcon_core.package_identification:_identify(src/decision_making_pkg) by extension 'colcon_meta'
+[0.263s] Level 1:colcon.colcon_core.package_identification:_identify(src/decision_making_pkg) by extensions ['ros']
+[0.263s] Level 1:colcon.colcon_core.package_identification:_identify(src/decision_making_pkg) by extension 'ros'
+[0.264s] DEBUG:colcon.colcon_core.package_identification:Package 'src/decision_making_pkg' with type 'ros.ament_python' and name 'decision_making_pkg'
+[0.264s] Level 1:colcon.colcon_core.package_identification:_identify(src/interfaces_pkg) by extensions ['ignore', 'ignore_ament_install']
+[0.264s] Level 1:colcon.colcon_core.package_identification:_identify(src/interfaces_pkg) by extension 'ignore'
+[0.264s] Level 1:colcon.colcon_core.package_identification:_identify(src/interfaces_pkg) by extension 'ignore_ament_install'
+[0.264s] Level 1:colcon.colcon_core.package_identification:_identify(src/interfaces_pkg) by extensions ['colcon_pkg']
+[0.264s] Level 1:colcon.colcon_core.package_identification:_identify(src/interfaces_pkg) by extension 'colcon_pkg'
+[0.264s] Level 1:colcon.colcon_core.package_identification:_identify(src/interfaces_pkg) by extensions ['colcon_meta']
+[0.264s] Level 1:colcon.colcon_core.package_identification:_identify(src/interfaces_pkg) by extension 'colcon_meta'
+[0.264s] Level 1:colcon.colcon_core.package_identification:_identify(src/interfaces_pkg) by extensions ['ros']
+[0.264s] Level 1:colcon.colcon_core.package_identification:_identify(src/interfaces_pkg) by extension 'ros'
+[0.265s] DEBUG:colcon.colcon_core.package_identification:Package 'src/interfaces_pkg' with type 'ros.ament_cmake' and name 'interfaces_pkg'
+[0.265s] Level 1:colcon.colcon_core.package_identification:_identify(src/launch_pkg) by extensions ['ignore', 'ignore_ament_install']
+[0.265s] Level 1:colcon.colcon_core.package_identification:_identify(src/launch_pkg) by extension 'ignore'
+[0.265s] Level 1:colcon.colcon_core.package_identification:_identify(src/launch_pkg) by extension 'ignore_ament_install'
+[0.265s] Level 1:colcon.colcon_core.package_identification:_identify(src/launch_pkg) by extensions ['colcon_pkg']
+[0.265s] Level 1:colcon.colcon_core.package_identification:_identify(src/launch_pkg) by extension 'colcon_pkg'
+[0.265s] Level 1:colcon.colcon_core.package_identification:_identify(src/launch_pkg) by extensions ['colcon_meta']
+[0.265s] Level 1:colcon.colcon_core.package_identification:_identify(src/launch_pkg) by extension 'colcon_meta'
+[0.265s] Level 1:colcon.colcon_core.package_identification:_identify(src/launch_pkg) by extensions ['ros']
+[0.265s] Level 1:colcon.colcon_core.package_identification:_identify(src/launch_pkg) by extension 'ros'
+[0.266s] DEBUG:colcon.colcon_core.package_identification:Package 'src/launch_pkg' with type 'ros.ament_cmake' and name 'launch_pkg'
+[0.266s] Level 1:colcon.colcon_core.package_identification:_identify(src/lidar_perception_pkg) by extensions ['ignore', 'ignore_ament_install']
+[0.266s] Level 1:colcon.colcon_core.package_identification:_identify(src/lidar_perception_pkg) by extension 'ignore'
+[0.266s] Level 1:colcon.colcon_core.package_identification:_identify(src/lidar_perception_pkg) by extension 'ignore_ament_install'
+[0.266s] Level 1:colcon.colcon_core.package_identification:_identify(src/lidar_perception_pkg) by extensions ['colcon_pkg']
+[0.266s] Level 1:colcon.colcon_core.package_identification:_identify(src/lidar_perception_pkg) by extension 'colcon_pkg'
+[0.266s] Level 1:colcon.colcon_core.package_identification:_identify(src/lidar_perception_pkg) by extensions ['colcon_meta']
+[0.266s] Level 1:colcon.colcon_core.package_identification:_identify(src/lidar_perception_pkg) by extension 'colcon_meta'
+[0.266s] Level 1:colcon.colcon_core.package_identification:_identify(src/lidar_perception_pkg) by extensions ['ros']
+[0.266s] Level 1:colcon.colcon_core.package_identification:_identify(src/lidar_perception_pkg) by extension 'ros'
+[0.266s] DEBUG:colcon.colcon_core.package_identification:Package 'src/lidar_perception_pkg' with type 'ros.ament_python' and name 'lidar_perception_pkg'
+[0.266s] Level 1:colcon.colcon_core.package_identification:_identify(src/ota_update_interfaces) by extensions ['ignore', 'ignore_ament_install']
+[0.266s] Level 1:colcon.colcon_core.package_identification:_identify(src/ota_update_interfaces) by extension 'ignore'
+[0.267s] Level 1:colcon.colcon_core.package_identification:_identify(src/ota_update_interfaces) by extension 'ignore_ament_install'
+[0.267s] Level 1:colcon.colcon_core.package_identification:_identify(src/ota_update_interfaces) by extensions ['colcon_pkg']
+[0.267s] Level 1:colcon.colcon_core.package_identification:_identify(src/ota_update_interfaces) by extension 'colcon_pkg'
+[0.267s] Level 1:colcon.colcon_core.package_identification:_identify(src/ota_update_interfaces) by extensions ['colcon_meta']
+[0.267s] Level 1:colcon.colcon_core.package_identification:_identify(src/ota_update_interfaces) by extension 'colcon_meta'
+[0.267s] Level 1:colcon.colcon_core.package_identification:_identify(src/ota_update_interfaces) by extensions ['ros']
+[0.267s] Level 1:colcon.colcon_core.package_identification:_identify(src/ota_update_interfaces) by extension 'ros'
+[0.267s] DEBUG:colcon.colcon_core.package_identification:Package 'src/ota_update_interfaces' with type 'ros.ament_cmake' and name 'ota_update_interfaces'
+[0.267s] Level 1:colcon.colcon_core.package_identification:_identify(src/ota_update_manager) by extensions ['ignore', 'ignore_ament_install']
+[0.267s] Level 1:colcon.colcon_core.package_identification:_identify(src/ota_update_manager) by extension 'ignore'
+[0.267s] Level 1:colcon.colcon_core.package_identification:_identify(src/ota_update_manager) by extension 'ignore_ament_install'
+[0.267s] Level 1:colcon.colcon_core.package_identification:_identify(src/ota_update_manager) by extensions ['colcon_pkg']
+[0.267s] Level 1:colcon.colcon_core.package_identification:_identify(src/ota_update_manager) by extension 'colcon_pkg'
+[0.267s] Level 1:colcon.colcon_core.package_identification:_identify(src/ota_update_manager) by extensions ['colcon_meta']
+[0.267s] Level 1:colcon.colcon_core.package_identification:_identify(src/ota_update_manager) by extension 'colcon_meta'
+[0.268s] Level 1:colcon.colcon_core.package_identification:_identify(src/ota_update_manager) by extensions ['ros']
+[0.268s] Level 1:colcon.colcon_core.package_identification:_identify(src/ota_update_manager) by extension 'ros'
+[0.268s] DEBUG:colcon.colcon_core.package_identification:Package 'src/ota_update_manager' with type 'ros.ament_python' and name 'ota_update_manager'
+[0.268s] Level 1:colcon.colcon_core.package_identification:_identify(src/serial_communication_pkg) by extensions ['ignore', 'ignore_ament_install']
+[0.268s] Level 1:colcon.colcon_core.package_identification:_identify(src/serial_communication_pkg) by extension 'ignore'
+[0.268s] Level 1:colcon.colcon_core.package_identification:_identify(src/serial_communication_pkg) by extension 'ignore_ament_install'
+[0.268s] Level 1:colcon.colcon_core.package_identification:_identify(src/serial_communication_pkg) by extensions ['colcon_pkg']
+[0.268s] Level 1:colcon.colcon_core.package_identification:_identify(src/serial_communication_pkg) by extension 'colcon_pkg'
+[0.268s] Level 1:colcon.colcon_core.package_identification:_identify(src/serial_communication_pkg) by extensions ['colcon_meta']
+[0.268s] Level 1:colcon.colcon_core.package_identification:_identify(src/serial_communication_pkg) by extension 'colcon_meta'
+[0.268s] Level 1:colcon.colcon_core.package_identification:_identify(src/serial_communication_pkg) by extensions ['ros']
+[0.269s] Level 1:colcon.colcon_core.package_identification:_identify(src/serial_communication_pkg) by extension 'ros'
+[0.269s] DEBUG:colcon.colcon_core.package_identification:Package 'src/serial_communication_pkg' with type 'ros.ament_python' and name 'serial_communication_pkg'
+[0.269s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) using defaults
+[0.269s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) discover
+[0.269s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) using defaults
+[0.269s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) discover
+[0.269s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) using defaults
+[0.285s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) check parameters
+[0.285s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) discover
+[0.287s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 10 installed packages in /home/sungbhin/AutoSDV_HPC/install
+[0.288s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 271 installed packages in /opt/ros/humble
+[0.289s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) using defaults
+[0.315s] Level 5:colcon.colcon_core.verb:set package 'camera_perception_pkg' build argument 'cmake_args' from command line to 'None'
+[0.315s] Level 5:colcon.colcon_core.verb:set package 'camera_perception_pkg' build argument 'cmake_target' from command line to 'None'
+[0.315s] Level 5:colcon.colcon_core.verb:set package 'camera_perception_pkg' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.315s] Level 5:colcon.colcon_core.verb:set package 'camera_perception_pkg' build argument 'cmake_clean_cache' from command line to 'False'
+[0.315s] Level 5:colcon.colcon_core.verb:set package 'camera_perception_pkg' build argument 'cmake_clean_first' from command line to 'False'
+[0.315s] Level 5:colcon.colcon_core.verb:set package 'camera_perception_pkg' build argument 'cmake_force_configure' from command line to 'False'
+[0.315s] Level 5:colcon.colcon_core.verb:set package 'camera_perception_pkg' build argument 'ament_cmake_args' from command line to 'None'
+[0.315s] Level 5:colcon.colcon_core.verb:set package 'camera_perception_pkg' build argument 'catkin_cmake_args' from command line to 'None'
+[0.315s] Level 5:colcon.colcon_core.verb:set package 'camera_perception_pkg' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.315s] DEBUG:colcon.colcon_core.verb:Building package 'camera_perception_pkg' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/sungbhin/AutoSDV_HPC/build/camera_perception_pkg', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/sungbhin/AutoSDV_HPC/install/camera_perception_pkg', 'merge_install': False, 'path': '/home/sungbhin/AutoSDV_HPC/src/camera_perception_pkg', 'symlink_install': True, 'test_result_base': None}
+[0.315s] Level 5:colcon.colcon_core.verb:set package 'debug_pkg' build argument 'cmake_args' from command line to 'None'
+[0.315s] Level 5:colcon.colcon_core.verb:set package 'debug_pkg' build argument 'cmake_target' from command line to 'None'
+[0.315s] Level 5:colcon.colcon_core.verb:set package 'debug_pkg' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.315s] Level 5:colcon.colcon_core.verb:set package 'debug_pkg' build argument 'cmake_clean_cache' from command line to 'False'
+[0.315s] Level 5:colcon.colcon_core.verb:set package 'debug_pkg' build argument 'cmake_clean_first' from command line to 'False'
+[0.315s] Level 5:colcon.colcon_core.verb:set package 'debug_pkg' build argument 'cmake_force_configure' from command line to 'False'
+[0.315s] Level 5:colcon.colcon_core.verb:set package 'debug_pkg' build argument 'ament_cmake_args' from command line to 'None'
+[0.315s] Level 5:colcon.colcon_core.verb:set package 'debug_pkg' build argument 'catkin_cmake_args' from command line to 'None'
+[0.316s] Level 5:colcon.colcon_core.verb:set package 'debug_pkg' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.316s] DEBUG:colcon.colcon_core.verb:Building package 'debug_pkg' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/sungbhin/AutoSDV_HPC/build/debug_pkg', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/sungbhin/AutoSDV_HPC/install/debug_pkg', 'merge_install': False, 'path': '/home/sungbhin/AutoSDV_HPC/src/debug_pkg', 'symlink_install': True, 'test_result_base': None}
+[0.316s] Level 5:colcon.colcon_core.verb:set package 'decision_making_pkg' build argument 'cmake_args' from command line to 'None'
+[0.316s] Level 5:colcon.colcon_core.verb:set package 'decision_making_pkg' build argument 'cmake_target' from command line to 'None'
+[0.316s] Level 5:colcon.colcon_core.verb:set package 'decision_making_pkg' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.316s] Level 5:colcon.colcon_core.verb:set package 'decision_making_pkg' build argument 'cmake_clean_cache' from command line to 'False'
+[0.316s] Level 5:colcon.colcon_core.verb:set package 'decision_making_pkg' build argument 'cmake_clean_first' from command line to 'False'
+[0.316s] Level 5:colcon.colcon_core.verb:set package 'decision_making_pkg' build argument 'cmake_force_configure' from command line to 'False'
+[0.316s] Level 5:colcon.colcon_core.verb:set package 'decision_making_pkg' build argument 'ament_cmake_args' from command line to 'None'
+[0.316s] Level 5:colcon.colcon_core.verb:set package 'decision_making_pkg' build argument 'catkin_cmake_args' from command line to 'None'
+[0.316s] Level 5:colcon.colcon_core.verb:set package 'decision_making_pkg' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.316s] DEBUG:colcon.colcon_core.verb:Building package 'decision_making_pkg' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/sungbhin/AutoSDV_HPC/build/decision_making_pkg', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/sungbhin/AutoSDV_HPC/install/decision_making_pkg', 'merge_install': False, 'path': '/home/sungbhin/AutoSDV_HPC/src/decision_making_pkg', 'symlink_install': True, 'test_result_base': None}
+[0.316s] Level 5:colcon.colcon_core.verb:set package 'interfaces_pkg' build argument 'cmake_args' from command line to 'None'
+[0.316s] Level 5:colcon.colcon_core.verb:set package 'interfaces_pkg' build argument 'cmake_target' from command line to 'None'
+[0.316s] Level 5:colcon.colcon_core.verb:set package 'interfaces_pkg' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.316s] Level 5:colcon.colcon_core.verb:set package 'interfaces_pkg' build argument 'cmake_clean_cache' from command line to 'False'
+[0.316s] Level 5:colcon.colcon_core.verb:set package 'interfaces_pkg' build argument 'cmake_clean_first' from command line to 'False'
+[0.316s] Level 5:colcon.colcon_core.verb:set package 'interfaces_pkg' build argument 'cmake_force_configure' from command line to 'False'
+[0.316s] Level 5:colcon.colcon_core.verb:set package 'interfaces_pkg' build argument 'ament_cmake_args' from command line to 'None'
+[0.316s] Level 5:colcon.colcon_core.verb:set package 'interfaces_pkg' build argument 'catkin_cmake_args' from command line to 'None'
+[0.316s] Level 5:colcon.colcon_core.verb:set package 'interfaces_pkg' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.316s] DEBUG:colcon.colcon_core.verb:Building package 'interfaces_pkg' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/sungbhin/AutoSDV_HPC/build/interfaces_pkg', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/sungbhin/AutoSDV_HPC/install/interfaces_pkg', 'merge_install': False, 'path': '/home/sungbhin/AutoSDV_HPC/src/interfaces_pkg', 'symlink_install': True, 'test_result_base': None}
+[0.317s] Level 5:colcon.colcon_core.verb:set package 'launch_pkg' build argument 'cmake_args' from command line to 'None'
+[0.317s] Level 5:colcon.colcon_core.verb:set package 'launch_pkg' build argument 'cmake_target' from command line to 'None'
+[0.317s] Level 5:colcon.colcon_core.verb:set package 'launch_pkg' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.317s] Level 5:colcon.colcon_core.verb:set package 'launch_pkg' build argument 'cmake_clean_cache' from command line to 'False'
+[0.317s] Level 5:colcon.colcon_core.verb:set package 'launch_pkg' build argument 'cmake_clean_first' from command line to 'False'
+[0.317s] Level 5:colcon.colcon_core.verb:set package 'launch_pkg' build argument 'cmake_force_configure' from command line to 'False'
+[0.317s] Level 5:colcon.colcon_core.verb:set package 'launch_pkg' build argument 'ament_cmake_args' from command line to 'None'
+[0.317s] Level 5:colcon.colcon_core.verb:set package 'launch_pkg' build argument 'catkin_cmake_args' from command line to 'None'
+[0.317s] Level 5:colcon.colcon_core.verb:set package 'launch_pkg' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.317s] DEBUG:colcon.colcon_core.verb:Building package 'launch_pkg' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/sungbhin/AutoSDV_HPC/build/launch_pkg', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/sungbhin/AutoSDV_HPC/install/launch_pkg', 'merge_install': False, 'path': '/home/sungbhin/AutoSDV_HPC/src/launch_pkg', 'symlink_install': True, 'test_result_base': None}
+[0.317s] Level 5:colcon.colcon_core.verb:set package 'lidar_perception_pkg' build argument 'cmake_args' from command line to 'None'
+[0.317s] Level 5:colcon.colcon_core.verb:set package 'lidar_perception_pkg' build argument 'cmake_target' from command line to 'None'
+[0.317s] Level 5:colcon.colcon_core.verb:set package 'lidar_perception_pkg' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.317s] Level 5:colcon.colcon_core.verb:set package 'lidar_perception_pkg' build argument 'cmake_clean_cache' from command line to 'False'
+[0.317s] Level 5:colcon.colcon_core.verb:set package 'lidar_perception_pkg' build argument 'cmake_clean_first' from command line to 'False'
+[0.317s] Level 5:colcon.colcon_core.verb:set package 'lidar_perception_pkg' build argument 'cmake_force_configure' from command line to 'False'
+[0.317s] Level 5:colcon.colcon_core.verb:set package 'lidar_perception_pkg' build argument 'ament_cmake_args' from command line to 'None'
+[0.317s] Level 5:colcon.colcon_core.verb:set package 'lidar_perception_pkg' build argument 'catkin_cmake_args' from command line to 'None'
+[0.317s] Level 5:colcon.colcon_core.verb:set package 'lidar_perception_pkg' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.317s] DEBUG:colcon.colcon_core.verb:Building package 'lidar_perception_pkg' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/sungbhin/AutoSDV_HPC/build/lidar_perception_pkg', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/sungbhin/AutoSDV_HPC/install/lidar_perception_pkg', 'merge_install': False, 'path': '/home/sungbhin/AutoSDV_HPC/src/lidar_perception_pkg', 'symlink_install': True, 'test_result_base': None}
+[0.318s] Level 5:colcon.colcon_core.verb:set package 'ota_update_interfaces' build argument 'cmake_args' from command line to 'None'
+[0.318s] Level 5:colcon.colcon_core.verb:set package 'ota_update_interfaces' build argument 'cmake_target' from command line to 'None'
+[0.318s] Level 5:colcon.colcon_core.verb:set package 'ota_update_interfaces' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.318s] Level 5:colcon.colcon_core.verb:set package 'ota_update_interfaces' build argument 'cmake_clean_cache' from command line to 'False'
+[0.318s] Level 5:colcon.colcon_core.verb:set package 'ota_update_interfaces' build argument 'cmake_clean_first' from command line to 'False'
+[0.318s] Level 5:colcon.colcon_core.verb:set package 'ota_update_interfaces' build argument 'cmake_force_configure' from command line to 'False'
+[0.318s] Level 5:colcon.colcon_core.verb:set package 'ota_update_interfaces' build argument 'ament_cmake_args' from command line to 'None'
+[0.318s] Level 5:colcon.colcon_core.verb:set package 'ota_update_interfaces' build argument 'catkin_cmake_args' from command line to 'None'
+[0.318s] Level 5:colcon.colcon_core.verb:set package 'ota_update_interfaces' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.318s] DEBUG:colcon.colcon_core.verb:Building package 'ota_update_interfaces' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/sungbhin/AutoSDV_HPC/build/ota_update_interfaces', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/sungbhin/AutoSDV_HPC/install/ota_update_interfaces', 'merge_install': False, 'path': '/home/sungbhin/AutoSDV_HPC/src/ota_update_interfaces', 'symlink_install': True, 'test_result_base': None}
+[0.318s] Level 5:colcon.colcon_core.verb:set package 'serial_communication_pkg' build argument 'cmake_args' from command line to 'None'
+[0.318s] Level 5:colcon.colcon_core.verb:set package 'serial_communication_pkg' build argument 'cmake_target' from command line to 'None'
+[0.318s] Level 5:colcon.colcon_core.verb:set package 'serial_communication_pkg' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.318s] Level 5:colcon.colcon_core.verb:set package 'serial_communication_pkg' build argument 'cmake_clean_cache' from command line to 'False'
+[0.318s] Level 5:colcon.colcon_core.verb:set package 'serial_communication_pkg' build argument 'cmake_clean_first' from command line to 'False'
+[0.318s] Level 5:colcon.colcon_core.verb:set package 'serial_communication_pkg' build argument 'cmake_force_configure' from command line to 'False'
+[0.318s] Level 5:colcon.colcon_core.verb:set package 'serial_communication_pkg' build argument 'ament_cmake_args' from command line to 'None'
+[0.318s] Level 5:colcon.colcon_core.verb:set package 'serial_communication_pkg' build argument 'catkin_cmake_args' from command line to 'None'
+[0.318s] Level 5:colcon.colcon_core.verb:set package 'serial_communication_pkg' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.318s] DEBUG:colcon.colcon_core.verb:Building package 'serial_communication_pkg' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/sungbhin/AutoSDV_HPC/build/serial_communication_pkg', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/sungbhin/AutoSDV_HPC/install/serial_communication_pkg', 'merge_install': False, 'path': '/home/sungbhin/AutoSDV_HPC/src/serial_communication_pkg', 'symlink_install': True, 'test_result_base': None}
+[0.318s] Level 5:colcon.colcon_core.verb:set package 'data_collection_pkg' build argument 'cmake_args' from command line to 'None'
+[0.318s] Level 5:colcon.colcon_core.verb:set package 'data_collection_pkg' build argument 'cmake_target' from command line to 'None'
+[0.318s] Level 5:colcon.colcon_core.verb:set package 'data_collection_pkg' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.319s] Level 5:colcon.colcon_core.verb:set package 'data_collection_pkg' build argument 'cmake_clean_cache' from command line to 'False'
+[0.319s] Level 5:colcon.colcon_core.verb:set package 'data_collection_pkg' build argument 'cmake_clean_first' from command line to 'False'
+[0.319s] Level 5:colcon.colcon_core.verb:set package 'data_collection_pkg' build argument 'cmake_force_configure' from command line to 'False'
+[0.319s] Level 5:colcon.colcon_core.verb:set package 'data_collection_pkg' build argument 'ament_cmake_args' from command line to 'None'
+[0.319s] Level 5:colcon.colcon_core.verb:set package 'data_collection_pkg' build argument 'catkin_cmake_args' from command line to 'None'
+[0.319s] Level 5:colcon.colcon_core.verb:set package 'data_collection_pkg' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.319s] DEBUG:colcon.colcon_core.verb:Building package 'data_collection_pkg' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/sungbhin/AutoSDV_HPC/build/data_collection_pkg', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/sungbhin/AutoSDV_HPC/install/data_collection_pkg', 'merge_install': False, 'path': '/home/sungbhin/AutoSDV_HPC/src/data_collection_pkg', 'symlink_install': True, 'test_result_base': None}
+[0.319s] Level 5:colcon.colcon_core.verb:set package 'ota_update_manager' build argument 'cmake_args' from command line to 'None'
+[0.319s] Level 5:colcon.colcon_core.verb:set package 'ota_update_manager' build argument 'cmake_target' from command line to 'None'
+[0.319s] Level 5:colcon.colcon_core.verb:set package 'ota_update_manager' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.319s] Level 5:colcon.colcon_core.verb:set package 'ota_update_manager' build argument 'cmake_clean_cache' from command line to 'False'
+[0.319s] Level 5:colcon.colcon_core.verb:set package 'ota_update_manager' build argument 'cmake_clean_first' from command line to 'False'
+[0.319s] Level 5:colcon.colcon_core.verb:set package 'ota_update_manager' build argument 'cmake_force_configure' from command line to 'False'
+[0.319s] Level 5:colcon.colcon_core.verb:set package 'ota_update_manager' build argument 'ament_cmake_args' from command line to 'None'
+[0.319s] Level 5:colcon.colcon_core.verb:set package 'ota_update_manager' build argument 'catkin_cmake_args' from command line to 'None'
+[0.319s] Level 5:colcon.colcon_core.verb:set package 'ota_update_manager' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.319s] DEBUG:colcon.colcon_core.verb:Building package 'ota_update_manager' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/sungbhin/AutoSDV_HPC/build/ota_update_manager', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/sungbhin/AutoSDV_HPC/install/ota_update_manager', 'merge_install': False, 'path': '/home/sungbhin/AutoSDV_HPC/src/ota_update_manager', 'symlink_install': True, 'test_result_base': None}
+[0.319s] INFO:colcon.colcon_core.executor:Executing jobs using 'parallel' executor
+[0.320s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete
+[0.321s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/sungbhin/AutoSDV_HPC/src/interfaces_pkg' with build type 'ament_cmake'
+[0.321s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/sungbhin/AutoSDV_HPC/src/interfaces_pkg'
+[0.323s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[0.324s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.324s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.327s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/sungbhin/AutoSDV_HPC/src/ota_update_interfaces' with build type 'ament_cmake'
+[0.327s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/sungbhin/AutoSDV_HPC/src/ota_update_interfaces'
+[0.327s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.327s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.331s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/sungbhin/AutoSDV_HPC/src/camera_perception_pkg' with build type 'ament_python'
+[0.331s] Level 1:colcon.colcon_core.shell:create_environment_hook('camera_perception_pkg', 'ament_prefix_path')
+[0.331s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/sungbhin/AutoSDV_HPC/install/camera_perception_pkg/share/camera_perception_pkg/hook/ament_prefix_path.ps1'
+[0.332s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/sungbhin/AutoSDV_HPC/install/camera_perception_pkg/share/camera_perception_pkg/hook/ament_prefix_path.dsv'
+[0.332s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/sungbhin/AutoSDV_HPC/install/camera_perception_pkg/share/camera_perception_pkg/hook/ament_prefix_path.sh'
+[0.333s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.333s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.336s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/sungbhin/AutoSDV_HPC/src/debug_pkg' with build type 'ament_python'
+[0.336s] Level 1:colcon.colcon_core.shell:create_environment_hook('debug_pkg', 'ament_prefix_path')
+[0.336s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/sungbhin/AutoSDV_HPC/install/debug_pkg/share/debug_pkg/hook/ament_prefix_path.ps1'
+[0.336s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/sungbhin/AutoSDV_HPC/install/debug_pkg/share/debug_pkg/hook/ament_prefix_path.dsv'
+[0.337s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/sungbhin/AutoSDV_HPC/install/debug_pkg/share/debug_pkg/hook/ament_prefix_path.sh'
+[0.337s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.337s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.341s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/sungbhin/AutoSDV_HPC/src/decision_making_pkg' with build type 'ament_python'
+[0.341s] Level 1:colcon.colcon_core.shell:create_environment_hook('decision_making_pkg', 'ament_prefix_path')
+[0.341s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/sungbhin/AutoSDV_HPC/install/decision_making_pkg/share/decision_making_pkg/hook/ament_prefix_path.ps1'
+[0.341s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/sungbhin/AutoSDV_HPC/install/decision_making_pkg/share/decision_making_pkg/hook/ament_prefix_path.dsv'
+[0.342s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/sungbhin/AutoSDV_HPC/install/decision_making_pkg/share/decision_making_pkg/hook/ament_prefix_path.sh'
+[0.342s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.342s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.345s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/sungbhin/AutoSDV_HPC/src/launch_pkg' with build type 'ament_cmake'
+[0.346s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/sungbhin/AutoSDV_HPC/src/launch_pkg'
+[0.346s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.346s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.349s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/sungbhin/AutoSDV_HPC/src/lidar_perception_pkg' with build type 'ament_python'
+[0.349s] Level 1:colcon.colcon_core.shell:create_environment_hook('lidar_perception_pkg', 'ament_prefix_path')
+[0.349s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/sungbhin/AutoSDV_HPC/install/lidar_perception_pkg/share/lidar_perception_pkg/hook/ament_prefix_path.ps1'
+[0.349s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/sungbhin/AutoSDV_HPC/install/lidar_perception_pkg/share/lidar_perception_pkg/hook/ament_prefix_path.dsv'
+[0.350s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/sungbhin/AutoSDV_HPC/install/lidar_perception_pkg/share/lidar_perception_pkg/hook/ament_prefix_path.sh'
+[0.350s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.350s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.353s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/sungbhin/AutoSDV_HPC/src/serial_communication_pkg' with build type 'ament_python'
+[0.353s] Level 1:colcon.colcon_core.shell:create_environment_hook('serial_communication_pkg', 'ament_prefix_path')
+[0.353s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/sungbhin/AutoSDV_HPC/install/serial_communication_pkg/share/serial_communication_pkg/hook/ament_prefix_path.ps1'
+[0.354s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/sungbhin/AutoSDV_HPC/install/serial_communication_pkg/share/serial_communication_pkg/hook/ament_prefix_path.dsv'
+[0.354s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/sungbhin/AutoSDV_HPC/install/serial_communication_pkg/share/serial_communication_pkg/hook/ament_prefix_path.sh'
+[0.354s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.354s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.363s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/sungbhin/AutoSDV_HPC/build/interfaces_pkg': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/sungbhin/AutoSDV_HPC/install/serial_communication_pkg:/home/sungbhin/AutoSDV_HPC/install/ota_update_manager:/home/sungbhin/AutoSDV_HPC/install/lidar_perception_pkg:/home/sungbhin/AutoSDV_HPC/install/data_collection_pkg:/home/sungbhin/AutoSDV_HPC/install/decision_making_pkg:/home/sungbhin/AutoSDV_HPC/install/debug_pkg:/home/sungbhin/AutoSDV_HPC/install/camera_perception_pkg:/opt/ros/humble /usr/local/bin/cmake --build /home/sungbhin/AutoSDV_HPC/build/interfaces_pkg -- -j16 -l16
+[0.366s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/sungbhin/AutoSDV_HPC/build/ota_update_interfaces': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/sungbhin/AutoSDV_HPC/install/serial_communication_pkg:/home/sungbhin/AutoSDV_HPC/install/ota_update_manager:/home/sungbhin/AutoSDV_HPC/install/lidar_perception_pkg:/home/sungbhin/AutoSDV_HPC/install/data_collection_pkg:/home/sungbhin/AutoSDV_HPC/install/decision_making_pkg:/home/sungbhin/AutoSDV_HPC/install/debug_pkg:/home/sungbhin/AutoSDV_HPC/install/camera_perception_pkg:/opt/ros/humble /usr/local/bin/cmake --build /home/sungbhin/AutoSDV_HPC/build/ota_update_interfaces -- -j16 -l16
+[0.683s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/sungbhin/AutoSDV_HPC/src/camera_perception_pkg'
+[0.684s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.684s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.948s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/sungbhin/AutoSDV_HPC/src/debug_pkg'
+[0.948s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.948s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[1.211s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/sungbhin/AutoSDV_HPC/src/decision_making_pkg'
+[1.212s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[1.212s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[1.218s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/sungbhin/AutoSDV_HPC/build/launch_pkg': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/sungbhin/AutoSDV_HPC/install/serial_communication_pkg:/home/sungbhin/AutoSDV_HPC/install/ota_update_manager:/home/sungbhin/AutoSDV_HPC/install/lidar_perception_pkg:/home/sungbhin/AutoSDV_HPC/install/data_collection_pkg:/home/sungbhin/AutoSDV_HPC/install/decision_making_pkg:/home/sungbhin/AutoSDV_HPC/install/debug_pkg:/home/sungbhin/AutoSDV_HPC/install/camera_perception_pkg:/opt/ros/humble /usr/local/bin/cmake --build /home/sungbhin/AutoSDV_HPC/build/launch_pkg -- -j16 -l16
+[1.448s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/sungbhin/AutoSDV_HPC/src/lidar_perception_pkg'
+[1.448s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[1.448s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[1.462s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/sungbhin/AutoSDV_HPC/build/ota_update_interfaces' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/sungbhin/AutoSDV_HPC/install/serial_communication_pkg:/home/sungbhin/AutoSDV_HPC/install/ota_update_manager:/home/sungbhin/AutoSDV_HPC/install/lidar_perception_pkg:/home/sungbhin/AutoSDV_HPC/install/data_collection_pkg:/home/sungbhin/AutoSDV_HPC/install/decision_making_pkg:/home/sungbhin/AutoSDV_HPC/install/debug_pkg:/home/sungbhin/AutoSDV_HPC/install/camera_perception_pkg:/opt/ros/humble /usr/local/bin/cmake --build /home/sungbhin/AutoSDV_HPC/build/ota_update_interfaces -- -j16 -l16
+[1.466s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/sungbhin/AutoSDV_HPC/build/ota_update_interfaces': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/sungbhin/AutoSDV_HPC/install/serial_communication_pkg:/home/sungbhin/AutoSDV_HPC/install/ota_update_manager:/home/sungbhin/AutoSDV_HPC/install/lidar_perception_pkg:/home/sungbhin/AutoSDV_HPC/install/data_collection_pkg:/home/sungbhin/AutoSDV_HPC/install/decision_making_pkg:/home/sungbhin/AutoSDV_HPC/install/debug_pkg:/home/sungbhin/AutoSDV_HPC/install/camera_perception_pkg:/opt/ros/humble /usr/local/bin/cmake --install /home/sungbhin/AutoSDV_HPC/build/ota_update_interfaces
+[1.467s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/sungbhin/AutoSDV_HPC/build/launch_pkg' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/sungbhin/AutoSDV_HPC/install/serial_communication_pkg:/home/sungbhin/AutoSDV_HPC/install/ota_update_manager:/home/sungbhin/AutoSDV_HPC/install/lidar_perception_pkg:/home/sungbhin/AutoSDV_HPC/install/data_collection_pkg:/home/sungbhin/AutoSDV_HPC/install/decision_making_pkg:/home/sungbhin/AutoSDV_HPC/install/debug_pkg:/home/sungbhin/AutoSDV_HPC/install/camera_perception_pkg:/opt/ros/humble /usr/local/bin/cmake --build /home/sungbhin/AutoSDV_HPC/build/launch_pkg -- -j16 -l16
+[1.468s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/sungbhin/AutoSDV_HPC/build/launch_pkg': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/sungbhin/AutoSDV_HPC/install/serial_communication_pkg:/home/sungbhin/AutoSDV_HPC/install/ota_update_manager:/home/sungbhin/AutoSDV_HPC/install/lidar_perception_pkg:/home/sungbhin/AutoSDV_HPC/install/data_collection_pkg:/home/sungbhin/AutoSDV_HPC/install/decision_making_pkg:/home/sungbhin/AutoSDV_HPC/install/debug_pkg:/home/sungbhin/AutoSDV_HPC/install/camera_perception_pkg:/opt/ros/humble /usr/local/bin/cmake --install /home/sungbhin/AutoSDV_HPC/build/launch_pkg
+[1.469s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/sungbhin/AutoSDV_HPC/build/interfaces_pkg' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/sungbhin/AutoSDV_HPC/install/serial_communication_pkg:/home/sungbhin/AutoSDV_HPC/install/ota_update_manager:/home/sungbhin/AutoSDV_HPC/install/lidar_perception_pkg:/home/sungbhin/AutoSDV_HPC/install/data_collection_pkg:/home/sungbhin/AutoSDV_HPC/install/decision_making_pkg:/home/sungbhin/AutoSDV_HPC/install/debug_pkg:/home/sungbhin/AutoSDV_HPC/install/camera_perception_pkg:/opt/ros/humble /usr/local/bin/cmake --build /home/sungbhin/AutoSDV_HPC/build/interfaces_pkg -- -j16 -l16
+[1.471s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/sungbhin/AutoSDV_HPC/build/interfaces_pkg': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/sungbhin/AutoSDV_HPC/install/serial_communication_pkg:/home/sungbhin/AutoSDV_HPC/install/ota_update_manager:/home/sungbhin/AutoSDV_HPC/install/lidar_perception_pkg:/home/sungbhin/AutoSDV_HPC/install/data_collection_pkg:/home/sungbhin/AutoSDV_HPC/install/decision_making_pkg:/home/sungbhin/AutoSDV_HPC/install/debug_pkg:/home/sungbhin/AutoSDV_HPC/install/camera_perception_pkg:/opt/ros/humble /usr/local/bin/cmake --install /home/sungbhin/AutoSDV_HPC/build/interfaces_pkg
+[1.712s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/sungbhin/AutoSDV_HPC/src/serial_communication_pkg'
+[1.712s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[1.713s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[1.730s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(launch_pkg)
+[1.738s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/launch_pkg' for CMake module files
+[1.739s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/launch_pkg' for CMake config files
+[1.741s] Level 1:colcon.colcon_core.shell:create_environment_hook('launch_pkg', 'cmake_prefix_path')
+[1.742s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/sungbhin/AutoSDV_HPC/install/launch_pkg/share/launch_pkg/hook/cmake_prefix_path.ps1'
+[1.743s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/sungbhin/AutoSDV_HPC/install/launch_pkg/share/launch_pkg/hook/cmake_prefix_path.dsv'
+[1.743s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/sungbhin/AutoSDV_HPC/install/launch_pkg/share/launch_pkg/hook/cmake_prefix_path.sh'
+[1.745s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/launch_pkg/bin'
+[1.745s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/launch_pkg/lib/pkgconfig/launch_pkg.pc'
+[1.745s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/launch_pkg/lib/python3.10/site-packages'
+[1.750s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/launch_pkg/bin'
+[1.751s] INFO:colcon.colcon_core.shell:Creating package script '/home/sungbhin/AutoSDV_HPC/install/launch_pkg/share/launch_pkg/package.ps1'
+[1.752s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/sungbhin/AutoSDV_HPC/install/launch_pkg/share/launch_pkg/package.dsv'
+[1.753s] INFO:colcon.colcon_core.shell:Creating package script '/home/sungbhin/AutoSDV_HPC/install/launch_pkg/share/launch_pkg/package.sh'
+[1.755s] INFO:colcon.colcon_core.shell:Creating package script '/home/sungbhin/AutoSDV_HPC/install/launch_pkg/share/launch_pkg/package.bash'
+[1.756s] INFO:colcon.colcon_core.shell:Creating package script '/home/sungbhin/AutoSDV_HPC/install/launch_pkg/share/launch_pkg/package.zsh'
+[1.757s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/sungbhin/AutoSDV_HPC/install/launch_pkg/share/colcon-core/packages/launch_pkg)
+[1.759s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(launch_pkg)
+[1.759s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/launch_pkg' for CMake module files
+[1.760s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/launch_pkg' for CMake config files
+[1.764s] Level 1:colcon.colcon_core.shell:create_environment_hook('launch_pkg', 'cmake_prefix_path')
+[1.765s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/sungbhin/AutoSDV_HPC/install/launch_pkg/share/launch_pkg/hook/cmake_prefix_path.ps1'
+[1.766s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/sungbhin/AutoSDV_HPC/install/launch_pkg/share/launch_pkg/hook/cmake_prefix_path.dsv'
+[1.768s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/sungbhin/AutoSDV_HPC/install/launch_pkg/share/launch_pkg/hook/cmake_prefix_path.sh'
+[1.770s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/launch_pkg/bin'
+[1.770s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/launch_pkg/lib/pkgconfig/launch_pkg.pc'
+[1.770s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/launch_pkg/lib/python3.10/site-packages'
+[1.771s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/launch_pkg/bin'
+[1.771s] INFO:colcon.colcon_core.shell:Creating package script '/home/sungbhin/AutoSDV_HPC/install/launch_pkg/share/launch_pkg/package.ps1'
+[1.773s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/sungbhin/AutoSDV_HPC/install/launch_pkg/share/launch_pkg/package.dsv'
+[1.775s] INFO:colcon.colcon_core.shell:Creating package script '/home/sungbhin/AutoSDV_HPC/install/launch_pkg/share/launch_pkg/package.sh'
+[1.776s] INFO:colcon.colcon_core.shell:Creating package script '/home/sungbhin/AutoSDV_HPC/install/launch_pkg/share/launch_pkg/package.bash'
+[1.778s] INFO:colcon.colcon_core.shell:Creating package script '/home/sungbhin/AutoSDV_HPC/install/launch_pkg/share/launch_pkg/package.zsh'
+[1.780s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/sungbhin/AutoSDV_HPC/install/launch_pkg/share/colcon-core/packages/launch_pkg)
+[1.781s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(ota_update_interfaces)
+[1.781s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/ota_update_interfaces' for CMake module files
+[1.786s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/ota_update_interfaces' for CMake config files
+[1.791s] Level 1:colcon.colcon_core.shell:create_environment_hook('ota_update_interfaces', 'cmake_prefix_path')
+[1.792s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/sungbhin/AutoSDV_HPC/install/ota_update_interfaces/share/ota_update_interfaces/hook/cmake_prefix_path.ps1'
+[1.793s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/sungbhin/AutoSDV_HPC/build/launch_pkg' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/sungbhin/AutoSDV_HPC/install/serial_communication_pkg:/home/sungbhin/AutoSDV_HPC/install/ota_update_manager:/home/sungbhin/AutoSDV_HPC/install/lidar_perception_pkg:/home/sungbhin/AutoSDV_HPC/install/data_collection_pkg:/home/sungbhin/AutoSDV_HPC/install/decision_making_pkg:/home/sungbhin/AutoSDV_HPC/install/debug_pkg:/home/sungbhin/AutoSDV_HPC/install/camera_perception_pkg:/opt/ros/humble /usr/local/bin/cmake --install /home/sungbhin/AutoSDV_HPC/build/launch_pkg
+[1.793s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/sungbhin/AutoSDV_HPC/install/ota_update_interfaces/share/ota_update_interfaces/hook/cmake_prefix_path.dsv'
+[1.795s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/sungbhin/AutoSDV_HPC/install/ota_update_interfaces/share/ota_update_interfaces/hook/cmake_prefix_path.sh'
+[1.796s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/ota_update_interfaces/lib'
+[1.797s] Level 1:colcon.colcon_core.shell:create_environment_hook('ota_update_interfaces', 'ld_library_path_lib')
+[1.798s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/sungbhin/AutoSDV_HPC/install/ota_update_interfaces/share/ota_update_interfaces/hook/ld_library_path_lib.ps1'
+[1.799s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/sungbhin/AutoSDV_HPC/install/ota_update_interfaces/share/ota_update_interfaces/hook/ld_library_path_lib.dsv'
+[1.801s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/sungbhin/AutoSDV_HPC/install/ota_update_interfaces/share/ota_update_interfaces/hook/ld_library_path_lib.sh'
+[1.802s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/ota_update_interfaces/bin'
+[1.803s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/ota_update_interfaces/lib/pkgconfig/ota_update_interfaces.pc'
+[1.803s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/ota_update_interfaces/lib/python3.10/site-packages'
+[1.804s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/ota_update_interfaces/bin'
+[1.804s] INFO:colcon.colcon_core.shell:Creating package script '/home/sungbhin/AutoSDV_HPC/install/ota_update_interfaces/share/ota_update_interfaces/package.ps1'
+[1.806s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/sungbhin/AutoSDV_HPC/install/ota_update_interfaces/share/ota_update_interfaces/package.dsv'
+[1.807s] INFO:colcon.colcon_core.shell:Creating package script '/home/sungbhin/AutoSDV_HPC/install/ota_update_interfaces/share/ota_update_interfaces/package.sh'
+[1.809s] INFO:colcon.colcon_core.shell:Creating package script '/home/sungbhin/AutoSDV_HPC/install/ota_update_interfaces/share/ota_update_interfaces/package.bash'
+[1.810s] INFO:colcon.colcon_core.shell:Creating package script '/home/sungbhin/AutoSDV_HPC/install/ota_update_interfaces/share/ota_update_interfaces/package.zsh'
+[1.812s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/sungbhin/AutoSDV_HPC/install/ota_update_interfaces/share/colcon-core/packages/ota_update_interfaces)
+[1.813s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(ota_update_interfaces)
+[1.814s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/ota_update_interfaces' for CMake module files
+[1.817s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/ota_update_interfaces' for CMake config files
+[1.821s] Level 1:colcon.colcon_core.shell:create_environment_hook('ota_update_interfaces', 'cmake_prefix_path')
+[1.822s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/sungbhin/AutoSDV_HPC/install/ota_update_interfaces/share/ota_update_interfaces/hook/cmake_prefix_path.ps1'
+[1.823s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/sungbhin/AutoSDV_HPC/install/ota_update_interfaces/share/ota_update_interfaces/hook/cmake_prefix_path.dsv'
+[1.824s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/sungbhin/AutoSDV_HPC/build/ota_update_interfaces' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/sungbhin/AutoSDV_HPC/install/serial_communication_pkg:/home/sungbhin/AutoSDV_HPC/install/ota_update_manager:/home/sungbhin/AutoSDV_HPC/install/lidar_perception_pkg:/home/sungbhin/AutoSDV_HPC/install/data_collection_pkg:/home/sungbhin/AutoSDV_HPC/install/decision_making_pkg:/home/sungbhin/AutoSDV_HPC/install/debug_pkg:/home/sungbhin/AutoSDV_HPC/install/camera_perception_pkg:/opt/ros/humble /usr/local/bin/cmake --install /home/sungbhin/AutoSDV_HPC/build/ota_update_interfaces
+[1.825s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/sungbhin/AutoSDV_HPC/install/ota_update_interfaces/share/ota_update_interfaces/hook/cmake_prefix_path.sh'
+[1.827s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/ota_update_interfaces/lib'
+[1.827s] Level 1:colcon.colcon_core.shell:create_environment_hook('ota_update_interfaces', 'ld_library_path_lib')
+[1.828s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/sungbhin/AutoSDV_HPC/install/ota_update_interfaces/share/ota_update_interfaces/hook/ld_library_path_lib.ps1'
+[1.829s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/sungbhin/AutoSDV_HPC/install/ota_update_interfaces/share/ota_update_interfaces/hook/ld_library_path_lib.dsv'
+[1.830s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/sungbhin/AutoSDV_HPC/install/ota_update_interfaces/share/ota_update_interfaces/hook/ld_library_path_lib.sh'
+[1.830s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/ota_update_interfaces/bin'
+[1.831s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/ota_update_interfaces/lib/pkgconfig/ota_update_interfaces.pc'
+[1.831s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/ota_update_interfaces/lib/python3.10/site-packages'
+[1.831s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/ota_update_interfaces/bin'
+[1.832s] INFO:colcon.colcon_core.shell:Creating package script '/home/sungbhin/AutoSDV_HPC/install/ota_update_interfaces/share/ota_update_interfaces/package.ps1'
+[1.832s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/sungbhin/AutoSDV_HPC/install/ota_update_interfaces/share/ota_update_interfaces/package.dsv'
+[1.833s] INFO:colcon.colcon_core.shell:Creating package script '/home/sungbhin/AutoSDV_HPC/install/ota_update_interfaces/share/ota_update_interfaces/package.sh'
+[1.833s] INFO:colcon.colcon_core.shell:Creating package script '/home/sungbhin/AutoSDV_HPC/install/ota_update_interfaces/share/ota_update_interfaces/package.bash'
+[1.834s] INFO:colcon.colcon_core.shell:Creating package script '/home/sungbhin/AutoSDV_HPC/install/ota_update_interfaces/share/ota_update_interfaces/package.zsh'
+[1.834s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/sungbhin/AutoSDV_HPC/install/ota_update_interfaces/share/colcon-core/packages/ota_update_interfaces)
+[1.836s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/sungbhin/AutoSDV_HPC/src/ota_update_manager' with build type 'ament_python'
+[1.836s] Level 1:colcon.colcon_core.shell:create_environment_hook('ota_update_manager', 'ament_prefix_path')
+[1.836s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/sungbhin/AutoSDV_HPC/install/ota_update_manager/share/ota_update_manager/hook/ament_prefix_path.ps1'
+[1.837s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/sungbhin/AutoSDV_HPC/install/ota_update_manager/share/ota_update_manager/hook/ament_prefix_path.dsv'
+[1.837s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/sungbhin/AutoSDV_HPC/install/ota_update_manager/share/ota_update_manager/hook/ament_prefix_path.sh'
+[1.838s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[1.838s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[1.846s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(interfaces_pkg)
+[1.847s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/interfaces_pkg' for CMake module files
+[1.847s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/sungbhin/AutoSDV_HPC/build/interfaces_pkg' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/sungbhin/AutoSDV_HPC/install/serial_communication_pkg:/home/sungbhin/AutoSDV_HPC/install/ota_update_manager:/home/sungbhin/AutoSDV_HPC/install/lidar_perception_pkg:/home/sungbhin/AutoSDV_HPC/install/data_collection_pkg:/home/sungbhin/AutoSDV_HPC/install/decision_making_pkg:/home/sungbhin/AutoSDV_HPC/install/debug_pkg:/home/sungbhin/AutoSDV_HPC/install/camera_perception_pkg:/opt/ros/humble /usr/local/bin/cmake --install /home/sungbhin/AutoSDV_HPC/build/interfaces_pkg
+[1.849s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/interfaces_pkg' for CMake config files
+[1.852s] Level 1:colcon.colcon_core.shell:create_environment_hook('interfaces_pkg', 'cmake_prefix_path')
+[1.853s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/sungbhin/AutoSDV_HPC/install/interfaces_pkg/share/interfaces_pkg/hook/cmake_prefix_path.ps1'
+[1.854s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/sungbhin/AutoSDV_HPC/install/interfaces_pkg/share/interfaces_pkg/hook/cmake_prefix_path.dsv'
+[1.854s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/sungbhin/AutoSDV_HPC/install/interfaces_pkg/share/interfaces_pkg/hook/cmake_prefix_path.sh'
+[1.855s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/interfaces_pkg/lib'
+[1.855s] Level 1:colcon.colcon_core.shell:create_environment_hook('interfaces_pkg', 'ld_library_path_lib')
+[1.856s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/sungbhin/AutoSDV_HPC/install/interfaces_pkg/share/interfaces_pkg/hook/ld_library_path_lib.ps1'
+[1.856s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/sungbhin/AutoSDV_HPC/install/interfaces_pkg/share/interfaces_pkg/hook/ld_library_path_lib.dsv'
+[1.857s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/sungbhin/AutoSDV_HPC/install/interfaces_pkg/share/interfaces_pkg/hook/ld_library_path_lib.sh'
+[1.858s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/interfaces_pkg/bin'
+[1.858s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/interfaces_pkg/lib/pkgconfig/interfaces_pkg.pc'
+[1.858s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/interfaces_pkg/lib/python3.10/site-packages'
+[1.858s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/interfaces_pkg/bin'
+[1.859s] INFO:colcon.colcon_core.shell:Creating package script '/home/sungbhin/AutoSDV_HPC/install/interfaces_pkg/share/interfaces_pkg/package.ps1'
+[1.860s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/sungbhin/AutoSDV_HPC/install/interfaces_pkg/share/interfaces_pkg/package.dsv'
+[1.861s] INFO:colcon.colcon_core.shell:Creating package script '/home/sungbhin/AutoSDV_HPC/install/interfaces_pkg/share/interfaces_pkg/package.sh'
+[1.861s] INFO:colcon.colcon_core.shell:Creating package script '/home/sungbhin/AutoSDV_HPC/install/interfaces_pkg/share/interfaces_pkg/package.bash'
+[1.863s] INFO:colcon.colcon_core.shell:Creating package script '/home/sungbhin/AutoSDV_HPC/install/interfaces_pkg/share/interfaces_pkg/package.zsh'
+[1.863s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/sungbhin/AutoSDV_HPC/install/interfaces_pkg/share/colcon-core/packages/interfaces_pkg)
+[1.864s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(interfaces_pkg)
+[1.864s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/interfaces_pkg' for CMake module files
+[1.865s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/interfaces_pkg' for CMake config files
+[1.867s] Level 1:colcon.colcon_core.shell:create_environment_hook('interfaces_pkg', 'cmake_prefix_path')
+[1.868s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/sungbhin/AutoSDV_HPC/install/interfaces_pkg/share/interfaces_pkg/hook/cmake_prefix_path.ps1'
+[1.868s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/sungbhin/AutoSDV_HPC/install/interfaces_pkg/share/interfaces_pkg/hook/cmake_prefix_path.dsv'
+[1.869s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/sungbhin/AutoSDV_HPC/install/interfaces_pkg/share/interfaces_pkg/hook/cmake_prefix_path.sh'
+[1.870s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/interfaces_pkg/lib'
+[1.870s] Level 1:colcon.colcon_core.shell:create_environment_hook('interfaces_pkg', 'ld_library_path_lib')
+[1.870s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/sungbhin/AutoSDV_HPC/install/interfaces_pkg/share/interfaces_pkg/hook/ld_library_path_lib.ps1'
+[1.870s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/sungbhin/AutoSDV_HPC/install/interfaces_pkg/share/interfaces_pkg/hook/ld_library_path_lib.dsv'
+[1.871s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/sungbhin/AutoSDV_HPC/install/interfaces_pkg/share/interfaces_pkg/hook/ld_library_path_lib.sh'
+[1.871s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/interfaces_pkg/bin'
+[1.871s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/interfaces_pkg/lib/pkgconfig/interfaces_pkg.pc'
+[1.872s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/interfaces_pkg/lib/python3.10/site-packages'
+[1.872s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/interfaces_pkg/bin'
+[1.872s] INFO:colcon.colcon_core.shell:Creating package script '/home/sungbhin/AutoSDV_HPC/install/interfaces_pkg/share/interfaces_pkg/package.ps1'
+[1.873s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/sungbhin/AutoSDV_HPC/install/interfaces_pkg/share/interfaces_pkg/package.dsv'
+[1.873s] INFO:colcon.colcon_core.shell:Creating package script '/home/sungbhin/AutoSDV_HPC/install/interfaces_pkg/share/interfaces_pkg/package.sh'
+[1.874s] INFO:colcon.colcon_core.shell:Creating package script '/home/sungbhin/AutoSDV_HPC/install/interfaces_pkg/share/interfaces_pkg/package.bash'
+[1.874s] INFO:colcon.colcon_core.shell:Creating package script '/home/sungbhin/AutoSDV_HPC/install/interfaces_pkg/share/interfaces_pkg/package.zsh'
+[1.875s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/sungbhin/AutoSDV_HPC/install/interfaces_pkg/share/colcon-core/packages/interfaces_pkg)
+[1.876s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/sungbhin/AutoSDV_HPC/src/data_collection_pkg' with build type 'ament_python'
+[1.877s] Level 1:colcon.colcon_core.shell:create_environment_hook('data_collection_pkg', 'ament_prefix_path')
+[1.877s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/sungbhin/AutoSDV_HPC/install/data_collection_pkg/share/data_collection_pkg/hook/ament_prefix_path.ps1'
+[1.877s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/sungbhin/AutoSDV_HPC/install/data_collection_pkg/share/data_collection_pkg/hook/ament_prefix_path.dsv'
+[1.878s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/sungbhin/AutoSDV_HPC/install/data_collection_pkg/share/data_collection_pkg/hook/ament_prefix_path.sh'
+[1.879s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[1.879s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[2.256s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/sungbhin/AutoSDV_HPC/src/ota_update_manager'
+[2.257s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[2.257s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[2.494s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/sungbhin/AutoSDV_HPC/src/data_collection_pkg'
+[2.494s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[2.494s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[2.501s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/sungbhin/AutoSDV_HPC/build/camera_perception_pkg': PYTHONPATH=/home/sungbhin/AutoSDV_HPC/build/camera_perception_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/sungbhin/AutoSDV_HPC/install/camera_perception_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/sungbhin/AutoSDV_HPC/build/camera_perception_pkg/build --no-deps symlink_data
+[2.503s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/sungbhin/AutoSDV_HPC/build/debug_pkg': PYTHONPATH=/home/sungbhin/AutoSDV_HPC/build/debug_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/sungbhin/AutoSDV_HPC/install/debug_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/sungbhin/AutoSDV_HPC/build/debug_pkg/build --no-deps symlink_data
+[2.505s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/sungbhin/AutoSDV_HPC/build/decision_making_pkg': PYTHONPATH=/home/sungbhin/AutoSDV_HPC/build/decision_making_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/sungbhin/AutoSDV_HPC/install/decision_making_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/sungbhin/AutoSDV_HPC/build/decision_making_pkg/build --no-deps symlink_data
+[2.508s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/sungbhin/AutoSDV_HPC/build/lidar_perception_pkg': PYTHONPATH=/home/sungbhin/AutoSDV_HPC/build/lidar_perception_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/sungbhin/AutoSDV_HPC/install/lidar_perception_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/sungbhin/AutoSDV_HPC/build/lidar_perception_pkg/build --no-deps symlink_data
+[2.510s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/sungbhin/AutoSDV_HPC/build/serial_communication_pkg': PYTHONPATH=/home/sungbhin/AutoSDV_HPC/build/serial_communication_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/sungbhin/AutoSDV_HPC/install/serial_communication_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/sungbhin/AutoSDV_HPC/build/serial_communication_pkg/build --no-deps symlink_data
+[3.016s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/sungbhin/AutoSDV_HPC/build/data_collection_pkg': CMAKE_PREFIX_PATH=/home/sungbhin/AutoSDV_HPC/install/interfaces_pkg:/home/sungbhin/AutoSDV_HPC/install/ota_update_interfaces:/home/sungbhin/AutoSDV_HPC/install/launch_pkg LD_LIBRARY_PATH=/home/sungbhin/AutoSDV_HPC/install/interfaces_pkg/lib:/home/sungbhin/AutoSDV_HPC/install/ota_update_interfaces/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib PYTHONPATH=/home/sungbhin/AutoSDV_HPC/build/data_collection_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/sungbhin/AutoSDV_HPC/install/data_collection_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/sungbhin/AutoSDV_HPC/build/data_collection_pkg/build --no-deps symlink_data
+[3.017s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/sungbhin/AutoSDV_HPC/build/ota_update_manager': PYTHONPATH=/home/sungbhin/AutoSDV_HPC/build/ota_update_manager/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/sungbhin/AutoSDV_HPC/install/ota_update_manager/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/sungbhin/AutoSDV_HPC/build/ota_update_manager/build --no-deps symlink_data
+[3.168s] Level 1:colcon.colcon_core.shell:create_environment_hook('decision_making_pkg', 'pythonpath_develop')
+[3.169s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/sungbhin/AutoSDV_HPC/build/decision_making_pkg/share/decision_making_pkg/hook/pythonpath_develop.ps1'
+[3.170s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/sungbhin/AutoSDV_HPC/build/decision_making_pkg' returned '0': PYTHONPATH=/home/sungbhin/AutoSDV_HPC/build/decision_making_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/sungbhin/AutoSDV_HPC/install/decision_making_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/sungbhin/AutoSDV_HPC/build/decision_making_pkg/build --no-deps symlink_data
+[3.170s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/sungbhin/AutoSDV_HPC/build/decision_making_pkg/share/decision_making_pkg/hook/pythonpath_develop.dsv'
+[3.171s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/sungbhin/AutoSDV_HPC/build/decision_making_pkg/share/decision_making_pkg/hook/pythonpath_develop.sh'
+[3.172s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/decision_making_pkg' for CMake module files
+[3.172s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/decision_making_pkg' for CMake config files
+[3.173s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/decision_making_pkg/lib'
+[3.173s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/decision_making_pkg/bin'
+[3.173s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/decision_making_pkg/lib/pkgconfig/decision_making_pkg.pc'
+[3.173s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/decision_making_pkg/lib/python3.10/site-packages'
+[3.173s] Level 1:colcon.colcon_core.shell:create_environment_hook('decision_making_pkg', 'pythonpath')
+[3.174s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/sungbhin/AutoSDV_HPC/install/decision_making_pkg/share/decision_making_pkg/hook/pythonpath.ps1'
+[3.174s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/sungbhin/AutoSDV_HPC/install/decision_making_pkg/share/decision_making_pkg/hook/pythonpath.dsv'
+[3.175s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/sungbhin/AutoSDV_HPC/install/decision_making_pkg/share/decision_making_pkg/hook/pythonpath.sh'
+[3.176s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/decision_making_pkg/bin'
+[3.176s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(decision_making_pkg)
+[3.176s] INFO:colcon.colcon_core.shell:Creating package script '/home/sungbhin/AutoSDV_HPC/install/decision_making_pkg/share/decision_making_pkg/package.ps1'
+[3.177s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/sungbhin/AutoSDV_HPC/install/decision_making_pkg/share/decision_making_pkg/package.dsv'
+[3.177s] INFO:colcon.colcon_core.shell:Creating package script '/home/sungbhin/AutoSDV_HPC/install/decision_making_pkg/share/decision_making_pkg/package.sh'
+[3.178s] INFO:colcon.colcon_core.shell:Creating package script '/home/sungbhin/AutoSDV_HPC/install/decision_making_pkg/share/decision_making_pkg/package.bash'
+[3.178s] INFO:colcon.colcon_core.shell:Creating package script '/home/sungbhin/AutoSDV_HPC/install/decision_making_pkg/share/decision_making_pkg/package.zsh'
+[3.179s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/sungbhin/AutoSDV_HPC/install/decision_making_pkg/share/colcon-core/packages/decision_making_pkg)
+[3.181s] Level 1:colcon.colcon_core.shell:create_environment_hook('serial_communication_pkg', 'pythonpath_develop')
+[3.181s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/sungbhin/AutoSDV_HPC/build/serial_communication_pkg/share/serial_communication_pkg/hook/pythonpath_develop.ps1'
+[3.181s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/sungbhin/AutoSDV_HPC/build/serial_communication_pkg' returned '0': PYTHONPATH=/home/sungbhin/AutoSDV_HPC/build/serial_communication_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/sungbhin/AutoSDV_HPC/install/serial_communication_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/sungbhin/AutoSDV_HPC/build/serial_communication_pkg/build --no-deps symlink_data
+[3.182s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/sungbhin/AutoSDV_HPC/build/serial_communication_pkg/share/serial_communication_pkg/hook/pythonpath_develop.dsv'
+[3.183s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/sungbhin/AutoSDV_HPC/build/serial_communication_pkg/share/serial_communication_pkg/hook/pythonpath_develop.sh'
+[3.183s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/serial_communication_pkg' for CMake module files
+[3.184s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/serial_communication_pkg' for CMake config files
+[3.185s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/serial_communication_pkg/lib'
+[3.185s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/serial_communication_pkg/bin'
+[3.185s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/serial_communication_pkg/lib/pkgconfig/serial_communication_pkg.pc'
+[3.185s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/serial_communication_pkg/lib/python3.10/site-packages'
+[3.185s] Level 1:colcon.colcon_core.shell:create_environment_hook('serial_communication_pkg', 'pythonpath')
+[3.185s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/sungbhin/AutoSDV_HPC/install/serial_communication_pkg/share/serial_communication_pkg/hook/pythonpath.ps1'
+[3.186s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/sungbhin/AutoSDV_HPC/install/serial_communication_pkg/share/serial_communication_pkg/hook/pythonpath.dsv'
+[3.186s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/sungbhin/AutoSDV_HPC/install/serial_communication_pkg/share/serial_communication_pkg/hook/pythonpath.sh'
+[3.187s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/serial_communication_pkg/bin'
+[3.187s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(serial_communication_pkg)
+[3.188s] INFO:colcon.colcon_core.shell:Creating package script '/home/sungbhin/AutoSDV_HPC/install/serial_communication_pkg/share/serial_communication_pkg/package.ps1'
+[3.188s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/sungbhin/AutoSDV_HPC/install/serial_communication_pkg/share/serial_communication_pkg/package.dsv'
+[3.189s] INFO:colcon.colcon_core.shell:Creating package script '/home/sungbhin/AutoSDV_HPC/install/serial_communication_pkg/share/serial_communication_pkg/package.sh'
+[3.190s] INFO:colcon.colcon_core.shell:Creating package script '/home/sungbhin/AutoSDV_HPC/install/serial_communication_pkg/share/serial_communication_pkg/package.bash'
+[3.190s] INFO:colcon.colcon_core.shell:Creating package script '/home/sungbhin/AutoSDV_HPC/install/serial_communication_pkg/share/serial_communication_pkg/package.zsh'
+[3.191s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/sungbhin/AutoSDV_HPC/install/serial_communication_pkg/share/colcon-core/packages/serial_communication_pkg)
+[3.201s] Level 1:colcon.colcon_core.shell:create_environment_hook('lidar_perception_pkg', 'pythonpath_develop')
+[3.201s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/sungbhin/AutoSDV_HPC/build/lidar_perception_pkg/share/lidar_perception_pkg/hook/pythonpath_develop.ps1'
+[3.202s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/sungbhin/AutoSDV_HPC/build/lidar_perception_pkg' returned '0': PYTHONPATH=/home/sungbhin/AutoSDV_HPC/build/lidar_perception_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/sungbhin/AutoSDV_HPC/install/lidar_perception_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/sungbhin/AutoSDV_HPC/build/lidar_perception_pkg/build --no-deps symlink_data
+[3.202s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/sungbhin/AutoSDV_HPC/build/lidar_perception_pkg/share/lidar_perception_pkg/hook/pythonpath_develop.dsv'
+[3.203s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/sungbhin/AutoSDV_HPC/build/lidar_perception_pkg/share/lidar_perception_pkg/hook/pythonpath_develop.sh'
+[3.203s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/lidar_perception_pkg' for CMake module files
+[3.204s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/lidar_perception_pkg' for CMake config files
+[3.204s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/lidar_perception_pkg/lib'
+[3.205s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/lidar_perception_pkg/bin'
+[3.205s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/lidar_perception_pkg/lib/pkgconfig/lidar_perception_pkg.pc'
+[3.205s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/lidar_perception_pkg/lib/python3.10/site-packages'
+[3.205s] Level 1:colcon.colcon_core.shell:create_environment_hook('lidar_perception_pkg', 'pythonpath')
+[3.205s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/sungbhin/AutoSDV_HPC/install/lidar_perception_pkg/share/lidar_perception_pkg/hook/pythonpath.ps1'
+[3.206s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/sungbhin/AutoSDV_HPC/install/lidar_perception_pkg/share/lidar_perception_pkg/hook/pythonpath.dsv'
+[3.206s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/sungbhin/AutoSDV_HPC/install/lidar_perception_pkg/share/lidar_perception_pkg/hook/pythonpath.sh'
+[3.206s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/lidar_perception_pkg/bin'
+[3.207s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(lidar_perception_pkg)
+[3.207s] INFO:colcon.colcon_core.shell:Creating package script '/home/sungbhin/AutoSDV_HPC/install/lidar_perception_pkg/share/lidar_perception_pkg/package.ps1'
+[3.207s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/sungbhin/AutoSDV_HPC/install/lidar_perception_pkg/share/lidar_perception_pkg/package.dsv'
+[3.208s] INFO:colcon.colcon_core.shell:Creating package script '/home/sungbhin/AutoSDV_HPC/install/lidar_perception_pkg/share/lidar_perception_pkg/package.sh'
+[3.208s] INFO:colcon.colcon_core.shell:Creating package script '/home/sungbhin/AutoSDV_HPC/install/lidar_perception_pkg/share/lidar_perception_pkg/package.bash'
+[3.209s] INFO:colcon.colcon_core.shell:Creating package script '/home/sungbhin/AutoSDV_HPC/install/lidar_perception_pkg/share/lidar_perception_pkg/package.zsh'
+[3.209s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/sungbhin/AutoSDV_HPC/install/lidar_perception_pkg/share/colcon-core/packages/lidar_perception_pkg)
+[3.211s] Level 1:colcon.colcon_core.shell:create_environment_hook('debug_pkg', 'pythonpath_develop')
+[3.211s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/sungbhin/AutoSDV_HPC/build/debug_pkg/share/debug_pkg/hook/pythonpath_develop.ps1'
+[3.211s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/sungbhin/AutoSDV_HPC/build/debug_pkg' returned '0': PYTHONPATH=/home/sungbhin/AutoSDV_HPC/build/debug_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/sungbhin/AutoSDV_HPC/install/debug_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/sungbhin/AutoSDV_HPC/build/debug_pkg/build --no-deps symlink_data
+[3.212s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/sungbhin/AutoSDV_HPC/build/debug_pkg/share/debug_pkg/hook/pythonpath_develop.dsv'
+[3.212s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/sungbhin/AutoSDV_HPC/build/debug_pkg/share/debug_pkg/hook/pythonpath_develop.sh'
+[3.212s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/debug_pkg' for CMake module files
+[3.213s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/debug_pkg' for CMake config files
+[3.213s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/debug_pkg/lib'
+[3.213s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/debug_pkg/bin'
+[3.213s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/debug_pkg/lib/pkgconfig/debug_pkg.pc'
+[3.214s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/debug_pkg/lib/python3.10/site-packages'
+[3.214s] Level 1:colcon.colcon_core.shell:create_environment_hook('debug_pkg', 'pythonpath')
+[3.214s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/sungbhin/AutoSDV_HPC/install/debug_pkg/share/debug_pkg/hook/pythonpath.ps1'
+[3.214s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/sungbhin/AutoSDV_HPC/install/debug_pkg/share/debug_pkg/hook/pythonpath.dsv'
+[3.215s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/sungbhin/AutoSDV_HPC/install/debug_pkg/share/debug_pkg/hook/pythonpath.sh'
+[3.215s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/debug_pkg/bin'
+[3.215s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(debug_pkg)
+[3.216s] INFO:colcon.colcon_core.shell:Creating package script '/home/sungbhin/AutoSDV_HPC/install/debug_pkg/share/debug_pkg/package.ps1'
+[3.216s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/sungbhin/AutoSDV_HPC/install/debug_pkg/share/debug_pkg/package.dsv'
+[3.217s] INFO:colcon.colcon_core.shell:Creating package script '/home/sungbhin/AutoSDV_HPC/install/debug_pkg/share/debug_pkg/package.sh'
+[3.217s] INFO:colcon.colcon_core.shell:Creating package script '/home/sungbhin/AutoSDV_HPC/install/debug_pkg/share/debug_pkg/package.bash'
+[3.217s] INFO:colcon.colcon_core.shell:Creating package script '/home/sungbhin/AutoSDV_HPC/install/debug_pkg/share/debug_pkg/package.zsh'
+[3.218s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/sungbhin/AutoSDV_HPC/install/debug_pkg/share/colcon-core/packages/debug_pkg)
+[3.218s] Level 1:colcon.colcon_core.shell:create_environment_hook('camera_perception_pkg', 'pythonpath_develop')
+[3.218s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/sungbhin/AutoSDV_HPC/build/camera_perception_pkg/share/camera_perception_pkg/hook/pythonpath_develop.ps1'
+[3.219s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/sungbhin/AutoSDV_HPC/build/camera_perception_pkg/share/camera_perception_pkg/hook/pythonpath_develop.dsv'
+[3.219s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/sungbhin/AutoSDV_HPC/build/camera_perception_pkg/share/camera_perception_pkg/hook/pythonpath_develop.sh'
+[3.220s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/sungbhin/AutoSDV_HPC/build/camera_perception_pkg' returned '0': PYTHONPATH=/home/sungbhin/AutoSDV_HPC/build/camera_perception_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/sungbhin/AutoSDV_HPC/install/camera_perception_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/sungbhin/AutoSDV_HPC/build/camera_perception_pkg/build --no-deps symlink_data
+[3.220s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/camera_perception_pkg' for CMake module files
+[3.221s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/camera_perception_pkg' for CMake config files
+[3.221s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/camera_perception_pkg/lib'
+[3.221s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/camera_perception_pkg/bin'
+[3.221s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/camera_perception_pkg/lib/pkgconfig/camera_perception_pkg.pc'
+[3.222s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/camera_perception_pkg/lib/python3.10/site-packages'
+[3.222s] Level 1:colcon.colcon_core.shell:create_environment_hook('camera_perception_pkg', 'pythonpath')
+[3.222s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/sungbhin/AutoSDV_HPC/install/camera_perception_pkg/share/camera_perception_pkg/hook/pythonpath.ps1'
+[3.222s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/sungbhin/AutoSDV_HPC/install/camera_perception_pkg/share/camera_perception_pkg/hook/pythonpath.dsv'
+[3.223s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/sungbhin/AutoSDV_HPC/install/camera_perception_pkg/share/camera_perception_pkg/hook/pythonpath.sh'
+[3.224s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/camera_perception_pkg/bin'
+[3.224s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(camera_perception_pkg)
+[3.224s] INFO:colcon.colcon_core.shell:Creating package script '/home/sungbhin/AutoSDV_HPC/install/camera_perception_pkg/share/camera_perception_pkg/package.ps1'
+[3.225s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/sungbhin/AutoSDV_HPC/install/camera_perception_pkg/share/camera_perception_pkg/package.dsv'
+[3.225s] INFO:colcon.colcon_core.shell:Creating package script '/home/sungbhin/AutoSDV_HPC/install/camera_perception_pkg/share/camera_perception_pkg/package.sh'
+[3.225s] INFO:colcon.colcon_core.shell:Creating package script '/home/sungbhin/AutoSDV_HPC/install/camera_perception_pkg/share/camera_perception_pkg/package.bash'
+[3.226s] INFO:colcon.colcon_core.shell:Creating package script '/home/sungbhin/AutoSDV_HPC/install/camera_perception_pkg/share/camera_perception_pkg/package.zsh'
+[3.226s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/sungbhin/AutoSDV_HPC/install/camera_perception_pkg/share/colcon-core/packages/camera_perception_pkg)
+[3.521s] Level 1:colcon.colcon_core.shell:create_environment_hook('data_collection_pkg', 'pythonpath_develop')
+[3.521s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/sungbhin/AutoSDV_HPC/build/data_collection_pkg/share/data_collection_pkg/hook/pythonpath_develop.ps1'
+[3.522s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/sungbhin/AutoSDV_HPC/build/data_collection_pkg' returned '0': CMAKE_PREFIX_PATH=/home/sungbhin/AutoSDV_HPC/install/interfaces_pkg:/home/sungbhin/AutoSDV_HPC/install/ota_update_interfaces:/home/sungbhin/AutoSDV_HPC/install/launch_pkg LD_LIBRARY_PATH=/home/sungbhin/AutoSDV_HPC/install/interfaces_pkg/lib:/home/sungbhin/AutoSDV_HPC/install/ota_update_interfaces/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib PYTHONPATH=/home/sungbhin/AutoSDV_HPC/build/data_collection_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/sungbhin/AutoSDV_HPC/install/data_collection_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/sungbhin/AutoSDV_HPC/build/data_collection_pkg/build --no-deps symlink_data
+[3.522s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/sungbhin/AutoSDV_HPC/build/data_collection_pkg/share/data_collection_pkg/hook/pythonpath_develop.dsv'
+[3.523s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/sungbhin/AutoSDV_HPC/build/data_collection_pkg/share/data_collection_pkg/hook/pythonpath_develop.sh'
+[3.523s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/data_collection_pkg' for CMake module files
+[3.524s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/data_collection_pkg' for CMake config files
+[3.524s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/data_collection_pkg/lib'
+[3.524s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/data_collection_pkg/bin'
+[3.524s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/data_collection_pkg/lib/pkgconfig/data_collection_pkg.pc'
+[3.525s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/data_collection_pkg/lib/python3.10/site-packages'
+[3.525s] Level 1:colcon.colcon_core.shell:create_environment_hook('data_collection_pkg', 'pythonpath')
+[3.525s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/sungbhin/AutoSDV_HPC/install/data_collection_pkg/share/data_collection_pkg/hook/pythonpath.ps1'
+[3.525s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/sungbhin/AutoSDV_HPC/install/data_collection_pkg/share/data_collection_pkg/hook/pythonpath.dsv'
+[3.525s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/sungbhin/AutoSDV_HPC/install/data_collection_pkg/share/data_collection_pkg/hook/pythonpath.sh'
+[3.526s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/data_collection_pkg/bin'
+[3.526s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(data_collection_pkg)
+[3.526s] INFO:colcon.colcon_core.shell:Creating package script '/home/sungbhin/AutoSDV_HPC/install/data_collection_pkg/share/data_collection_pkg/package.ps1'
+[3.527s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/sungbhin/AutoSDV_HPC/install/data_collection_pkg/share/data_collection_pkg/package.dsv'
+[3.527s] INFO:colcon.colcon_core.shell:Creating package script '/home/sungbhin/AutoSDV_HPC/install/data_collection_pkg/share/data_collection_pkg/package.sh'
+[3.528s] INFO:colcon.colcon_core.shell:Creating package script '/home/sungbhin/AutoSDV_HPC/install/data_collection_pkg/share/data_collection_pkg/package.bash'
+[3.528s] INFO:colcon.colcon_core.shell:Creating package script '/home/sungbhin/AutoSDV_HPC/install/data_collection_pkg/share/data_collection_pkg/package.zsh'
+[3.528s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/sungbhin/AutoSDV_HPC/install/data_collection_pkg/share/colcon-core/packages/data_collection_pkg)
+[3.530s] Level 1:colcon.colcon_core.shell:create_environment_hook('ota_update_manager', 'pythonpath_develop')
+[3.530s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/sungbhin/AutoSDV_HPC/build/ota_update_manager/share/ota_update_manager/hook/pythonpath_develop.ps1'
+[3.531s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/sungbhin/AutoSDV_HPC/build/ota_update_manager' returned '0': PYTHONPATH=/home/sungbhin/AutoSDV_HPC/build/ota_update_manager/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/sungbhin/AutoSDV_HPC/install/ota_update_manager/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/sungbhin/AutoSDV_HPC/build/ota_update_manager/build --no-deps symlink_data
+[3.531s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/sungbhin/AutoSDV_HPC/build/ota_update_manager/share/ota_update_manager/hook/pythonpath_develop.dsv'
+[3.531s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/sungbhin/AutoSDV_HPC/build/ota_update_manager/share/ota_update_manager/hook/pythonpath_develop.sh'
+[3.532s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/ota_update_manager' for CMake module files
+[3.532s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/ota_update_manager' for CMake config files
+[3.533s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/ota_update_manager/lib'
+[3.533s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/ota_update_manager/bin'
+[3.533s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/ota_update_manager/lib/pkgconfig/ota_update_manager.pc'
+[3.533s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/ota_update_manager/lib/python3.10/site-packages'
+[3.533s] Level 1:colcon.colcon_core.shell:create_environment_hook('ota_update_manager', 'pythonpath')
+[3.533s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/sungbhin/AutoSDV_HPC/install/ota_update_manager/share/ota_update_manager/hook/pythonpath.ps1'
+[3.534s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/sungbhin/AutoSDV_HPC/install/ota_update_manager/share/ota_update_manager/hook/pythonpath.dsv'
+[3.535s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/sungbhin/AutoSDV_HPC/install/ota_update_manager/share/ota_update_manager/hook/pythonpath.sh'
+[3.535s] Level 1:colcon.colcon_core.environment:checking '/home/sungbhin/AutoSDV_HPC/install/ota_update_manager/bin'
+[3.535s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(ota_update_manager)
+[3.535s] INFO:colcon.colcon_core.shell:Creating package script '/home/sungbhin/AutoSDV_HPC/install/ota_update_manager/share/ota_update_manager/package.ps1'
+[3.536s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/sungbhin/AutoSDV_HPC/install/ota_update_manager/share/ota_update_manager/package.dsv'
+[3.536s] INFO:colcon.colcon_core.shell:Creating package script '/home/sungbhin/AutoSDV_HPC/install/ota_update_manager/share/ota_update_manager/package.sh'
+[3.537s] INFO:colcon.colcon_core.shell:Creating package script '/home/sungbhin/AutoSDV_HPC/install/ota_update_manager/share/ota_update_manager/package.bash'
+[3.537s] INFO:colcon.colcon_core.shell:Creating package script '/home/sungbhin/AutoSDV_HPC/install/ota_update_manager/share/ota_update_manager/package.zsh'
+[3.537s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/sungbhin/AutoSDV_HPC/install/ota_update_manager/share/colcon-core/packages/ota_update_manager)
+[3.537s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:closing loop
+[3.538s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:loop closed
+[3.538s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete finished with '0'
+[3.538s] DEBUG:colcon.colcon_core.event_reactor:joining thread
+[3.543s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.terminal_notifier': Not used on non-Darwin systems
+[3.544s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.win32': Not used on non-Windows systems
+[3.544s] INFO:colcon.colcon_notification.desktop_notification:Sending desktop notification using 'notify2'
+[3.551s] DEBUG:colcon.colcon_core.event_reactor:joined thread
+[3.552s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/sungbhin/AutoSDV_HPC/install/local_setup.ps1'
+[3.553s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/sungbhin/AutoSDV_HPC/install/_local_setup_util_ps1.py'
+[3.554s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/sungbhin/AutoSDV_HPC/install/setup.ps1'
+[3.555s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/sungbhin/AutoSDV_HPC/install/local_setup.sh'
+[3.556s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/sungbhin/AutoSDV_HPC/install/_local_setup_util_sh.py'
+[3.556s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/sungbhin/AutoSDV_HPC/install/setup.sh'
+[3.558s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/sungbhin/AutoSDV_HPC/install/local_setup.bash'
+[3.558s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/sungbhin/AutoSDV_HPC/install/setup.bash'
+[3.559s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/sungbhin/AutoSDV_HPC/install/local_setup.zsh'
+[3.560s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/sungbhin/AutoSDV_HPC/install/setup.zsh'

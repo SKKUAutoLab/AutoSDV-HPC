@@ -1,0 +1,20 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from ota_update_interfaces/msg/UpdateNotification.msg
+// generated code does not contain a copyright notice
+
+
+module ota_update_interfaces {
+  module msg {
+    struct UpdateNotification {
+      string target;
+
+      string version;
+
+      string file_path;
+
+      uint64 file_size;
+
+      string checksum;
+    };
+  };
+};

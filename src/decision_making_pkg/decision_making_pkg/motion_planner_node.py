@@ -113,8 +113,8 @@ class MotionPlanningNode(Node):
                     self.steering_command = 0
 
             self.steering_command = convert_steeringangle2command(52,target_slope)
-            self.left_speed_command =75  # 예시 속도 값 (255가 최대 속도)
-            self.right_speed_command = 75  # 예시 속도 값 (255가 최대 속도)
+            self.left_speed_command =25  # 예시 속도 값 (255가 최대 속도)
+            self.right_speed_command = 25  # 예시 속도 값 (255가 최대 속도)
 
 
 

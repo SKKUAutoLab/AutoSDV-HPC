@@ -1,0 +1,6 @@
+{
+  "package_name": "ota_update_interfaces",
+  "non_idl_tuples": [
+    "/home/sungbhin/AutoSDV_HPC/src/ota_update_interfaces:msg/UpdateNotification.msg"
+  ]
+}

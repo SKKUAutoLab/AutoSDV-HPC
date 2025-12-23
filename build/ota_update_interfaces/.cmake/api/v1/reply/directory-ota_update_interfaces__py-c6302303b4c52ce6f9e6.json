@@ -1,0 +1,14 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : [],
+		"nodes" : []
+	},
+	"installers" : [],
+	"paths" : 
+	{
+		"build" : "ota_update_interfaces__py",
+		"source" : "/home/sungbhin/AutoSDV_HPC/build/ota_update_interfaces/ota_update_interfaces__py"
+	}
+}

@@ -1,0 +1,19 @@
+[2.167s] Invoking command in '/home/sungbhin/AutoSDV_HPC/build/debug_pkg': PYTHONPATH=/home/sungbhin/AutoSDV_HPC/build/debug_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/sungbhin/AutoSDV_HPC/install/debug_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/sungbhin/AutoSDV_HPC/build/debug_pkg/build --no-deps symlink_data
+[2.534s] running develop
+[2.765s] running egg_info
+[2.766s] writing debug_pkg.egg-info/PKG-INFO
+[2.766s] writing dependency_links to debug_pkg.egg-info/dependency_links.txt
+[2.767s] writing entry points to debug_pkg.egg-info/entry_points.txt
+[2.767s] writing requirements to debug_pkg.egg-info/requires.txt
+[2.768s] writing top-level names to debug_pkg.egg-info/top_level.txt
+[2.771s] reading manifest file 'debug_pkg.egg-info/SOURCES.txt'
+[2.772s] writing manifest file 'debug_pkg.egg-info/SOURCES.txt'
+[2.775s] running build_ext
+[2.776s] Creating /home/sungbhin/AutoSDV_HPC/install/debug_pkg/lib/python3.10/site-packages/debug-pkg.egg-link (link to .)
+[2.777s] Installing image_saver_node script to /home/sungbhin/AutoSDV_HPC/install/debug_pkg/lib/debug_pkg
+[2.777s] Installing path_visualizer_node script to /home/sungbhin/AutoSDV_HPC/install/debug_pkg/lib/debug_pkg
+[2.778s] Installing yolov8_visualizer_node script to /home/sungbhin/AutoSDV_HPC/install/debug_pkg/lib/debug_pkg
+[2.778s] 
+[2.778s] Installed /home/sungbhin/AutoSDV_HPC/build/debug_pkg
+[2.778s] running symlink_data
+[2.875s] Invoked command in '/home/sungbhin/AutoSDV_HPC/build/debug_pkg' returned '0': PYTHONPATH=/home/sungbhin/AutoSDV_HPC/build/debug_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/sungbhin/AutoSDV_HPC/install/debug_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/sungbhin/AutoSDV_HPC/build/debug_pkg/build --no-deps symlink_data

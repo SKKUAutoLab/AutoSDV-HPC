@@ -1,0 +1,8 @@
+setup.py
+ota_update_interfaces/__init__.py
+ota_update_interfaces.egg-info/PKG-INFO
+ota_update_interfaces.egg-info/SOURCES.txt
+ota_update_interfaces.egg-info/dependency_links.txt
+ota_update_interfaces.egg-info/top_level.txt
+ota_update_interfaces/msg/__init__.py
+ota_update_interfaces/msg/_update_notification.py

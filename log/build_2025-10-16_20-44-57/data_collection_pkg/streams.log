@@ -1,0 +1,18 @@
+[1.139s] Invoking command in '/home/sungbhin/AutoSDV_HPC/build/data_collection_pkg': CMAKE_PREFIX_PATH=/home/sungbhin/AutoSDV_HPC/install/interfaces_pkg:/home/sungbhin/AutoSDV_HPC/install/ota_update_interfaces:/home/sungbhin/AutoSDV_HPC/install/launch_pkg LD_LIBRARY_PATH=/home/sungbhin/AutoSDV_HPC/install/interfaces_pkg/lib:/home/sungbhin/AutoSDV_HPC/install/ota_update_interfaces/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib PYTHONPATH=/home/sungbhin/AutoSDV_HPC/build/data_collection_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/sungbhin/AutoSDV_HPC/install/data_collection_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/sungbhin/AutoSDV_HPC/build/data_collection_pkg/build --no-deps symlink_data
+[1.440s] running develop
+[1.600s] running egg_info
+[1.600s] writing data_collection_pkg.egg-info/PKG-INFO
+[1.601s] writing dependency_links to data_collection_pkg.egg-info/dependency_links.txt
+[1.601s] writing entry points to data_collection_pkg.egg-info/entry_points.txt
+[1.601s] writing requirements to data_collection_pkg.egg-info/requires.txt
+[1.601s] writing top-level names to data_collection_pkg.egg-info/top_level.txt
+[1.603s] reading manifest file 'data_collection_pkg.egg-info/SOURCES.txt'
+[1.604s] writing manifest file 'data_collection_pkg.egg-info/SOURCES.txt'
+[1.605s] running build_ext
+[1.605s] Creating /home/sungbhin/AutoSDV_HPC/install/data_collection_pkg/lib/python3.10/site-packages/data-collection-pkg.egg-link (link to .)
+[1.606s] Installing data_collection_node script to /home/sungbhin/AutoSDV_HPC/install/data_collection_pkg/lib/data_collection_pkg
+[1.606s] Installing drive_node script to /home/sungbhin/AutoSDV_HPC/install/data_collection_pkg/lib/data_collection_pkg
+[1.606s] 
+[1.606s] Installed /home/sungbhin/AutoSDV_HPC/build/data_collection_pkg
+[1.607s] running symlink_data
+[1.645s] Invoked command in '/home/sungbhin/AutoSDV_HPC/build/data_collection_pkg' returned '0': CMAKE_PREFIX_PATH=/home/sungbhin/AutoSDV_HPC/install/interfaces_pkg:/home/sungbhin/AutoSDV_HPC/install/ota_update_interfaces:/home/sungbhin/AutoSDV_HPC/install/launch_pkg LD_LIBRARY_PATH=/home/sungbhin/AutoSDV_HPC/install/interfaces_pkg/lib:/home/sungbhin/AutoSDV_HPC/install/ota_update_interfaces/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib PYTHONPATH=/home/sungbhin/AutoSDV_HPC/build/data_collection_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/sungbhin/AutoSDV_HPC/install/data_collection_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/sungbhin/AutoSDV_HPC/build/data_collection_pkg/build --no-deps symlink_data

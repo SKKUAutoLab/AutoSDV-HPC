@@ -1,0 +1,3 @@
+[console_scripts]
+ota_manager = ota_update_manager.ota_manager_node:main
+

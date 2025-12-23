@@ -1,0 +1,4 @@
+source;share/ota_update_interfaces/environment/ament_prefix_path.sh
+source;share/ota_update_interfaces/environment/library_path.sh
+source;share/ota_update_interfaces/environment/path.sh
+source;share/ota_update_interfaces/environment/pythonpath.sh

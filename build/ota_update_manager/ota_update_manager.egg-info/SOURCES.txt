@@ -1,0 +1,13 @@
+package.xml
+setup.cfg
+setup.py
+ota_update_manager/__init__.py
+ota_update_manager/ota_manager_node.py
+ota_update_manager.egg-info/PKG-INFO
+ota_update_manager.egg-info/SOURCES.txt
+ota_update_manager.egg-info/dependency_links.txt
+ota_update_manager.egg-info/entry_points.txt
+ota_update_manager.egg-info/requires.txt
+ota_update_manager.egg-info/top_level.txt
+ota_update_manager.egg-info/zip-safe
+resource/ota_update_manager
