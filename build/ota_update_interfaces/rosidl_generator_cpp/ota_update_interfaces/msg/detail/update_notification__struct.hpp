@@ -42,15 +42,13 @@ struct UpdateNotification_
       this->version = "";
       this->file_path = "";
       this->file_size = 0ull;
-      this->checksum = "";
     }
   }
 
   explicit UpdateNotification_(const ContainerAllocator & _alloc, rosidl_runtime_cpp::MessageInitialization _init = rosidl_runtime_cpp::MessageInitialization::ALL)
   : target(_alloc),
     version(_alloc),
-    file_path(_alloc),
-    checksum(_alloc)
+    file_path(_alloc)
   {
     if (rosidl_runtime_cpp::MessageInitialization::ALL == _init ||
       rosidl_runtime_cpp::MessageInitialization::ZERO == _init)
@@ -59,7 +57,6 @@ struct UpdateNotification_
       this->version = "";
       this->file_path = "";
       this->file_size = 0ull;
-      this->checksum = "";
     }
   }
 
@@ -76,9 +73,6 @@ struct UpdateNotification_
   using _file_size_type =
     uint64_t;
   _file_size_type file_size;
-  using _checksum_type =
-    std::basic_string<char, std::char_traits<char>, typename std::allocator_traits<ContainerAllocator>::template rebind_alloc<char>>;
-  _checksum_type checksum;
 
   // setters for named parameter idiom
   Type & set__target(
@@ -103,12 +97,6 @@ struct UpdateNotification_
     const uint64_t & _arg)
   {
     this->file_size = _arg;
-    return *this;
-  }
-  Type & set__checksum(
-    const std::basic_string<char, std::char_traits<char>, typename std::allocator_traits<ContainerAllocator>::template rebind_alloc<char>> & _arg)
-  {
-    this->checksum = _arg;
     return *this;
   }
 
@@ -164,9 +152,6 @@ struct UpdateNotification_
       return false;
     }
     if (this->file_size != other.file_size) {
-      return false;
-    }
-    if (this->checksum != other.checksum) {
       return false;
     }
     return true;

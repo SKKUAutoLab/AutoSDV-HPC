@@ -1,1 +1,1 @@
-/home/sungbhin/AutoSDV_HPC/src/interfaces_pkg/msg/MotionCommand.msg
+/home/autolab/AutoSDV_HPC/src/interfaces_pkg/msg/MotionCommand.msg

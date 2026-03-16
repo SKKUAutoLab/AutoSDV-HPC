@@ -1,8 +1,8 @@
-# Install script for directory: /home/sungbhin/AutoSDV_HPC/build/interfaces_pkg/interfaces_pkg__py
+# Install script for directory: /home/autolab/AutoSDV_HPC/build/interfaces_pkg/interfaces_pkg__py
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/sungbhin/AutoSDV_HPC/install/interfaces_pkg")
+  set(CMAKE_INSTALL_PREFIX "/home/autolab/AutoSDV_HPC/install/interfaces_pkg")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -37,14 +37,8 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
   set(CMAKE_CROSSCOMPILING "FALSE")
 endif()
 
-# Set path to fallback-tool for dependency-resolution.
+# Set default install directory permissions.
 if(NOT DEFINED CMAKE_OBJDUMP)
   set(CMAKE_OBJDUMP "/usr/bin/objdump")
 endif()
 
-string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
-       "${CMAKE_INSTALL_MANIFEST_FILES}")
-if(CMAKE_INSTALL_LOCAL_ONLY)
-  file(WRITE "/home/sungbhin/AutoSDV_HPC/build/interfaces_pkg/interfaces_pkg__py/install_local_manifest.txt"
-     "${CMAKE_INSTALL_MANIFEST_CONTENT}")
-endif()

@@ -1,0 +1,26 @@
+[0.278s] Invoking command in '/home/autolab/AutoSDV_HPC/build/data_collection_pkg': AMENT_PREFIX_PATH=/home/autolab/AutoSDV_HPC/install/interfaces_pkg:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/autolab/AutoSDV_HPC/install/interfaces_pkg:/home/autolab/AutoSDV_HPC/install/ota_update_interfaces:/home/autolab/AutoSDV_HPC/install/launch_pkg LD_LIBRARY_PATH=/home/autolab/AutoSDV_HPC/install/interfaces_pkg/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/home/autolab/AutoSDV_HPC/install/ota_update_interfaces/lib PYTHONPATH=/home/autolab/AutoSDV_HPC/build/data_collection_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/autolab/AutoSDV_HPC/install/data_collection_pkg/lib/python3.10/site-packages:/home/autolab/AutoSDV_HPC/install/interfaces_pkg/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/autolab/AutoSDV_HPC/build/data_collection_pkg/build --no-deps symlink_data
+[0.393s] running develop
+[0.459s] running egg_info
+[0.459s] creating data_collection_pkg.egg-info
+[0.459s] writing data_collection_pkg.egg-info/PKG-INFO
+[0.460s] writing dependency_links to data_collection_pkg.egg-info/dependency_links.txt
+[0.460s] writing entry points to data_collection_pkg.egg-info/entry_points.txt
+[0.460s] writing requirements to data_collection_pkg.egg-info/requires.txt
+[0.460s] writing top-level names to data_collection_pkg.egg-info/top_level.txt
+[0.460s] writing manifest file 'data_collection_pkg.egg-info/SOURCES.txt'
+[0.460s] reading manifest file 'data_collection_pkg.egg-info/SOURCES.txt'
+[0.460s] writing manifest file 'data_collection_pkg.egg-info/SOURCES.txt'
+[0.461s] running build_ext
+[0.461s] Creating /home/autolab/AutoSDV_HPC/install/data_collection_pkg/lib/python3.10/site-packages/data-collection-pkg.egg-link (link to .)
+[0.461s] Installing data_collection_node script to /home/autolab/AutoSDV_HPC/install/data_collection_pkg/lib/data_collection_pkg
+[0.462s] Installing drive_node script to /home/autolab/AutoSDV_HPC/install/data_collection_pkg/lib/data_collection_pkg
+[0.462s] 
+[0.462s] Installed /home/autolab/AutoSDV_HPC/build/data_collection_pkg
+[0.462s] running symlink_data
+[0.462s] creating /home/autolab/AutoSDV_HPC/install/data_collection_pkg/share/ament_index
+[0.462s] creating /home/autolab/AutoSDV_HPC/install/data_collection_pkg/share/ament_index/resource_index
+[0.462s] creating /home/autolab/AutoSDV_HPC/install/data_collection_pkg/share/ament_index/resource_index/packages
+[0.462s] symbolically linking /home/autolab/AutoSDV_HPC/build/data_collection_pkg/resource/data_collection_pkg -> /home/autolab/AutoSDV_HPC/install/data_collection_pkg/share/ament_index/resource_index/packages
+[0.462s] symbolically linking /home/autolab/AutoSDV_HPC/build/data_collection_pkg/package.xml -> /home/autolab/AutoSDV_HPC/install/data_collection_pkg/share/data_collection_pkg
+[0.462s] symbolically linking /home/autolab/AutoSDV_HPC/build/data_collection_pkg/data_collection_pkg/data_collection_func_lib.cpython-310.pyc -> /home/autolab/AutoSDV_HPC/install/data_collection_pkg/lib/data_collection_pkg
+[0.474s] Invoked command in '/home/autolab/AutoSDV_HPC/build/data_collection_pkg' returned '0': AMENT_PREFIX_PATH=/home/autolab/AutoSDV_HPC/install/interfaces_pkg:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/autolab/AutoSDV_HPC/install/interfaces_pkg:/home/autolab/AutoSDV_HPC/install/ota_update_interfaces:/home/autolab/AutoSDV_HPC/install/launch_pkg LD_LIBRARY_PATH=/home/autolab/AutoSDV_HPC/install/interfaces_pkg/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/home/autolab/AutoSDV_HPC/install/ota_update_interfaces/lib PYTHONPATH=/home/autolab/AutoSDV_HPC/build/data_collection_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/autolab/AutoSDV_HPC/install/data_collection_pkg/lib/python3.10/site-packages:/home/autolab/AutoSDV_HPC/install/interfaces_pkg/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/autolab/AutoSDV_HPC/build/data_collection_pkg/build --no-deps symlink_data

@@ -40,6 +40,13 @@ def generate_launch_description():
             output='screen',
             parameters=[{'image': 'image_04'}]
         ),
+        Node(
+            package='camera_perception_pkg',
+            executable='ethernet_image_publisher_node',
+            name='ethernet_image_publisher_node_5',
+            output='screen',
+            parameters=[{'image':'image_05'}]
+        )
         
         #Node(
         #    package='camera_perception_pkg',

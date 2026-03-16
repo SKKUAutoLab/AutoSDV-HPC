@@ -34,8 +34,8 @@ extern "C"
 {
 #endif
 
-#include "rosidl_runtime_c/string.h"  // checksum, file_path, target, version
-#include "rosidl_runtime_c/string_functions.h"  // checksum, file_path, target, version
+#include "rosidl_runtime_c/string.h"  // file_path, target, version
+#include "rosidl_runtime_c/string_functions.h"  // file_path, target, version
 
 // forward declare type support functions
 
@@ -96,20 +96,6 @@ static bool _UpdateNotification__cdr_serialize(
   // Field name: file_size
   {
     cdr << ros_message->file_size;
-  }
-
-  // Field name: checksum
-  {
-    const rosidl_runtime_c__String * str = &ros_message->checksum;
-    if (str->capacity == 0 || str->capacity <= str->size) {
-      fprintf(stderr, "string capacity not greater than size\n");
-      return false;
-    }
-    if (str->data[str->size] != '\0') {
-      fprintf(stderr, "string not null-terminated\n");
-      return false;
-    }
-    cdr << str->data;
   }
 
   return true;
@@ -177,22 +163,6 @@ static bool _UpdateNotification__cdr_deserialize(
     cdr >> ros_message->file_size;
   }
 
-  // Field name: checksum
-  {
-    std::string tmp;
-    cdr >> tmp;
-    if (!ros_message->checksum.data) {
-      rosidl_runtime_c__String__init(&ros_message->checksum);
-    }
-    bool succeeded = rosidl_runtime_c__String__assign(
-      &ros_message->checksum,
-      tmp.c_str());
-    if (!succeeded) {
-      fprintf(stderr, "failed to assign string into field 'checksum'\n");
-      return false;
-    }
-  }
-
   return true;
 }  // NOLINT(readability/fn_size)
 
@@ -228,10 +198,6 @@ size_t get_serialized_size_ota_update_interfaces__msg__UpdateNotification(
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name checksum
-  current_alignment += padding +
-    eprosima::fastcdr::Cdr::alignment(current_alignment, padding) +
-    (ros_message->checksum.size + 1);
 
   return current_alignment - initial_alignment;
 }
@@ -305,18 +271,6 @@ size_t max_serialized_size_ota_update_interfaces__msg__UpdateNotification(
     current_alignment += array_size * sizeof(uint64_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
   }
-  // member: checksum
-  {
-    size_t array_size = 1;
-
-    full_bounded = false;
-    is_plain = false;
-    for (size_t index = 0; index < array_size; ++index) {
-      current_alignment += padding +
-        eprosima::fastcdr::Cdr::alignment(current_alignment, padding) +
-        1;
-    }
-  }
 
   size_t ret_val = current_alignment - initial_alignment;
   if (is_plain) {
@@ -326,7 +280,7 @@ size_t max_serialized_size_ota_update_interfaces__msg__UpdateNotification(
     using DataType = ota_update_interfaces__msg__UpdateNotification;
     is_plain =
       (
-      offsetof(DataType, checksum) +
+      offsetof(DataType, file_size) +
       last_member_size
       ) == ret_val;
   }

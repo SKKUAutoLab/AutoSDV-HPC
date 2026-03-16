@@ -83,7 +83,7 @@ class Yolov8VisualizerNode(LifecycleNode):
 
         # subs
         self.image_sub = message_filters.Subscriber(
-            self, Image, "image_raw", qos_profile=self.image_qos_profile)
+            self, Image, "image_01", qos_profile=self.image_qos_profile)
         self.detections_sub = message_filters.Subscriber(
             self, DetectionArray, "detections", qos_profile=10)
 

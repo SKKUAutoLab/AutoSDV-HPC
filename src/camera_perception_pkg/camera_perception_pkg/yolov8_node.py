@@ -87,10 +87,9 @@ class Yolov8Node(LifecycleNode):
             "image_reliability").get_parameter_value().integer_value
 
         self.image_qos_profile = QoSProfile(
-            reliability=self.reliability,
-            history=QoSHistoryPolicy.KEEP_LAST,
-            durability=QoSDurabilityPolicy.VOLATILE,
-            depth=1
+            reliability=QoSReliabilityPolicy.BEST_EFFORT,
+            history=QoSHistoryPolicy.KEEP_LAST, depth=1,
+            durability=QoSDurabilityPolicy.VOLATILE
         )
 
         self._pub = self.create_lifecycle_publisher(

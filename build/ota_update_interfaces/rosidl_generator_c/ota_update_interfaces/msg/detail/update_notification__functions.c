@@ -15,7 +15,6 @@
 // Member `target`
 // Member `version`
 // Member `file_path`
-// Member `checksum`
 #include "rosidl_runtime_c/string_functions.h"
 
 bool
@@ -40,11 +39,6 @@ ota_update_interfaces__msg__UpdateNotification__init(ota_update_interfaces__msg_
     return false;
   }
   // file_size
-  // checksum
-  if (!rosidl_runtime_c__String__init(&msg->checksum)) {
-    ota_update_interfaces__msg__UpdateNotification__fini(msg);
-    return false;
-  }
   return true;
 }
 
@@ -61,8 +55,6 @@ ota_update_interfaces__msg__UpdateNotification__fini(ota_update_interfaces__msg_
   // file_path
   rosidl_runtime_c__String__fini(&msg->file_path);
   // file_size
-  // checksum
-  rosidl_runtime_c__String__fini(&msg->checksum);
 }
 
 bool
@@ -91,12 +83,6 @@ ota_update_interfaces__msg__UpdateNotification__are_equal(const ota_update_inter
   }
   // file_size
   if (lhs->file_size != rhs->file_size) {
-    return false;
-  }
-  // checksum
-  if (!rosidl_runtime_c__String__are_equal(
-      &(lhs->checksum), &(rhs->checksum)))
-  {
     return false;
   }
   return true;
@@ -130,12 +116,6 @@ ota_update_interfaces__msg__UpdateNotification__copy(
   }
   // file_size
   output->file_size = input->file_size;
-  // checksum
-  if (!rosidl_runtime_c__String__copy(
-      &(input->checksum), &(output->checksum)))
-  {
-    return false;
-  }
   return true;
 }
 

@@ -15,10 +15,10 @@ import os
 
 #---------------Variable Setting---------------
 # Publish할 토픽 이름
-PUB_TOPIC_NAME = 'image_raw'
+PUB_TOPIC_NAME = 'image_01'
 
 # 데이터 입력 소스: 'camera', 'image', 또는 'video' 중 택1하여 입력
-DATA_SOURCE = 'camera'
+DATA_SOURCE = 'video'
 
 # 카메라(웹캠) 장치 번호 (ls /dev/video* 명령을 터미널 창에 입력하여 확인)
 CAM_NUM = 0
@@ -134,7 +134,7 @@ class ImagePublisherNode(Node):
                 image_msg = self.br.cv2_to_imgmsg(img)
                 image_msg.header = Header()
                 image_msg.header.stamp = self.get_clock().now().to_msg()
-                image_msg.header.frame_id = 'image_frame'
+                image_msg.header.frame_id = 'image_01'
                 self.publisher.publish(image_msg)
                 print(image_msg.header)
                 if self.logger:

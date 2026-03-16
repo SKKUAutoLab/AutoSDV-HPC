@@ -1,1 +1,1 @@
-/home/sungbhin/AutoSDV_HPC/src/ota_update_manager/setup.py
+/home/autolab/AutoSDV_HPC/src/ota_update_manager/setup.py

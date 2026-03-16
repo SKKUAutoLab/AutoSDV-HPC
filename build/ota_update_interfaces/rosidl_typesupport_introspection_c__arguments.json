@@ -1,9 +1,9 @@
 {
   "package_name": "ota_update_interfaces",
-  "output_dir": "/home/sungbhin/AutoSDV_HPC/build/ota_update_interfaces/rosidl_typesupport_introspection_c/ota_update_interfaces",
+  "output_dir": "/home/autolab/AutoSDV_HPC/build/ota_update_interfaces/rosidl_typesupport_introspection_c/ota_update_interfaces",
   "template_dir": "/opt/ros/humble/share/rosidl_typesupport_introspection_c/resource",
   "idl_tuples": [
-    "/home/sungbhin/AutoSDV_HPC/build/ota_update_interfaces/rosidl_adapter/ota_update_interfaces:msg/UpdateNotification.idl"
+    "/home/autolab/AutoSDV_HPC/build/ota_update_interfaces/rosidl_adapter/ota_update_interfaces:msg/UpdateNotification.idl"
   ],
   "ros_interface_dependencies": [
     "std_msgs:/opt/ros/humble/share/std_msgs/msg/Bool.idl",
@@ -48,7 +48,7 @@
     "/opt/ros/humble/share/rosidl_typesupport_introspection_c/resource/msg__type_support.c.em",
     "/opt/ros/humble/share/rosidl_typesupport_introspection_c/resource/srv__rosidl_typesupport_introspection_c.h.em",
     "/opt/ros/humble/share/rosidl_typesupport_introspection_c/resource/srv__type_support.c.em",
-    "/home/sungbhin/AutoSDV_HPC/build/ota_update_interfaces/rosidl_adapter/ota_update_interfaces/msg/UpdateNotification.idl",
+    "/home/autolab/AutoSDV_HPC/build/ota_update_interfaces/rosidl_adapter/ota_update_interfaces/msg/UpdateNotification.idl",
     "/opt/ros/humble/share/std_msgs/msg/Bool.idl",
     "/opt/ros/humble/share/std_msgs/msg/Byte.idl",
     "/opt/ros/humble/share/std_msgs/msg/ByteMultiArray.idl",

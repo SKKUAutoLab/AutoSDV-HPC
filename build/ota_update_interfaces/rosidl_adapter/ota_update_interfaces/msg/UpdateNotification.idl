@@ -13,8 +13,6 @@ module ota_update_interfaces {
       string file_path;
 
       uint64 file_size;
-
-      string checksum;
     };
   };
 };

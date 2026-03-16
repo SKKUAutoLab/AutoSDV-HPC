@@ -60,7 +60,7 @@ class Yolov8InfoExtractor(Node):
         src_mat = [[238, 316],[402, 313], [501, 476], [155, 476]]
         
         lane2_bird_image = CPFL.bird_convert(lane2_edge_image, srcmat=src_mat, dstmat=dst_mat)
-        roi_image = CPFL.roi_rectangle_below(lane2_bird_image, cutting_idx=300)
+        roi_image = CPFL.roi_rectangle_below(lane2_bird_image, cutting_idx=250)
 
         if self.show_image:
             cv2.imshow('lane2_edge_image', lane2_edge_image)

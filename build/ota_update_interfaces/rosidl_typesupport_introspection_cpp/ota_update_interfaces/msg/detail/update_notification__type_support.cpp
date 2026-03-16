@@ -37,7 +37,7 @@ void UpdateNotification_fini_function(void * message_memory)
   typed_message->~UpdateNotification();
 }
 
-static const ::rosidl_typesupport_introspection_cpp::MessageMember UpdateNotification_message_member_array[5] = {
+static const ::rosidl_typesupport_introspection_cpp::MessageMember UpdateNotification_message_member_array[4] = {
   {
     "target",  // name
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_STRING,  // type
@@ -105,30 +105,13 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember UpdateNotific
     nullptr,  // fetch(index, &value) function pointer
     nullptr,  // assign(index, value) function pointer
     nullptr  // resize(index) function pointer
-  },
-  {
-    "checksum",  // name
-    ::rosidl_typesupport_introspection_cpp::ROS_TYPE_STRING,  // type
-    0,  // upper bound of string
-    nullptr,  // members of sub message
-    false,  // is array
-    0,  // array size
-    false,  // is upper bound
-    offsetof(ota_update_interfaces::msg::UpdateNotification, checksum),  // bytes offset in struct
-    nullptr,  // default value
-    nullptr,  // size() function pointer
-    nullptr,  // get_const(index) function pointer
-    nullptr,  // get(index) function pointer
-    nullptr,  // fetch(index, &value) function pointer
-    nullptr,  // assign(index, value) function pointer
-    nullptr  // resize(index) function pointer
   }
 };
 
 static const ::rosidl_typesupport_introspection_cpp::MessageMembers UpdateNotification_message_members = {
   "ota_update_interfaces::msg",  // message namespace
   "UpdateNotification",  // message name
-  5,  // number of fields
+  4,  // number of fields
   sizeof(ota_update_interfaces::msg::UpdateNotification),
   UpdateNotification_message_member_array,  // message members
   UpdateNotification_init_function,  // function to initialize message memory (memory has to be allocated)

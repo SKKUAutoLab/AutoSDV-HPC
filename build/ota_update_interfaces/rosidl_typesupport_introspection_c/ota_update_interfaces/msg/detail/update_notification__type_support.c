@@ -16,7 +16,6 @@
 // Member `target`
 // Member `version`
 // Member `file_path`
-// Member `checksum`
 #include "rosidl_runtime_c/string_functions.h"
 
 #ifdef __cplusplus
@@ -38,7 +37,7 @@ void ota_update_interfaces__msg__UpdateNotification__rosidl_typesupport_introspe
   ota_update_interfaces__msg__UpdateNotification__fini(message_memory);
 }
 
-static rosidl_typesupport_introspection_c__MessageMember ota_update_interfaces__msg__UpdateNotification__rosidl_typesupport_introspection_c__UpdateNotification_message_member_array[5] = {
+static rosidl_typesupport_introspection_c__MessageMember ota_update_interfaces__msg__UpdateNotification__rosidl_typesupport_introspection_c__UpdateNotification_message_member_array[4] = {
   {
     "target",  // name
     rosidl_typesupport_introspection_c__ROS_TYPE_STRING,  // type
@@ -106,30 +105,13 @@ static rosidl_typesupport_introspection_c__MessageMember ota_update_interfaces__
     NULL,  // fetch(index, &value) function pointer
     NULL,  // assign(index, value) function pointer
     NULL  // resize(index) function pointer
-  },
-  {
-    "checksum",  // name
-    rosidl_typesupport_introspection_c__ROS_TYPE_STRING,  // type
-    0,  // upper bound of string
-    NULL,  // members of sub message
-    false,  // is array
-    0,  // array size
-    false,  // is upper bound
-    offsetof(ota_update_interfaces__msg__UpdateNotification, checksum),  // bytes offset in struct
-    NULL,  // default value
-    NULL,  // size() function pointer
-    NULL,  // get_const(index) function pointer
-    NULL,  // get(index) function pointer
-    NULL,  // fetch(index, &value) function pointer
-    NULL,  // assign(index, value) function pointer
-    NULL  // resize(index) function pointer
   }
 };
 
 static const rosidl_typesupport_introspection_c__MessageMembers ota_update_interfaces__msg__UpdateNotification__rosidl_typesupport_introspection_c__UpdateNotification_message_members = {
   "ota_update_interfaces__msg",  // message namespace
   "UpdateNotification",  // message name
-  5,  // number of fields
+  4,  // number of fields
   sizeof(ota_update_interfaces__msg__UpdateNotification),
   ota_update_interfaces__msg__UpdateNotification__rosidl_typesupport_introspection_c__UpdateNotification_message_member_array,  // message members
   ota_update_interfaces__msg__UpdateNotification__rosidl_typesupport_introspection_c__UpdateNotification_init_function,  // function to initialize message memory (memory has to be allocated)

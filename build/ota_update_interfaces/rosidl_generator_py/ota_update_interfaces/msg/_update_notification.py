@@ -59,7 +59,6 @@ class UpdateNotification(metaclass=Metaclass_UpdateNotification):
         '_version',
         '_file_path',
         '_file_size',
-        '_checksum',
     ]
 
     _fields_and_field_types = {
@@ -67,7 +66,6 @@ class UpdateNotification(metaclass=Metaclass_UpdateNotification):
         'version': 'string',
         'file_path': 'string',
         'file_size': 'uint64',
-        'checksum': 'string',
     }
 
     SLOT_TYPES = (
@@ -75,7 +73,6 @@ class UpdateNotification(metaclass=Metaclass_UpdateNotification):
         rosidl_parser.definition.UnboundedString(),  # noqa: E501
         rosidl_parser.definition.UnboundedString(),  # noqa: E501
         rosidl_parser.definition.BasicType('uint64'),  # noqa: E501
-        rosidl_parser.definition.UnboundedString(),  # noqa: E501
     )
 
     def __init__(self, **kwargs):
@@ -86,7 +83,6 @@ class UpdateNotification(metaclass=Metaclass_UpdateNotification):
         self.version = kwargs.get('version', str())
         self.file_path = kwargs.get('file_path', str())
         self.file_size = kwargs.get('file_size', int())
-        self.checksum = kwargs.get('checksum', str())
 
     def __repr__(self):
         typename = self.__class__.__module__.split('.')
@@ -124,8 +120,6 @@ class UpdateNotification(metaclass=Metaclass_UpdateNotification):
         if self.file_path != other.file_path:
             return False
         if self.file_size != other.file_size:
-            return False
-        if self.checksum != other.checksum:
             return False
         return True
 
@@ -187,16 +181,3 @@ class UpdateNotification(metaclass=Metaclass_UpdateNotification):
             assert value >= 0 and value < 18446744073709551616, \
                 "The 'file_size' field must be an unsigned integer in [0, 18446744073709551615]"
         self._file_size = value
-
-    @builtins.property
-    def checksum(self):
-        """Message field 'checksum'."""
-        return self._checksum
-
-    @checksum.setter
-    def checksum(self, value):
-        if __debug__:
-            assert \
-                isinstance(value, str), \
-                "The 'checksum' field must be of type 'str'"
-        self._checksum = value

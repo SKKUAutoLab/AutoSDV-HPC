@@ -1,0 +1,768 @@
+[0.071s] DEBUG:colcon:Command line arguments: ['/usr/bin/colcon', 'build', '--symlink-install']
+[0.071s] DEBUG:colcon:Parsed command line arguments: Namespace(log_base=None, log_level=None, verb_name='build', build_base='build', install_base='install', merge_install=False, symlink_install=True, test_result_base=None, continue_on_error=False, executor='parallel', parallel_workers=32, event_handlers=None, ignore_user_meta=False, metas=['./colcon.meta'], base_paths=['.'], packages_ignore=None, packages_ignore_regex=None, paths=None, packages_up_to=None, packages_up_to_regex=None, packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_select_by_dep=None, packages_skip_by_dep=None, packages_skip_up_to=None, packages_select_build_failed=False, packages_skip_build_finished=False, packages_select_test_failures=False, packages_skip_test_passed=False, packages_select=None, packages_skip=None, packages_select_regex=None, packages_skip_regex=None, packages_start=None, packages_end=None, allow_overriding=[], cmake_args=None, cmake_target=None, cmake_target_skip_unavailable=False, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, ament_cmake_args=None, catkin_cmake_args=None, catkin_skip_building_tests=False, mixin_files=None, mixin=None, verb_parser=<colcon_mixin.mixin.mixin_argument.MixinArgumentDecorator object at 0x703711c210c0>, verb_extension=<colcon_core.verb.build.BuildVerb object at 0x703711c20ac0>, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0x703711c20ac0>>, mixin_verb=('build',))
+[0.174s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) check parameters
+[0.174s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) check parameters
+[0.174s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) check parameters
+[0.174s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) check parameters
+[0.174s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) discover
+[0.174s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) discover
+[0.174s] INFO:colcon.colcon_core.package_discovery:Crawling recursively for packages in '/home/autolab/AutoSDV_HPC'
+[0.174s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ignore', 'ignore_ament_install']
+[0.174s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore'
+[0.174s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore_ament_install'
+[0.174s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_pkg']
+[0.175s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_pkg'
+[0.175s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_meta']
+[0.175s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_meta'
+[0.175s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ros']
+[0.175s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ros'
+[0.182s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['cmake', 'python']
+[0.182s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'cmake'
+[0.182s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python'
+[0.182s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['python_setup_py']
+[0.182s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python_setup_py'
+[0.182s] Level 1:colcon.colcon_core.package_identification:_identify(Collected_Datasets) by extensions ['ignore', 'ignore_ament_install']
+[0.183s] Level 1:colcon.colcon_core.package_identification:_identify(Collected_Datasets) by extension 'ignore'
+[0.183s] Level 1:colcon.colcon_core.package_identification:_identify(Collected_Datasets) by extension 'ignore_ament_install'
+[0.183s] Level 1:colcon.colcon_core.package_identification:_identify(Collected_Datasets) by extensions ['colcon_pkg']
+[0.183s] Level 1:colcon.colcon_core.package_identification:_identify(Collected_Datasets) by extension 'colcon_pkg'
+[0.183s] Level 1:colcon.colcon_core.package_identification:_identify(Collected_Datasets) by extensions ['colcon_meta']
+[0.183s] Level 1:colcon.colcon_core.package_identification:_identify(Collected_Datasets) by extension 'colcon_meta'
+[0.183s] Level 1:colcon.colcon_core.package_identification:_identify(Collected_Datasets) by extensions ['ros']
+[0.183s] Level 1:colcon.colcon_core.package_identification:_identify(Collected_Datasets) by extension 'ros'
+[0.183s] Level 1:colcon.colcon_core.package_identification:_identify(Collected_Datasets) by extensions ['cmake', 'python']
+[0.183s] Level 1:colcon.colcon_core.package_identification:_identify(Collected_Datasets) by extension 'cmake'
+[0.183s] Level 1:colcon.colcon_core.package_identification:_identify(Collected_Datasets) by extension 'python'
+[0.183s] Level 1:colcon.colcon_core.package_identification:_identify(Collected_Datasets) by extensions ['python_setup_py']
+[0.183s] Level 1:colcon.colcon_core.package_identification:_identify(Collected_Datasets) by extension 'python_setup_py'
+[0.183s] Level 1:colcon.colcon_core.package_identification:_identify(Updates) by extensions ['ignore', 'ignore_ament_install']
+[0.183s] Level 1:colcon.colcon_core.package_identification:_identify(Updates) by extension 'ignore'
+[0.183s] Level 1:colcon.colcon_core.package_identification:_identify(Updates) by extension 'ignore_ament_install'
+[0.183s] Level 1:colcon.colcon_core.package_identification:_identify(Updates) by extensions ['colcon_pkg']
+[0.183s] Level 1:colcon.colcon_core.package_identification:_identify(Updates) by extension 'colcon_pkg'
+[0.183s] Level 1:colcon.colcon_core.package_identification:_identify(Updates) by extensions ['colcon_meta']
+[0.183s] Level 1:colcon.colcon_core.package_identification:_identify(Updates) by extension 'colcon_meta'
+[0.183s] Level 1:colcon.colcon_core.package_identification:_identify(Updates) by extensions ['ros']
+[0.183s] Level 1:colcon.colcon_core.package_identification:_identify(Updates) by extension 'ros'
+[0.183s] Level 1:colcon.colcon_core.package_identification:_identify(Updates) by extensions ['cmake', 'python']
+[0.183s] Level 1:colcon.colcon_core.package_identification:_identify(Updates) by extension 'cmake'
+[0.183s] Level 1:colcon.colcon_core.package_identification:_identify(Updates) by extension 'python'
+[0.183s] Level 1:colcon.colcon_core.package_identification:_identify(Updates) by extensions ['python_setup_py']
+[0.183s] Level 1:colcon.colcon_core.package_identification:_identify(Updates) by extension 'python_setup_py'
+[0.183s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extensions ['ignore', 'ignore_ament_install']
+[0.183s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extension 'ignore'
+[0.183s] Level 1:colcon.colcon_core.package_identification:_identify(build) ignored
+[0.183s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extensions ['ignore', 'ignore_ament_install']
+[0.183s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extension 'ignore'
+[0.183s] Level 1:colcon.colcon_core.package_identification:_identify(install) ignored
+[0.183s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extensions ['ignore', 'ignore_ament_install']
+[0.183s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extension 'ignore'
+[0.184s] Level 1:colcon.colcon_core.package_identification:_identify(log) ignored
+[0.184s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ignore', 'ignore_ament_install']
+[0.184s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore'
+[0.184s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore_ament_install'
+[0.184s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_pkg']
+[0.184s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_pkg'
+[0.184s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_meta']
+[0.184s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_meta'
+[0.184s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ros']
+[0.184s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ros'
+[0.184s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['cmake', 'python']
+[0.184s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'cmake'
+[0.184s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python'
+[0.184s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['python_setup_py']
+[0.184s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python_setup_py'
+[0.184s] Level 1:colcon.colcon_core.package_identification:_identify(src/camera_perception_pkg) by extensions ['ignore', 'ignore_ament_install']
+[0.184s] Level 1:colcon.colcon_core.package_identification:_identify(src/camera_perception_pkg) by extension 'ignore'
+[0.184s] Level 1:colcon.colcon_core.package_identification:_identify(src/camera_perception_pkg) by extension 'ignore_ament_install'
+[0.184s] Level 1:colcon.colcon_core.package_identification:_identify(src/camera_perception_pkg) by extensions ['colcon_pkg']
+[0.184s] Level 1:colcon.colcon_core.package_identification:_identify(src/camera_perception_pkg) by extension 'colcon_pkg'
+[0.184s] Level 1:colcon.colcon_core.package_identification:_identify(src/camera_perception_pkg) by extensions ['colcon_meta']
+[0.184s] Level 1:colcon.colcon_core.package_identification:_identify(src/camera_perception_pkg) by extension 'colcon_meta'
+[0.184s] Level 1:colcon.colcon_core.package_identification:_identify(src/camera_perception_pkg) by extensions ['ros']
+[0.184s] Level 1:colcon.colcon_core.package_identification:_identify(src/camera_perception_pkg) by extension 'ros'
+[0.186s] DEBUG:colcon.colcon_core.package_identification:Package 'src/camera_perception_pkg' with type 'ros.ament_python' and name 'camera_perception_pkg'
+[0.186s] Level 1:colcon.colcon_core.package_identification:_identify(src/control) by extensions ['ignore', 'ignore_ament_install']
+[0.186s] Level 1:colcon.colcon_core.package_identification:_identify(src/control) by extension 'ignore'
+[0.186s] Level 1:colcon.colcon_core.package_identification:_identify(src/control) by extension 'ignore_ament_install'
+[0.186s] Level 1:colcon.colcon_core.package_identification:_identify(src/control) by extensions ['colcon_pkg']
+[0.186s] Level 1:colcon.colcon_core.package_identification:_identify(src/control) by extension 'colcon_pkg'
+[0.186s] Level 1:colcon.colcon_core.package_identification:_identify(src/control) by extensions ['colcon_meta']
+[0.186s] Level 1:colcon.colcon_core.package_identification:_identify(src/control) by extension 'colcon_meta'
+[0.186s] Level 1:colcon.colcon_core.package_identification:_identify(src/control) by extensions ['ros']
+[0.186s] Level 1:colcon.colcon_core.package_identification:_identify(src/control) by extension 'ros'
+[0.186s] Level 1:colcon.colcon_core.package_identification:_identify(src/control) by extensions ['cmake', 'python']
+[0.186s] Level 1:colcon.colcon_core.package_identification:_identify(src/control) by extension 'cmake'
+[0.186s] Level 1:colcon.colcon_core.package_identification:_identify(src/control) by extension 'python'
+[0.186s] Level 1:colcon.colcon_core.package_identification:_identify(src/control) by extensions ['python_setup_py']
+[0.186s] Level 1:colcon.colcon_core.package_identification:_identify(src/control) by extension 'python_setup_py'
+[0.186s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/check_variable_resistor) by extensions ['ignore', 'ignore_ament_install']
+[0.186s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/check_variable_resistor) by extension 'ignore'
+[0.186s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/check_variable_resistor) by extension 'ignore_ament_install'
+[0.186s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/check_variable_resistor) by extensions ['colcon_pkg']
+[0.186s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/check_variable_resistor) by extension 'colcon_pkg'
+[0.186s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/check_variable_resistor) by extensions ['colcon_meta']
+[0.186s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/check_variable_resistor) by extension 'colcon_meta'
+[0.186s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/check_variable_resistor) by extensions ['ros']
+[0.186s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/check_variable_resistor) by extension 'ros'
+[0.186s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/check_variable_resistor) by extensions ['cmake', 'python']
+[0.186s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/check_variable_resistor) by extension 'cmake'
+[0.186s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/check_variable_resistor) by extension 'python'
+[0.186s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/check_variable_resistor) by extensions ['python_setup_py']
+[0.186s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/check_variable_resistor) by extension 'python_setup_py'
+[0.186s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/driving) by extensions ['ignore', 'ignore_ament_install']
+[0.186s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/driving) by extension 'ignore'
+[0.187s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/driving) by extension 'ignore_ament_install'
+[0.187s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/driving) by extensions ['colcon_pkg']
+[0.187s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/driving) by extension 'colcon_pkg'
+[0.187s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/driving) by extensions ['colcon_meta']
+[0.187s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/driving) by extension 'colcon_meta'
+[0.187s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/driving) by extensions ['ros']
+[0.187s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/driving) by extension 'ros'
+[0.187s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/driving) by extensions ['cmake', 'python']
+[0.187s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/driving) by extension 'cmake'
+[0.187s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/driving) by extension 'python'
+[0.187s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/driving) by extensions ['python_setup_py']
+[0.187s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/driving) by extension 'python_setup_py'
+[0.187s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/motor_test) by extensions ['ignore', 'ignore_ament_install']
+[0.187s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/motor_test) by extension 'ignore'
+[0.187s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/motor_test) by extension 'ignore_ament_install'
+[0.187s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/motor_test) by extensions ['colcon_pkg']
+[0.187s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/motor_test) by extension 'colcon_pkg'
+[0.187s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/motor_test) by extensions ['colcon_meta']
+[0.187s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/motor_test) by extension 'colcon_meta'
+[0.187s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/motor_test) by extensions ['ros']
+[0.187s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/motor_test) by extension 'ros'
+[0.187s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/motor_test) by extensions ['cmake', 'python']
+[0.187s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/motor_test) by extension 'cmake'
+[0.187s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/motor_test) by extension 'python'
+[0.187s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/motor_test) by extensions ['python_setup_py']
+[0.187s] Level 1:colcon.colcon_core.package_identification:_identify(src/control/motor_test) by extension 'python_setup_py'
+[0.187s] Level 1:colcon.colcon_core.package_identification:_identify(src/data_collection) by extensions ['ignore', 'ignore_ament_install']
+[0.187s] Level 1:colcon.colcon_core.package_identification:_identify(src/data_collection) by extension 'ignore'
+[0.187s] Level 1:colcon.colcon_core.package_identification:_identify(src/data_collection) by extension 'ignore_ament_install'
+[0.187s] Level 1:colcon.colcon_core.package_identification:_identify(src/data_collection) by extensions ['colcon_pkg']
+[0.187s] Level 1:colcon.colcon_core.package_identification:_identify(src/data_collection) by extension 'colcon_pkg'
+[0.187s] Level 1:colcon.colcon_core.package_identification:_identify(src/data_collection) by extensions ['colcon_meta']
+[0.187s] Level 1:colcon.colcon_core.package_identification:_identify(src/data_collection) by extension 'colcon_meta'
+[0.187s] Level 1:colcon.colcon_core.package_identification:_identify(src/data_collection) by extensions ['ros']
+[0.187s] Level 1:colcon.colcon_core.package_identification:_identify(src/data_collection) by extension 'ros'
+[0.187s] Level 1:colcon.colcon_core.package_identification:_identify(src/data_collection) by extensions ['cmake', 'python']
+[0.187s] Level 1:colcon.colcon_core.package_identification:_identify(src/data_collection) by extension 'cmake'
+[0.187s] Level 1:colcon.colcon_core.package_identification:_identify(src/data_collection) by extension 'python'
+[0.187s] Level 1:colcon.colcon_core.package_identification:_identify(src/data_collection) by extensions ['python_setup_py']
+[0.187s] Level 1:colcon.colcon_core.package_identification:_identify(src/data_collection) by extension 'python_setup_py'
+[0.187s] Level 1:colcon.colcon_core.package_identification:_identify(src/data_collection_pkg) by extensions ['ignore', 'ignore_ament_install']
+[0.187s] Level 1:colcon.colcon_core.package_identification:_identify(src/data_collection_pkg) by extension 'ignore'
+[0.188s] Level 1:colcon.colcon_core.package_identification:_identify(src/data_collection_pkg) by extension 'ignore_ament_install'
+[0.188s] Level 1:colcon.colcon_core.package_identification:_identify(src/data_collection_pkg) by extensions ['colcon_pkg']
+[0.188s] Level 1:colcon.colcon_core.package_identification:_identify(src/data_collection_pkg) by extension 'colcon_pkg'
+[0.188s] Level 1:colcon.colcon_core.package_identification:_identify(src/data_collection_pkg) by extensions ['colcon_meta']
+[0.188s] Level 1:colcon.colcon_core.package_identification:_identify(src/data_collection_pkg) by extension 'colcon_meta'
+[0.188s] Level 1:colcon.colcon_core.package_identification:_identify(src/data_collection_pkg) by extensions ['ros']
+[0.188s] Level 1:colcon.colcon_core.package_identification:_identify(src/data_collection_pkg) by extension 'ros'
+[0.188s] DEBUG:colcon.colcon_core.package_identification:Package 'src/data_collection_pkg' with type 'ros.ament_python' and name 'data_collection_pkg'
+[0.188s] Level 1:colcon.colcon_core.package_identification:_identify(src/debug_pkg) by extensions ['ignore', 'ignore_ament_install']
+[0.188s] Level 1:colcon.colcon_core.package_identification:_identify(src/debug_pkg) by extension 'ignore'
+[0.188s] Level 1:colcon.colcon_core.package_identification:_identify(src/debug_pkg) by extension 'ignore_ament_install'
+[0.188s] Level 1:colcon.colcon_core.package_identification:_identify(src/debug_pkg) by extensions ['colcon_pkg']
+[0.188s] Level 1:colcon.colcon_core.package_identification:_identify(src/debug_pkg) by extension 'colcon_pkg'
+[0.188s] Level 1:colcon.colcon_core.package_identification:_identify(src/debug_pkg) by extensions ['colcon_meta']
+[0.188s] Level 1:colcon.colcon_core.package_identification:_identify(src/debug_pkg) by extension 'colcon_meta'
+[0.188s] Level 1:colcon.colcon_core.package_identification:_identify(src/debug_pkg) by extensions ['ros']
+[0.188s] Level 1:colcon.colcon_core.package_identification:_identify(src/debug_pkg) by extension 'ros'
+[0.189s] DEBUG:colcon.colcon_core.package_identification:Package 'src/debug_pkg' with type 'ros.ament_python' and name 'debug_pkg'
+[0.189s] Level 1:colcon.colcon_core.package_identification:_identify(src/decision_making_pkg) by extensions ['ignore', 'ignore_ament_install']
+[0.189s] Level 1:colcon.colcon_core.package_identification:_identify(src/decision_making_pkg) by extension 'ignore'
+[0.189s] Level 1:colcon.colcon_core.package_identification:_identify(src/decision_making_pkg) by extension 'ignore_ament_install'
+[0.189s] Level 1:colcon.colcon_core.package_identification:_identify(src/decision_making_pkg) by extensions ['colcon_pkg']
+[0.189s] Level 1:colcon.colcon_core.package_identification:_identify(src/decision_making_pkg) by extension 'colcon_pkg'
+[0.189s] Level 1:colcon.colcon_core.package_identification:_identify(src/decision_making_pkg) by extensions ['colcon_meta']
+[0.189s] Level 1:colcon.colcon_core.package_identification:_identify(src/decision_making_pkg) by extension 'colcon_meta'
+[0.189s] Level 1:colcon.colcon_core.package_identification:_identify(src/decision_making_pkg) by extensions ['ros']
+[0.189s] Level 1:colcon.colcon_core.package_identification:_identify(src/decision_making_pkg) by extension 'ros'
+[0.189s] DEBUG:colcon.colcon_core.package_identification:Package 'src/decision_making_pkg' with type 'ros.ament_python' and name 'decision_making_pkg'
+[0.189s] Level 1:colcon.colcon_core.package_identification:_identify(src/interfaces_pkg) by extensions ['ignore', 'ignore_ament_install']
+[0.189s] Level 1:colcon.colcon_core.package_identification:_identify(src/interfaces_pkg) by extension 'ignore'
+[0.190s] Level 1:colcon.colcon_core.package_identification:_identify(src/interfaces_pkg) by extension 'ignore_ament_install'
+[0.190s] Level 1:colcon.colcon_core.package_identification:_identify(src/interfaces_pkg) by extensions ['colcon_pkg']
+[0.190s] Level 1:colcon.colcon_core.package_identification:_identify(src/interfaces_pkg) by extension 'colcon_pkg'
+[0.190s] Level 1:colcon.colcon_core.package_identification:_identify(src/interfaces_pkg) by extensions ['colcon_meta']
+[0.190s] Level 1:colcon.colcon_core.package_identification:_identify(src/interfaces_pkg) by extension 'colcon_meta'
+[0.190s] Level 1:colcon.colcon_core.package_identification:_identify(src/interfaces_pkg) by extensions ['ros']
+[0.190s] Level 1:colcon.colcon_core.package_identification:_identify(src/interfaces_pkg) by extension 'ros'
+[0.190s] DEBUG:colcon.colcon_core.package_identification:Package 'src/interfaces_pkg' with type 'ros.ament_cmake' and name 'interfaces_pkg'
+[0.190s] Level 1:colcon.colcon_core.package_identification:_identify(src/launch_pkg) by extensions ['ignore', 'ignore_ament_install']
+[0.190s] Level 1:colcon.colcon_core.package_identification:_identify(src/launch_pkg) by extension 'ignore'
+[0.190s] Level 1:colcon.colcon_core.package_identification:_identify(src/launch_pkg) by extension 'ignore_ament_install'
+[0.190s] Level 1:colcon.colcon_core.package_identification:_identify(src/launch_pkg) by extensions ['colcon_pkg']
+[0.190s] Level 1:colcon.colcon_core.package_identification:_identify(src/launch_pkg) by extension 'colcon_pkg'
+[0.190s] Level 1:colcon.colcon_core.package_identification:_identify(src/launch_pkg) by extensions ['colcon_meta']
+[0.190s] Level 1:colcon.colcon_core.package_identification:_identify(src/launch_pkg) by extension 'colcon_meta'
+[0.190s] Level 1:colcon.colcon_core.package_identification:_identify(src/launch_pkg) by extensions ['ros']
+[0.190s] Level 1:colcon.colcon_core.package_identification:_identify(src/launch_pkg) by extension 'ros'
+[0.191s] DEBUG:colcon.colcon_core.package_identification:Package 'src/launch_pkg' with type 'ros.ament_cmake' and name 'launch_pkg'
+[0.191s] Level 1:colcon.colcon_core.package_identification:_identify(src/lidar_perception_pkg) by extensions ['ignore', 'ignore_ament_install']
+[0.191s] Level 1:colcon.colcon_core.package_identification:_identify(src/lidar_perception_pkg) by extension 'ignore'
+[0.191s] Level 1:colcon.colcon_core.package_identification:_identify(src/lidar_perception_pkg) by extension 'ignore_ament_install'
+[0.191s] Level 1:colcon.colcon_core.package_identification:_identify(src/lidar_perception_pkg) by extensions ['colcon_pkg']
+[0.191s] Level 1:colcon.colcon_core.package_identification:_identify(src/lidar_perception_pkg) by extension 'colcon_pkg'
+[0.191s] Level 1:colcon.colcon_core.package_identification:_identify(src/lidar_perception_pkg) by extensions ['colcon_meta']
+[0.191s] Level 1:colcon.colcon_core.package_identification:_identify(src/lidar_perception_pkg) by extension 'colcon_meta'
+[0.191s] Level 1:colcon.colcon_core.package_identification:_identify(src/lidar_perception_pkg) by extensions ['ros']
+[0.191s] Level 1:colcon.colcon_core.package_identification:_identify(src/lidar_perception_pkg) by extension 'ros'
+[0.191s] DEBUG:colcon.colcon_core.package_identification:Package 'src/lidar_perception_pkg' with type 'ros.ament_python' and name 'lidar_perception_pkg'
+[0.191s] Level 1:colcon.colcon_core.package_identification:_identify(src/ota_update_interfaces) by extensions ['ignore', 'ignore_ament_install']
+[0.191s] Level 1:colcon.colcon_core.package_identification:_identify(src/ota_update_interfaces) by extension 'ignore'
+[0.191s] Level 1:colcon.colcon_core.package_identification:_identify(src/ota_update_interfaces) by extension 'ignore_ament_install'
+[0.191s] Level 1:colcon.colcon_core.package_identification:_identify(src/ota_update_interfaces) by extensions ['colcon_pkg']
+[0.191s] Level 1:colcon.colcon_core.package_identification:_identify(src/ota_update_interfaces) by extension 'colcon_pkg'
+[0.191s] Level 1:colcon.colcon_core.package_identification:_identify(src/ota_update_interfaces) by extensions ['colcon_meta']
+[0.191s] Level 1:colcon.colcon_core.package_identification:_identify(src/ota_update_interfaces) by extension 'colcon_meta'
+[0.191s] Level 1:colcon.colcon_core.package_identification:_identify(src/ota_update_interfaces) by extensions ['ros']
+[0.191s] Level 1:colcon.colcon_core.package_identification:_identify(src/ota_update_interfaces) by extension 'ros'
+[0.192s] DEBUG:colcon.colcon_core.package_identification:Package 'src/ota_update_interfaces' with type 'ros.ament_cmake' and name 'ota_update_interfaces'
+[0.192s] Level 1:colcon.colcon_core.package_identification:_identify(src/ota_update_manager) by extensions ['ignore', 'ignore_ament_install']
+[0.192s] Level 1:colcon.colcon_core.package_identification:_identify(src/ota_update_manager) by extension 'ignore'
+[0.192s] Level 1:colcon.colcon_core.package_identification:_identify(src/ota_update_manager) by extension 'ignore_ament_install'
+[0.192s] Level 1:colcon.colcon_core.package_identification:_identify(src/ota_update_manager) by extensions ['colcon_pkg']
+[0.192s] Level 1:colcon.colcon_core.package_identification:_identify(src/ota_update_manager) by extension 'colcon_pkg'
+[0.192s] Level 1:colcon.colcon_core.package_identification:_identify(src/ota_update_manager) by extensions ['colcon_meta']
+[0.192s] Level 1:colcon.colcon_core.package_identification:_identify(src/ota_update_manager) by extension 'colcon_meta'
+[0.192s] Level 1:colcon.colcon_core.package_identification:_identify(src/ota_update_manager) by extensions ['ros']
+[0.192s] Level 1:colcon.colcon_core.package_identification:_identify(src/ota_update_manager) by extension 'ros'
+[0.193s] DEBUG:colcon.colcon_core.package_identification:Package 'src/ota_update_manager' with type 'ros.ament_python' and name 'ota_update_manager'
+[0.193s] Level 1:colcon.colcon_core.package_identification:_identify(src/serial_communication_pkg) by extensions ['ignore', 'ignore_ament_install']
+[0.193s] Level 1:colcon.colcon_core.package_identification:_identify(src/serial_communication_pkg) by extension 'ignore'
+[0.193s] Level 1:colcon.colcon_core.package_identification:_identify(src/serial_communication_pkg) by extension 'ignore_ament_install'
+[0.193s] Level 1:colcon.colcon_core.package_identification:_identify(src/serial_communication_pkg) by extensions ['colcon_pkg']
+[0.193s] Level 1:colcon.colcon_core.package_identification:_identify(src/serial_communication_pkg) by extension 'colcon_pkg'
+[0.193s] Level 1:colcon.colcon_core.package_identification:_identify(src/serial_communication_pkg) by extensions ['colcon_meta']
+[0.193s] Level 1:colcon.colcon_core.package_identification:_identify(src/serial_communication_pkg) by extension 'colcon_meta'
+[0.193s] Level 1:colcon.colcon_core.package_identification:_identify(src/serial_communication_pkg) by extensions ['ros']
+[0.193s] Level 1:colcon.colcon_core.package_identification:_identify(src/serial_communication_pkg) by extension 'ros'
+[0.193s] DEBUG:colcon.colcon_core.package_identification:Package 'src/serial_communication_pkg' with type 'ros.ament_python' and name 'serial_communication_pkg'
+[0.193s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) using defaults
+[0.193s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) discover
+[0.193s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) using defaults
+[0.193s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) discover
+[0.193s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) using defaults
+[0.212s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) check parameters
+[0.212s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) discover
+[0.212s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/autolab/AutoSDV_HPC/install/ota_update_manager' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[0.212s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/autolab/AutoSDV_HPC/install/data_collection_pkg' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[0.213s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/autolab/AutoSDV_HPC/install/launch_pkg' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[0.213s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 2 installed packages in /home/autolab/AutoSDV_HPC/install
+[0.214s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 271 installed packages in /opt/ros/humble
+[0.215s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) using defaults
+[0.238s] Level 5:colcon.colcon_core.verb:set package 'camera_perception_pkg' build argument 'cmake_args' from command line to 'None'
+[0.239s] Level 5:colcon.colcon_core.verb:set package 'camera_perception_pkg' build argument 'cmake_target' from command line to 'None'
+[0.239s] Level 5:colcon.colcon_core.verb:set package 'camera_perception_pkg' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.239s] Level 5:colcon.colcon_core.verb:set package 'camera_perception_pkg' build argument 'cmake_clean_cache' from command line to 'False'
+[0.239s] Level 5:colcon.colcon_core.verb:set package 'camera_perception_pkg' build argument 'cmake_clean_first' from command line to 'False'
+[0.239s] Level 5:colcon.colcon_core.verb:set package 'camera_perception_pkg' build argument 'cmake_force_configure' from command line to 'False'
+[0.239s] Level 5:colcon.colcon_core.verb:set package 'camera_perception_pkg' build argument 'ament_cmake_args' from command line to 'None'
+[0.239s] Level 5:colcon.colcon_core.verb:set package 'camera_perception_pkg' build argument 'catkin_cmake_args' from command line to 'None'
+[0.239s] Level 5:colcon.colcon_core.verb:set package 'camera_perception_pkg' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.239s] DEBUG:colcon.colcon_core.verb:Building package 'camera_perception_pkg' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/autolab/AutoSDV_HPC/build/camera_perception_pkg', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/autolab/AutoSDV_HPC/install/camera_perception_pkg', 'merge_install': False, 'path': '/home/autolab/AutoSDV_HPC/src/camera_perception_pkg', 'symlink_install': True, 'test_result_base': None}
+[0.239s] Level 5:colcon.colcon_core.verb:set package 'debug_pkg' build argument 'cmake_args' from command line to 'None'
+[0.239s] Level 5:colcon.colcon_core.verb:set package 'debug_pkg' build argument 'cmake_target' from command line to 'None'
+[0.239s] Level 5:colcon.colcon_core.verb:set package 'debug_pkg' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.239s] Level 5:colcon.colcon_core.verb:set package 'debug_pkg' build argument 'cmake_clean_cache' from command line to 'False'
+[0.239s] Level 5:colcon.colcon_core.verb:set package 'debug_pkg' build argument 'cmake_clean_first' from command line to 'False'
+[0.239s] Level 5:colcon.colcon_core.verb:set package 'debug_pkg' build argument 'cmake_force_configure' from command line to 'False'
+[0.239s] Level 5:colcon.colcon_core.verb:set package 'debug_pkg' build argument 'ament_cmake_args' from command line to 'None'
+[0.239s] Level 5:colcon.colcon_core.verb:set package 'debug_pkg' build argument 'catkin_cmake_args' from command line to 'None'
+[0.239s] Level 5:colcon.colcon_core.verb:set package 'debug_pkg' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.239s] DEBUG:colcon.colcon_core.verb:Building package 'debug_pkg' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/autolab/AutoSDV_HPC/build/debug_pkg', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/autolab/AutoSDV_HPC/install/debug_pkg', 'merge_install': False, 'path': '/home/autolab/AutoSDV_HPC/src/debug_pkg', 'symlink_install': True, 'test_result_base': None}
+[0.239s] Level 5:colcon.colcon_core.verb:set package 'decision_making_pkg' build argument 'cmake_args' from command line to 'None'
+[0.239s] Level 5:colcon.colcon_core.verb:set package 'decision_making_pkg' build argument 'cmake_target' from command line to 'None'
+[0.239s] Level 5:colcon.colcon_core.verb:set package 'decision_making_pkg' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.239s] Level 5:colcon.colcon_core.verb:set package 'decision_making_pkg' build argument 'cmake_clean_cache' from command line to 'False'
+[0.239s] Level 5:colcon.colcon_core.verb:set package 'decision_making_pkg' build argument 'cmake_clean_first' from command line to 'False'
+[0.239s] Level 5:colcon.colcon_core.verb:set package 'decision_making_pkg' build argument 'cmake_force_configure' from command line to 'False'
+[0.239s] Level 5:colcon.colcon_core.verb:set package 'decision_making_pkg' build argument 'ament_cmake_args' from command line to 'None'
+[0.239s] Level 5:colcon.colcon_core.verb:set package 'decision_making_pkg' build argument 'catkin_cmake_args' from command line to 'None'
+[0.239s] Level 5:colcon.colcon_core.verb:set package 'decision_making_pkg' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.239s] DEBUG:colcon.colcon_core.verb:Building package 'decision_making_pkg' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/autolab/AutoSDV_HPC/build/decision_making_pkg', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/autolab/AutoSDV_HPC/install/decision_making_pkg', 'merge_install': False, 'path': '/home/autolab/AutoSDV_HPC/src/decision_making_pkg', 'symlink_install': True, 'test_result_base': None}
+[0.240s] Level 5:colcon.colcon_core.verb:set package 'interfaces_pkg' build argument 'cmake_args' from command line to 'None'
+[0.240s] Level 5:colcon.colcon_core.verb:set package 'interfaces_pkg' build argument 'cmake_target' from command line to 'None'
+[0.240s] Level 5:colcon.colcon_core.verb:set package 'interfaces_pkg' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.240s] Level 5:colcon.colcon_core.verb:set package 'interfaces_pkg' build argument 'cmake_clean_cache' from command line to 'False'
+[0.240s] Level 5:colcon.colcon_core.verb:set package 'interfaces_pkg' build argument 'cmake_clean_first' from command line to 'False'
+[0.240s] Level 5:colcon.colcon_core.verb:set package 'interfaces_pkg' build argument 'cmake_force_configure' from command line to 'False'
+[0.240s] Level 5:colcon.colcon_core.verb:set package 'interfaces_pkg' build argument 'ament_cmake_args' from command line to 'None'
+[0.240s] Level 5:colcon.colcon_core.verb:set package 'interfaces_pkg' build argument 'catkin_cmake_args' from command line to 'None'
+[0.240s] Level 5:colcon.colcon_core.verb:set package 'interfaces_pkg' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.240s] DEBUG:colcon.colcon_core.verb:Building package 'interfaces_pkg' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/autolab/AutoSDV_HPC/build/interfaces_pkg', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/autolab/AutoSDV_HPC/install/interfaces_pkg', 'merge_install': False, 'path': '/home/autolab/AutoSDV_HPC/src/interfaces_pkg', 'symlink_install': True, 'test_result_base': None}
+[0.240s] Level 5:colcon.colcon_core.verb:set package 'launch_pkg' build argument 'cmake_args' from command line to 'None'
+[0.240s] Level 5:colcon.colcon_core.verb:set package 'launch_pkg' build argument 'cmake_target' from command line to 'None'
+[0.240s] Level 5:colcon.colcon_core.verb:set package 'launch_pkg' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.240s] Level 5:colcon.colcon_core.verb:set package 'launch_pkg' build argument 'cmake_clean_cache' from command line to 'False'
+[0.240s] Level 5:colcon.colcon_core.verb:set package 'launch_pkg' build argument 'cmake_clean_first' from command line to 'False'
+[0.240s] Level 5:colcon.colcon_core.verb:set package 'launch_pkg' build argument 'cmake_force_configure' from command line to 'False'
+[0.240s] Level 5:colcon.colcon_core.verb:set package 'launch_pkg' build argument 'ament_cmake_args' from command line to 'None'
+[0.240s] Level 5:colcon.colcon_core.verb:set package 'launch_pkg' build argument 'catkin_cmake_args' from command line to 'None'
+[0.240s] Level 5:colcon.colcon_core.verb:set package 'launch_pkg' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.240s] DEBUG:colcon.colcon_core.verb:Building package 'launch_pkg' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/autolab/AutoSDV_HPC/build/launch_pkg', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/autolab/AutoSDV_HPC/install/launch_pkg', 'merge_install': False, 'path': '/home/autolab/AutoSDV_HPC/src/launch_pkg', 'symlink_install': True, 'test_result_base': None}
+[0.240s] Level 5:colcon.colcon_core.verb:set package 'lidar_perception_pkg' build argument 'cmake_args' from command line to 'None'
+[0.240s] Level 5:colcon.colcon_core.verb:set package 'lidar_perception_pkg' build argument 'cmake_target' from command line to 'None'
+[0.240s] Level 5:colcon.colcon_core.verb:set package 'lidar_perception_pkg' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.240s] Level 5:colcon.colcon_core.verb:set package 'lidar_perception_pkg' build argument 'cmake_clean_cache' from command line to 'False'
+[0.240s] Level 5:colcon.colcon_core.verb:set package 'lidar_perception_pkg' build argument 'cmake_clean_first' from command line to 'False'
+[0.240s] Level 5:colcon.colcon_core.verb:set package 'lidar_perception_pkg' build argument 'cmake_force_configure' from command line to 'False'
+[0.240s] Level 5:colcon.colcon_core.verb:set package 'lidar_perception_pkg' build argument 'ament_cmake_args' from command line to 'None'
+[0.240s] Level 5:colcon.colcon_core.verb:set package 'lidar_perception_pkg' build argument 'catkin_cmake_args' from command line to 'None'
+[0.240s] Level 5:colcon.colcon_core.verb:set package 'lidar_perception_pkg' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.240s] DEBUG:colcon.colcon_core.verb:Building package 'lidar_perception_pkg' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/autolab/AutoSDV_HPC/build/lidar_perception_pkg', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/autolab/AutoSDV_HPC/install/lidar_perception_pkg', 'merge_install': False, 'path': '/home/autolab/AutoSDV_HPC/src/lidar_perception_pkg', 'symlink_install': True, 'test_result_base': None}
+[0.240s] Level 5:colcon.colcon_core.verb:set package 'ota_update_interfaces' build argument 'cmake_args' from command line to 'None'
+[0.240s] Level 5:colcon.colcon_core.verb:set package 'ota_update_interfaces' build argument 'cmake_target' from command line to 'None'
+[0.240s] Level 5:colcon.colcon_core.verb:set package 'ota_update_interfaces' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.240s] Level 5:colcon.colcon_core.verb:set package 'ota_update_interfaces' build argument 'cmake_clean_cache' from command line to 'False'
+[0.240s] Level 5:colcon.colcon_core.verb:set package 'ota_update_interfaces' build argument 'cmake_clean_first' from command line to 'False'
+[0.241s] Level 5:colcon.colcon_core.verb:set package 'ota_update_interfaces' build argument 'cmake_force_configure' from command line to 'False'
+[0.241s] Level 5:colcon.colcon_core.verb:set package 'ota_update_interfaces' build argument 'ament_cmake_args' from command line to 'None'
+[0.241s] Level 5:colcon.colcon_core.verb:set package 'ota_update_interfaces' build argument 'catkin_cmake_args' from command line to 'None'
+[0.241s] Level 5:colcon.colcon_core.verb:set package 'ota_update_interfaces' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.241s] DEBUG:colcon.colcon_core.verb:Building package 'ota_update_interfaces' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/autolab/AutoSDV_HPC/build/ota_update_interfaces', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/autolab/AutoSDV_HPC/install/ota_update_interfaces', 'merge_install': False, 'path': '/home/autolab/AutoSDV_HPC/src/ota_update_interfaces', 'symlink_install': True, 'test_result_base': None}
+[0.241s] Level 5:colcon.colcon_core.verb:set package 'serial_communication_pkg' build argument 'cmake_args' from command line to 'None'
+[0.241s] Level 5:colcon.colcon_core.verb:set package 'serial_communication_pkg' build argument 'cmake_target' from command line to 'None'
+[0.241s] Level 5:colcon.colcon_core.verb:set package 'serial_communication_pkg' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.241s] Level 5:colcon.colcon_core.verb:set package 'serial_communication_pkg' build argument 'cmake_clean_cache' from command line to 'False'
+[0.241s] Level 5:colcon.colcon_core.verb:set package 'serial_communication_pkg' build argument 'cmake_clean_first' from command line to 'False'
+[0.241s] Level 5:colcon.colcon_core.verb:set package 'serial_communication_pkg' build argument 'cmake_force_configure' from command line to 'False'
+[0.241s] Level 5:colcon.colcon_core.verb:set package 'serial_communication_pkg' build argument 'ament_cmake_args' from command line to 'None'
+[0.241s] Level 5:colcon.colcon_core.verb:set package 'serial_communication_pkg' build argument 'catkin_cmake_args' from command line to 'None'
+[0.241s] Level 5:colcon.colcon_core.verb:set package 'serial_communication_pkg' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.241s] DEBUG:colcon.colcon_core.verb:Building package 'serial_communication_pkg' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/autolab/AutoSDV_HPC/build/serial_communication_pkg', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/autolab/AutoSDV_HPC/install/serial_communication_pkg', 'merge_install': False, 'path': '/home/autolab/AutoSDV_HPC/src/serial_communication_pkg', 'symlink_install': True, 'test_result_base': None}
+[0.241s] Level 5:colcon.colcon_core.verb:set package 'data_collection_pkg' build argument 'cmake_args' from command line to 'None'
+[0.241s] Level 5:colcon.colcon_core.verb:set package 'data_collection_pkg' build argument 'cmake_target' from command line to 'None'
+[0.241s] Level 5:colcon.colcon_core.verb:set package 'data_collection_pkg' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.241s] Level 5:colcon.colcon_core.verb:set package 'data_collection_pkg' build argument 'cmake_clean_cache' from command line to 'False'
+[0.241s] Level 5:colcon.colcon_core.verb:set package 'data_collection_pkg' build argument 'cmake_clean_first' from command line to 'False'
+[0.241s] Level 5:colcon.colcon_core.verb:set package 'data_collection_pkg' build argument 'cmake_force_configure' from command line to 'False'
+[0.241s] Level 5:colcon.colcon_core.verb:set package 'data_collection_pkg' build argument 'ament_cmake_args' from command line to 'None'
+[0.241s] Level 5:colcon.colcon_core.verb:set package 'data_collection_pkg' build argument 'catkin_cmake_args' from command line to 'None'
+[0.241s] Level 5:colcon.colcon_core.verb:set package 'data_collection_pkg' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.241s] DEBUG:colcon.colcon_core.verb:Building package 'data_collection_pkg' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/autolab/AutoSDV_HPC/build/data_collection_pkg', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/autolab/AutoSDV_HPC/install/data_collection_pkg', 'merge_install': False, 'path': '/home/autolab/AutoSDV_HPC/src/data_collection_pkg', 'symlink_install': True, 'test_result_base': None}
+[0.241s] Level 5:colcon.colcon_core.verb:set package 'ota_update_manager' build argument 'cmake_args' from command line to 'None'
+[0.241s] Level 5:colcon.colcon_core.verb:set package 'ota_update_manager' build argument 'cmake_target' from command line to 'None'
+[0.241s] Level 5:colcon.colcon_core.verb:set package 'ota_update_manager' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.241s] Level 5:colcon.colcon_core.verb:set package 'ota_update_manager' build argument 'cmake_clean_cache' from command line to 'False'
+[0.241s] Level 5:colcon.colcon_core.verb:set package 'ota_update_manager' build argument 'cmake_clean_first' from command line to 'False'
+[0.241s] Level 5:colcon.colcon_core.verb:set package 'ota_update_manager' build argument 'cmake_force_configure' from command line to 'False'
+[0.241s] Level 5:colcon.colcon_core.verb:set package 'ota_update_manager' build argument 'ament_cmake_args' from command line to 'None'
+[0.241s] Level 5:colcon.colcon_core.verb:set package 'ota_update_manager' build argument 'catkin_cmake_args' from command line to 'None'
+[0.241s] Level 5:colcon.colcon_core.verb:set package 'ota_update_manager' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.241s] DEBUG:colcon.colcon_core.verb:Building package 'ota_update_manager' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/autolab/AutoSDV_HPC/build/ota_update_manager', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/autolab/AutoSDV_HPC/install/ota_update_manager', 'merge_install': False, 'path': '/home/autolab/AutoSDV_HPC/src/ota_update_manager', 'symlink_install': True, 'test_result_base': None}
+[0.242s] INFO:colcon.colcon_core.executor:Executing jobs using 'parallel' executor
+[0.242s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete
+[0.242s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/autolab/AutoSDV_HPC/src/interfaces_pkg' with build type 'ament_cmake'
+[0.242s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/autolab/AutoSDV_HPC/src/interfaces_pkg'
+[0.244s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[0.244s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.244s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.246s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/autolab/AutoSDV_HPC/src/ota_update_interfaces' with build type 'ament_cmake'
+[0.247s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/autolab/AutoSDV_HPC/src/ota_update_interfaces'
+[0.247s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.247s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.249s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/autolab/AutoSDV_HPC/src/camera_perception_pkg' with build type 'ament_python'
+[0.249s] Level 1:colcon.colcon_core.shell:create_environment_hook('camera_perception_pkg', 'ament_prefix_path')
+[0.249s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/autolab/AutoSDV_HPC/install/camera_perception_pkg/share/camera_perception_pkg/hook/ament_prefix_path.ps1'
+[0.250s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/autolab/AutoSDV_HPC/install/camera_perception_pkg/share/camera_perception_pkg/hook/ament_prefix_path.dsv'
+[0.250s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/autolab/AutoSDV_HPC/install/camera_perception_pkg/share/camera_perception_pkg/hook/ament_prefix_path.sh'
+[0.250s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.250s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.252s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/autolab/AutoSDV_HPC/src/debug_pkg' with build type 'ament_python'
+[0.253s] Level 1:colcon.colcon_core.shell:create_environment_hook('debug_pkg', 'ament_prefix_path')
+[0.253s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/autolab/AutoSDV_HPC/install/debug_pkg/share/debug_pkg/hook/ament_prefix_path.ps1'
+[0.253s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/autolab/AutoSDV_HPC/install/debug_pkg/share/debug_pkg/hook/ament_prefix_path.dsv'
+[0.253s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/autolab/AutoSDV_HPC/install/debug_pkg/share/debug_pkg/hook/ament_prefix_path.sh'
+[0.254s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.254s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.256s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/autolab/AutoSDV_HPC/src/decision_making_pkg' with build type 'ament_python'
+[0.256s] Level 1:colcon.colcon_core.shell:create_environment_hook('decision_making_pkg', 'ament_prefix_path')
+[0.256s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/autolab/AutoSDV_HPC/install/decision_making_pkg/share/decision_making_pkg/hook/ament_prefix_path.ps1'
+[0.256s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/autolab/AutoSDV_HPC/install/decision_making_pkg/share/decision_making_pkg/hook/ament_prefix_path.dsv'
+[0.256s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/autolab/AutoSDV_HPC/install/decision_making_pkg/share/decision_making_pkg/hook/ament_prefix_path.sh'
+[0.257s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.257s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.259s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/autolab/AutoSDV_HPC/src/launch_pkg' with build type 'ament_cmake'
+[0.259s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/autolab/AutoSDV_HPC/src/launch_pkg'
+[0.259s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.259s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.261s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/autolab/AutoSDV_HPC/src/lidar_perception_pkg' with build type 'ament_python'
+[0.261s] Level 1:colcon.colcon_core.shell:create_environment_hook('lidar_perception_pkg', 'ament_prefix_path')
+[0.262s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/autolab/AutoSDV_HPC/install/lidar_perception_pkg/share/lidar_perception_pkg/hook/ament_prefix_path.ps1'
+[0.262s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/autolab/AutoSDV_HPC/install/lidar_perception_pkg/share/lidar_perception_pkg/hook/ament_prefix_path.dsv'
+[0.262s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/autolab/AutoSDV_HPC/install/lidar_perception_pkg/share/lidar_perception_pkg/hook/ament_prefix_path.sh'
+[0.262s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.262s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.265s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/autolab/AutoSDV_HPC/src/serial_communication_pkg' with build type 'ament_python'
+[0.265s] Level 1:colcon.colcon_core.shell:create_environment_hook('serial_communication_pkg', 'ament_prefix_path')
+[0.265s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/autolab/AutoSDV_HPC/install/serial_communication_pkg/share/serial_communication_pkg/hook/ament_prefix_path.ps1'
+[0.265s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/autolab/AutoSDV_HPC/install/serial_communication_pkg/share/serial_communication_pkg/hook/ament_prefix_path.dsv'
+[0.265s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/autolab/AutoSDV_HPC/install/serial_communication_pkg/share/serial_communication_pkg/hook/ament_prefix_path.sh'
+[0.266s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.266s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.271s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/autolab/AutoSDV_HPC/build/interfaces_pkg': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble:/home/autolab/AutoSDV_HPC/install/serial_communication_pkg:/home/autolab/AutoSDV_HPC/install/ota_update_manager:/home/autolab/AutoSDV_HPC/install/lidar_perception_pkg:/home/autolab/AutoSDV_HPC/install/data_collection_pkg:/home/autolab/AutoSDV_HPC/install/decision_making_pkg:/home/autolab/AutoSDV_HPC/install/debug_pkg:/home/autolab/AutoSDV_HPC/install/camera_perception_pkg /usr/bin/cmake /home/autolab/AutoSDV_HPC/src/interfaces_pkg -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/autolab/AutoSDV_HPC/install/interfaces_pkg
+[0.273s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/autolab/AutoSDV_HPC/build/ota_update_interfaces': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble:/home/autolab/AutoSDV_HPC/install/serial_communication_pkg:/home/autolab/AutoSDV_HPC/install/ota_update_manager:/home/autolab/AutoSDV_HPC/install/lidar_perception_pkg:/home/autolab/AutoSDV_HPC/install/data_collection_pkg:/home/autolab/AutoSDV_HPC/install/decision_making_pkg:/home/autolab/AutoSDV_HPC/install/debug_pkg:/home/autolab/AutoSDV_HPC/install/camera_perception_pkg /usr/bin/cmake /home/autolab/AutoSDV_HPC/src/ota_update_interfaces -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/autolab/AutoSDV_HPC/install/ota_update_interfaces
+[0.436s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/autolab/AutoSDV_HPC/src/camera_perception_pkg'
+[0.436s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.436s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.601s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/autolab/AutoSDV_HPC/src/debug_pkg'
+[0.601s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.601s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.755s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/autolab/AutoSDV_HPC/src/decision_making_pkg'
+[0.755s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.755s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.759s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/autolab/AutoSDV_HPC/build/launch_pkg': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble:/home/autolab/AutoSDV_HPC/install/serial_communication_pkg:/home/autolab/AutoSDV_HPC/install/ota_update_manager:/home/autolab/AutoSDV_HPC/install/lidar_perception_pkg:/home/autolab/AutoSDV_HPC/install/data_collection_pkg:/home/autolab/AutoSDV_HPC/install/decision_making_pkg:/home/autolab/AutoSDV_HPC/install/debug_pkg:/home/autolab/AutoSDV_HPC/install/camera_perception_pkg /usr/bin/cmake /home/autolab/AutoSDV_HPC/src/launch_pkg -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/autolab/AutoSDV_HPC/install/launch_pkg
+[0.881s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/autolab/AutoSDV_HPC/src/lidar_perception_pkg'
+[0.881s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.881s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[1.008s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/autolab/AutoSDV_HPC/src/serial_communication_pkg'
+[1.008s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[1.008s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[1.014s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/autolab/AutoSDV_HPC/build/launch_pkg' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble:/home/autolab/AutoSDV_HPC/install/serial_communication_pkg:/home/autolab/AutoSDV_HPC/install/ota_update_manager:/home/autolab/AutoSDV_HPC/install/lidar_perception_pkg:/home/autolab/AutoSDV_HPC/install/data_collection_pkg:/home/autolab/AutoSDV_HPC/install/decision_making_pkg:/home/autolab/AutoSDV_HPC/install/debug_pkg:/home/autolab/AutoSDV_HPC/install/camera_perception_pkg /usr/bin/cmake /home/autolab/AutoSDV_HPC/src/launch_pkg -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/autolab/AutoSDV_HPC/install/launch_pkg
+[1.015s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/autolab/AutoSDV_HPC/build/launch_pkg': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble:/home/autolab/AutoSDV_HPC/install/serial_communication_pkg:/home/autolab/AutoSDV_HPC/install/ota_update_manager:/home/autolab/AutoSDV_HPC/install/lidar_perception_pkg:/home/autolab/AutoSDV_HPC/install/data_collection_pkg:/home/autolab/AutoSDV_HPC/install/decision_making_pkg:/home/autolab/AutoSDV_HPC/install/debug_pkg:/home/autolab/AutoSDV_HPC/install/camera_perception_pkg /usr/bin/cmake --build /home/autolab/AutoSDV_HPC/build/launch_pkg -- -j32 -l32
+[1.044s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/autolab/AutoSDV_HPC/build/launch_pkg' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble:/home/autolab/AutoSDV_HPC/install/serial_communication_pkg:/home/autolab/AutoSDV_HPC/install/ota_update_manager:/home/autolab/AutoSDV_HPC/install/lidar_perception_pkg:/home/autolab/AutoSDV_HPC/install/data_collection_pkg:/home/autolab/AutoSDV_HPC/install/decision_making_pkg:/home/autolab/AutoSDV_HPC/install/debug_pkg:/home/autolab/AutoSDV_HPC/install/camera_perception_pkg /usr/bin/cmake --build /home/autolab/AutoSDV_HPC/build/launch_pkg -- -j32 -l32
+[1.050s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/autolab/AutoSDV_HPC/build/launch_pkg': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble:/home/autolab/AutoSDV_HPC/install/serial_communication_pkg:/home/autolab/AutoSDV_HPC/install/ota_update_manager:/home/autolab/AutoSDV_HPC/install/lidar_perception_pkg:/home/autolab/AutoSDV_HPC/install/data_collection_pkg:/home/autolab/AutoSDV_HPC/install/decision_making_pkg:/home/autolab/AutoSDV_HPC/install/debug_pkg:/home/autolab/AutoSDV_HPC/install/camera_perception_pkg /usr/bin/cmake --install /home/autolab/AutoSDV_HPC/build/launch_pkg
+[1.153s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(launch_pkg)
+[1.153s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/autolab/AutoSDV_HPC/build/launch_pkg' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble:/home/autolab/AutoSDV_HPC/install/serial_communication_pkg:/home/autolab/AutoSDV_HPC/install/ota_update_manager:/home/autolab/AutoSDV_HPC/install/lidar_perception_pkg:/home/autolab/AutoSDV_HPC/install/data_collection_pkg:/home/autolab/AutoSDV_HPC/install/decision_making_pkg:/home/autolab/AutoSDV_HPC/install/debug_pkg:/home/autolab/AutoSDV_HPC/install/camera_perception_pkg /usr/bin/cmake --install /home/autolab/AutoSDV_HPC/build/launch_pkg
+[1.155s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/launch_pkg' for CMake module files
+[1.155s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/launch_pkg' for CMake config files
+[1.155s] Level 1:colcon.colcon_core.shell:create_environment_hook('launch_pkg', 'cmake_prefix_path')
+[1.155s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/autolab/AutoSDV_HPC/install/launch_pkg/share/launch_pkg/hook/cmake_prefix_path.ps1'
+[1.156s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/autolab/AutoSDV_HPC/install/launch_pkg/share/launch_pkg/hook/cmake_prefix_path.dsv'
+[1.156s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/autolab/AutoSDV_HPC/install/launch_pkg/share/launch_pkg/hook/cmake_prefix_path.sh'
+[1.156s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/launch_pkg/bin'
+[1.156s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/launch_pkg/lib/pkgconfig/launch_pkg.pc'
+[1.156s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/launch_pkg/lib/python3.10/site-packages'
+[1.157s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/launch_pkg/bin'
+[1.157s] INFO:colcon.colcon_core.shell:Creating package script '/home/autolab/AutoSDV_HPC/install/launch_pkg/share/launch_pkg/package.ps1'
+[1.157s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/autolab/AutoSDV_HPC/install/launch_pkg/share/launch_pkg/package.dsv'
+[1.157s] INFO:colcon.colcon_core.shell:Creating package script '/home/autolab/AutoSDV_HPC/install/launch_pkg/share/launch_pkg/package.sh'
+[1.158s] INFO:colcon.colcon_core.shell:Creating package script '/home/autolab/AutoSDV_HPC/install/launch_pkg/share/launch_pkg/package.bash'
+[1.158s] INFO:colcon.colcon_core.shell:Creating package script '/home/autolab/AutoSDV_HPC/install/launch_pkg/share/launch_pkg/package.zsh'
+[1.158s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/autolab/AutoSDV_HPC/install/launch_pkg/share/colcon-core/packages/launch_pkg)
+[1.159s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(launch_pkg)
+[1.159s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/launch_pkg' for CMake module files
+[1.159s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/launch_pkg' for CMake config files
+[1.159s] Level 1:colcon.colcon_core.shell:create_environment_hook('launch_pkg', 'cmake_prefix_path')
+[1.159s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/autolab/AutoSDV_HPC/install/launch_pkg/share/launch_pkg/hook/cmake_prefix_path.ps1'
+[1.160s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/autolab/AutoSDV_HPC/install/launch_pkg/share/launch_pkg/hook/cmake_prefix_path.dsv'
+[1.160s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/autolab/AutoSDV_HPC/install/launch_pkg/share/launch_pkg/hook/cmake_prefix_path.sh'
+[1.160s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/launch_pkg/bin'
+[1.160s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/launch_pkg/lib/pkgconfig/launch_pkg.pc'
+[1.160s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/launch_pkg/lib/python3.10/site-packages'
+[1.161s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/launch_pkg/bin'
+[1.161s] INFO:colcon.colcon_core.shell:Creating package script '/home/autolab/AutoSDV_HPC/install/launch_pkg/share/launch_pkg/package.ps1'
+[1.161s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/autolab/AutoSDV_HPC/install/launch_pkg/share/launch_pkg/package.dsv'
+[1.161s] INFO:colcon.colcon_core.shell:Creating package script '/home/autolab/AutoSDV_HPC/install/launch_pkg/share/launch_pkg/package.sh'
+[1.161s] INFO:colcon.colcon_core.shell:Creating package script '/home/autolab/AutoSDV_HPC/install/launch_pkg/share/launch_pkg/package.bash'
+[1.162s] INFO:colcon.colcon_core.shell:Creating package script '/home/autolab/AutoSDV_HPC/install/launch_pkg/share/launch_pkg/package.zsh'
+[1.162s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/autolab/AutoSDV_HPC/install/launch_pkg/share/colcon-core/packages/launch_pkg)
+[1.166s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/autolab/AutoSDV_HPC/build/ota_update_interfaces' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble:/home/autolab/AutoSDV_HPC/install/serial_communication_pkg:/home/autolab/AutoSDV_HPC/install/ota_update_manager:/home/autolab/AutoSDV_HPC/install/lidar_perception_pkg:/home/autolab/AutoSDV_HPC/install/data_collection_pkg:/home/autolab/AutoSDV_HPC/install/decision_making_pkg:/home/autolab/AutoSDV_HPC/install/debug_pkg:/home/autolab/AutoSDV_HPC/install/camera_perception_pkg /usr/bin/cmake /home/autolab/AutoSDV_HPC/src/ota_update_interfaces -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/autolab/AutoSDV_HPC/install/ota_update_interfaces
+[1.167s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/autolab/AutoSDV_HPC/build/ota_update_interfaces': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble:/home/autolab/AutoSDV_HPC/install/serial_communication_pkg:/home/autolab/AutoSDV_HPC/install/ota_update_manager:/home/autolab/AutoSDV_HPC/install/lidar_perception_pkg:/home/autolab/AutoSDV_HPC/install/data_collection_pkg:/home/autolab/AutoSDV_HPC/install/decision_making_pkg:/home/autolab/AutoSDV_HPC/install/debug_pkg:/home/autolab/AutoSDV_HPC/install/camera_perception_pkg /usr/bin/cmake --build /home/autolab/AutoSDV_HPC/build/ota_update_interfaces -- -j32 -l32
+[1.210s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/autolab/AutoSDV_HPC/build/decision_making_pkg': PYTHONPATH=/home/autolab/AutoSDV_HPC/build/decision_making_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/autolab/AutoSDV_HPC/install/decision_making_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/autolab/AutoSDV_HPC/build/decision_making_pkg/build --no-deps symlink_data
+[1.211s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/autolab/AutoSDV_HPC/build/debug_pkg': PYTHONPATH=/home/autolab/AutoSDV_HPC/build/debug_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/autolab/AutoSDV_HPC/install/debug_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/autolab/AutoSDV_HPC/build/debug_pkg/build --no-deps symlink_data
+[1.215s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/autolab/AutoSDV_HPC/build/lidar_perception_pkg': PYTHONPATH=/home/autolab/AutoSDV_HPC/build/lidar_perception_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/autolab/AutoSDV_HPC/install/lidar_perception_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/autolab/AutoSDV_HPC/build/lidar_perception_pkg/build --no-deps symlink_data
+[1.216s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/autolab/AutoSDV_HPC/build/serial_communication_pkg': PYTHONPATH=/home/autolab/AutoSDV_HPC/build/serial_communication_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/autolab/AutoSDV_HPC/install/serial_communication_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/autolab/AutoSDV_HPC/build/serial_communication_pkg/build --no-deps symlink_data
+[1.234s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/autolab/AutoSDV_HPC/build/camera_perception_pkg': PYTHONPATH=/home/autolab/AutoSDV_HPC/build/camera_perception_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/autolab/AutoSDV_HPC/install/camera_perception_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/autolab/AutoSDV_HPC/build/camera_perception_pkg/build --no-deps symlink_data
+[1.312s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/autolab/AutoSDV_HPC/build/interfaces_pkg' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble:/home/autolab/AutoSDV_HPC/install/serial_communication_pkg:/home/autolab/AutoSDV_HPC/install/ota_update_manager:/home/autolab/AutoSDV_HPC/install/lidar_perception_pkg:/home/autolab/AutoSDV_HPC/install/data_collection_pkg:/home/autolab/AutoSDV_HPC/install/decision_making_pkg:/home/autolab/AutoSDV_HPC/install/debug_pkg:/home/autolab/AutoSDV_HPC/install/camera_perception_pkg /usr/bin/cmake /home/autolab/AutoSDV_HPC/src/interfaces_pkg -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/autolab/AutoSDV_HPC/install/interfaces_pkg
+[1.313s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/autolab/AutoSDV_HPC/build/interfaces_pkg': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble:/home/autolab/AutoSDV_HPC/install/serial_communication_pkg:/home/autolab/AutoSDV_HPC/install/ota_update_manager:/home/autolab/AutoSDV_HPC/install/lidar_perception_pkg:/home/autolab/AutoSDV_HPC/install/data_collection_pkg:/home/autolab/AutoSDV_HPC/install/decision_making_pkg:/home/autolab/AutoSDV_HPC/install/debug_pkg:/home/autolab/AutoSDV_HPC/install/camera_perception_pkg /usr/bin/cmake --build /home/autolab/AutoSDV_HPC/build/interfaces_pkg -- -j32 -l32
+[1.471s] Level 1:colcon.colcon_core.shell:create_environment_hook('debug_pkg', 'pythonpath_develop')
+[1.472s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/autolab/AutoSDV_HPC/build/debug_pkg/share/debug_pkg/hook/pythonpath_develop.ps1'
+[1.472s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/autolab/AutoSDV_HPC/build/debug_pkg' returned '0': PYTHONPATH=/home/autolab/AutoSDV_HPC/build/debug_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/autolab/AutoSDV_HPC/install/debug_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/autolab/AutoSDV_HPC/build/debug_pkg/build --no-deps symlink_data
+[1.473s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/autolab/AutoSDV_HPC/build/debug_pkg/share/debug_pkg/hook/pythonpath_develop.dsv'
+[1.473s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/autolab/AutoSDV_HPC/build/debug_pkg/share/debug_pkg/hook/pythonpath_develop.sh'
+[1.474s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/debug_pkg' for CMake module files
+[1.474s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/debug_pkg' for CMake config files
+[1.474s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/debug_pkg/lib'
+[1.475s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/debug_pkg/bin'
+[1.475s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/debug_pkg/lib/pkgconfig/debug_pkg.pc'
+[1.475s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/debug_pkg/lib/python3.10/site-packages'
+[1.475s] Level 1:colcon.colcon_core.shell:create_environment_hook('debug_pkg', 'pythonpath')
+[1.475s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/autolab/AutoSDV_HPC/install/debug_pkg/share/debug_pkg/hook/pythonpath.ps1'
+[1.476s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/autolab/AutoSDV_HPC/install/debug_pkg/share/debug_pkg/hook/pythonpath.dsv'
+[1.477s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/autolab/AutoSDV_HPC/install/debug_pkg/share/debug_pkg/hook/pythonpath.sh'
+[1.477s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/debug_pkg/bin'
+[1.478s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(debug_pkg)
+[1.478s] INFO:colcon.colcon_core.shell:Creating package script '/home/autolab/AutoSDV_HPC/install/debug_pkg/share/debug_pkg/package.ps1'
+[1.478s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/autolab/AutoSDV_HPC/install/debug_pkg/share/debug_pkg/package.dsv'
+[1.479s] INFO:colcon.colcon_core.shell:Creating package script '/home/autolab/AutoSDV_HPC/install/debug_pkg/share/debug_pkg/package.sh'
+[1.479s] INFO:colcon.colcon_core.shell:Creating package script '/home/autolab/AutoSDV_HPC/install/debug_pkg/share/debug_pkg/package.bash'
+[1.479s] INFO:colcon.colcon_core.shell:Creating package script '/home/autolab/AutoSDV_HPC/install/debug_pkg/share/debug_pkg/package.zsh'
+[1.479s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/autolab/AutoSDV_HPC/install/debug_pkg/share/colcon-core/packages/debug_pkg)
+[1.481s] Level 1:colcon.colcon_core.shell:create_environment_hook('lidar_perception_pkg', 'pythonpath_develop')
+[1.481s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/autolab/AutoSDV_HPC/build/lidar_perception_pkg/share/lidar_perception_pkg/hook/pythonpath_develop.ps1'
+[1.482s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/autolab/AutoSDV_HPC/build/lidar_perception_pkg' returned '0': PYTHONPATH=/home/autolab/AutoSDV_HPC/build/lidar_perception_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/autolab/AutoSDV_HPC/install/lidar_perception_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/autolab/AutoSDV_HPC/build/lidar_perception_pkg/build --no-deps symlink_data
+[1.482s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/autolab/AutoSDV_HPC/build/lidar_perception_pkg/share/lidar_perception_pkg/hook/pythonpath_develop.dsv'
+[1.482s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/autolab/AutoSDV_HPC/build/lidar_perception_pkg/share/lidar_perception_pkg/hook/pythonpath_develop.sh'
+[1.482s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/lidar_perception_pkg' for CMake module files
+[1.483s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/lidar_perception_pkg' for CMake config files
+[1.483s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/lidar_perception_pkg/lib'
+[1.483s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/lidar_perception_pkg/bin'
+[1.483s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/lidar_perception_pkg/lib/pkgconfig/lidar_perception_pkg.pc'
+[1.483s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/lidar_perception_pkg/lib/python3.10/site-packages'
+[1.483s] Level 1:colcon.colcon_core.shell:create_environment_hook('lidar_perception_pkg', 'pythonpath')
+[1.483s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/autolab/AutoSDV_HPC/install/lidar_perception_pkg/share/lidar_perception_pkg/hook/pythonpath.ps1'
+[1.484s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/autolab/AutoSDV_HPC/install/lidar_perception_pkg/share/lidar_perception_pkg/hook/pythonpath.dsv'
+[1.484s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/autolab/AutoSDV_HPC/install/lidar_perception_pkg/share/lidar_perception_pkg/hook/pythonpath.sh'
+[1.484s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/lidar_perception_pkg/bin'
+[1.484s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(lidar_perception_pkg)
+[1.484s] INFO:colcon.colcon_core.shell:Creating package script '/home/autolab/AutoSDV_HPC/install/lidar_perception_pkg/share/lidar_perception_pkg/package.ps1'
+[1.485s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/autolab/AutoSDV_HPC/install/lidar_perception_pkg/share/lidar_perception_pkg/package.dsv'
+[1.485s] INFO:colcon.colcon_core.shell:Creating package script '/home/autolab/AutoSDV_HPC/install/lidar_perception_pkg/share/lidar_perception_pkg/package.sh'
+[1.485s] INFO:colcon.colcon_core.shell:Creating package script '/home/autolab/AutoSDV_HPC/install/lidar_perception_pkg/share/lidar_perception_pkg/package.bash'
+[1.485s] INFO:colcon.colcon_core.shell:Creating package script '/home/autolab/AutoSDV_HPC/install/lidar_perception_pkg/share/lidar_perception_pkg/package.zsh'
+[1.485s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/autolab/AutoSDV_HPC/install/lidar_perception_pkg/share/colcon-core/packages/lidar_perception_pkg)
+[1.486s] Level 1:colcon.colcon_core.shell:create_environment_hook('serial_communication_pkg', 'pythonpath_develop')
+[1.486s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/autolab/AutoSDV_HPC/build/serial_communication_pkg/share/serial_communication_pkg/hook/pythonpath_develop.ps1'
+[1.486s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/autolab/AutoSDV_HPC/build/serial_communication_pkg' returned '0': PYTHONPATH=/home/autolab/AutoSDV_HPC/build/serial_communication_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/autolab/AutoSDV_HPC/install/serial_communication_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/autolab/AutoSDV_HPC/build/serial_communication_pkg/build --no-deps symlink_data
+[1.486s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/autolab/AutoSDV_HPC/build/serial_communication_pkg/share/serial_communication_pkg/hook/pythonpath_develop.dsv'
+[1.487s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/autolab/AutoSDV_HPC/build/serial_communication_pkg/share/serial_communication_pkg/hook/pythonpath_develop.sh'
+[1.487s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/serial_communication_pkg' for CMake module files
+[1.487s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/serial_communication_pkg' for CMake config files
+[1.487s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/serial_communication_pkg/lib'
+[1.488s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/serial_communication_pkg/bin'
+[1.488s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/serial_communication_pkg/lib/pkgconfig/serial_communication_pkg.pc'
+[1.488s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/serial_communication_pkg/lib/python3.10/site-packages'
+[1.488s] Level 1:colcon.colcon_core.shell:create_environment_hook('serial_communication_pkg', 'pythonpath')
+[1.488s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/autolab/AutoSDV_HPC/install/serial_communication_pkg/share/serial_communication_pkg/hook/pythonpath.ps1'
+[1.488s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/autolab/AutoSDV_HPC/install/serial_communication_pkg/share/serial_communication_pkg/hook/pythonpath.dsv'
+[1.488s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/autolab/AutoSDV_HPC/install/serial_communication_pkg/share/serial_communication_pkg/hook/pythonpath.sh'
+[1.489s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/serial_communication_pkg/bin'
+[1.489s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(serial_communication_pkg)
+[1.489s] INFO:colcon.colcon_core.shell:Creating package script '/home/autolab/AutoSDV_HPC/install/serial_communication_pkg/share/serial_communication_pkg/package.ps1'
+[1.489s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/autolab/AutoSDV_HPC/install/serial_communication_pkg/share/serial_communication_pkg/package.dsv'
+[1.490s] INFO:colcon.colcon_core.shell:Creating package script '/home/autolab/AutoSDV_HPC/install/serial_communication_pkg/share/serial_communication_pkg/package.sh'
+[1.490s] INFO:colcon.colcon_core.shell:Creating package script '/home/autolab/AutoSDV_HPC/install/serial_communication_pkg/share/serial_communication_pkg/package.bash'
+[1.490s] INFO:colcon.colcon_core.shell:Creating package script '/home/autolab/AutoSDV_HPC/install/serial_communication_pkg/share/serial_communication_pkg/package.zsh'
+[1.490s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/autolab/AutoSDV_HPC/install/serial_communication_pkg/share/colcon-core/packages/serial_communication_pkg)
+[1.491s] Level 1:colcon.colcon_core.shell:create_environment_hook('decision_making_pkg', 'pythonpath_develop')
+[1.491s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/autolab/AutoSDV_HPC/build/decision_making_pkg/share/decision_making_pkg/hook/pythonpath_develop.ps1'
+[1.491s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/autolab/AutoSDV_HPC/build/decision_making_pkg' returned '0': PYTHONPATH=/home/autolab/AutoSDV_HPC/build/decision_making_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/autolab/AutoSDV_HPC/install/decision_making_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/autolab/AutoSDV_HPC/build/decision_making_pkg/build --no-deps symlink_data
+[1.492s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/autolab/AutoSDV_HPC/build/decision_making_pkg/share/decision_making_pkg/hook/pythonpath_develop.dsv'
+[1.492s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/autolab/AutoSDV_HPC/build/decision_making_pkg/share/decision_making_pkg/hook/pythonpath_develop.sh'
+[1.492s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/decision_making_pkg' for CMake module files
+[1.492s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/decision_making_pkg' for CMake config files
+[1.493s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/decision_making_pkg/lib'
+[1.493s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/decision_making_pkg/bin'
+[1.493s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/decision_making_pkg/lib/pkgconfig/decision_making_pkg.pc'
+[1.493s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/decision_making_pkg/lib/python3.10/site-packages'
+[1.493s] Level 1:colcon.colcon_core.shell:create_environment_hook('decision_making_pkg', 'pythonpath')
+[1.493s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/autolab/AutoSDV_HPC/install/decision_making_pkg/share/decision_making_pkg/hook/pythonpath.ps1'
+[1.493s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/autolab/AutoSDV_HPC/install/decision_making_pkg/share/decision_making_pkg/hook/pythonpath.dsv'
+[1.493s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/autolab/AutoSDV_HPC/install/decision_making_pkg/share/decision_making_pkg/hook/pythonpath.sh'
+[1.494s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/decision_making_pkg/bin'
+[1.494s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(decision_making_pkg)
+[1.494s] INFO:colcon.colcon_core.shell:Creating package script '/home/autolab/AutoSDV_HPC/install/decision_making_pkg/share/decision_making_pkg/package.ps1'
+[1.494s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/autolab/AutoSDV_HPC/install/decision_making_pkg/share/decision_making_pkg/package.dsv'
+[1.495s] INFO:colcon.colcon_core.shell:Creating package script '/home/autolab/AutoSDV_HPC/install/decision_making_pkg/share/decision_making_pkg/package.sh'
+[1.495s] INFO:colcon.colcon_core.shell:Creating package script '/home/autolab/AutoSDV_HPC/install/decision_making_pkg/share/decision_making_pkg/package.bash'
+[1.495s] INFO:colcon.colcon_core.shell:Creating package script '/home/autolab/AutoSDV_HPC/install/decision_making_pkg/share/decision_making_pkg/package.zsh'
+[1.495s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/autolab/AutoSDV_HPC/install/decision_making_pkg/share/colcon-core/packages/decision_making_pkg)
+[1.501s] Level 1:colcon.colcon_core.shell:create_environment_hook('camera_perception_pkg', 'pythonpath_develop')
+[1.501s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/autolab/AutoSDV_HPC/build/camera_perception_pkg/share/camera_perception_pkg/hook/pythonpath_develop.ps1'
+[1.501s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/autolab/AutoSDV_HPC/build/camera_perception_pkg' returned '0': PYTHONPATH=/home/autolab/AutoSDV_HPC/build/camera_perception_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/autolab/AutoSDV_HPC/install/camera_perception_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/autolab/AutoSDV_HPC/build/camera_perception_pkg/build --no-deps symlink_data
+[1.502s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/autolab/AutoSDV_HPC/build/camera_perception_pkg/share/camera_perception_pkg/hook/pythonpath_develop.dsv'
+[1.502s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/autolab/AutoSDV_HPC/build/camera_perception_pkg/share/camera_perception_pkg/hook/pythonpath_develop.sh'
+[1.502s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/camera_perception_pkg' for CMake module files
+[1.503s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/camera_perception_pkg' for CMake config files
+[1.503s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/camera_perception_pkg/lib'
+[1.503s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/camera_perception_pkg/bin'
+[1.503s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/camera_perception_pkg/lib/pkgconfig/camera_perception_pkg.pc'
+[1.503s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/camera_perception_pkg/lib/python3.10/site-packages'
+[1.503s] Level 1:colcon.colcon_core.shell:create_environment_hook('camera_perception_pkg', 'pythonpath')
+[1.503s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/autolab/AutoSDV_HPC/install/camera_perception_pkg/share/camera_perception_pkg/hook/pythonpath.ps1'
+[1.503s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/autolab/AutoSDV_HPC/install/camera_perception_pkg/share/camera_perception_pkg/hook/pythonpath.dsv'
+[1.504s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/autolab/AutoSDV_HPC/install/camera_perception_pkg/share/camera_perception_pkg/hook/pythonpath.sh'
+[1.504s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/camera_perception_pkg/bin'
+[1.504s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(camera_perception_pkg)
+[1.504s] INFO:colcon.colcon_core.shell:Creating package script '/home/autolab/AutoSDV_HPC/install/camera_perception_pkg/share/camera_perception_pkg/package.ps1'
+[1.504s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/autolab/AutoSDV_HPC/install/camera_perception_pkg/share/camera_perception_pkg/package.dsv'
+[1.505s] INFO:colcon.colcon_core.shell:Creating package script '/home/autolab/AutoSDV_HPC/install/camera_perception_pkg/share/camera_perception_pkg/package.sh'
+[1.505s] INFO:colcon.colcon_core.shell:Creating package script '/home/autolab/AutoSDV_HPC/install/camera_perception_pkg/share/camera_perception_pkg/package.bash'
+[1.505s] INFO:colcon.colcon_core.shell:Creating package script '/home/autolab/AutoSDV_HPC/install/camera_perception_pkg/share/camera_perception_pkg/package.zsh'
+[1.505s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/autolab/AutoSDV_HPC/install/camera_perception_pkg/share/colcon-core/packages/camera_perception_pkg)
+[2.261s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/autolab/AutoSDV_HPC/build/ota_update_interfaces' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble:/home/autolab/AutoSDV_HPC/install/serial_communication_pkg:/home/autolab/AutoSDV_HPC/install/ota_update_manager:/home/autolab/AutoSDV_HPC/install/lidar_perception_pkg:/home/autolab/AutoSDV_HPC/install/data_collection_pkg:/home/autolab/AutoSDV_HPC/install/decision_making_pkg:/home/autolab/AutoSDV_HPC/install/debug_pkg:/home/autolab/AutoSDV_HPC/install/camera_perception_pkg /usr/bin/cmake --build /home/autolab/AutoSDV_HPC/build/ota_update_interfaces -- -j32 -l32
+[2.262s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/autolab/AutoSDV_HPC/build/ota_update_interfaces': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble:/home/autolab/AutoSDV_HPC/install/serial_communication_pkg:/home/autolab/AutoSDV_HPC/install/ota_update_manager:/home/autolab/AutoSDV_HPC/install/lidar_perception_pkg:/home/autolab/AutoSDV_HPC/install/data_collection_pkg:/home/autolab/AutoSDV_HPC/install/decision_making_pkg:/home/autolab/AutoSDV_HPC/install/debug_pkg:/home/autolab/AutoSDV_HPC/install/camera_perception_pkg /usr/bin/cmake --install /home/autolab/AutoSDV_HPC/build/ota_update_interfaces
+[2.946s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(ota_update_interfaces)
+[2.946s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/ota_update_interfaces' for CMake module files
+[2.947s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/ota_update_interfaces' for CMake config files
+[2.948s] Level 1:colcon.colcon_core.shell:create_environment_hook('ota_update_interfaces', 'cmake_prefix_path')
+[2.949s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/autolab/AutoSDV_HPC/install/ota_update_interfaces/share/ota_update_interfaces/hook/cmake_prefix_path.ps1'
+[2.946s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/autolab/AutoSDV_HPC/build/ota_update_interfaces' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble:/home/autolab/AutoSDV_HPC/install/serial_communication_pkg:/home/autolab/AutoSDV_HPC/install/ota_update_manager:/home/autolab/AutoSDV_HPC/install/lidar_perception_pkg:/home/autolab/AutoSDV_HPC/install/data_collection_pkg:/home/autolab/AutoSDV_HPC/install/decision_making_pkg:/home/autolab/AutoSDV_HPC/install/debug_pkg:/home/autolab/AutoSDV_HPC/install/camera_perception_pkg /usr/bin/cmake --install /home/autolab/AutoSDV_HPC/build/ota_update_interfaces
+[2.950s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/autolab/AutoSDV_HPC/install/ota_update_interfaces/share/ota_update_interfaces/hook/cmake_prefix_path.dsv'
+[2.950s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/autolab/AutoSDV_HPC/install/ota_update_interfaces/share/ota_update_interfaces/hook/cmake_prefix_path.sh'
+[2.951s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/ota_update_interfaces/lib'
+[2.951s] Level 1:colcon.colcon_core.shell:create_environment_hook('ota_update_interfaces', 'ld_library_path_lib')
+[2.951s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/autolab/AutoSDV_HPC/install/ota_update_interfaces/share/ota_update_interfaces/hook/ld_library_path_lib.ps1'
+[2.951s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/autolab/AutoSDV_HPC/install/ota_update_interfaces/share/ota_update_interfaces/hook/ld_library_path_lib.dsv'
+[2.952s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/autolab/AutoSDV_HPC/install/ota_update_interfaces/share/ota_update_interfaces/hook/ld_library_path_lib.sh'
+[2.952s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/ota_update_interfaces/bin'
+[2.952s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/ota_update_interfaces/lib/pkgconfig/ota_update_interfaces.pc'
+[2.952s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/ota_update_interfaces/lib/python3.10/site-packages'
+[2.953s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/ota_update_interfaces/bin'
+[2.953s] INFO:colcon.colcon_core.shell:Creating package script '/home/autolab/AutoSDV_HPC/install/ota_update_interfaces/share/ota_update_interfaces/package.ps1'
+[2.954s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/autolab/AutoSDV_HPC/install/ota_update_interfaces/share/ota_update_interfaces/package.dsv'
+[2.954s] INFO:colcon.colcon_core.shell:Creating package script '/home/autolab/AutoSDV_HPC/install/ota_update_interfaces/share/ota_update_interfaces/package.sh'
+[2.955s] INFO:colcon.colcon_core.shell:Creating package script '/home/autolab/AutoSDV_HPC/install/ota_update_interfaces/share/ota_update_interfaces/package.bash'
+[2.955s] INFO:colcon.colcon_core.shell:Creating package script '/home/autolab/AutoSDV_HPC/install/ota_update_interfaces/share/ota_update_interfaces/package.zsh'
+[2.955s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/autolab/AutoSDV_HPC/install/ota_update_interfaces/share/colcon-core/packages/ota_update_interfaces)
+[2.956s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(ota_update_interfaces)
+[2.956s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/ota_update_interfaces' for CMake module files
+[2.957s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/ota_update_interfaces' for CMake config files
+[2.958s] Level 1:colcon.colcon_core.shell:create_environment_hook('ota_update_interfaces', 'cmake_prefix_path')
+[2.958s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/autolab/AutoSDV_HPC/install/ota_update_interfaces/share/ota_update_interfaces/hook/cmake_prefix_path.ps1'
+[2.958s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/autolab/AutoSDV_HPC/install/ota_update_interfaces/share/ota_update_interfaces/hook/cmake_prefix_path.dsv'
+[2.959s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/autolab/AutoSDV_HPC/install/ota_update_interfaces/share/ota_update_interfaces/hook/cmake_prefix_path.sh'
+[2.959s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/ota_update_interfaces/lib'
+[2.959s] Level 1:colcon.colcon_core.shell:create_environment_hook('ota_update_interfaces', 'ld_library_path_lib')
+[2.960s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/autolab/AutoSDV_HPC/install/ota_update_interfaces/share/ota_update_interfaces/hook/ld_library_path_lib.ps1'
+[2.960s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/autolab/AutoSDV_HPC/install/ota_update_interfaces/share/ota_update_interfaces/hook/ld_library_path_lib.dsv'
+[2.960s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/autolab/AutoSDV_HPC/install/ota_update_interfaces/share/ota_update_interfaces/hook/ld_library_path_lib.sh'
+[2.961s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/ota_update_interfaces/bin'
+[2.961s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/ota_update_interfaces/lib/pkgconfig/ota_update_interfaces.pc'
+[2.961s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/ota_update_interfaces/lib/python3.10/site-packages'
+[2.961s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/ota_update_interfaces/bin'
+[2.962s] INFO:colcon.colcon_core.shell:Creating package script '/home/autolab/AutoSDV_HPC/install/ota_update_interfaces/share/ota_update_interfaces/package.ps1'
+[2.962s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/autolab/AutoSDV_HPC/install/ota_update_interfaces/share/ota_update_interfaces/package.dsv'
+[2.963s] INFO:colcon.colcon_core.shell:Creating package script '/home/autolab/AutoSDV_HPC/install/ota_update_interfaces/share/ota_update_interfaces/package.sh'
+[2.963s] INFO:colcon.colcon_core.shell:Creating package script '/home/autolab/AutoSDV_HPC/install/ota_update_interfaces/share/ota_update_interfaces/package.bash'
+[2.963s] INFO:colcon.colcon_core.shell:Creating package script '/home/autolab/AutoSDV_HPC/install/ota_update_interfaces/share/ota_update_interfaces/package.zsh'
+[2.964s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/autolab/AutoSDV_HPC/install/ota_update_interfaces/share/colcon-core/packages/ota_update_interfaces)
+[2.964s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/autolab/AutoSDV_HPC/src/ota_update_manager' with build type 'ament_python'
+[2.965s] Level 1:colcon.colcon_core.shell:create_environment_hook('ota_update_manager', 'ament_prefix_path')
+[2.965s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/autolab/AutoSDV_HPC/install/ota_update_manager/share/ota_update_manager/hook/ament_prefix_path.ps1'
+[2.965s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/autolab/AutoSDV_HPC/install/ota_update_manager/share/ota_update_manager/hook/ament_prefix_path.dsv'
+[2.966s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/autolab/AutoSDV_HPC/install/ota_update_manager/share/ota_update_manager/hook/ament_prefix_path.sh'
+[2.966s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[2.966s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[3.308s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/autolab/AutoSDV_HPC/src/ota_update_manager'
+[3.309s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[3.309s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[3.544s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/autolab/AutoSDV_HPC/build/ota_update_manager': AMENT_PREFIX_PATH=/home/autolab/AutoSDV_HPC/install/ota_update_interfaces:${AMENT_PREFIX_PATH} LD_LIBRARY_PATH=/home/autolab/AutoSDV_HPC/install/ota_update_interfaces/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/home/autolab/AutoSDV_HPC/install/interfaces_pkg/lib PYTHONPATH=/home/autolab/AutoSDV_HPC/build/ota_update_manager/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/autolab/AutoSDV_HPC/install/ota_update_manager/lib/python3.10/site-packages:/home/autolab/AutoSDV_HPC/install/ota_update_interfaces/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/autolab/AutoSDV_HPC/build/ota_update_manager/build --no-deps symlink_data
+[3.746s] Level 1:colcon.colcon_core.shell:create_environment_hook('ota_update_manager', 'pythonpath_develop')
+[3.746s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/autolab/AutoSDV_HPC/build/ota_update_manager' returned '0': AMENT_PREFIX_PATH=/home/autolab/AutoSDV_HPC/install/ota_update_interfaces:${AMENT_PREFIX_PATH} LD_LIBRARY_PATH=/home/autolab/AutoSDV_HPC/install/ota_update_interfaces/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/home/autolab/AutoSDV_HPC/install/interfaces_pkg/lib PYTHONPATH=/home/autolab/AutoSDV_HPC/build/ota_update_manager/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/autolab/AutoSDV_HPC/install/ota_update_manager/lib/python3.10/site-packages:/home/autolab/AutoSDV_HPC/install/ota_update_interfaces/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/autolab/AutoSDV_HPC/build/ota_update_manager/build --no-deps symlink_data
+[3.746s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/autolab/AutoSDV_HPC/build/ota_update_manager/share/ota_update_manager/hook/pythonpath_develop.ps1'
+[3.747s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/autolab/AutoSDV_HPC/build/ota_update_manager/share/ota_update_manager/hook/pythonpath_develop.dsv'
+[3.747s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/autolab/AutoSDV_HPC/build/ota_update_manager/share/ota_update_manager/hook/pythonpath_develop.sh'
+[3.747s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/ota_update_manager' for CMake module files
+[3.747s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/ota_update_manager' for CMake config files
+[3.748s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/ota_update_manager/lib'
+[3.748s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/ota_update_manager/bin'
+[3.748s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/ota_update_manager/lib/pkgconfig/ota_update_manager.pc'
+[3.748s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/ota_update_manager/lib/python3.10/site-packages'
+[3.748s] Level 1:colcon.colcon_core.shell:create_environment_hook('ota_update_manager', 'pythonpath')
+[3.748s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/autolab/AutoSDV_HPC/install/ota_update_manager/share/ota_update_manager/hook/pythonpath.ps1'
+[3.748s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/autolab/AutoSDV_HPC/install/ota_update_manager/share/ota_update_manager/hook/pythonpath.dsv'
+[3.748s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/autolab/AutoSDV_HPC/install/ota_update_manager/share/ota_update_manager/hook/pythonpath.sh'
+[3.748s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/ota_update_manager/bin'
+[3.749s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(ota_update_manager)
+[3.749s] INFO:colcon.colcon_core.shell:Creating package script '/home/autolab/AutoSDV_HPC/install/ota_update_manager/share/ota_update_manager/package.ps1'
+[3.749s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/autolab/AutoSDV_HPC/install/ota_update_manager/share/ota_update_manager/package.dsv'
+[3.749s] INFO:colcon.colcon_core.shell:Creating package script '/home/autolab/AutoSDV_HPC/install/ota_update_manager/share/ota_update_manager/package.sh'
+[3.749s] INFO:colcon.colcon_core.shell:Creating package script '/home/autolab/AutoSDV_HPC/install/ota_update_manager/share/ota_update_manager/package.bash'
+[3.749s] INFO:colcon.colcon_core.shell:Creating package script '/home/autolab/AutoSDV_HPC/install/ota_update_manager/share/ota_update_manager/package.zsh'
+[3.750s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/autolab/AutoSDV_HPC/install/ota_update_manager/share/colcon-core/packages/ota_update_manager)
+[4.755s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/autolab/AutoSDV_HPC/build/interfaces_pkg' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble:/home/autolab/AutoSDV_HPC/install/serial_communication_pkg:/home/autolab/AutoSDV_HPC/install/ota_update_manager:/home/autolab/AutoSDV_HPC/install/lidar_perception_pkg:/home/autolab/AutoSDV_HPC/install/data_collection_pkg:/home/autolab/AutoSDV_HPC/install/decision_making_pkg:/home/autolab/AutoSDV_HPC/install/debug_pkg:/home/autolab/AutoSDV_HPC/install/camera_perception_pkg /usr/bin/cmake --build /home/autolab/AutoSDV_HPC/build/interfaces_pkg -- -j32 -l32
+[4.756s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/autolab/AutoSDV_HPC/build/interfaces_pkg': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble:/home/autolab/AutoSDV_HPC/install/serial_communication_pkg:/home/autolab/AutoSDV_HPC/install/ota_update_manager:/home/autolab/AutoSDV_HPC/install/lidar_perception_pkg:/home/autolab/AutoSDV_HPC/install/data_collection_pkg:/home/autolab/AutoSDV_HPC/install/decision_making_pkg:/home/autolab/AutoSDV_HPC/install/debug_pkg:/home/autolab/AutoSDV_HPC/install/camera_perception_pkg /usr/bin/cmake --install /home/autolab/AutoSDV_HPC/build/interfaces_pkg
+[6.429s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(interfaces_pkg)
+[6.429s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/interfaces_pkg' for CMake module files
+[6.429s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/autolab/AutoSDV_HPC/build/interfaces_pkg' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble:/home/autolab/AutoSDV_HPC/install/serial_communication_pkg:/home/autolab/AutoSDV_HPC/install/ota_update_manager:/home/autolab/AutoSDV_HPC/install/lidar_perception_pkg:/home/autolab/AutoSDV_HPC/install/data_collection_pkg:/home/autolab/AutoSDV_HPC/install/decision_making_pkg:/home/autolab/AutoSDV_HPC/install/debug_pkg:/home/autolab/AutoSDV_HPC/install/camera_perception_pkg /usr/bin/cmake --install /home/autolab/AutoSDV_HPC/build/interfaces_pkg
+[6.429s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/interfaces_pkg' for CMake config files
+[6.431s] Level 1:colcon.colcon_core.shell:create_environment_hook('interfaces_pkg', 'cmake_prefix_path')
+[6.431s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/autolab/AutoSDV_HPC/install/interfaces_pkg/share/interfaces_pkg/hook/cmake_prefix_path.ps1'
+[6.431s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/autolab/AutoSDV_HPC/install/interfaces_pkg/share/interfaces_pkg/hook/cmake_prefix_path.dsv'
+[6.431s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/autolab/AutoSDV_HPC/install/interfaces_pkg/share/interfaces_pkg/hook/cmake_prefix_path.sh'
+[6.432s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/interfaces_pkg/lib'
+[6.432s] Level 1:colcon.colcon_core.shell:create_environment_hook('interfaces_pkg', 'ld_library_path_lib')
+[6.432s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/autolab/AutoSDV_HPC/install/interfaces_pkg/share/interfaces_pkg/hook/ld_library_path_lib.ps1'
+[6.432s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/autolab/AutoSDV_HPC/install/interfaces_pkg/share/interfaces_pkg/hook/ld_library_path_lib.dsv'
+[6.432s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/autolab/AutoSDV_HPC/install/interfaces_pkg/share/interfaces_pkg/hook/ld_library_path_lib.sh'
+[6.432s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/interfaces_pkg/bin'
+[6.432s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/interfaces_pkg/lib/pkgconfig/interfaces_pkg.pc'
+[6.432s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/interfaces_pkg/lib/python3.10/site-packages'
+[6.433s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/interfaces_pkg/bin'
+[6.433s] INFO:colcon.colcon_core.shell:Creating package script '/home/autolab/AutoSDV_HPC/install/interfaces_pkg/share/interfaces_pkg/package.ps1'
+[6.433s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/autolab/AutoSDV_HPC/install/interfaces_pkg/share/interfaces_pkg/package.dsv'
+[6.433s] INFO:colcon.colcon_core.shell:Creating package script '/home/autolab/AutoSDV_HPC/install/interfaces_pkg/share/interfaces_pkg/package.sh'
+[6.433s] INFO:colcon.colcon_core.shell:Creating package script '/home/autolab/AutoSDV_HPC/install/interfaces_pkg/share/interfaces_pkg/package.bash'
+[6.433s] INFO:colcon.colcon_core.shell:Creating package script '/home/autolab/AutoSDV_HPC/install/interfaces_pkg/share/interfaces_pkg/package.zsh'
+[6.434s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/autolab/AutoSDV_HPC/install/interfaces_pkg/share/colcon-core/packages/interfaces_pkg)
+[6.434s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(interfaces_pkg)
+[6.434s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/interfaces_pkg' for CMake module files
+[6.434s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/interfaces_pkg' for CMake config files
+[6.435s] Level 1:colcon.colcon_core.shell:create_environment_hook('interfaces_pkg', 'cmake_prefix_path')
+[6.435s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/autolab/AutoSDV_HPC/install/interfaces_pkg/share/interfaces_pkg/hook/cmake_prefix_path.ps1'
+[6.435s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/autolab/AutoSDV_HPC/install/interfaces_pkg/share/interfaces_pkg/hook/cmake_prefix_path.dsv'
+[6.436s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/autolab/AutoSDV_HPC/install/interfaces_pkg/share/interfaces_pkg/hook/cmake_prefix_path.sh'
+[6.436s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/interfaces_pkg/lib'
+[6.436s] Level 1:colcon.colcon_core.shell:create_environment_hook('interfaces_pkg', 'ld_library_path_lib')
+[6.436s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/autolab/AutoSDV_HPC/install/interfaces_pkg/share/interfaces_pkg/hook/ld_library_path_lib.ps1'
+[6.436s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/autolab/AutoSDV_HPC/install/interfaces_pkg/share/interfaces_pkg/hook/ld_library_path_lib.dsv'
+[6.436s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/autolab/AutoSDV_HPC/install/interfaces_pkg/share/interfaces_pkg/hook/ld_library_path_lib.sh'
+[6.436s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/interfaces_pkg/bin'
+[6.436s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/interfaces_pkg/lib/pkgconfig/interfaces_pkg.pc'
+[6.437s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/interfaces_pkg/lib/python3.10/site-packages'
+[6.437s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/interfaces_pkg/bin'
+[6.437s] INFO:colcon.colcon_core.shell:Creating package script '/home/autolab/AutoSDV_HPC/install/interfaces_pkg/share/interfaces_pkg/package.ps1'
+[6.442s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/autolab/AutoSDV_HPC/install/interfaces_pkg/share/interfaces_pkg/package.dsv'
+[6.442s] INFO:colcon.colcon_core.shell:Creating package script '/home/autolab/AutoSDV_HPC/install/interfaces_pkg/share/interfaces_pkg/package.sh'
+[6.443s] INFO:colcon.colcon_core.shell:Creating package script '/home/autolab/AutoSDV_HPC/install/interfaces_pkg/share/interfaces_pkg/package.bash'
+[6.443s] INFO:colcon.colcon_core.shell:Creating package script '/home/autolab/AutoSDV_HPC/install/interfaces_pkg/share/interfaces_pkg/package.zsh'
+[6.443s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/autolab/AutoSDV_HPC/install/interfaces_pkg/share/colcon-core/packages/interfaces_pkg)
+[6.443s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/autolab/AutoSDV_HPC/src/data_collection_pkg' with build type 'ament_python'
+[6.443s] Level 1:colcon.colcon_core.shell:create_environment_hook('data_collection_pkg', 'ament_prefix_path')
+[6.443s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/autolab/AutoSDV_HPC/install/data_collection_pkg/share/data_collection_pkg/hook/ament_prefix_path.ps1'
+[6.444s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/autolab/AutoSDV_HPC/install/data_collection_pkg/share/data_collection_pkg/hook/ament_prefix_path.dsv'
+[6.444s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/autolab/AutoSDV_HPC/install/data_collection_pkg/share/data_collection_pkg/hook/ament_prefix_path.sh'
+[6.444s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[6.444s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[6.562s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/autolab/AutoSDV_HPC/src/data_collection_pkg'
+[6.562s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[6.562s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[6.722s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/autolab/AutoSDV_HPC/build/data_collection_pkg': AMENT_PREFIX_PATH=/home/autolab/AutoSDV_HPC/install/interfaces_pkg:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/autolab/AutoSDV_HPC/install/interfaces_pkg:/home/autolab/AutoSDV_HPC/install/ota_update_interfaces:/home/autolab/AutoSDV_HPC/install/launch_pkg LD_LIBRARY_PATH=/home/autolab/AutoSDV_HPC/install/interfaces_pkg/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/home/autolab/AutoSDV_HPC/install/ota_update_interfaces/lib PYTHONPATH=/home/autolab/AutoSDV_HPC/build/data_collection_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/autolab/AutoSDV_HPC/install/data_collection_pkg/lib/python3.10/site-packages:/home/autolab/AutoSDV_HPC/install/interfaces_pkg/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/autolab/AutoSDV_HPC/build/data_collection_pkg/build --no-deps symlink_data
+[6.917s] Level 1:colcon.colcon_core.shell:create_environment_hook('data_collection_pkg', 'pythonpath_develop')
+[6.917s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/autolab/AutoSDV_HPC/build/data_collection_pkg/share/data_collection_pkg/hook/pythonpath_develop.ps1'
+[6.918s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/autolab/AutoSDV_HPC/build/data_collection_pkg' returned '0': AMENT_PREFIX_PATH=/home/autolab/AutoSDV_HPC/install/interfaces_pkg:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/autolab/AutoSDV_HPC/install/interfaces_pkg:/home/autolab/AutoSDV_HPC/install/ota_update_interfaces:/home/autolab/AutoSDV_HPC/install/launch_pkg LD_LIBRARY_PATH=/home/autolab/AutoSDV_HPC/install/interfaces_pkg/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/home/autolab/AutoSDV_HPC/install/ota_update_interfaces/lib PYTHONPATH=/home/autolab/AutoSDV_HPC/build/data_collection_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/autolab/AutoSDV_HPC/install/data_collection_pkg/lib/python3.10/site-packages:/home/autolab/AutoSDV_HPC/install/interfaces_pkg/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/autolab/AutoSDV_HPC/build/data_collection_pkg/build --no-deps symlink_data
+[6.918s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/autolab/AutoSDV_HPC/build/data_collection_pkg/share/data_collection_pkg/hook/pythonpath_develop.dsv'
+[6.918s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/autolab/AutoSDV_HPC/build/data_collection_pkg/share/data_collection_pkg/hook/pythonpath_develop.sh'
+[6.918s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/data_collection_pkg' for CMake module files
+[6.919s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/data_collection_pkg' for CMake config files
+[6.919s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/data_collection_pkg/lib'
+[6.919s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/data_collection_pkg/bin'
+[6.919s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/data_collection_pkg/lib/pkgconfig/data_collection_pkg.pc'
+[6.919s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/data_collection_pkg/lib/python3.10/site-packages'
+[6.919s] Level 1:colcon.colcon_core.shell:create_environment_hook('data_collection_pkg', 'pythonpath')
+[6.919s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/autolab/AutoSDV_HPC/install/data_collection_pkg/share/data_collection_pkg/hook/pythonpath.ps1'
+[6.919s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/autolab/AutoSDV_HPC/install/data_collection_pkg/share/data_collection_pkg/hook/pythonpath.dsv'
+[6.920s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/autolab/AutoSDV_HPC/install/data_collection_pkg/share/data_collection_pkg/hook/pythonpath.sh'
+[6.920s] Level 1:colcon.colcon_core.environment:checking '/home/autolab/AutoSDV_HPC/install/data_collection_pkg/bin'
+[6.920s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(data_collection_pkg)
+[6.920s] INFO:colcon.colcon_core.shell:Creating package script '/home/autolab/AutoSDV_HPC/install/data_collection_pkg/share/data_collection_pkg/package.ps1'
+[6.920s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/autolab/AutoSDV_HPC/install/data_collection_pkg/share/data_collection_pkg/package.dsv'
+[6.921s] INFO:colcon.colcon_core.shell:Creating package script '/home/autolab/AutoSDV_HPC/install/data_collection_pkg/share/data_collection_pkg/package.sh'
+[6.921s] INFO:colcon.colcon_core.shell:Creating package script '/home/autolab/AutoSDV_HPC/install/data_collection_pkg/share/data_collection_pkg/package.bash'
+[6.921s] INFO:colcon.colcon_core.shell:Creating package script '/home/autolab/AutoSDV_HPC/install/data_collection_pkg/share/data_collection_pkg/package.zsh'
+[6.921s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/autolab/AutoSDV_HPC/install/data_collection_pkg/share/colcon-core/packages/data_collection_pkg)
+[6.921s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:closing loop
+[6.921s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:loop closed
+[6.921s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete finished with '0'
+[6.921s] DEBUG:colcon.colcon_core.event_reactor:joining thread
+[6.924s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.terminal_notifier': Not used on non-Darwin systems
+[6.924s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.win32': Not used on non-Windows systems
+[6.924s] INFO:colcon.colcon_notification.desktop_notification:Sending desktop notification using 'notify2'
+[6.931s] DEBUG:colcon.colcon_core.event_reactor:joined thread
+[6.932s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/autolab/AutoSDV_HPC/install/local_setup.ps1'
+[6.932s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/autolab/AutoSDV_HPC/install/_local_setup_util_ps1.py'
+[6.933s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/autolab/AutoSDV_HPC/install/setup.ps1'
+[6.933s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/autolab/AutoSDV_HPC/install/local_setup.sh'
+[6.933s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/autolab/AutoSDV_HPC/install/_local_setup_util_sh.py'
+[6.934s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/autolab/AutoSDV_HPC/install/setup.sh'
+[6.934s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/autolab/AutoSDV_HPC/install/local_setup.bash'
+[6.934s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/autolab/AutoSDV_HPC/install/setup.bash'
+[6.935s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/autolab/AutoSDV_HPC/install/local_setup.zsh'
+[6.935s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/autolab/AutoSDV_HPC/install/setup.zsh'

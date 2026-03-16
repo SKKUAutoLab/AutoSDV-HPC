@@ -107,21 +107,6 @@ bool ota_update_interfaces__msg__update_notification__convert_from_py(PyObject *
     ros_message->file_size = PyLong_AsUnsignedLongLong(field);
     Py_DECREF(field);
   }
-  {  // checksum
-    PyObject * field = PyObject_GetAttrString(_pymsg, "checksum");
-    if (!field) {
-      return false;
-    }
-    assert(PyUnicode_Check(field));
-    PyObject * encoded_field = PyUnicode_AsUTF8String(field);
-    if (!encoded_field) {
-      Py_DECREF(field);
-      return false;
-    }
-    rosidl_runtime_c__String__assign(&ros_message->checksum, PyBytes_AS_STRING(encoded_field));
-    Py_DECREF(encoded_field);
-    Py_DECREF(field);
-  }
 
   return true;
 }
@@ -200,23 +185,6 @@ PyObject * ota_update_interfaces__msg__update_notification__convert_to_py(void *
     field = PyLong_FromUnsignedLongLong(ros_message->file_size);
     {
       int rc = PyObject_SetAttrString(_pymessage, "file_size", field);
-      Py_DECREF(field);
-      if (rc) {
-        return NULL;
-      }
-    }
-  }
-  {  // checksum
-    PyObject * field = NULL;
-    field = PyUnicode_DecodeUTF8(
-      ros_message->checksum.data,
-      strlen(ros_message->checksum.data),
-      "replace");
-    if (!field) {
-      return NULL;
-    }
-    {
-      int rc = PyObject_SetAttrString(_pymessage, "checksum", field);
       Py_DECREF(field);
       if (rc) {
         return NULL;

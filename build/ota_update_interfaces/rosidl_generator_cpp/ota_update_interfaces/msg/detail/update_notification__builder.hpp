@@ -21,32 +21,16 @@ namespace msg
 namespace builder
 {
 
-class Init_UpdateNotification_checksum
-{
-public:
-  explicit Init_UpdateNotification_checksum(::ota_update_interfaces::msg::UpdateNotification & msg)
-  : msg_(msg)
-  {}
-  ::ota_update_interfaces::msg::UpdateNotification checksum(::ota_update_interfaces::msg::UpdateNotification::_checksum_type arg)
-  {
-    msg_.checksum = std::move(arg);
-    return std::move(msg_);
-  }
-
-private:
-  ::ota_update_interfaces::msg::UpdateNotification msg_;
-};
-
 class Init_UpdateNotification_file_size
 {
 public:
   explicit Init_UpdateNotification_file_size(::ota_update_interfaces::msg::UpdateNotification & msg)
   : msg_(msg)
   {}
-  Init_UpdateNotification_checksum file_size(::ota_update_interfaces::msg::UpdateNotification::_file_size_type arg)
+  ::ota_update_interfaces::msg::UpdateNotification file_size(::ota_update_interfaces::msg::UpdateNotification::_file_size_type arg)
   {
     msg_.file_size = std::move(arg);
-    return Init_UpdateNotification_checksum(msg_);
+    return std::move(msg_);
   }
 
 private:

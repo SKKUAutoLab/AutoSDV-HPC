@@ -21,7 +21,6 @@ extern "C"
 // Member 'target'
 // Member 'version'
 // Member 'file_path'
-// Member 'checksum'
 #include "rosidl_runtime_c/string.h"
 
 /// Struct defined in msg/UpdateNotification in the package ota_update_interfaces.
@@ -31,7 +30,6 @@ typedef struct ota_update_interfaces__msg__UpdateNotification
   rosidl_runtime_c__String version;
   rosidl_runtime_c__String file_path;
   uint64_t file_size;
-  rosidl_runtime_c__String checksum;
 } ota_update_interfaces__msg__UpdateNotification;
 
 // Struct for a sequence of ota_update_interfaces__msg__UpdateNotification.
