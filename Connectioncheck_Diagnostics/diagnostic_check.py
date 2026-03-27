@@ -19,7 +19,7 @@ import sys
 # ── Configuration ──────────────────────────────────────────────────────────
 
 ZONES = {
-    "Zone1 - Steering": {
+    "Zone1 - Front_Left": {
         "ip": "10.0.0.2",
         "cameras": {
             "fisheye": "/image_02_raw",
@@ -27,21 +27,21 @@ ZONES = {
         },
         "ecu_status": "/topic_status_signal",
     },
-    "Zone2 - Front_Left": {
+    "Zone2 - Front_Right": {
         "ip": "10.0.0.3",
         "cameras": {
             "fisheye": "/image_03_raw",
         },
         "ecu_status": "/topic_status_signal",
     },
-    "Zone3 - Front_Right": {
+    "Zone3 - Rear_Left": {
         "ip": "10.0.0.4",
         "cameras": {
             "fisheye": "/image_04_raw",
         },
         "ecu_status": "/topic_status_signal",
     },
-    "Zone4 - Rear": {
+    "Zone4 - Rear_Right": {
         "ip": "10.0.0.5",
         "cameras": {
             "fisheye": "/image_05_raw",

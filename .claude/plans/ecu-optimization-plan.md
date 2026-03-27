@@ -195,6 +195,16 @@ void StatusPublisher::sendShutdownMessages() {
 
 ---
 
+## 코드 재검토 후 추가 발견 이슈 (2026-03-27)
+
+| # | 심각도 | 문제 | 파일 | 상태 |
+|---|--------|------|------|------|
+| E-N1 | 중간 | R_ADC_ScanStart 중복 호출 (ADC_Setting + Potentiometer_Read 양쪽) | hardware.c | ❌ |
+| E-N2 | 중간 | network.c에서 strlen()으로 CAN 바이너리 데이터 길이 체크 (NULL 없으면 오버플로) | network.c | ❌ |
+| E-N3 | 낮음 | 캘리브레이션 for(i=1; i<50) — 첫 샘플 건너뜀 (의도/버그 불명확) | blinky_thread_entry.c | ❌ |
+
+---
+
 ## 실행 우선순위
 
 | 순서 | 이슈 | 대상 | 우선순위 | 상태 |
@@ -203,9 +213,12 @@ void StatusPublisher::sendShutdownMessages() {
 | 2 | **Z2** StatusPublisher 종료 메시지 수정 | ZCU | P1 | ❌ |
 | 3 | **E1** 워치독 타임아웃 단축 (6초→1초) | ECU | P0 | ❌ |
 | 4 | **E5** Task 재생성 방지 | ECU | P1 | ❌ |
-| 5 | **E3** 캘리브레이션 실패 처리 | ECU | P1 | ❌ |
-| 6 | **E2** 전역 변수 보호 | ECU | P1 | ❌ |
-| 7 | **E4** Zone 설정 외부화 | ECU | P2 | ❌ |
+| 5 | **E-N2** strlen → dlc 사용 | ECU | P1 | ❌ |
+| 6 | **E3** 캘리브레이션 실패 처리 | ECU | P1 | ❌ |
+| 7 | **E2** 전역 변수 보호 | ECU | P1 | ❌ |
+| 8 | **E-N1** ADC ScanStart 중복 제거 | ECU | P2 | ❌ |
+| 9 | **E4** Zone 설정 외부화 | ECU | P2 | ❌ |
+| 10 | **E-N3** 캘리브레이션 첫 샘플 확인 | ECU | P2 | ❌ |
 
 ---
 

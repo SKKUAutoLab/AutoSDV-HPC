@@ -1,6 +1,6 @@
 # AutoSDV 세션 계획
 
-**작성일:** 2026-03-24 (v3) | **업데이트:** 2026-03-27 (v5 — ZCU 완료, ECU 분석 추가)
+**작성일:** 2026-03-24 (v3) | **업데이트:** 2026-03-27 (v6 — 코드 재검토 후 새 이슈 반영)
 
 ---
 
@@ -68,7 +68,7 @@ Phase 2: 연결 상태 진단 도구
 | Z1 | MIN/MAX_STEERING -15→-7 수정 (ECU 실제 범위와 불일치) | ❌ |
 | Z2 | StatusPublisher 종료 메시지 0x113 전송 무의미 (ECU 미수신) | ❌ |
 
-상세: `.claude/zcu-optimization-plan.md`
+상세: zcu-optimization-plan.md
 
 ---
 
@@ -90,19 +90,22 @@ Phase 2: 연결 상태 진단 도구
 
 ### 1D — ECU 소스 코드 최적화 ❌ 신규
 
-**분석 완료, 구현 대기. 5개 ECU 이슈 + 2개 ZCU 연계 이슈.**
+**분석 완료, 구현 대기. 기존 7개 + 코드 재검토 3개 = 10개 이슈.**
 
 | 이슈 | 설명 | 우선순위 | 상태 |
 |------|------|----------|------|
+| Z1 | ZCU MIN/MAX_STEERING -15→-7 | P0 | ❌ |
 | E1 | 워치독 타임아웃 6초→1초 단축 | P0 | ❌ |
 | E5 | Task 매초 재생성 → 루프 밖 1회 생성 | P1 | ❌ |
+| E-N2 | network.c strlen → dlc 사용 (CAN 바이너리) | P1 | ❌ |
 | E3 | 조향 캘리브레이션 실패 처리 | P1 | ❌ |
 | E2 | 전역 변수 ISR↔Task 경쟁 보호 | P1 | ❌ |
-| E4 | Zone 설정 외부화 (ecu_config.h) | P2 | ❌ |
-| Z1 | ZCU MIN/MAX_STEERING -15→-7 | P0 | ❌ |
 | Z2 | ZCU 종료 메시지 0x113 제거 | P1 | ❌ |
+| E-N1 | ADC ScanStart 중복 호출 제거 | P2 | ❌ |
+| E4 | Zone 설정 외부화 (ecu_config.h) | P2 | ❌ |
+| E-N3 | 캘리브레이션 첫 샘플 건너뜀 확인 | P2 | ❌ |
 
-상세: `.claude/ecu-optimization-plan.md`
+상세: ecu-optimization-plan.md
 
 ---
 
@@ -128,8 +131,9 @@ Phase 2: 연결 상태 진단 도구
 | 1A | systemd 최적화 | ✅ 완료 | cam/webcam/zcu 서비스 |
 | 1B | ZCU 소스 코드 | ✅ 완료 | 17/18 완료, 연계 이슈 2개 (1D에 포함) |
 | 1C | Camera 소스 코드 | ✅ 완료 | JPEG, 시그널, 프로토콜 통합 |
-| 1D | ECU 소스 코드 | ❌ 미완 | 분석 완료, 7개 이슈 대기 |
-| 2 | 연결 진단 도구 | ❌ 미완 | Phase 1 완료 후 |
+| 1B-추가 | ZCU 재검토 이슈 | ❌ 미완 | 새 이슈 6개 (Z-N1~N6) |
+| 1D | ECU 소스 코드 | ❌ 미완 | 기존 7개 + 새 3개 = 10개 |
+| 2 | 연결 진단 도구 | ✅ 완료 | diagnostic_check.py 구현됨 |
 
 ---
 
@@ -148,6 +152,6 @@ Phase 2: 연결 상태 진단 도구
 
 | 파일 | 내용 |
 |------|------|
-| `.claude/session-plan-ko.md` | 전체 세션 계획 (이 파일) |
-| `.claude/zcu-optimization-plan.md` | ZCU 이슈 18개 상세 + 연계 이슈 |
-| `.claude/ecu-optimization-plan.md` | ECU 이슈 5개 + ZCU 연계 2개 상세 |
+| `.claude/plans/session-plan-ko.md` | 전체 세션 계획 (이 파일) |
+| `.claude/plans/zcu-optimization-plan.md` | ZCU 이슈 18개 상세 + 연계 이슈 |
+| `.claude/plans/ecu-optimization-plan.md` | ECU 이슈 5개 + ZCU 연계 2개 상세 |
