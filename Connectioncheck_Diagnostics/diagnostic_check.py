@@ -22,31 +22,31 @@ ZONES = {
     "Zone1 - Steering": {
         "ip": "10.0.0.2",
         "cameras": {
-            "fisheye": "rt/image_02_raw",
-            "webcam":  "rt/image_01_raw",
+            "fisheye": "/image_02_raw",
+            "webcam":  "/image_01_raw",
         },
-        "ecu_status": "rt/topic_status_signal",
+        "ecu_status": "/topic_status_signal",
     },
     "Zone2 - Front_Left": {
         "ip": "10.0.0.3",
         "cameras": {
-            "fisheye": "rt/image_03_raw",
+            "fisheye": "/image_03_raw",
         },
-        "ecu_status": "rt/topic_status_signal",
+        "ecu_status": "/topic_status_signal",
     },
     "Zone3 - Front_Right": {
         "ip": "10.0.0.4",
         "cameras": {
-            "fisheye": "rt/image_04_raw",
+            "fisheye": "/image_04_raw",
         },
-        "ecu_status": "rt/topic_status_signal",
+        "ecu_status": "/topic_status_signal",
     },
     "Zone4 - Rear": {
         "ip": "10.0.0.5",
         "cameras": {
-            "fisheye": "rt/image_05_raw",
+            "fisheye": "/image_05_raw",
         },
-        "ecu_status": "rt/topic_status_signal",
+        "ecu_status": "/topic_status_signal",
     },
 }
 
@@ -148,13 +148,12 @@ def check_ping(ip):
 
 # ── L3: Data flow (DDS topic echo) ────────────────────────────────────────
 
-def check_data_flow(topic, timeout=TIMEOUT):
+def check_data_flow(topic, timeout=TIMEOUT, qos_best_effort=False):
+    cmd = ["timeout", str(timeout), "ros2", "topic", "echo", topic, "--once"]
+    if qos_best_effort:
+        cmd += ["--qos-reliability", "best_effort"]
     try:
-        result = subprocess.run(
-            ["timeout", str(timeout), "ros2", "topic", "echo", topic, "--once"],
-            capture_output=True,
-            timeout=timeout + 2,
-        )
+        result = subprocess.run(cmd, capture_output=True, timeout=timeout + 2)
         return result.returncode == 0
     except subprocess.TimeoutExpired:
         return False
@@ -185,9 +184,9 @@ def check_zone(zone_name, zone_config):
         print_check("ECU (CAN)", None, "(ZCU unreachable)")
         return
 
-    # L3: cameras
+    # L3: cameras (BEST_EFFORT QoS — matches ZCU camera publisher)
     for cam_name, topic in cameras.items():
-        ok = check_data_flow(topic)
+        ok = check_data_flow(topic, qos_best_effort=True)
         detail = topic if ok else f"{topic} (timeout {TIMEOUT}s)"
         record(zone_name, f"Camera ({cam_name})", ok, detail)
         print_check(f"Camera ({cam_name})", ok, detail)
