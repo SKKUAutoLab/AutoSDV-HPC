@@ -19,7 +19,7 @@ import sys
 # ── Configuration ──────────────────────────────────────────────────────────
 
 ZONES = {
-    "Zone1 - Front_Left": {
+    "Zone1 - Steering": {
         "ip": "10.0.0.2",
         "cameras": {
             "fisheye": "/image_02_raw",
@@ -27,21 +27,21 @@ ZONES = {
         },
         "ecu_status": "/topic_status_signal",
     },
-    "Zone2 - Front_Right": {
+    "Zone2 - Front_Left": {
         "ip": "10.0.0.3",
         "cameras": {
             "fisheye": "/image_03_raw",
         },
         "ecu_status": "/topic_status_signal",
     },
-    "Zone3 - Rear_Left": {
+    "Zone3 - Front_Right": {
         "ip": "10.0.0.4",
         "cameras": {
             "fisheye": "/image_04_raw",
         },
         "ecu_status": "/topic_status_signal",
     },
-    "Zone4 - Rear_Right": {
+    "Zone4 - Rear": {
         "ip": "10.0.0.5",
         "cameras": {
             "fisheye": "/image_05_raw",
@@ -146,23 +146,6 @@ def check_ping(ip):
         return False, "ping not found"
 
 
-# ── L2: DDS discovery (publisher count) ──────────────────────────────────
-
-def check_publisher_count(topic):
-    """Check if a remote publisher exists for the topic via ros2 topic info."""
-    try:
-        result = subprocess.run(
-            ["ros2", "topic", "info", topic],
-            capture_output=True, text=True, timeout=5,
-        )
-        if result.returncode != 0:
-            return 0
-        match = re.search(r"Publisher count:\s*(\d+)", result.stdout)
-        return int(match.group(1)) if match else 0
-    except (subprocess.TimeoutExpired, FileNotFoundError):
-        return 0
-
-
 # ── L3: Data flow (DDS topic echo) ────────────────────────────────────────
 
 def check_data_flow(topic, timeout=TIMEOUT, qos_best_effort=False):
@@ -193,32 +176,12 @@ def check_zone(zone_name, zone_config):
     print_check(f"HPC <-> ZCU", ping_ok, rtt)
 
     if not ping_ok:
-        # Short-circuit: skip all L2/L3 checks
-        record(zone_name, "ZCU DDS", None, "ZCU unreachable")
-        print_check("ZCU DDS", None, "(ZCU unreachable)")
+        # Short-circuit: skip all L3 checks
         for cam_name in cameras:
             record(zone_name, f"Camera ({cam_name})", None, "ZCU unreachable")
             print_check(f"Camera ({cam_name})", None, "(ZCU unreachable)")
         record(zone_name, "ECU (CAN)", None, "ZCU unreachable")
         print_check("ECU (CAN)", None, "(ZCU unreachable)")
-        return
-
-    # L2: DDS discovery — check if ZCU publishes any topic
-    # Use the first camera topic as a representative check
-    first_cam_topic = next(iter(cameras.values()))
-    pub_count = check_publisher_count(first_cam_topic)
-    dds_ok = pub_count > 0
-    dds_detail = f"{pub_count} publisher(s)" if dds_ok else "no publishers found"
-    record(zone_name, "ZCU DDS", dds_ok, dds_detail)
-    print_check("ZCU DDS", dds_ok, dds_detail)
-
-    if not dds_ok:
-        # Short-circuit: skip L3 checks — DDS is broken
-        for cam_name in cameras:
-            record(zone_name, f"Camera ({cam_name})", None, "DDS not discovered")
-            print_check(f"Camera ({cam_name})", None, "(DDS not discovered)")
-        record(zone_name, "ECU (CAN)", None, "DDS not discovered")
-        print_check("ECU (CAN)", None, "(DDS not discovered)")
         return
 
     # L3: cameras (BEST_EFFORT QoS — matches ZCU camera publisher)
@@ -256,8 +219,6 @@ def print_summary():
         # Determine zone status
         if any(c == "HPC <-> ZCU" and s is False for c, s, _ in checks):
             status_str = f"{RED}FAIL{RESET}  - ZCU unreachable"
-        elif any(c == "ZCU DDS" and s is False for c, s, _ in checks):
-            status_str = f"{RED}FAIL{RESET}  - DDS discovery failed"
         elif failures:
             failed_names = ", ".join(f.replace("Camera ", "").replace("(", "").replace(")", "")
                                      for f in failures)
@@ -283,13 +244,9 @@ def print_summary():
 
 def compute_exit_code():
     l1_fail = any(c == "HPC <-> ZCU" and s is False for zone, c, s, d in results)
-    l2_fail = any(c == "ZCU DDS" and s is False for zone, c, s, d in results)
-    l3_fail = any(zone != "L0" and c not in ("HPC <-> ZCU", "ZCU DDS") and s is False
-                  for zone, c, s, d in results)
+    l3_fail = any(zone != "L0" and c != "HPC <-> ZCU" and s is False for zone, c, s, d in results)
 
     if l1_fail:
-        return EXIT_CRITICAL
-    elif l2_fail:
         return EXIT_CRITICAL
     elif l3_fail:
         return EXIT_PARTIAL
@@ -303,8 +260,9 @@ DIAGNOSIS_TABLE = [
     # (condition_fn, message)
     (lambda: any(c == "HPC <-> ZCU" and s is False for z, c, s, d in results),
      "ZCU 전원 또는 이더넷 케이블을 확인하세요."),
-    (lambda: any(c == "ZCU DDS" and s is False for z, c, s, d in results),
-     "ZCU DDS discovery 실패 — systemctl restart zcu 를 실행하세요."),
+    (lambda: (any(c == "HPC <-> ZCU" and s is True for z, c, s, d in results) and
+              all(s is False for z, c, s, d in results if z != "L0" and c != "HPC <-> ZCU" and s is not None)),
+     "ZCU 프로세스가 실행 중인지 확인하세요 (systemctl status zcu)."),
     (lambda: any("Camera" in c and s is False for z, c, s, d in results),
      "Camera RPi 전원 / cam.py 실행 상태를 확인하세요."),
     (lambda: any("ECU" in c and s is False for z, c, s, d in results),
