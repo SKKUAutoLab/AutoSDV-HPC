@@ -1,0 +1,31 @@
+# bev_right.yaml — RIGHT camera (image_04)
+# WARNING: PLACEHOLDER VALUES (see bev_front.yaml note).
+position: right
+image_topic: image_04
+resolution: [640, 480]
+
+camera_matrix:
+  - [218.72, 0.0, 320.0]
+  - [0.0, 287.84, 240.0]
+  - [0.0, 0.0, 1.0]
+
+dist_coeffs: [-0.0482, -0.0050, -0.0090, -0.0038]
+
+homography:
+  - [1.0, 0.0, 0.0]
+  - [0.0, 1.0, 0.0]
+  - [0.0, 0.0, 1.0]
+
+bev_size: [200, 400]
+
+src_points:
+  - [200, 100]
+  - [440, 100]
+  - [200, 380]
+  - [440, 380]
+
+dst_points:
+  - [0,   0]
+  - [200, 0]
+  - [0,   400]
+  - [200, 400]

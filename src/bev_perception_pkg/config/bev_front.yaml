@@ -1,0 +1,41 @@
+# bev_front.yaml — FRONT camera (image_02)
+#
+# WARNING: PLACEHOLDER VALUES.
+# Intrinsics are linearly scaled from FPGA-team's 1920x1080 calibration to
+# 640x480 just to make builds runnable. The 16:9 -> 4:3 aspect-ratio
+# difference means these are NOT geometrically correct. Re-calibrate at
+# 640x480 with cv2.fisheye.calibrate before using BEV outputs for anything
+# beyond bring-up checks.
+position: front
+image_topic: image_02
+resolution: [640, 480]
+
+camera_matrix:
+  - [218.72, 0.0, 320.0]
+  - [0.0, 287.84, 240.0]
+  - [0.0, 0.0, 1.0]
+
+dist_coeffs: [-0.0482, -0.0050, -0.0090, -0.0038]
+
+# Identity homography placeholder. Replace after extrinsic calibration.
+homography:
+  - [1.0, 0.0, 0.0]
+  - [0.0, 1.0, 0.0]
+  - [0.0, 0.0, 1.0]
+
+# BEV tile dimensions for this camera (must match svm_layout rois.front.[w,h]).
+bev_size: [400, 300]
+
+# 4 reference points on the undistorted plane (placeholder rectangle).
+src_points:
+  - [200, 200]
+  - [440, 200]
+  - [200, 380]
+  - [440, 380]
+
+# Corresponding 4 points on the BEV plane (corners of bev_size).
+dst_points:
+  - [0,   0]
+  - [400, 0]
+  - [0,   300]
+  - [400, 300]

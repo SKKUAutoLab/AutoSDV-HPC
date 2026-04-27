@@ -1,0 +1,31 @@
+# bev_back.yaml — BACK camera (image_05)
+# WARNING: PLACEHOLDER VALUES (see bev_front.yaml note).
+position: back
+image_topic: image_05
+resolution: [640, 480]
+
+camera_matrix:
+  - [218.72, 0.0, 320.0]
+  - [0.0, 287.84, 240.0]
+  - [0.0, 0.0, 1.0]
+
+dist_coeffs: [-0.0482, -0.0050, -0.0090, -0.0038]
+
+homography:
+  - [1.0, 0.0, 0.0]
+  - [0.0, 1.0, 0.0]
+  - [0.0, 0.0, 1.0]
+
+bev_size: [400, 300]
+
+src_points:
+  - [200, 100]
+  - [440, 100]
+  - [200, 280]
+  - [440, 280]
+
+dst_points:
+  - [0,   0]
+  - [400, 0]
+  - [0,   300]
+  - [400, 300]
