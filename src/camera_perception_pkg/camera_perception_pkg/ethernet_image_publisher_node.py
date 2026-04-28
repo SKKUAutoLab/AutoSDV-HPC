@@ -16,16 +16,16 @@ class DDSImageListener(Node):
         self.declare_parameter('image', 'image_01')
         # 파라미터 값을 가져옵니다.
         topic_name = self.get_parameter('image').get_parameter_value().string_value
-        
-        # 가져온 파라미터 값(topic_name)을 사용하여 퍼블리셔를 생성합니다.
-        self.publisher_ = self.create_publisher(Image, topic_name, 10)
-        self.get_logger().info(f'Publishing to topic: {topic_name}')
 
         qos_profile = QoSProfile(
             reliability=QoSReliabilityPolicy.BEST_EFFORT,
             history=QoSHistoryPolicy.KEEP_LAST, depth=1,
             durability=QoSDurabilityPolicy.VOLATILE
         )
+
+        # 가져온 파라미터 값(topic_name)을 사용하여 퍼블리셔를 생성합니다.
+        self.publisher_ = self.create_publisher(Image, topic_name, qos_profile)
+        self.get_logger().info(f'Publishing to topic: {topic_name}')
 
         # DDS와 유사한 토픽(DDS 입력을 시뮬레이션하는 ROS 2 토픽)을 구독합니다.
         self.subscription = self.create_subscription(

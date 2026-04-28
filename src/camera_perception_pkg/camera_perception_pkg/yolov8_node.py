@@ -64,7 +64,7 @@ class Yolov8Node(LifecycleNode):
         self.declare_parameter("threshold", 0.5)
         self.declare_parameter("enable", True)
         self.declare_parameter("image_reliability",
-                               QoSReliabilityPolicy.RELIABLE)
+                               QoSReliabilityPolicy.BEST_EFFORT)
 
         self.get_logger().info('Yolov8Node created')
 
@@ -87,7 +87,7 @@ class Yolov8Node(LifecycleNode):
             "image_reliability").get_parameter_value().integer_value
 
         self.image_qos_profile = QoSProfile(
-            reliability=QoSReliabilityPolicy.BEST_EFFORT,
+            reliability=self.reliability,
             history=QoSHistoryPolicy.KEEP_LAST, depth=1,
             durability=QoSDurabilityPolicy.VOLATILE
         )
