@@ -23,6 +23,10 @@ __pycache__/
 .mypy_cache/
 .ruff_cache/
 
+# 예외: data_collection_pkg는 의도적으로 .pyc 형태로 배포되는 라이브러리 포함
+# (원본 .py 미공개, setup.py가 이 파일을 패키징 — 삭제 금지)
+!src/data_collection_pkg/data_collection_pkg/data_collection_func_lib.cpython-310.pyc
+
 # =============================================================================
 # C++ build artifacts (cmake 패키지가 src 안에서 빌드되는 경우 대비)
 # =============================================================================
