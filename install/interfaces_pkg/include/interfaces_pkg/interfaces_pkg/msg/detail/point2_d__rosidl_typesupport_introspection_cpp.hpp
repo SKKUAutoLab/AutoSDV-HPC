@@ -1,1 +1,0 @@
-/home/autolab/AutoSDV_HPC/build/interfaces_pkg/rosidl_typesupport_introspection_cpp/interfaces_pkg/msg/detail/point2_d__rosidl_typesupport_introspection_cpp.hpp

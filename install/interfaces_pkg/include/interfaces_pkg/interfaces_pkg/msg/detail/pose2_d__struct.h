@@ -1,1 +1,0 @@
-/home/autolab/AutoSDV_HPC/build/interfaces_pkg/rosidl_generator_c/interfaces_pkg/msg/detail/pose2_d__struct.h

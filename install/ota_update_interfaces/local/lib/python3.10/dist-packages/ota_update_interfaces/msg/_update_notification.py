@@ -1,1 +1,0 @@
-/home/autolab/AutoSDV_HPC/build/ota_update_interfaces/rosidl_generator_py/ota_update_interfaces/msg/_update_notification.py

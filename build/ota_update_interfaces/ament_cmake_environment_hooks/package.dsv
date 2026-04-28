@@ -1,4 +1,0 @@
-source;share/ota_update_interfaces/local_setup.bash
-source;share/ota_update_interfaces/local_setup.dsv
-source;share/ota_update_interfaces/local_setup.sh
-source;share/ota_update_interfaces/local_setup.zsh

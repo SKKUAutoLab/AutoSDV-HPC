@@ -1,1 +1,0 @@
-/home/autolab/AutoSDV_HPC/src/interfaces_pkg/msg/DetectionArray.msg

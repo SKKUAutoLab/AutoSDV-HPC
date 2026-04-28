@@ -1,1 +1,0 @@
-/home/autolab/AutoSDV_HPC/src/serial_communication_pkg/setup.py
