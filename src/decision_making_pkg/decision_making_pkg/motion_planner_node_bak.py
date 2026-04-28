@@ -79,35 +79,40 @@ class MotionPlanningNode(Node):
         
     def timer_callback(self):
 
-        # # 라이다가 장애물을 감지한 경우 (현 구현에서 라이다 미사용)
-        # if self.lidar_data is not None and self.lidar_data.data is True:
-        #     self.steering_command = 0
-        #     self.left_speed_command = 0
-        #     self.right_speed_command = 0
-        #
-        # # 빨간색 신호등을 감지한 경우 (현 구현에서 신호등 미사용)
-        # elif self.traffic_light_data is not None and self.traffic_light_data.data == 'Red':
-        #     for detection in self.detection_data.detections:
-        #         if detection.class_name=='traffic_light':
-        #             x_min = int(detection.bbox.center.position.x - detection.bbox.size.x / 2)
-        #             x_max = int(detection.bbox.center.position.x + detection.bbox.size.x / 2)
-        #             y_min = int(detection.bbox.center.position.y - detection.bbox.size.y / 2)
-        #             y_max = int(detection.bbox.center.position.y + detection.bbox.size.y / 2)
-        #
-        #             if y_max < 150:
-        #                 self.steering_command = 0
-        #                 self.left_speed_command = 0
-        #                 self.right_speed_command = 0
+        if self.lidar_data is not None and self.lidar_data.data is True:
+            # 라이다가 장애물을 감지한 경우
+            self.steering_command = 0 
+            self.left_speed_command = 0 
+            self.right_speed_command = 0 
 
-        if self.path_data is None:
-            # 경로 데이터가 아직 없으면 정지 명령 유지
-            self.steering_command = 0
-            self.left_speed_command = 0
-            self.right_speed_command = 0
+        elif self.traffic_light_data is not None and self.traffic_light_data.data == 'Red':
+            # 빨간색 신호등을 감지한 경우
+            for detection in self.detection_data.detections:
+                if detection.class_name=='traffic_light':
+                    x_min = int(detection.bbox.center.position.x - detection.bbox.size.x / 2) # bbox의 좌측상단 꼭짓점 x좌표
+                    x_max = int(detection.bbox.center.position.x + detection.bbox.size.x / 2) # bbox의 우측하단 꼭짓점 x좌표
+                    y_min = int(detection.bbox.center.position.y - detection.bbox.size.y / 2) # bbox의 좌측상단 꼭짓점 y좌표
+                    y_max = int(detection.bbox.center.position.y + detection.bbox.size.y / 2) # bbox의 우측하단 꼭짓점 y좌표
+
+                    if y_max < 150:
+                        # 신호등 위치에 따른 정지명령 결정
+                        self.steering_command = 0 
+                        self.left_speed_command = 0 
+                        self.right_speed_command = 0
         else:
-            target_slope = DMFL.calculate_slope_between_points(self.path_data[-10], self.path_data[-1])
+            if self.path_data is None:
+                self.steering_command = 0
+            else:
+                target_slope = DMFL.calculate_slope_between_points(self.path_data[-10], self.path_data[-1])
+                
+                if target_slope > 0:
+                    self.steering_command =  7 # 예시 조향 값 (7이 최대 조향) 
+                elif target_slope < 0:
+                    self.steering_command =  -7
+                else:
+                    self.steering_command = 0
 
-            self.steering_command = convert_steeringangle2command(52, target_slope)
+            self.steering_command = convert_steeringangle2command(52,target_slope)
             self.left_speed_command = 80  # 예시 속도 값 (255가 최대 속도)
             self.right_speed_command = 80  # 예시 속도 값 (255가 최대 속도)
 
