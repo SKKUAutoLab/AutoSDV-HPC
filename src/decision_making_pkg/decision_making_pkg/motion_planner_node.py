@@ -198,30 +198,25 @@ class MotionPlanningNode(Node):
 
     # ---------- Graceful shutdown ----------
     def _shutdown_handler(self, signum, frame):
-        """SIGINT/SIGTERM 수신 시: 정지 명령을 여러 번 발행한 뒤 rclpy 종료."""
+        """SIGINT/SIGTERM 수신 시: 플래그만 세우고 spin을 깨운다.
+        실제 정지 도배는 main()의 spin 종료 후 단계에서 수행."""
         if self._shutting_down:
-            # 두 번째 신호가 와도 무시 (이미 종료 절차 진행 중)
             return
         self._shutting_down = True
-
         self.get_logger().warn(
-            f"Signal {signum} received - broadcasting stop commands before shutdown")
+            f"Signal {signum} received - requesting shutdown")
+        if rclpy.ok():
+            rclpy.shutdown()
 
-        # 정지 명령 도배 (CAN/DDS 누락 대비)
+    def broadcast_stop_on_exit(self):
+        """spin 종료 후 호출: 정지 명령 도배 (CAN/DDS 누락 대비)."""
         for _ in range(SHUTDOWN_STOP_REPEATS):
             try:
                 self.publish_stop()
             except Exception as e:
-                # 종료 중에는 publisher가 이미 닫혔을 수 있음 - 그 경우 그냥 break
                 self.get_logger().error(f"Failed to publish stop during shutdown: {e}")
                 break
             time.sleep(SHUTDOWN_STOP_INTERVAL)
-
-        self.get_logger().warn("Stop broadcast complete. Shutting down rclpy.")
-
-        # rclpy가 spin을 빠져나가도록 종료 요청
-        if rclpy.ok():
-            rclpy.shutdown()
 
 
 def convert_steeringangle2command(max_target_angle, target_angle):
@@ -245,9 +240,15 @@ def main(args=None):
     try:
         rclpy.spin(node)
     except KeyboardInterrupt:
-        # _shutdown_handler가 이미 처리했으므로 여기까지 오는 경우는 거의 없음
         pass
+    except Exception as e:
+        node.get_logger().error(f"Spin terminated with exception: {e}")
     finally:
+        # spin이 끝난 뒤(=rclpy.shutdown 이후) 정지 도배 수행
+        try:
+            node.broadcast_stop_on_exit()
+        except Exception as e:
+            node.get_logger().error(f"broadcast_stop_on_exit failed: {e}")
         try:
             node.destroy_node()
         except Exception:
