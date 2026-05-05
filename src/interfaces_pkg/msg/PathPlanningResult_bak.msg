@@ -1,8 +1,5 @@
 # PathPlanningResult.msg
 
-# 카메라 frame_id (E2E latency 측정용 — pass-through)
-uint16 frame_id
-
 # 경로의 각 점들의 x 좌표
 float64[] x_points
 

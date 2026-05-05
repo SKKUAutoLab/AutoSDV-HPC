@@ -92,13 +92,6 @@ class Yolov8InfoExtractor(Node):
             target_points.append(target_point)
 
         lane = LaneInfo()
-        # E2E latency 측정용 frame_id pass-through.
-        # DetectionArray.header.frame_id (string)는 yolov8_node가 Image.header.frame_id를 그대로 복사한 값.
-        # ZCU camera_server가 webcam UDP 페이로드의 fid를 std::to_string()으로 박아 보낸 값.
-        try:
-            lane.frame_id = int(detection_msg.header.frame_id) & 0xFFFF
-        except (ValueError, TypeError):
-            lane.frame_id = 0
         lane.slope = grad
         lane.target_points = target_points
 

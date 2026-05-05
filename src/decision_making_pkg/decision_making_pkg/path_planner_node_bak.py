@@ -31,7 +31,6 @@ class PathPlannerNode(Node):
 
         # 변수 초기화
         self.target_points = []  # 차선의 타겟 지점들 (차선 중앙)
-        self.last_frame_id = 0   # E2E latency 측정용 frame_id pass-through
 
         # 서브스크라이버 설정 (타겟 지점 구독)
         self.lane_sub = self.create_subscription(LaneInfo, self.sub_lane_topic, self.lane_callback, self.qos_profile)
@@ -40,11 +39,10 @@ class PathPlannerNode(Node):
         self.publisher = self.create_publisher(PathPlanningResult, self.pub_topic, self.qos_profile)
 
     def lane_callback(self, msg: LaneInfo):
-
+        
         # 타겟 지점 받아오기
         self.target_points = msg.target_points
-        self.last_frame_id = msg.frame_id
-
+        
         # 타겟 지점이 3개 이상 모이면 경로 계획 시작
         if len(self.target_points) >= 3:
             self.plan_path()
@@ -82,7 +80,6 @@ class PathPlannerNode(Node):
 
         # 경로를 따라가는 정보 (PathPlanningResult 메시지로 발행)
         path_msg = PathPlanningResult()
-        path_msg.frame_id = self.last_frame_id   # E2E latency 측정용 pass-through
         path_msg.x_points = list(x_new)
         path_msg.y_points = list(y_new)
 

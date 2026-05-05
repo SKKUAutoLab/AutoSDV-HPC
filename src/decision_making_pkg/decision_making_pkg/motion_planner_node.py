@@ -85,6 +85,7 @@ class MotionPlanningNode(Node):
         self.steering_command = 0
         self.left_speed_command = 0
         self.right_speed_command = 0
+        self.last_frame_id = 0   # E2E latency 측정용 frame_id pass-through
 
         # 서브스크라이버 설정
         self.detection_sub = self.create_subscription(
@@ -124,6 +125,7 @@ class MotionPlanningNode(Node):
     def path_callback(self, msg: PathPlanningResult):
         self.path_data = list(zip(msg.x_points, msg.y_points))
         self.last_path_time = time.monotonic()
+        self.last_frame_id = msg.frame_id   # E2E latency 측정용 pass-through
 
         # event 모드일 때만 즉시 명령 계산/발행
         if self.control_mode == 'event':
@@ -191,6 +193,7 @@ class MotionPlanningNode(Node):
             f"right_speed: {self.right_speed_command}")
 
         motion_command_msg = MotionCommand()
+        motion_command_msg.frame_id = self.last_frame_id   # E2E latency 측정용 pass-through
         motion_command_msg.steering = self.steering_command
         motion_command_msg.left_speed = self.left_speed_command
         motion_command_msg.right_speed = self.right_speed_command

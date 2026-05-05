@@ -1,3 +1,2 @@
-uint16 frame_id
 float32 slope
 interfaces_pkg/TargetPoint[] target_points
