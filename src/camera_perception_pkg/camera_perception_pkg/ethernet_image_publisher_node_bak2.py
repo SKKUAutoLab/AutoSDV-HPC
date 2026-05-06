@@ -52,8 +52,6 @@ class DDSImageListener(Node):
 
             # 선택적으로 디코딩된 이미지를 다시 발행합니다.
             decoded_msg = self.bridge.cv2_to_imgmsg(cv_image, encoding='bgr8')
-            # E2E latency 측정용 frame_id pass-through: ZCU camera_server가 박은 header.frame_id 보존.
-            decoded_msg.header = msg.header
             self.publisher_.publish(decoded_msg)
             # self.get_logger().info(f'Image received and republished: {cv_image.shape[1]}x{cv_image.shape[0]}')
         except Exception as e:
