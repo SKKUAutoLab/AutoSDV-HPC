@@ -67,6 +67,16 @@ if ! command -v lttng >/dev/null 2>&1; then
     exit 1
 fi
 
+# ★ Tracing이 실제로 활성화되어 있는지 검증 (Humble apt 빌드는 기본 disabled)
+tracing_status="$(ros2 run tracetools status 2>&1 | head -1 || true)"
+if ! echo "${tracing_status}" | grep -q "Tracing enabled"; then
+    echo "[ERROR] ros2_tracing이 비활성 상태입니다: '${tracing_status}'" >&2
+    echo "        Tools/tracing/setup_tracing_overlay.sh 로 overlay 빌드 후" >&2
+    echo "        'source ~/ros2_tracing_overlay/install/setup.bash' 한 다음 다시 실행하세요." >&2
+    exit 1
+fi
+echo "[OK] ros2_tracing enabled"
+
 mkdir -p "${TRACE_BASE}"
 
 # ── 본 루프 ───────────────────────────────────────────────
