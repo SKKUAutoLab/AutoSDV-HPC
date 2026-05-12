@@ -114,9 +114,33 @@ for cfg in "${CONFIGS[@]}"; do
         echo "   $(date '+%F %T') SIGINT → launch_pid=${LAUNCH_PID}"
         kill -INT "${LAUNCH_PID}" 2>/dev/null || true
 
-        # 자식 프로세스(노드들) flush 시간 확보
+        # graceful exit 최대 30초 대기 — motion_planner shutdown handler가 0.5s 정도 잡음
+        for _ in $(seq 30); do
+            kill -0 "${LAUNCH_PID}" 2>/dev/null || break
+            sleep 1
+        done
+
+        # 아직 살아있으면 SIGTERM 후 5초, 그래도 안 죽으면 SIGKILL
+        if kill -0 "${LAUNCH_PID}" 2>/dev/null; then
+            echo "   [WARN] launch가 SIGINT에 안 죽음 → SIGTERM"
+            kill -TERM "${LAUNCH_PID}" 2>/dev/null || true
+            sleep 5
+        fi
+        if kill -0 "${LAUNCH_PID}" 2>/dev/null; then
+            echo "   [WARN] SIGTERM도 안 통함 → SIGKILL"
+            kill -9 "${LAUNCH_PID}" 2>/dev/null || true
+            sleep 2
+        fi
+
+        # LTTng 세션이 자동 stop 안 됐을 수 있으니 강제 stop + destroy (★ flush 보장)
+        if lttng list 2>/dev/null | grep -q "${session}"; then
+            echo "   [INFO] LTTng session 수동 stop/destroy"
+            lttng stop "${session}" 2>/dev/null || true
+            lttng destroy "${session}" 2>/dev/null || true
+        fi
+
         wait "${LAUNCH_PID}" 2>/dev/null || true
-        sleep 3
+        sleep 2
 
         # 결과 요약
         if [ -d "${TRACE_BASE}/${session}/ust" ]; then
