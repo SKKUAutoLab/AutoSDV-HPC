@@ -1,7 +1,5 @@
-import os
 import signal
 import time
-from pathlib import Path
 
 import rclpy
 from rclpy.node import Node
@@ -120,18 +118,6 @@ class MotionPlanningNode(Node):
         signal.signal(signal.SIGINT, self._shutdown_handler)
         signal.signal(signal.SIGTERM, self._shutdown_handler)
 
-        # AUTOSDV_TRACE_SESSION 환경변수가 설정된 경우만 CSV 로깅 활성화 (평시 운영 영향 0)
-        self._trace_csv = None
-        trace_session = os.environ.get('AUTOSDV_TRACE_SESSION')
-        if trace_session:
-            trace_base = os.environ.get('AUTOSDV_TRACE_BASE', '/tmp/autosdv_traces')
-            csv_dir = Path(trace_base) / trace_session / 'csv'
-            csv_dir.mkdir(parents=True, exist_ok=True)
-            csv_path = csv_dir / f'exit_{self.pub_topic}_{os.getpid()}.csv'
-            self._trace_csv = open(csv_path, 'w', buffering=1)
-            self._trace_csv.write('frame_id,topic,event_type,steady_clock_ns,wall_clock_ns\n')
-            self.get_logger().info(f'Trace CSV logging enabled: {csv_path}')
-
     # ---------- Subscriber callbacks ----------
     def detection_callback(self, msg: DetectionArray):
         self.detection_data = msg
@@ -211,14 +197,6 @@ class MotionPlanningNode(Node):
         motion_command_msg.steering = self.steering_command
         motion_command_msg.left_speed = self.left_speed_command
         motion_command_msg.right_speed = self.right_speed_command
-
-        # ZCU로 publish 직전 — HPC 출구 시각 기록 (T_HPC_out)
-        if self._trace_csv is not None:
-            self._trace_csv.write(
-                f'{self.last_frame_id},{self.pub_topic},out,'
-                f'{time.monotonic_ns()},{time.time_ns()}\n'
-            )
-
         self.publisher.publish(motion_command_msg)
 
     # ---------- Graceful shutdown ----------
@@ -247,14 +225,6 @@ class MotionPlanningNode(Node):
         # rclpy가 spin을 빠져나가도록 종료 요청
         if rclpy.ok():
             rclpy.shutdown()
-
-    def destroy_node(self):
-        if self._trace_csv is not None:
-            try:
-                self._trace_csv.close()
-            except Exception:
-                pass
-        super().destroy_node()
 
 
 def convert_steeringangle2command(max_target_angle, target_angle):
