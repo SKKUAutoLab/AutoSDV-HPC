@@ -91,8 +91,11 @@ fi
 echo ""
 echo "[INFO] colcon build 시작 (30~50분 소요)..."
 echo ""
+# ROS2 setup.bash는 nounset-safe하지 않으므로 source 시점만 -u 해제
+set +u
 # shellcheck disable=SC1091
 source "/opt/ros/${ROS_DISTRO}/setup.bash"
+set -u
 
 # --allow-overriding: overlay가 apt(underlay) 패키지를 의도적으로 대체 (tracepoint 활성화 빌드)
 # -DBUILD_TESTING=OFF: rcl_yaml_param_parser 등의 test 의존성(osrf_testing_tools_cpp) 회피 — production 빌드
@@ -112,8 +115,10 @@ echo ""
 echo "=========================================="
 echo " 빌드 완료. 검증 중..."
 echo "=========================================="
+set +u
 # shellcheck disable=SC1091
 source "${OVERLAY_DIR}/install/setup.bash"
+set -u
 
 echo ""
 echo "[Check 1] tracetools status:"
