@@ -18,6 +18,10 @@ TRACE_BASE="${TRACE_BASE:-/tmp/autosdv_traces}"
 OUT_DIR="${OUT_DIR:-${PWD}/trace_analysis_$(date +%Y%m%d_%H%M%S)}"
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
+# FAST=1 (기본): CSV만 묶음, frame_id_join.py 스킵 (~수십 초)
+# FAST=0       : trace까지 디코드해서 parquet 산출 (run당 ~20~40분)
+FAST="${FAST:-1}"
+
 # 인자 없으면 자동 탐색
 if [ $# -eq 0 ]; then
     mapfile -t SESSIONS < <(
@@ -75,18 +79,22 @@ for session in "${SESSIONS[@]}"; do
         echo "   CSV files copied (${csv_lines} total lines)"
     fi
 
-    # 2) frame_id_join.py로 parquet 산출 (★ 핵심)
-    if [ -d "${session_dir}/ust" ]; then
-        echo "   frame_id_join 실행..."
-        if python3 "${SCRIPT_DIR}/frame_id_join.py" "${session_dir}" \
-                   --out "${out_sub}/t_hpc.parquet" > "${out_sub}/join.log" 2>&1; then
-            echo "   ✓ t_hpc.parquet 생성"
+    # 2) trace 디코드 (FAST=0 일 때만, ~20~40분/run)
+    if [ "${FAST}" = "0" ]; then
+        if [ -d "${session_dir}/ust" ]; then
+            echo "   frame_id_join 실행 (FAST=0, 20~40분 소요)..."
+            if python3 "${SCRIPT_DIR}/frame_id_join.py" "${session_dir}" \
+                       --out "${out_sub}/t_hpc.parquet" > "${out_sub}/join.log" 2>&1; then
+                echo "   ✓ t_hpc.parquet 생성"
+            else
+                echo "   ✗ frame_id_join 실패 — join.log 확인"
+                tail -5 "${out_sub}/join.log" | sed 's/^/        /'
+            fi
         else
-            echo "   ✗ frame_id_join 실패 — join.log 확인"
-            tail -5 "${out_sub}/join.log" | sed 's/^/        /'
+            echo "   [WARN] ust/ 없음 — frame_id_join 스킵"
         fi
     else
-        echo "   [WARN] ust/ 없음 — frame_id_join 스킵"
+        echo "   [FAST=1] trace 디코드 스킵 (CSV만 묶음). 필요 시 FAST=0으로 재실행."
     fi
 
     # 3) 세션 metadata
