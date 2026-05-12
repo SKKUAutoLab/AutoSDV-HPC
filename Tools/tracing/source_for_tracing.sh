@@ -36,7 +36,10 @@ else
 fi
 
 # ─── ROS2 setup은 nounset-safe하지 않으므로 -u 잠시 해제 ───
-_prev_opts="$(set +o | tr '\n' ';')"
+# zsh의 set +o 출력이 bash와 형식이 달라 eval 시 setopt를 의도치 않게 건드림 →
+# nounset 상태만 단순 토글 (다른 옵션은 안 건드림).
+_had_nounset=0
+case "${-:-}" in *u*) _had_nounset=1 ;; esac
 set +u 2>/dev/null
 
 # ─── 1. apt underlay ─────────────────────────────────────
@@ -78,8 +81,31 @@ done
 unset _candidate
 
 # ─── 원래 shell 옵션 복원 ─────────────────────────────────
-eval "${_prev_opts}" 2>/dev/null
-unset _prev_opts _ext
+[ "${_had_nounset}" = 1 ] && set -u
+unset _had_nounset
+
+# ─── zsh: oh-my-zsh / 주요 플러그인 재초기화 ──────────────
+# ROS2 setup.zsh가 compinit 재실행하거나 ZLE widget을 건드려
+# zsh-autosuggestions / zsh-syntax-highlighting 후크가 풀리는 경우 복구.
+if [ -n "${ZSH_VERSION:-}" ]; then
+    # oh-my-zsh 재로드 (있으면)
+    if [ -n "${ZSH:-}" ] && [ -f "${ZSH}/oh-my-zsh.sh" ]; then
+        # shellcheck disable=SC1090
+        . "${ZSH}/oh-my-zsh.sh" >/dev/null 2>&1 || true
+    fi
+    # 개별 플러그인 fallback (oh-my-zsh 외부 설치인 경우)
+    for _plugin in \
+        "${HOME}/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh" \
+        "${HOME}/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" \
+        "/usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh" \
+        "/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+    do
+        # shellcheck disable=SC1090
+        [ -f "${_plugin}" ] && . "${_plugin}" >/dev/null 2>&1 || true
+    done
+    unset _plugin
+fi
+unset _ext
 
 # ─── 결과 요약 ────────────────────────────────────────────
 echo ""
