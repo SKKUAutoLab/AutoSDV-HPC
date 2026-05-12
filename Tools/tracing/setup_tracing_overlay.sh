@@ -19,6 +19,14 @@
 
 set -euo pipefail
 
+# bash 가드 — zsh로 실행되면 setup.bash가 BASH_SOURCE 등에서 깨짐
+if [ -z "${BASH_VERSION:-}" ]; then
+    echo "[ERROR] 이 스크립트는 bash로 실행되어야 합니다." >&2
+    echo "        실행: bash Tools/tracing/setup_tracing_overlay.sh" >&2
+    echo "        (zsh로 직접 실행하지 마세요. shebang은 #!/usr/bin/env bash)" >&2
+    exit 1
+fi
+
 OVERLAY_DIR="${OVERLAY_DIR:-${HOME}/ros2_tracing_overlay}"
 ROS_DISTRO="humble"
 
@@ -86,8 +94,17 @@ echo ""
 # shellcheck disable=SC1091
 source "/opt/ros/${ROS_DISTRO}/setup.bash"
 
+# --allow-overriding: overlay가 apt(underlay) 패키지를 의도적으로 대체 (tracepoint 활성화 빌드)
+# -DBUILD_TESTING=OFF: rcl_yaml_param_parser 등의 test 의존성(osrf_testing_tools_cpp) 회피 — production 빌드
+# -DTRACETOOLS_DISABLED=OFF: 명시적으로 tracepoint 컴파일
 colcon build --symlink-install \
+    --allow-overriding rcl rcl_action rcl_lifecycle rcl_yaml_param_parser \
+                       rclcpp rclcpp_action rclcpp_components rclcpp_lifecycle \
+                       rclpy \
+                       rmw_fastrtps_cpp rmw_fastrtps_dynamic_cpp rmw_fastrtps_shared_cpp \
+                       tracetools \
     --cmake-args -DCMAKE_BUILD_TYPE=Release \
+                 -DBUILD_TESTING=OFF \
                  -DTRACETOOLS_DISABLED=OFF
 
 # ── 검증 ──────────────────────────────────────────────────
