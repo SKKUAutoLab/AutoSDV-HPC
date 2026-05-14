@@ -18,7 +18,7 @@ setup(
     install_requires=['setuptools'],
     zip_safe=True,
     maintainer='SKKU AutoSDV',
-    maintainer_email='osb.claude.ecu@gmail.com',
+    maintainer_email='autosdv@example.com',
     description='BEV/SVM perception package for AutoSDV.',
     license='GPL-3',
     tests_require=['pytest'],
