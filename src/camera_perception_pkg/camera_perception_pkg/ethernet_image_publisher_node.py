@@ -14,8 +14,10 @@ class DDSImageListener(Node):
 
         # 'image_number'라는 이름의 파라미터를 선언하고 기본값을 'image_topic'으로 설정합니다.
         self.declare_parameter('image', 'image_01')
+        self.declare_parameter('show_image', False)
         # 파라미터 값을 가져옵니다.
         topic_name = self.get_parameter('image').get_parameter_value().string_value
+        self.show_image = self.get_parameter('show_image').get_parameter_value().bool_value
 
         qos_profile = QoSProfile(
             reliability=QoSReliabilityPolicy.BEST_EFFORT,
@@ -46,9 +48,9 @@ class DDSImageListener(Node):
                 self.get_logger().error('Failed to decode JPEG image.')
                 return
 
-            # 이미지를 처리합니다 (예: 화면에 표시하거나 수정).
-            cv2.imshow("DDS Image Viewer", cv_image)
-            cv2.waitKey(1)
+            if self.show_image:
+                cv2.imshow("DDS Image Viewer", cv_image)
+                cv2.waitKey(1)
 
             # 선택적으로 디코딩된 이미지를 다시 발행합니다.
             decoded_msg = self.bridge.cv2_to_imgmsg(cv_image, encoding='bgr8')

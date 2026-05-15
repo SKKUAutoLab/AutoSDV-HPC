@@ -10,6 +10,7 @@ from scipy.interpolate import CubicSpline
 SUB_LANE_TOPIC_NAME = "yolov8_lane_info"  # lane_info_extractor 노드에서 퍼블리시하는 타겟 지점 토픽
 PUB_TOPIC_NAME = "path_planning_result"   # 경로 계획 결과 퍼블리시 토픽
 CAR_CENTER_POINT = (320, 179) # 이미지 상에서 차량 앞 범퍼의 중심이 위치한 픽셀 좌표
+LOG_PLANNING = False
 
 #----------------------------------------------
 class PathPlannerNode(Node):
@@ -20,6 +21,7 @@ class PathPlannerNode(Node):
         self.sub_lane_topic = self.declare_parameter('sub_lane_topic', SUB_LANE_TOPIC_NAME).value
         self.pub_topic = self.declare_parameter('pub_topic', PUB_TOPIC_NAME).value
         self.car_center_point = self.declare_parameter('car_center_point', CAR_CENTER_POINT).value
+        self.log_planning = self.declare_parameter('log_planning', LOG_PLANNING).value
         
         # QoS 설정
         self.qos_profile = QoSProfile(
@@ -70,8 +72,8 @@ class PathPlannerNode(Node):
         # 정렬된 y, x 값을 다시 분리
         y_points, x_points = zip(*sorted_points)
         
-        # 몇개의 점으로 경로 계획을 하는지 확인
-        self.get_logger().info(f"Planning path with {len(y_points)} points")
+        if self.log_planning:
+            self.get_logger().info(f"Planning path with {len(y_points)} points")
 
         # 스플라인 보간법을 사용하여 경로 생성
         cs = CubicSpline(y_points, x_points, bc_type='natural')

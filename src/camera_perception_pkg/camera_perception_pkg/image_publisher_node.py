@@ -30,14 +30,15 @@ IMAGE_DIRECTORY_PATH = 'src/camera_perception_pkg/camera_perception_pkg/lib/Coll
 VIDEO_FILE_PATH = 'src/camera_perception_pkg/camera_perception_pkg/lib/Collected_Datasets/driving_simulation.mp4'
 
 # 화면에 publish하는 이미지를 띄울것인지 여부: True, 또는 False 중 택1하여 입력
-SHOW_IMAGE = True
+SHOW_IMAGE = False
+LOG_HEADER = False
 
 # 이미지 발행 주기 (초) - 소수점 필요 (int형은 반영되지 않음)
 TIMER = 0.03
 #----------------------------------------------
 
 class ImagePublisherNode(Node):
-    def __init__(self, data_source=DATA_SOURCE, cam_num=CAM_NUM, img_dir=IMAGE_DIRECTORY_PATH, video_path=VIDEO_FILE_PATH, pub_topic=PUB_TOPIC_NAME, logger=SHOW_IMAGE, timer=TIMER):
+    def __init__(self, data_source=DATA_SOURCE, cam_num=CAM_NUM, img_dir=IMAGE_DIRECTORY_PATH, video_path=VIDEO_FILE_PATH, pub_topic=PUB_TOPIC_NAME, logger=SHOW_IMAGE, timer=TIMER, log_header=LOG_HEADER):
         super().__init__('image_publisher_node')
         self.declare_parameter('data_source', data_source)
         self.declare_parameter('cam_num', cam_num)
@@ -46,6 +47,7 @@ class ImagePublisherNode(Node):
         self.declare_parameter('pub_topic', pub_topic)
         self.declare_parameter('logger', logger)
         self.declare_parameter('timer', timer)
+        self.declare_parameter('log_header', log_header)
         
         self.data_source = self.get_parameter('data_source').get_parameter_value().string_value
         self.cam_num = self.get_parameter('cam_num').get_parameter_value().integer_value
@@ -54,6 +56,7 @@ class ImagePublisherNode(Node):
         self.pub_topic = self.get_parameter('pub_topic').get_parameter_value().string_value
         self.logger = self.get_parameter('logger').get_parameter_value().bool_value
         self.timer_period = self.get_parameter('timer').get_parameter_value().double_value
+        self.log_header = self.get_parameter('log_header').get_parameter_value().bool_value
 
         self.qos_profile = QoSProfile(
             reliability=QoSReliabilityPolicy.RELIABLE,
@@ -136,7 +139,8 @@ class ImagePublisherNode(Node):
                 image_msg.header.stamp = self.get_clock().now().to_msg()
                 image_msg.header.frame_id = 'image_01'
                 self.publisher.publish(image_msg)
-                print(image_msg.header)
+                if self.log_header:
+                    self.get_logger().info(str(image_msg.header))
                 if self.logger:
                     cv2.imshow('Video Frame', img)
                     cv2.waitKey(1)

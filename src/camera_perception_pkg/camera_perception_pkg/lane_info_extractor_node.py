@@ -21,7 +21,8 @@ PUB_TOPIC_NAME = "yolov8_lane_info"
 ROI_IMAGE_TOPIC_NAME = "roi_image"  # 추가: ROI 이미지 퍼블리시 토픽
 
 # 화면에 이미지를 처리하는 과정을 띄울것인지 여부: True, 또는 False 중 택1하여 입력
-SHOW_IMAGE = True
+SHOW_IMAGE = False
+PUBLISH_ROI_IMAGE = False
 #----------------------------------------------
 
 
@@ -32,6 +33,8 @@ class Yolov8InfoExtractor(Node):
         self.sub_topic = self.declare_parameter('sub_detection_topic', SUB_TOPIC_NAME).value
         self.pub_topic = self.declare_parameter('pub_topic', PUB_TOPIC_NAME).value
         self.show_image = self.declare_parameter('show_image', SHOW_IMAGE).value
+        self.publish_roi_image = self.declare_parameter(
+            'publish_roi_image', PUBLISH_ROI_IMAGE).value
 
         self.cv_bridge = CvBridge()
 
@@ -46,8 +49,10 @@ class Yolov8InfoExtractor(Node):
         self.subscriber = self.create_subscription(DetectionArray, self.sub_topic, self.yolov8_detections_callback, self.qos_profile)
         self.publisher = self.create_publisher(LaneInfo, self.pub_topic, self.qos_profile)
 
-        # ROI 이미지 퍼블리셔 추가
-        self.roi_image_publisher = self.create_publisher(Image, ROI_IMAGE_TOPIC_NAME, self.qos_profile)
+        self.roi_image_publisher = None
+        if self.publish_roi_image:
+            self.roi_image_publisher = self.create_publisher(
+                Image, ROI_IMAGE_TOPIC_NAME, self.qos_profile)
 
     def yolov8_detections_callback(self, detection_msg: DetectionArray):
         if len(detection_msg.detections) == 0:
@@ -71,13 +76,12 @@ class Yolov8InfoExtractor(Node):
         # roi_image를 uint8 형식으로 변환
         roi_image = cv2.convertScaleAbs(roi_image)  # 64FC1 -> uint8로 변환
 
-        # roi_image를 ROS Image 메시지로 변환
-        try:
-            roi_image_msg = self.cv_bridge.cv2_to_imgmsg(roi_image, encoding="mono8")
-            # ROI 이미지를 퍼블리시
-            self.roi_image_publisher.publish(roi_image_msg)
-        except Exception as e:
-            self.get_logger().error(f"Failed to convert and publish ROI image: {e}")
+        if self.publish_roi_image:
+            try:
+                roi_image_msg = self.cv_bridge.cv2_to_imgmsg(roi_image, encoding="mono8")
+                self.roi_image_publisher.publish(roi_image_msg)
+            except Exception as e:
+                self.get_logger().error(f"Failed to convert and publish ROI image: {e}")
         
         grad = CPFL.dominant_gradient(roi_image, theta_limit=70)
                 

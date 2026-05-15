@@ -26,6 +26,7 @@ LIDAR_PORT = '/dev/ttyUSB0'
 class LidarSensorDataPublisher(Node):
     def __init__(self):
         super().__init__('lidar_publisher_node')
+        self.log_scan = self.declare_parameter('log_scan', False).value
 
         self.qos_profile = QoSProfile(
             reliability=QoSReliabilityPolicy.RELIABLE,
@@ -77,7 +78,8 @@ class LidarSensorDataPublisher(Node):
 
         try:
             scan = next(self.lidar_sensor_data_generator)
-            print('Got %d measurements' % len(scan))
+            if self.log_scan:
+                self.get_logger().info('Got %d measurements' % len(scan))
             scan = np.array(scan)
             # Create LaserScan message
             msg = LaserScan()
@@ -106,7 +108,8 @@ class LidarSensorDataPublisher(Node):
             msg.intensities = intensities
 
             self.publisher_.publish(msg)
-            self.get_logger().info('Publishing: "%s"' % PUB_TOPIC_NAME)
+            if self.log_scan:
+                self.get_logger().info('Publishing: "%s"' % PUB_TOPIC_NAME)
 
         except StopIteration:
             self.get_logger().error('Failed to get lidar scan')

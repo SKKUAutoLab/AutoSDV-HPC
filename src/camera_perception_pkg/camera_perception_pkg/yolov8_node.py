@@ -63,6 +63,7 @@ class Yolov8Node(LifecycleNode):
         
         self.declare_parameter("threshold", 0.5)
         self.declare_parameter("enable", True)
+        self.declare_parameter("log_image_header", False)
         self.declare_parameter("image_reliability",
                                QoSReliabilityPolicy.BEST_EFFORT)
 
@@ -82,6 +83,8 @@ class Yolov8Node(LifecycleNode):
 
         self.enable = self.get_parameter(
             "enable").get_parameter_value().bool_value
+        self.log_image_header = self.get_parameter(
+            "log_image_header").get_parameter_value().bool_value
 
         self.reliability = self.get_parameter(
             "image_reliability").get_parameter_value().integer_value
@@ -245,7 +248,8 @@ class Yolov8Node(LifecycleNode):
         return keypoints_list
 
     def image_cb(self, msg: Image) -> None:
-        print(msg.header)
+        if self.log_image_header:
+            self.get_logger().info(str(msg.header))
 
         if self.enable:
 

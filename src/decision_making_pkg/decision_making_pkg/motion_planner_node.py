@@ -24,7 +24,7 @@ PUB_TOPIC_NAME = "topic_control_signal"
 CONTROL_MODE = 'event'
 
 # periodic 모드 발행 주기 (초) - 소수점 필요
-PERIODIC_PUBLISH_PERIOD = 0.1
+PERIODIC_PUBLISH_PERIOD = 0.01
 
 # event 모드 watchdog 체크 주기 (초)
 WATCHDOG_PERIOD = 0.1
@@ -35,6 +35,10 @@ PATH_TIMEOUT_SEC = 0.5
 # 정상 주행 시 좌/우 속도 (0~255)
 DEFAULT_LEFT_SPEED = 80
 DEFAULT_RIGHT_SPEED = 80
+
+# 실험 중 control publish path에 불필요한 callback/log 부하를 넣지 않기 위한 기본값
+ENABLE_AUX_SUBSCRIPTIONS = False
+LOG_COMMANDS = False
 
 # 종료(SIGINT/SIGTERM) 시 정지 명령을 도배할 횟수와 간격 (초)
 # CAN/DDS 누락 대비용. 총 SHUTDOWN_STOP_REPEATS * SHUTDOWN_STOP_INTERVAL 초간 정지 명령 송출
@@ -60,6 +64,9 @@ class MotionPlanningNode(Node):
         self.periodic_period = self.declare_parameter('periodic_period', PERIODIC_PUBLISH_PERIOD).value
         self.watchdog_period = self.declare_parameter('watchdog_period', WATCHDOG_PERIOD).value
         self.path_timeout_sec = self.declare_parameter('path_timeout_sec', PATH_TIMEOUT_SEC).value
+        self.enable_aux_subscriptions = self.declare_parameter(
+            'enable_aux_subscriptions', ENABLE_AUX_SUBSCRIPTIONS).value
+        self.log_commands = self.declare_parameter('log_commands', LOG_COMMANDS).value
 
         if self.control_mode not in ('event', 'periodic'):
             self.get_logger().warn(
@@ -88,14 +95,18 @@ class MotionPlanningNode(Node):
         self.last_frame_id = 0   # E2E latency 측정용 frame_id pass-through
 
         # 서브스크라이버 설정
-        self.detection_sub = self.create_subscription(
-            DetectionArray, self.sub_detection_topic, self.detection_callback, self.qos_profile)
         self.path_sub = self.create_subscription(
             PathPlanningResult, self.sub_path_topic, self.path_callback, self.qos_profile)
-        self.traffic_light_sub = self.create_subscription(
-            String, self.sub_traffic_light_topic, self.traffic_light_callback, self.qos_profile)
-        self.lidar_sub = self.create_subscription(
-            Bool, self.sub_lidar_obstacle_topic, self.lidar_callback, self.qos_profile)
+        self.detection_sub = None
+        self.traffic_light_sub = None
+        self.lidar_sub = None
+        if self.enable_aux_subscriptions:
+            self.detection_sub = self.create_subscription(
+                DetectionArray, self.sub_detection_topic, self.detection_callback, self.qos_profile)
+            self.traffic_light_sub = self.create_subscription(
+                String, self.sub_traffic_light_topic, self.traffic_light_callback, self.qos_profile)
+            self.lidar_sub = self.create_subscription(
+                Bool, self.sub_lidar_obstacle_topic, self.lidar_callback, self.qos_profile)
 
         # 퍼블리셔 설정
         self.publisher = self.create_publisher(MotionCommand, self.pub_topic, self.qos_profile)
@@ -104,13 +115,15 @@ class MotionPlanningNode(Node):
         if self.control_mode == 'periodic':
             self.timer = self.create_timer(self.periodic_period, self.periodic_callback)
             self.get_logger().info(
-                f"Motion planner started in PERIODIC mode (period={self.periodic_period}s)")
+                f"Motion planner started in PERIODIC mode "
+                f"(period={self.periodic_period}s, aux_subscriptions={self.enable_aux_subscriptions})")
         else:
             # event 모드: path_callback이 메인 트리거, 별도 watchdog 타이머만 가동
             self.watchdog_timer = self.create_timer(self.watchdog_period, self.watchdog_callback)
             self.get_logger().info(
                 f"Motion planner started in EVENT mode "
-                f"(watchdog={self.watchdog_period}s, path_timeout={self.path_timeout_sec}s)")
+                f"(watchdog={self.watchdog_period}s, path_timeout={self.path_timeout_sec}s, "
+                f"aux_subscriptions={self.enable_aux_subscriptions})")
 
         # 종료 시그널(SIGINT/SIGTERM) 발생 시 정지 명령 broadcast 후 종료하기 위한 플래그
         # rclpy 기본 SIGINT 핸들러 대신 우리 핸들러를 등록
@@ -126,10 +139,11 @@ class MotionPlanningNode(Node):
         self.path_data = list(zip(msg.x_points, msg.y_points))
         self.last_path_time = time.monotonic()
         self.last_frame_id = msg.frame_id   # E2E latency 측정용 pass-through
+        self.compute_motion_command()
 
         # event 모드일 때만 즉시 명령 계산/발행
         if self.control_mode == 'event':
-            self.compute_and_publish_motion()
+            self._publish_current_command()
 
     def traffic_light_callback(self, msg: String):
         self.traffic_light_data = msg
@@ -155,7 +169,7 @@ class MotionPlanningNode(Node):
         #                 self.publish_stop()
         #                 return
 
-        self.compute_and_publish_motion()
+        self._publish_current_command()
 
     # ---------- Event mode watchdog ----------
     def watchdog_callback(self):
@@ -165,10 +179,10 @@ class MotionPlanningNode(Node):
             self.publish_stop()
 
     # ---------- Core motion computation ----------
-    def compute_and_publish_motion(self):
+    def compute_motion_command(self):
         if self.path_data is None or len(self.path_data) < 10:
             # 경로가 없거나 너무 짧으면 정지
-            self.publish_stop()
+            self.set_stop_command()
             return
 
         target_slope = DMFL.calculate_slope_between_points(
@@ -178,19 +192,25 @@ class MotionPlanningNode(Node):
         self.left_speed_command = DEFAULT_LEFT_SPEED
         self.right_speed_command = DEFAULT_RIGHT_SPEED
 
+    def compute_and_publish_motion(self):
+        self.compute_motion_command()
         self._publish_current_command()
 
-    def publish_stop(self):
+    def set_stop_command(self):
         self.steering_command = 0
         self.left_speed_command = 0
         self.right_speed_command = 0
+
+    def publish_stop(self):
+        self.set_stop_command()
         self._publish_current_command()
 
     def _publish_current_command(self):
-        self.get_logger().info(
-            f"[{self.control_mode}] steering: {self.steering_command}, "
-            f"left_speed: {self.left_speed_command}, "
-            f"right_speed: {self.right_speed_command}")
+        if self.log_commands:
+            self.get_logger().info(
+                f"[{self.control_mode}] steering: {self.steering_command}, "
+                f"left_speed: {self.left_speed_command}, "
+                f"right_speed: {self.right_speed_command}")
 
         motion_command_msg = MotionCommand()
         motion_command_msg.frame_id = self.last_frame_id   # E2E latency 측정용 pass-through
