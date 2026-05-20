@@ -13,7 +13,6 @@
         </transport_descriptors>
         
         <participant profile_name="participant_profile" is_default_profile="true">
-            <domainId>1</domainId>
             <rtps>
                 <userTransports>
                     <transport_id>WiredUDP</transport_id>

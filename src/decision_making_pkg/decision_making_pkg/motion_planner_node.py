@@ -21,7 +21,7 @@ PUB_TOPIC_NAME = "topic_control_signal"
 
 # 제어 모드 ('event' = path 들어올 때 즉시 발행 + watchdog 정지 폴백,
 #            'periodic' = 고정 주기 발행)
-CONTROL_MODE = 'event'
+CONTROL_MODE = 'periodic'
 
 # periodic 모드 발행 주기 (초) - 소수점 필요
 PERIODIC_PUBLISH_PERIOD = 0.01

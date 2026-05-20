@@ -20,7 +20,13 @@ def generate_launch_description():
             executable='ethernet_image_publisher_node',
             name='ethernet_image_publisher_node_1',  #카메라 추가되면 노드 이름 중복 방지를 위해 변경
             output='screen',
-            parameters=[{'image': 'image_01'}]  #카메라 추가되면 변경해야 함
+            parameters=[{
+                'image': 'image_01',
+                'p2_log_enabled': True,
+                'p2_log_path': os.environ.get(
+                    'AUTOSDV_P2_LOG_PATH',
+                    '/tmp/hpc_image_receive_p2.csv'),
+            }]  #카메라 추가되면 변경해야 함
         ),
         # 아래 예시대로 사용해야 함.
         # ex)
