@@ -22,7 +22,7 @@ def generate_launch_description():
             output='screen',
             parameters=[{
                 'image': 'image_01',
-                'p2_log_enabled': True,
+                'p2_log_enabled': False,
                 'p2_log_path': os.environ.get(
                     'AUTOSDV_P2_LOG_PATH',
                     '/tmp/hpc_image_receive_p2.csv'),

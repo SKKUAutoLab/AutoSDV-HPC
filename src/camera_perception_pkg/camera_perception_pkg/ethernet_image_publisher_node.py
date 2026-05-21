@@ -5,6 +5,9 @@ from cv_bridge import CvBridge
 import cv2
 import numpy as np
 import os
+import threading
+from rcl_interfaces.msg import SetParametersResult
+from rclpy.parameter import Parameter
 from rclpy.qos import QoSProfile, QoSReliabilityPolicy, QoSHistoryPolicy, QoSDurabilityPolicy
 
 from .p2_image_receive_logger import P2ImageReceiveCsvLogger
@@ -26,7 +29,7 @@ class DDSImageListener(Node):
         self.p2_log_enabled = (
             self.get_parameter('p2_log_enabled').get_parameter_value().bool_value
         )
-        p2_log_path = self.get_parameter('p2_log_path').get_parameter_value().string_value
+        self.p2_log_path = self.get_parameter('p2_log_path').get_parameter_value().string_value
 
         qos_profile = QoSProfile(
             reliability=QoSReliabilityPolicy.BEST_EFFORT,
@@ -40,14 +43,10 @@ class DDSImageListener(Node):
 
         self.input_topic_name = topic_name + '_raw'
         self.p2_logger = None
+        self.p2_logger_lock = threading.Lock()
         if self.p2_log_enabled:
-            if not p2_log_path:
-                p2_log_path = os.environ.get(
-                    'AUTOSDV_P2_LOG_PATH',
-                    '/tmp/hpc_image_receive_p2.csv')
-            self.p2_logger = P2ImageReceiveCsvLogger(
-                p2_log_path,
-                self.input_topic_name)
+            self._set_p2_logging(True, self.p2_log_path)
+        self.add_on_set_parameters_callback(self._on_parameter_update)
 
         # DDS와 유사한 토픽(DDS 입력을 시뮬레이션하는 ROS 2 토픽)을 구독합니다.
         self.subscription = self.create_subscription(
@@ -58,10 +57,81 @@ class DDSImageListener(Node):
         )
         self.get_logger().info('DDS Image Listener Node has started.')
 
+    def _resolve_p2_log_path(self, path):
+        if path:
+            return path
+        return os.environ.get('AUTOSDV_P2_LOG_PATH', '/tmp/hpc_image_receive_p2.csv')
+
+    def _set_p2_logging(self, enabled, path):
+        resolved_path = self._resolve_p2_log_path(path)
+        old_logger = None
+
+        with self.p2_logger_lock:
+            if enabled:
+                new_logger = P2ImageReceiveCsvLogger(resolved_path, self.input_topic_name)
+                old_logger = self.p2_logger
+                self.p2_logger = new_logger
+                self.p2_log_enabled = True
+                self.p2_log_path = path
+            else:
+                old_logger = self.p2_logger
+                self.p2_logger = None
+                self.p2_log_enabled = False
+                self.p2_log_path = path
+
+        if old_logger is not None:
+            old_logger.close()
+
+        if enabled:
+            self.get_logger().info(f'P2 image receive logging enabled: {resolved_path}')
+        else:
+            self.get_logger().info('P2 image receive logging disabled.')
+
+    def _on_parameter_update(self, params):
+        p2_log_enabled = self.p2_log_enabled
+        p2_log_path = self.p2_log_path
+
+        for param in params:
+            if param.name == 'p2_log_enabled':
+                if param.type_ != Parameter.Type.BOOL:
+                    return SetParametersResult(
+                        successful=False,
+                        reason='p2_log_enabled must be a bool')
+                p2_log_enabled = param.value
+            elif param.name == 'p2_log_path':
+                if param.type_ != Parameter.Type.STRING:
+                    return SetParametersResult(
+                        successful=False,
+                        reason='p2_log_path must be a string')
+                p2_log_path = param.value
+
+        try:
+            if p2_log_enabled != self.p2_log_enabled or p2_log_path != self.p2_log_path:
+                self._set_p2_logging(p2_log_enabled, p2_log_path)
+        except Exception as exc:
+            return SetParametersResult(successful=False, reason=str(exc))
+
+        return SetParametersResult(successful=True)
+
+    def _write_p2_log(self, msg):
+        with self.p2_logger_lock:
+            if self.p2_logger is None:
+                return
+            try:
+                self.p2_logger.write(msg)
+            except Exception as exc:
+                self.get_logger().error(f'P2 image receive logging failed: {exc}')
+                failed_logger = self.p2_logger
+                self.p2_logger = None
+                self.p2_log_enabled = False
+                try:
+                    failed_logger.close()
+                except Exception as close_exc:
+                    self.get_logger().error(f'P2 image receive logger close failed: {close_exc}')
+
     def listener_callback(self, msg):
         try:
-            if self.p2_logger is not None:
-                self.p2_logger.write(msg)
+            self._write_p2_log(msg)
 
             # ROS 2 이미지 메시지에서 직접 JPEG 데이터를 디코딩합니다.
             jpeg_data = np.frombuffer(msg.data, dtype=np.uint8)
@@ -85,9 +155,10 @@ class DDSImageListener(Node):
             self.get_logger().error(f'Error processing image: {e}')
 
     def destroy_node(self):
-        if self.p2_logger is not None:
-            self.p2_logger.close()
-            self.p2_logger = None
+        with self.p2_logger_lock:
+            if self.p2_logger is not None:
+                self.p2_logger.close()
+                self.p2_logger = None
         cv2.destroyAllWindows()
         super().destroy_node()
 
