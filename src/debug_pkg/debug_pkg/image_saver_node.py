@@ -1,5 +1,6 @@
 import rclpy
 from rclpy.node import Node
+from rclpy.qos import QoSDurabilityPolicy, QoSHistoryPolicy, QoSProfile, QoSReliabilityPolicy
 from sensor_msgs.msg import Image
 from interfaces_pkg.msg import MotionCommand
 from cv_bridge import CvBridge
@@ -27,11 +28,18 @@ class MultiCamImageSaverNode(Node):
         self.left_speed = 0.0
         self.right_speed = 0.0
 
+        control_qos = QoSProfile(
+            reliability=QoSReliabilityPolicy.BEST_EFFORT,
+            history=QoSHistoryPolicy.KEEP_LAST,
+            durability=QoSDurabilityPolicy.VOLATILE,
+            depth=1
+        )
+
         self.control_sub = self.create_subscription(
             MotionCommand, 
             '/topic_control_signal', 
             self.data_callback, 
-            10
+            control_qos
         )
 
         self.image_sub_1 = message_filters.Subscriber(self, Image, '/image_01')

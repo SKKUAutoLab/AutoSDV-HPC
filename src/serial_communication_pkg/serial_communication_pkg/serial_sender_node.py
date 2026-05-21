@@ -28,7 +28,7 @@ class SerialSenderNode(Node):
     
     self.sub_topic = self.get_parameter('sub_topic').get_parameter_value().string_value
     
-    qos_profile = QoSProfile(reliability=QoSReliabilityPolicy.RELIABLE, 
+    qos_profile = QoSProfile(reliability=QoSReliabilityPolicy.BEST_EFFORT, 
                              history=QoSHistoryPolicy.KEEP_LAST, 
                              durability=QoSDurabilityPolicy.VOLATILE, 
                              depth=1)
