@@ -44,6 +44,7 @@ class DDSImageListener(Node):
         self.input_topic_name = topic_name + '_raw'
         self.p2_logger = None
         self.p2_logger_lock = threading.Lock()
+        self.p2_log_run_index = 0
         if self.p2_log_enabled:
             self._set_p2_logging(True, self.p2_log_path)
         self.add_on_set_parameters_callback(self._on_parameter_update)
@@ -68,7 +69,12 @@ class DDSImageListener(Node):
 
         with self.p2_logger_lock:
             if enabled:
-                new_logger = P2ImageReceiveCsvLogger(resolved_path, self.input_topic_name)
+                self.p2_log_run_index += 1
+                run_id = f'run_{self.p2_log_run_index:02d}'
+                new_logger = P2ImageReceiveCsvLogger(
+                    resolved_path,
+                    self.input_topic_name,
+                    run_id)
                 old_logger = self.p2_logger
                 self.p2_logger = new_logger
                 self.p2_log_enabled = True
@@ -83,7 +89,8 @@ class DDSImageListener(Node):
             old_logger.close()
 
         if enabled:
-            self.get_logger().info(f'P2 image receive logging enabled: {resolved_path}')
+            self.get_logger().info(
+                f'P2 image receive logging enabled: {resolved_path} ({run_id})')
         else:
             self.get_logger().info('P2 image receive logging disabled.')
 
