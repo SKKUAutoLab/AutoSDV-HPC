@@ -7,7 +7,19 @@ from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch_ros.actions import Node
 
 
+def fastdds_profile_env(share_dir, image_index, participant_id):
+    profile = os.path.join(
+        share_dir,
+        'config',
+        f'fastdds_image_{image_index:02d}_participant{participant_id}.xml')
+    return {
+        'FASTRTPS_DEFAULT_PROFILES_FILE': profile,
+        'FASTDDS_DEFAULT_PROFILES_FILE': profile,
+    }
+
+
 def generate_launch_description():
+    launch_pkg_share = get_package_share_directory('launch_pkg')
     bev_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             os.path.join(
@@ -20,6 +32,7 @@ def generate_launch_description():
             executable='ethernet_image_publisher_node',
             name='ethernet_image_publisher_node_1',  #카메라 추가되면 노드 이름 중복 방지를 위해 변경
             output='screen',
+            additional_env=fastdds_profile_env(launch_pkg_share, 1, 20),
             parameters=[{
                 'image': 'image_01',
                 'show_image': True,
@@ -43,6 +56,7 @@ def generate_launch_description():
             executable='ethernet_image_publisher_node',
             name='ethernet_image_publisher_node_2',
             output='screen',
+            additional_env=fastdds_profile_env(launch_pkg_share, 2, 21),
             parameters=[{'image': 'image_02'}]
         ),
         Node(
@@ -50,6 +64,7 @@ def generate_launch_description():
             executable='ethernet_image_publisher_node',
             name='ethernet_image_publisher_node_3',
             output='screen',
+            additional_env=fastdds_profile_env(launch_pkg_share, 3, 22),
             parameters=[{'image': 'image_03'}]
         ),
         Node(
@@ -57,6 +72,7 @@ def generate_launch_description():
             executable='ethernet_image_publisher_node',
             name='ethernet_image_publisher_node_4',
             output='screen',
+            additional_env=fastdds_profile_env(launch_pkg_share, 4, 23),
             parameters=[{'image': 'image_04'}]
         ),
         Node(
@@ -64,6 +80,7 @@ def generate_launch_description():
             executable='ethernet_image_publisher_node',
             name='ethernet_image_publisher_node_5',
             output='screen',
+            additional_env=fastdds_profile_env(launch_pkg_share, 5, 24),
             parameters=[{'image':'image_05'}]
         ),
 
