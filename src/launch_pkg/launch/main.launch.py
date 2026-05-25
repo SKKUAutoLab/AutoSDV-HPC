@@ -22,6 +22,7 @@ def generate_launch_description():
             output='screen',
             parameters=[{
                 'image': 'image_01',
+                'show_image': True,
                 'p2_log_enabled': False,
                 'p2_log_path': os.environ.get(
                     'AUTOSDV_P2_LOG_PATH',

@@ -30,6 +30,8 @@ class DDSImageListener(Node):
             self.get_parameter('p2_log_enabled').get_parameter_value().bool_value
         )
         self.p2_log_path = self.get_parameter('p2_log_path').get_parameter_value().string_value
+        self.image_window_name = f'DDS Image Viewer ({topic_name})'
+        self.image_window_created = False
 
         qos_profile = QoSProfile(
             reliability=QoSReliabilityPolicy.BEST_EFFORT,
@@ -97,9 +99,16 @@ class DDSImageListener(Node):
     def _on_parameter_update(self, params):
         p2_log_enabled = self.p2_log_enabled
         p2_log_path = self.p2_log_path
+        show_image = self.show_image
 
         for param in params:
-            if param.name == 'p2_log_enabled':
+            if param.name == 'show_image':
+                if param.type_ != Parameter.Type.BOOL:
+                    return SetParametersResult(
+                        successful=False,
+                        reason='show_image must be a bool')
+                show_image = param.value
+            elif param.name == 'p2_log_enabled':
                 if param.type_ != Parameter.Type.BOOL:
                     return SetParametersResult(
                         successful=False,
@@ -113,12 +122,24 @@ class DDSImageListener(Node):
                 p2_log_path = param.value
 
         try:
+            if show_image != self.show_image:
+                self._set_show_image(show_image)
             if p2_log_enabled != self.p2_log_enabled or p2_log_path != self.p2_log_path:
                 self._set_p2_logging(p2_log_enabled, p2_log_path)
         except Exception as exc:
             return SetParametersResult(successful=False, reason=str(exc))
 
         return SetParametersResult(successful=True)
+
+    def _set_show_image(self, enabled):
+        self.show_image = enabled
+        if enabled:
+            self.get_logger().info(f'Image display enabled: {self.image_window_name}')
+        else:
+            if self.image_window_created:
+                cv2.destroyWindow(self.image_window_name)
+                self.image_window_created = False
+            self.get_logger().info('Image display disabled.')
 
     def _write_p2_log(self, msg):
         with self.p2_logger_lock:
@@ -149,7 +170,10 @@ class DDSImageListener(Node):
                 return
 
             if self.show_image:
-                cv2.imshow("DDS Image Viewer", cv_image)
+                if not self.image_window_created:
+                    cv2.namedWindow(self.image_window_name, cv2.WINDOW_NORMAL)
+                    self.image_window_created = True
+                cv2.imshow(self.image_window_name, cv_image)
                 cv2.waitKey(1)
 
             # 선택적으로 디코딩된 이미지를 다시 발행합니다.
@@ -166,7 +190,9 @@ class DDSImageListener(Node):
             if self.p2_logger is not None:
                 self.p2_logger.close()
                 self.p2_logger = None
-        cv2.destroyAllWindows()
+        if self.image_window_created:
+            cv2.destroyWindow(self.image_window_name)
+            self.image_window_created = False
         super().destroy_node()
 
 
