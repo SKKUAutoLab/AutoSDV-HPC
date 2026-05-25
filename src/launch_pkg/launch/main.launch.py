@@ -35,11 +35,11 @@ def generate_launch_description():
             additional_env=fastdds_profile_env(launch_pkg_share, 1, 20),
             parameters=[{
                 'image': 'image_01',
-                'show_image': True,
+                'show_image': False,
                 'p2_log_enabled': False,
                 'p2_log_path': os.environ.get(
                     'AUTOSDV_P2_LOG_PATH',
-                    '/tmp/hpc_image_receive_p2.csv'),
+                    '/home/autolab/update/P2_log/hpc_image_receive_p2.csv'),
             }]  #카메라 추가되면 변경해야 함
         ),
         # 아래 예시대로 사용해야 함.
