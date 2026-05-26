@@ -21,6 +21,9 @@ class P2ImageReceiveCsvLogger:
             f'{self.topic_name}\n'
         )
 
+    def flush(self):
+        self.file.flush()
+
     def close(self):
         self.file.flush()
         self.file.close()
