@@ -21,11 +21,13 @@ class ImageFrameIdLogger(Node):
         self.declare_parameter('log_path', '')
         self.declare_parameter('run_id', 'run_01')
         self.declare_parameter('flush_every', 1)
+        self.declare_parameter('log_enabled', True)
 
         self.input_topic = self.get_parameter('input_topic').value
         self.log_path = self._resolve_log_path(self.get_parameter('log_path').value)
         self.run_id = self.get_parameter('run_id').value
         self.flush_every = max(1, int(self.get_parameter('flush_every').value))
+        self.log_enabled = self.get_parameter('log_enabled').value
 
         qos_profile = QoSProfile(
             reliability=QoSReliabilityPolicy.BEST_EFFORT,
@@ -34,11 +36,13 @@ class ImageFrameIdLogger(Node):
             durability=QoSDurabilityPolicy.VOLATILE,
         )
 
-        self.logger = P2ImageReceiveCsvLogger(
-            self.log_path,
-            self.input_topic,
-            self.run_id,
-        )
+        self.logger = None
+        if self.log_enabled:
+            self.logger = P2ImageReceiveCsvLogger(
+                self.log_path,
+                self.input_topic,
+                self.run_id,
+            )
         self.received_count = 0
 
         self.subscription = self.create_subscription(
@@ -48,10 +52,14 @@ class ImageFrameIdLogger(Node):
             qos_profile,
         )
 
-        self.get_logger().info(
-            f'Frame ID logging started: topic={self.input_topic}, '
-            f'path={self.log_path}, run_id={self.run_id}, '
-            f'flush_every={self.flush_every}')
+        if self.log_enabled:
+            self.get_logger().info(
+                f'Frame ID logging started: topic={self.input_topic}, '
+                f'path={self.log_path}, run_id={self.run_id}, '
+                f'flush_every={self.flush_every}')
+        else:
+            self.get_logger().info(
+                f'Frame ID subscribe-only started: topic={self.input_topic}')
 
     def _resolve_log_path(self, path):
         if path:
@@ -61,8 +69,10 @@ class ImageFrameIdLogger(Node):
             '/tmp/hpc_image_receive_p2.csv')
 
     def listener_callback(self, msg):
-        self.logger.write(msg)
         self.received_count += 1
+        if self.logger is None:
+            return
+        self.logger.write(msg)
         if self.received_count % self.flush_every == 0:
             self.logger.flush()
 

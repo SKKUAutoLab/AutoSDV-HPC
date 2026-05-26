@@ -27,6 +27,25 @@ def generate_launch_description():
     run_id = LaunchConfiguration('run_id')
     flush_every = LaunchConfiguration('flush_every')
 
+    def logger_node(image_index, participant_id, topic, log_enabled, node_name):
+        return Node(
+            package='camera_perception_pkg',
+            executable='image_frame_id_logger_node',
+            name=node_name,
+            output='screen',
+            additional_env=fastdds_profile_env(
+                launch_pkg_share,
+                image_index,
+                participant_id),
+            parameters=[{
+                'input_topic': topic,
+                'log_path': log_path,
+                'run_id': run_id,
+                'flush_every': ParameterValue(flush_every, value_type=int),
+                'log_enabled': log_enabled,
+            }],
+        )
+
     return LaunchDescription([
         DeclareLaunchArgument(
             'input_topic',
@@ -42,17 +61,34 @@ def generate_launch_description():
         DeclareLaunchArgument(
             'flush_every',
             default_value='1'),
-        Node(
-            package='camera_perception_pkg',
-            executable='image_frame_id_logger_node',
-            name='image_frame_id_logger_node',
-            output='screen',
-            additional_env=fastdds_profile_env(launch_pkg_share, 1, 20),
-            parameters=[{
-                'input_topic': input_topic,
-                'log_path': log_path,
-                'run_id': run_id,
-                'flush_every': ParameterValue(flush_every, value_type=int),
-            }],
-        ),
+        logger_node(
+            1,
+            20,
+            input_topic,
+            True,
+            'image_frame_id_logger_node_1'),
+        logger_node(
+            2,
+            21,
+            'image_02_raw',
+            False,
+            'image_frame_id_logger_node_2'),
+        logger_node(
+            3,
+            22,
+            'image_03_raw',
+            False,
+            'image_frame_id_logger_node_3'),
+        logger_node(
+            4,
+            23,
+            'image_04_raw',
+            False,
+            'image_frame_id_logger_node_4'),
+        logger_node(
+            5,
+            24,
+            'image_05_raw',
+            False,
+            'image_frame_id_logger_node_5'),
     ])
