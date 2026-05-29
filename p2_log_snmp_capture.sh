@@ -6,9 +6,11 @@ OUT_ROOT="${OUT_ROOT:-/home/autolab/update/P2_log}"
 RUN_ID="${RUN_ID:-}"
 LOG_PATH="${LOG_PATH:-}"
 STATE_DIR="${STATE_DIR:-${OUT_ROOT}/.p2_log_snmp_state}"
+BE_STATS_PATH="${BE_STATS_PATH:-${AUTOSDV_BE_STATS_PATH:-/tmp/autosdv_be_rx_stats.csv}}"
 STATE_FILE=""
 OUT_DIR=""
 DURATION=""
+RUN_ACTIVE=0
 
 usage() {
   cat <<'EOF'
@@ -19,7 +21,7 @@ Wraps P2 ROS parameter toggling with /proc/net/snmp snapshots.
 Commands:
   start   Save proc_net_snmp.before.txt, set p2_log_path, then enable P2 log.
   stop    Save proc_net_snmp.after.txt, then disable P2 log.
-  run     start, sleep for --duration seconds, then stop.
+  run     start, sleep for --duration, then stop.
 
 Options:
   --node NODE          ROS 2 node name (default: /ethernet_image_publisher_node_1)
@@ -30,11 +32,16 @@ Options:
                       (default: p2_YYMMDD_HHMMSS)
   --log-path FILE     P2 CSV path passed to p2_log_path
                       (default: OUT_DIR/hpc_image_receive_p2.csv)
-  --duration SEC      Required for run command
+  --be-stats-path FILE
+                      BE subscriber snapshot CSV to capture before/after
+                      (default: AUTOSDV_BE_STATS_PATH or /tmp/autosdv_be_rx_stats.csv)
+  --no-be-stats       Do not capture BE subscriber snapshot CSV
+  --duration SEC      Required for run command. Accepts sleep(1) durations
+                      such as 300, 300s, 5m.
   -h, --help          Show this help
 
 Environment variables with the same names as the defaults are also accepted:
-NODE, OUT_ROOT, RUN_ID, LOG_PATH, STATE_DIR.
+NODE, OUT_ROOT, RUN_ID, LOG_PATH, STATE_DIR, BE_STATS_PATH.
 EOF
 }
 
@@ -48,6 +55,23 @@ require_ros2() {
   if ! command -v ros2 >/dev/null 2>&1; then
     echo "ros2 command not found. Source the ROS 2 and workspace setup first." >&2
     exit 1
+  fi
+}
+
+validate_duration() {
+  if [[ -z "${DURATION}" ]]; then
+    echo "--duration SEC is required for run." >&2
+    exit 2
+  fi
+
+  if [[ ! "${DURATION}" =~ ^[0-9]+([.][0-9]+)?([smhd])?$ ]]; then
+    echo "Invalid --duration: ${DURATION} (use e.g. 300, 300s, 5m)" >&2
+    exit 2
+  fi
+
+  if [[ "${DURATION}" =~ ^0+([.]0+)?([smhd])?$ ]]; then
+    echo "--duration must be greater than zero." >&2
+    exit 2
   fi
 }
 
@@ -81,11 +105,65 @@ capture_snmp() {
   echo "${target}"
 }
 
+capture_be_stats() {
+  local phase="$1"
+  local target="${OUT_DIR}/be_rx_stats.${phase}.csv"
+
+  if [[ -z "${BE_STATS_PATH}" ]]; then
+    return 0
+  fi
+
+  if [[ ! -r "${BE_STATS_PATH}" ]]; then
+    echo "BE stats snapshot not readable: ${BE_STATS_PATH}" >&2
+    return 0
+  fi
+
+  cp "${BE_STATS_PATH}" "${target}"
+  date --iso-8601=ns > "${OUT_DIR}/be_rx_stats.${phase}.timestamp.txt"
+  echo "${target}"
+}
+
+write_be_stats_delta() {
+  local before="${OUT_DIR}/be_rx_stats.before.csv"
+  local after="${OUT_DIR}/be_rx_stats.after.csv"
+  local target="${OUT_DIR}/be_rx_stats.delta.csv"
+
+  if [[ ! -r "${before}" || ! -r "${after}" ]]; then
+    return 0
+  fi
+
+  awk -F, '
+    BEGIN {
+      OFS=",";
+      print "topic","received_delta","sequence_gap_delta","invalid_magic_delta","received_before","received_after","sequence_gap_before","sequence_gap_after","invalid_magic_before","invalid_magic_after";
+    }
+    NR == FNR {
+      if (FNR > 1) {
+        recv[$1] = $2;
+        gap[$1] = $3;
+        bad[$1] = $4;
+      }
+      next;
+    }
+    FNR > 1 {
+      topic = $1;
+      before_recv = (topic in recv) ? recv[topic] : 0;
+      before_gap = (topic in gap) ? gap[topic] : 0;
+      before_bad = (topic in bad) ? bad[topic] : 0;
+      print topic, $2 - before_recv, $3 - before_gap, $4 - before_bad, before_recv, $2, before_gap, $3, before_bad, $4;
+    }
+  ' "${before}" "${after}" > "${target}"
+}
+
 write_metadata_start() {
   {
     echo "node=${NODE}"
     echo "out_dir=${OUT_DIR}"
     echo "log_path=${LOG_PATH}"
+    echo "be_stats_path=${BE_STATS_PATH}"
+    if [[ -n "${DURATION}" ]]; then
+      echo "requested_duration=${DURATION}"
+    fi
     echo "start_time=$(date --iso-8601=ns)"
   } > "${OUT_DIR}/p2_log_snmp.metadata"
 }
@@ -100,6 +178,7 @@ write_state() {
     printf 'OUT_ROOT=%q\n' "${OUT_ROOT}"
     printf 'OUT_DIR=%q\n' "${OUT_DIR}"
     printf 'LOG_PATH=%q\n' "${LOG_PATH}"
+    printf 'BE_STATS_PATH=%q\n' "${BE_STATS_PATH}"
   } > "${STATE_FILE}"
 }
 
@@ -119,15 +198,19 @@ cmd_start() {
   make_run_paths
 
   capture_snmp before >/dev/null
-  write_metadata_start
+  capture_be_stats before >/dev/null
 
   ros2 param set "${NODE}" p2_log_path "${LOG_PATH}"
   ros2 param set "${NODE}" p2_log_enabled true
+  write_metadata_start
 
   write_state
   echo "P2 log enabled on ${NODE}"
   echo "P2 CSV: ${LOG_PATH}"
   echo "SNMP before: ${OUT_DIR}/proc_net_snmp.before.txt"
+  if [[ -r "${OUT_DIR}/be_rx_stats.before.csv" ]]; then
+    echo "BE stats before: ${OUT_DIR}/be_rx_stats.before.csv"
+  fi
 }
 
 cmd_stop() {
@@ -140,23 +223,33 @@ cmd_stop() {
     read_state
   fi
 
-  capture_snmp after >/dev/null
   ros2 param set "${NODE}" p2_log_enabled false
   write_metadata_stop
+  capture_snmp after >/dev/null
+  capture_be_stats after >/dev/null
+  write_be_stats_delta
   rm -f "${STATE_FILE}"
 
   echo "P2 log disabled on ${NODE}"
   echo "SNMP after: ${OUT_DIR}/proc_net_snmp.after.txt"
+  if [[ -r "${OUT_DIR}/be_rx_stats.after.csv" ]]; then
+    echo "BE stats after: ${OUT_DIR}/be_rx_stats.after.csv"
+  fi
+  if [[ -r "${OUT_DIR}/be_rx_stats.delta.csv" ]]; then
+    echo "BE stats delta: ${OUT_DIR}/be_rx_stats.delta.csv"
+  fi
 }
 
 cmd_run() {
-  if [[ -z "${DURATION}" ]]; then
-    echo "--duration SEC is required for run." >&2
-    exit 2
-  fi
+  validate_duration
 
   cmd_start
+  RUN_ACTIVE=1
+  trap 'status=$?; trap - EXIT INT TERM; if [[ "${RUN_ACTIVE}" == "1" ]]; then echo "Stopping P2 log after interrupted run..." >&2; cmd_stop || true; fi; exit "${status}"' EXIT INT TERM
+
   sleep "${DURATION}"
+  RUN_ACTIVE=0
+  trap - EXIT INT TERM
   cmd_stop
 }
 
@@ -189,6 +282,14 @@ while [[ $# -gt 0 ]]; do
     --log-path)
       LOG_PATH="$2"
       shift 2
+      ;;
+    --be-stats-path)
+      BE_STATS_PATH="$2"
+      shift 2
+      ;;
+    --no-be-stats)
+      BE_STATS_PATH=""
+      shift
       ;;
     --duration)
       DURATION="$2"
