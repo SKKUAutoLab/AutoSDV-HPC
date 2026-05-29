@@ -7,6 +7,7 @@ RUN_ID="${RUN_ID:-}"
 LOG_PATH="${LOG_PATH:-}"
 STATE_DIR="${STATE_DIR:-${OUT_ROOT}/.p2_log_snmp_state}"
 BE_STATS_PATH="${BE_STATS_PATH:-${AUTOSDV_BE_STATS_PATH:-/tmp/autosdv_be_rx_stats.csv}}"
+ETH_STATS_IFACE="${ETH_STATS_IFACE:-enp4s0}"
 STATE_FILE=""
 OUT_DIR=""
 DURATION=""
@@ -36,12 +37,16 @@ Options:
                       BE subscriber snapshot CSV to capture before/after
                       (default: AUTOSDV_BE_STATS_PATH or /tmp/autosdv_be_rx_stats.csv)
   --no-be-stats       Do not capture BE subscriber snapshot CSV
+  --eth-stats-iface IFACE
+                      Interface for ethtool -S before/after capture
+                      (default: enp4s0, set empty with --no-eth-stats)
+  --no-eth-stats      Do not capture ethtool -S before/after
   --duration SEC      Required for run command. Accepts sleep(1) durations
                       such as 300, 300s, 5m.
   -h, --help          Show this help
 
 Environment variables with the same names as the defaults are also accepted:
-NODE, OUT_ROOT, RUN_ID, LOG_PATH, STATE_DIR, BE_STATS_PATH.
+NODE, OUT_ROOT, RUN_ID, LOG_PATH, STATE_DIR, BE_STATS_PATH, ETH_STATS_IFACE.
 EOF
 }
 
@@ -123,6 +128,31 @@ capture_be_stats() {
   echo "${target}"
 }
 
+capture_eth_stats() {
+  local phase="$1"
+  local target="${OUT_DIR}/ethtool_stats.${phase}.txt"
+  local error_target="${OUT_DIR}/ethtool_stats.${phase}.error.txt"
+
+  if [[ -z "${ETH_STATS_IFACE}" ]]; then
+    return 0
+  fi
+
+  if ! command -v ethtool >/dev/null 2>&1; then
+    echo "ethtool command not found; skipping ${ETH_STATS_IFACE} stats." >&2
+    return 0
+  fi
+
+  if ! ethtool -S "${ETH_STATS_IFACE}" > "${target}" 2> "${error_target}"; then
+    echo "Failed to capture ethtool stats for ${ETH_STATS_IFACE}: ${error_target}" >&2
+    rm -f "${target}"
+    return 0
+  fi
+
+  rm -f "${error_target}"
+  date --iso-8601=ns > "${OUT_DIR}/ethtool_stats.${phase}.timestamp.txt"
+  echo "${target}"
+}
+
 write_be_stats_delta() {
   local before="${OUT_DIR}/be_rx_stats.before.csv"
   local after="${OUT_DIR}/be_rx_stats.after.csv"
@@ -161,6 +191,7 @@ write_metadata_start() {
     echo "out_dir=${OUT_DIR}"
     echo "log_path=${LOG_PATH}"
     echo "be_stats_path=${BE_STATS_PATH}"
+    echo "eth_stats_iface=${ETH_STATS_IFACE}"
     if [[ -n "${DURATION}" ]]; then
       echo "requested_duration=${DURATION}"
     fi
@@ -179,6 +210,7 @@ write_state() {
     printf 'OUT_DIR=%q\n' "${OUT_DIR}"
     printf 'LOG_PATH=%q\n' "${LOG_PATH}"
     printf 'BE_STATS_PATH=%q\n' "${BE_STATS_PATH}"
+    printf 'ETH_STATS_IFACE=%q\n' "${ETH_STATS_IFACE}"
   } > "${STATE_FILE}"
 }
 
@@ -199,6 +231,7 @@ cmd_start() {
 
   capture_snmp before >/dev/null
   capture_be_stats before >/dev/null
+  capture_eth_stats before >/dev/null
 
   ros2 param set "${NODE}" p2_log_path "${LOG_PATH}"
   ros2 param set "${NODE}" p2_log_enabled true
@@ -210,6 +243,9 @@ cmd_start() {
   echo "SNMP before: ${OUT_DIR}/proc_net_snmp.before.txt"
   if [[ -r "${OUT_DIR}/be_rx_stats.before.csv" ]]; then
     echo "BE stats before: ${OUT_DIR}/be_rx_stats.before.csv"
+  fi
+  if [[ -r "${OUT_DIR}/ethtool_stats.before.txt" ]]; then
+    echo "ethtool stats before: ${OUT_DIR}/ethtool_stats.before.txt"
   fi
 }
 
@@ -227,6 +263,7 @@ cmd_stop() {
   write_metadata_stop
   capture_snmp after >/dev/null
   capture_be_stats after >/dev/null
+  capture_eth_stats after >/dev/null
   write_be_stats_delta
   rm -f "${STATE_FILE}"
 
@@ -237,6 +274,9 @@ cmd_stop() {
   fi
   if [[ -r "${OUT_DIR}/be_rx_stats.delta.csv" ]]; then
     echo "BE stats delta: ${OUT_DIR}/be_rx_stats.delta.csv"
+  fi
+  if [[ -r "${OUT_DIR}/ethtool_stats.after.txt" ]]; then
+    echo "ethtool stats after: ${OUT_DIR}/ethtool_stats.after.txt"
   fi
 }
 
@@ -289,6 +329,14 @@ while [[ $# -gt 0 ]]; do
       ;;
     --no-be-stats)
       BE_STATS_PATH=""
+      shift
+      ;;
+    --eth-stats-iface)
+      ETH_STATS_IFACE="$2"
+      shift 2
+      ;;
+    --no-eth-stats)
+      ETH_STATS_IFACE=""
       shift
       ;;
     --duration)
