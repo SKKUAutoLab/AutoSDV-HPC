@@ -57,7 +57,10 @@ def generate_launch_description():
             name='ethernet_image_publisher_node_2',
             output='screen',
             additional_env=fastdds_profile_env(launch_pkg_share, 2, 21),
-            parameters=[{'image': 'image_02'}]
+            parameters=[{
+                'image': 'image_02',
+                'show_image': False,
+            }]
         ),
         Node(
             package='camera_perception_pkg',
@@ -65,7 +68,10 @@ def generate_launch_description():
             name='ethernet_image_publisher_node_3',
             output='screen',
             additional_env=fastdds_profile_env(launch_pkg_share, 3, 22),
-            parameters=[{'image': 'image_03'}]
+            parameters=[{
+                'image': 'image_03',
+                'show_image': False,
+            }]
         ),
         Node(
             package='camera_perception_pkg',
@@ -73,7 +79,10 @@ def generate_launch_description():
             name='ethernet_image_publisher_node_4',
             output='screen',
             additional_env=fastdds_profile_env(launch_pkg_share, 4, 23),
-            parameters=[{'image': 'image_04'}]
+            parameters=[{
+                'image': 'image_04',
+                'show_image': False,
+            }]
         ),
         Node(
             package='camera_perception_pkg',
@@ -81,7 +90,10 @@ def generate_launch_description():
             name='ethernet_image_publisher_node_5',
             output='screen',
             additional_env=fastdds_profile_env(launch_pkg_share, 5, 24),
-            parameters=[{'image':'image_05'}]
+            parameters=[{
+                'image': 'image_05',
+                'show_image': False,
+            }]
         ),
 
         # BEV/SVM perception (image_02..05 -> bev_surround)
