@@ -7,7 +7,7 @@ RUN_ID="${RUN_ID:-}"
 LOG_PATH="${LOG_PATH:-}"
 STATE_DIR="${STATE_DIR:-${OUT_ROOT}/.p2_log_snmp_state}"
 BE_STATS_PATH="${BE_STATS_PATH:-${AUTOSDV_BE_STATS_PATH:-/tmp/autosdv_be_rx_stats.csv}}"
-ETH_STATS_IFACE="${ETH_STATS_IFACE:-enp4s0}"
+ETH_STATS_IFACE="${ETH_STATS_IFACE:-}"
 STATE_FILE=""
 OUT_DIR=""
 DURATION=""
@@ -38,8 +38,8 @@ Options:
                       (default: AUTOSDV_BE_STATS_PATH or /tmp/autosdv_be_rx_stats.csv)
   --no-be-stats       Do not capture BE subscriber snapshot CSV
   --eth-stats-iface IFACE
-                      Interface for ethtool -S before/after capture
-                      (default: enp4s0, set empty with --no-eth-stats)
+                      Optional interface for ethtool -S before/after capture
+                      (default: disabled)
   --no-eth-stats      Do not capture ethtool -S before/after
   --duration SEC      Required for run command. Accepts sleep(1) durations
                       such as 300, 300s, 5m.
