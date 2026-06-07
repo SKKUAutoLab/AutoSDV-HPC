@@ -106,38 +106,6 @@ require_ros2() {
   fi
 }
 
-PARAM_SET_PIDS=()
-PARAM_SET_LABELS=()
-
-param_set_bg() {
-  local node="$1"
-  local param="$2"
-  local value="$3"
-
-  ros2 param set "${node}" "${param}" "${value}" &
-  PARAM_SET_PIDS+=("$!")
-  PARAM_SET_LABELS+=("${node} ${param}")
-}
-
-wait_param_sets() {
-  local status=0
-  local index
-
-  for index in "${!PARAM_SET_PIDS[@]}"; do
-    if ! wait "${PARAM_SET_PIDS[${index}]}"; then
-      echo "ros2 param set failed: ${PARAM_SET_LABELS[${index}]}" >&2
-      status=1
-    fi
-  done
-
-  PARAM_SET_PIDS=()
-  PARAM_SET_LABELS=()
-
-  if [[ "${status}" != "0" ]]; then
-    exit 1
-  fi
-}
-
 validate_duration() {
   if [[ -z "${DURATION}" ]]; then
     echo "--duration SEC is required for run." >&2
@@ -336,12 +304,10 @@ cmd_start() {
   capture_eth_stats before >/dev/null
 
   if [[ -n "${NODE}" ]]; then
-    param_set_bg "${NODE}" p2_log_run_id "${RUN_ID}"
-    param_set_bg "${NODE}" p2_log_start_ns "${P2_RUN_START_NS}"
-    param_set_bg "${NODE}" p2_log_path "${LOG_PATH}"
-    wait_param_sets
-    param_set_bg "${NODE}" p2_log_enabled true
-    wait_param_sets
+    ros2 param set "${NODE}" p2_log_run_id "${RUN_ID}"
+    ros2 param set "${NODE}" p2_log_start_ns "${P2_RUN_START_NS}"
+    ros2 param set "${NODE}" p2_log_path "${LOG_PATH}"
+    ros2 param set "${NODE}" p2_log_enabled true
   else
     local manifest="${OUT_DIR}/frame_id_logs.csv"
     printf 'node,topic,path\n' > "${manifest}"
@@ -352,19 +318,12 @@ cmd_start() {
       topic="${CAMERA_ENTRY_TOPIC}"
       safe_topic="$(safe_log_name "${topic}")"
       log_path="${FRAME_LOG_DIR}/${safe_topic}.csv"
-      param_set_bg "${node}" p2_log_run_id "${RUN_ID}"
-      param_set_bg "${node}" p2_log_start_ns "${P2_RUN_START_NS}"
-      param_set_bg "${node}" p2_log_path "${log_path}"
+      ros2 param set "${node}" p2_log_run_id "${RUN_ID}"
+      ros2 param set "${node}" p2_log_start_ns "${P2_RUN_START_NS}"
+      ros2 param set "${node}" p2_log_path "${log_path}"
+      ros2 param set "${node}" p2_log_enabled true
       printf '%s,%s,%s\n' "${node}" "${topic}" "${log_path}" >> "${manifest}"
     done
-    wait_param_sets
-
-    for entry in ${CAMERA_NODES}; do
-      parse_camera_entry "${entry}"
-      node="${CAMERA_ENTRY_NODE}"
-      param_set_bg "${node}" p2_log_enabled true
-    done
-    wait_param_sets
   fi
   write_adas_control 1
   write_metadata_start
@@ -406,16 +365,14 @@ cmd_stop() {
   fi
 
   if [[ -n "${NODE}" ]]; then
-    param_set_bg "${NODE}" p2_log_enabled false
-    wait_param_sets
+    ros2 param set "${NODE}" p2_log_enabled false
   else
     local entry node
     for entry in ${CAMERA_NODES}; do
       parse_camera_entry "${entry}"
       node="${CAMERA_ENTRY_NODE}"
-      param_set_bg "${node}" p2_log_enabled false
+      ros2 param set "${node}" p2_log_enabled false
     done
-    wait_param_sets
   fi
   write_adas_control 0
   write_metadata_stop
