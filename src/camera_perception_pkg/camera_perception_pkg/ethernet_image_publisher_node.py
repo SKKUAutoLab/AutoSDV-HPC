@@ -23,6 +23,8 @@ class DDSImageListener(Node):
         self.declare_parameter('show_image', False)
         self.declare_parameter('p2_log_enabled', False)
         self.declare_parameter('p2_log_path', '')
+        self.declare_parameter('p2_log_run_id', '')
+        self.declare_parameter('p2_log_start_ns', 0)
         # 파라미터 값을 가져옵니다.
         topic_name = self.get_parameter('image').get_parameter_value().string_value
         self.show_image = self.get_parameter('show_image').get_parameter_value().bool_value
@@ -30,6 +32,12 @@ class DDSImageListener(Node):
             self.get_parameter('p2_log_enabled').get_parameter_value().bool_value
         )
         self.p2_log_path = self.get_parameter('p2_log_path').get_parameter_value().string_value
+        self.p2_log_run_id = (
+            self.get_parameter('p2_log_run_id').get_parameter_value().string_value
+        )
+        self.p2_log_start_ns = (
+            self.get_parameter('p2_log_start_ns').get_parameter_value().integer_value
+        )
         self.image_window_name = f'DDS Image Viewer ({topic_name})'
         self.image_window_created = False
 
@@ -48,7 +56,11 @@ class DDSImageListener(Node):
         self.p2_logger_lock = threading.Lock()
         self.p2_log_run_index = 0
         if self.p2_log_enabled:
-            self._set_p2_logging(True, self.p2_log_path)
+            self._set_p2_logging(
+                True,
+                self.p2_log_path,
+                self.p2_log_run_id,
+                self.p2_log_start_ns)
         self.add_on_set_parameters_callback(self._on_parameter_update)
 
         # DDS와 유사한 토픽(DDS 입력을 시뮬레이션하는 ROS 2 토픽)을 구독합니다.
@@ -65,40 +77,47 @@ class DDSImageListener(Node):
             return path
         return os.environ.get('AUTOSDV_P2_LOG_PATH', '/tmp/hpc_image_receive_p2.csv')
 
-    def _set_p2_logging(self, enabled, path):
+    def _set_p2_logging(self, enabled, path, run_id, run_start_ns):
         resolved_path = self._resolve_p2_log_path(path)
         old_logger = None
 
         with self.p2_logger_lock:
             if enabled:
                 self.p2_log_run_index += 1
-                run_id = f'run_{self.p2_log_run_index:02d}'
+                resolved_run_id = run_id or f'run_{self.p2_log_run_index:02d}'
                 new_logger = P2ImageReceiveCsvLogger(
                     resolved_path,
                     self.input_topic_name,
-                    run_id)
+                    resolved_run_id,
+                    run_start_ns)
                 old_logger = self.p2_logger
                 self.p2_logger = new_logger
                 self.p2_log_enabled = True
                 self.p2_log_path = path
+                self.p2_log_run_id = run_id
+                self.p2_log_start_ns = run_start_ns
             else:
                 old_logger = self.p2_logger
                 self.p2_logger = None
                 self.p2_log_enabled = False
                 self.p2_log_path = path
+                self.p2_log_run_id = run_id
+                self.p2_log_start_ns = run_start_ns
 
         if old_logger is not None:
             old_logger.close()
 
         if enabled:
             self.get_logger().info(
-                f'P2 image receive logging enabled: {resolved_path} ({run_id})')
+                f'P2 image receive logging enabled: {resolved_path} ({resolved_run_id})')
         else:
             self.get_logger().info('P2 image receive logging disabled.')
 
     def _on_parameter_update(self, params):
         p2_log_enabled = self.p2_log_enabled
         p2_log_path = self.p2_log_path
+        p2_log_run_id = self.p2_log_run_id
+        p2_log_start_ns = self.p2_log_start_ns
         show_image = self.show_image
 
         for param in params:
@@ -120,12 +139,31 @@ class DDSImageListener(Node):
                         successful=False,
                         reason='p2_log_path must be a string')
                 p2_log_path = param.value
+            elif param.name == 'p2_log_run_id':
+                if param.type_ != Parameter.Type.STRING:
+                    return SetParametersResult(
+                        successful=False,
+                        reason='p2_log_run_id must be a string')
+                p2_log_run_id = param.value
+            elif param.name == 'p2_log_start_ns':
+                if param.type_ != Parameter.Type.INTEGER:
+                    return SetParametersResult(
+                        successful=False,
+                        reason='p2_log_start_ns must be an integer')
+                p2_log_start_ns = param.value
 
         try:
             if show_image != self.show_image:
                 self._set_show_image(show_image)
-            if p2_log_enabled != self.p2_log_enabled or p2_log_path != self.p2_log_path:
-                self._set_p2_logging(p2_log_enabled, p2_log_path)
+            if (p2_log_enabled != self.p2_log_enabled or
+                    p2_log_path != self.p2_log_path or
+                    p2_log_run_id != self.p2_log_run_id or
+                    p2_log_start_ns != self.p2_log_start_ns):
+                self._set_p2_logging(
+                    p2_log_enabled,
+                    p2_log_path,
+                    p2_log_run_id,
+                    p2_log_start_ns)
         except Exception as exc:
             return SetParametersResult(successful=False, reason=str(exc))
 

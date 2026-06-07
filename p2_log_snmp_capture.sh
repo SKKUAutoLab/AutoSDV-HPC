@@ -5,6 +5,7 @@ NODE="${NODE:-}"
 CAMERA_NODES="${CAMERA_NODES:-/ethernet_image_publisher_node_1=image_01_raw /ethernet_image_publisher_node_2=image_02_raw /ethernet_image_publisher_node_3=image_03_raw /ethernet_image_publisher_node_4=image_04_raw /ethernet_image_publisher_node_5=image_05_raw}"
 OUT_ROOT="${OUT_ROOT:-/home/autolab/update/P2_log}"
 RUN_ID="${RUN_ID:-}"
+P2_RUN_START_NS="${P2_RUN_START_NS:-}"
 LOG_PATH="${LOG_PATH:-}"
 FRAME_LOG_DIR="${FRAME_LOG_DIR:-}"
 STATE_DIR="${STATE_DIR:-${OUT_ROOT}/.p2_log_snmp_state}"
@@ -39,6 +40,8 @@ Options:
   --out DIR           Existing/specific run directory
   --run-id ID         Run directory name under --out-root
                       (default: p2_YYMMDD_HHMMSS)
+  --run-start-ns NS   Optional shared monotonic start timestamp override
+                      (default: generated with time.monotonic_ns())
   --log-path FILE     P2 CSV path passed to p2_log_path
                       (single-node default: OUT_DIR/hpc_image_receive_p2.csv)
   --frame-log-dir DIR Directory for per-camera frame_id CSV files
@@ -66,8 +69,8 @@ Options:
   -h, --help          Show this help
 
 Environment variables with the same names as the defaults are also accepted:
-NODE, CAMERA_NODES, OUT_ROOT, RUN_ID, LOG_PATH, FRAME_LOG_DIR, STATE_DIR,
-BE_STATS_PATH, ETH_STATS_IFACE, ADAS_LOG, ADAS_CONTROL_PATH,
+NODE, CAMERA_NODES, OUT_ROOT, RUN_ID, P2_RUN_START_NS, LOG_PATH,
+FRAME_LOG_DIR, STATE_DIR, BE_STATS_PATH, ETH_STATS_IFACE, ADAS_LOG, ADAS_CONTROL_PATH,
 ADAS_SEQUENCE_LOG_DIR.
 EOF
 }
@@ -125,12 +128,18 @@ validate_duration() {
   fi
 }
 
+monotonic_ns() {
+  python3 -c 'import time; print(time.monotonic_ns())'
+}
+
 make_run_paths() {
   if [[ -z "${OUT_DIR}" ]]; then
     if [[ -z "${RUN_ID}" ]]; then
       RUN_ID="p2_$(date +%y%m%d_%H%M%S)"
     fi
     OUT_DIR="${OUT_ROOT}/${RUN_ID}"
+  elif [[ -z "${RUN_ID}" ]]; then
+    RUN_ID="$(basename "${OUT_DIR}")"
   fi
 
   if [[ -n "${NODE}" && -z "${LOG_PATH}" ]]; then
@@ -145,6 +154,9 @@ make_run_paths() {
   fi
   if [[ "${ADAS_LOG}" != "off" && -z "${ADAS_SEQUENCE_LOG_DIR}" ]]; then
     ADAS_SEQUENCE_LOG_DIR="${OUT_DIR}/adas_load_sequence"
+  fi
+  if [[ -z "${P2_RUN_START_NS}" ]]; then
+    P2_RUN_START_NS="$(monotonic_ns)"
   fi
 
   mkdir -p "${OUT_DIR}" "${STATE_DIR}"
@@ -254,7 +266,9 @@ write_metadata_start() {
       echo "camera_nodes=${CAMERA_NODES}"
       echo "frame_log_dir=${FRAME_LOG_DIR}"
     fi
+    echo "run_id=${RUN_ID}"
     echo "out_dir=${OUT_DIR}"
+    echo "run_start_ns=${P2_RUN_START_NS}"
     if [[ -n "${LOG_PATH}" ]]; then
       echo "log_path=${LOG_PATH}"
     fi
@@ -279,7 +293,9 @@ write_state() {
     printf 'NODE=%q\n' "${NODE}"
     printf 'CAMERA_NODES=%q\n' "${CAMERA_NODES}"
     printf 'OUT_ROOT=%q\n' "${OUT_ROOT}"
+    printf 'RUN_ID=%q\n' "${RUN_ID}"
     printf 'OUT_DIR=%q\n' "${OUT_DIR}"
+    printf 'P2_RUN_START_NS=%q\n' "${P2_RUN_START_NS}"
     printf 'LOG_PATH=%q\n' "${LOG_PATH}"
     printf 'FRAME_LOG_DIR=%q\n' "${FRAME_LOG_DIR}"
     printf 'BE_STATS_PATH=%q\n' "${BE_STATS_PATH}"
@@ -320,12 +336,16 @@ write_adas_control() {
   if [[ "${enabled}" == "1" ]]; then
     {
       echo "enabled=1"
+      echo "run_id=${RUN_ID}"
+      echo "run_start_ns=${P2_RUN_START_NS}"
       echo "sequence_log_dir=${ADAS_SEQUENCE_LOG_DIR}"
       echo "updated_at=$(date --iso-8601=ns)"
     } > "${tmp_path}"
   else
     {
       echo "enabled=0"
+      echo "run_id=${RUN_ID}"
+      echo "run_start_ns=${P2_RUN_START_NS}"
       echo "sequence_log_dir="
       echo "updated_at=$(date --iso-8601=ns)"
     } > "${tmp_path}"
@@ -342,6 +362,8 @@ cmd_start() {
   capture_eth_stats before >/dev/null
 
   if [[ -n "${NODE}" ]]; then
+    ros2 param set "${NODE}" p2_log_run_id "${RUN_ID}"
+    ros2 param set "${NODE}" p2_log_start_ns "${P2_RUN_START_NS}"
     ros2 param set "${NODE}" p2_log_path "${LOG_PATH}"
     ros2 param set "${NODE}" p2_log_enabled true
   else
@@ -354,6 +376,8 @@ cmd_start() {
       topic="${CAMERA_ENTRY_TOPIC}"
       safe_topic="$(safe_log_name "${topic}")"
       log_path="${FRAME_LOG_DIR}/${safe_topic}.csv"
+      ros2 param set "${node}" p2_log_run_id "${RUN_ID}"
+      ros2 param set "${node}" p2_log_start_ns "${P2_RUN_START_NS}"
       ros2 param set "${node}" p2_log_path "${log_path}"
       ros2 param set "${node}" p2_log_enabled true
       printf '%s,%s,%s\n' "${node}" "${topic}" "${log_path}" >> "${manifest}"
@@ -481,6 +505,10 @@ while [[ $# -gt 0 ]]; do
       ;;
     --run-id)
       RUN_ID="$2"
+      shift 2
+      ;;
+    --run-start-ns|--p2-run-start-ns)
+      P2_RUN_START_NS="$2"
       shift 2
       ;;
     --log-path)
