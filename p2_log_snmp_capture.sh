@@ -10,6 +10,7 @@ LOG_PATH="${LOG_PATH:-}"
 FRAME_LOG_DIR="${FRAME_LOG_DIR:-}"
 STATE_DIR="${STATE_DIR:-${OUT_ROOT}/.p2_log_snmp_state}"
 ETH_STATS_IFACE="${ETH_STATS_IFACE:-}"
+PARAM_SET_TIMEOUT_SEC="${PARAM_SET_TIMEOUT_SEC:-10}"
 ADAS_LOG="${ADAS_LOG:-auto}"
 ADAS_CONTROL_PATH="${ADAS_CONTROL_PATH:-/tmp/autosdv_adas_p2_control.env}"
 ADAS_SEQUENCE_LOG_DIR="${ADAS_SEQUENCE_LOG_DIR:-}"
@@ -49,6 +50,9 @@ Options:
                       Optional interface for ethtool -S before/after capture
                       (default: disabled)
   --no-eth-stats      Do not capture ethtool -S before/after
+  --param-set-timeout-sec SEC
+                      Timeout for each ros2 param set call
+                      (default: 10)
   --adas-log MODE     ADAS seq logging: auto, on, or off (default: auto)
   --adas-control-path FILE
                       Control file watched by the running ADAS subscriber
@@ -65,8 +69,8 @@ Options:
 
 Environment variables with the same names as the defaults are also accepted:
 NODE, CAMERA_NODES, OUT_ROOT, RUN_ID, P2_RUN_START_NS, LOG_PATH,
-FRAME_LOG_DIR, STATE_DIR, ETH_STATS_IFACE, ADAS_LOG, ADAS_CONTROL_PATH,
-ADAS_SEQUENCE_LOG_DIR.
+FRAME_LOG_DIR, STATE_DIR, ETH_STATS_IFACE, PARAM_SET_TIMEOUT_SEC,
+ADAS_LOG, ADAS_CONTROL_PATH, ADAS_SEQUENCE_LOG_DIR.
 EOF
 }
 
@@ -104,6 +108,29 @@ require_ros2() {
     echo "ros2 command not found. Source the ROS 2 and workspace setup first." >&2
     exit 1
   fi
+}
+
+set_param() {
+  local node="$1"
+  local param="$2"
+  local value="$3"
+
+  if ! timeout "${PARAM_SET_TIMEOUT_SEC}s" ros2 param set "${node}" "${param}" "${value}"; then
+    echo "Error: failed to set ${node} ${param}=${value}" >&2
+    return 1
+  fi
+}
+
+set_param_best_effort() {
+  local node="$1"
+  local param="$2"
+  local value="$3"
+
+  if ! set_param "${node}" "${param}" "${value}"; then
+    echo "Warning: failed to set ${node} ${param}=${value}" >&2
+    return 1
+  fi
+  return 0
 }
 
 validate_duration() {
@@ -243,6 +270,7 @@ write_state() {
     printf 'LOG_PATH=%q\n' "${LOG_PATH}"
     printf 'FRAME_LOG_DIR=%q\n' "${FRAME_LOG_DIR}"
     printf 'ETH_STATS_IFACE=%q\n' "${ETH_STATS_IFACE}"
+    printf 'PARAM_SET_TIMEOUT_SEC=%q\n' "${PARAM_SET_TIMEOUT_SEC}"
     printf 'ADAS_LOG=%q\n' "${ADAS_LOG}"
     printf 'ADAS_CONTROL_PATH=%q\n' "${ADAS_CONTROL_PATH}"
     printf 'ADAS_SEQUENCE_LOG_DIR=%q\n' "${ADAS_SEQUENCE_LOG_DIR}"
@@ -300,14 +328,17 @@ cmd_start() {
   require_ros2
   make_run_paths
 
+  echo "P2 start: run_id=${RUN_ID}, duration=${DURATION:-manual}, out_dir=${OUT_DIR}"
+  echo "P2 start: capturing SNMP before snapshot"
   capture_snmp before >/dev/null
   capture_eth_stats before >/dev/null
 
+  echo "P2 start: configuring camera P2 parameters"
   if [[ -n "${NODE}" ]]; then
-    ros2 param set "${NODE}" p2_log_run_id "${RUN_ID}"
-    ros2 param set "${NODE}" p2_log_start_ns "${P2_RUN_START_NS}"
-    ros2 param set "${NODE}" p2_log_path "${LOG_PATH}"
-    ros2 param set "${NODE}" p2_log_enabled true
+    set_param "${NODE}" p2_log_run_id "${RUN_ID}"
+    set_param "${NODE}" p2_log_start_ns "${P2_RUN_START_NS}"
+    set_param "${NODE}" p2_log_path "${LOG_PATH}"
+    set_param "${NODE}" p2_log_enabled true
   else
     local manifest="${OUT_DIR}/frame_id_logs.csv"
     printf 'node,topic,path\n' > "${manifest}"
@@ -318,13 +349,16 @@ cmd_start() {
       topic="${CAMERA_ENTRY_TOPIC}"
       safe_topic="$(safe_log_name "${topic}")"
       log_path="${FRAME_LOG_DIR}/${safe_topic}.csv"
-      ros2 param set "${node}" p2_log_run_id "${RUN_ID}"
-      ros2 param set "${node}" p2_log_start_ns "${P2_RUN_START_NS}"
-      ros2 param set "${node}" p2_log_path "${log_path}"
-      ros2 param set "${node}" p2_log_enabled true
+      set_param "${node}" p2_log_run_id "${RUN_ID}"
+      set_param "${node}" p2_log_start_ns "${P2_RUN_START_NS}"
+      set_param "${node}" p2_log_path "${log_path}"
+      set_param "${node}" p2_log_enabled true
       printf '%s,%s,%s\n' "${node}" "${topic}" "${log_path}" >> "${manifest}"
     done
   fi
+  echo "P2 start: camera P2 parameters enabled"
+
+  echo "P2 start: updating ADAS control file"
   write_adas_control 1
   write_metadata_start
 
@@ -364,18 +398,22 @@ cmd_stop() {
     read_state
   fi
 
+  echo "P2 stop: disabling camera P2 logging"
+  local stop_status=0
   if [[ -n "${NODE}" ]]; then
-    ros2 param set "${NODE}" p2_log_enabled false
+    set_param_best_effort "${NODE}" p2_log_enabled false || stop_status=1
   else
     local entry node
     for entry in ${CAMERA_NODES}; do
       parse_camera_entry "${entry}"
       node="${CAMERA_ENTRY_NODE}"
-      ros2 param set "${node}" p2_log_enabled false
+      set_param_best_effort "${node}" p2_log_enabled false || stop_status=1
     done
   fi
+  echo "P2 stop: updating ADAS control file"
   write_adas_control 0
   write_metadata_stop
+  echo "P2 stop: capturing SNMP after snapshot"
   capture_snmp after >/dev/null
   capture_eth_stats after >/dev/null
   rm -f "${STATE_FILE}"
@@ -393,12 +431,16 @@ cmd_stop() {
   if [[ "${ADAS_LOG}" != "off" ]]; then
     echo "ADAS seq CSV directory: ${ADAS_SEQUENCE_LOG_DIR}"
   fi
+  if [[ "${stop_status}" != "0" ]]; then
+    echo "P2 stop completed with ros2 param warnings." >&2
+  fi
 }
 
 cmd_run() {
   validate_duration
 
   cmd_start
+  echo "P2 run: waiting for ${DURATION}"
   RUN_ACTIVE=1
   trap 'status=$?; trap - EXIT INT TERM; if [[ "${RUN_ACTIVE}" == "1" ]]; then echo "Stopping P2 log after interrupted run..." >&2; cmd_stop || true; fi; exit "${status}"' EXIT INT TERM
 
@@ -457,6 +499,10 @@ while [[ $# -gt 0 ]]; do
     --no-eth-stats)
       ETH_STATS_IFACE=""
       shift
+      ;;
+    --param-set-timeout-sec)
+      PARAM_SET_TIMEOUT_SEC="$2"
+      shift 2
       ;;
     --adas-log)
       ADAS_LOG="$2"
