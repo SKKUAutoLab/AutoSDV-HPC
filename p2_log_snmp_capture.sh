@@ -9,7 +9,6 @@ P2_RUN_START_NS="${P2_RUN_START_NS:-}"
 LOG_PATH="${LOG_PATH:-}"
 FRAME_LOG_DIR="${FRAME_LOG_DIR:-}"
 STATE_DIR="${STATE_DIR:-${OUT_ROOT}/.p2_log_snmp_state}"
-BE_STATS_PATH="${BE_STATS_PATH:-${AUTOSDV_BE_STATS_PATH:-/tmp/autosdv_be_rx_stats.csv}}"
 ETH_STATS_IFACE="${ETH_STATS_IFACE:-}"
 ADAS_LOG="${ADAS_LOG:-auto}"
 ADAS_CONTROL_PATH="${ADAS_CONTROL_PATH:-/tmp/autosdv_adas_p2_control.env}"
@@ -26,7 +25,7 @@ Usage: p2_log_snmp_capture.sh start|stop|run [options]
 Wraps P2 ROS parameter toggling with /proc/net/snmp snapshots.
 
 Commands:
-  start   Save proc_net_snmp.before.txt, set p2_log_path, then enable P2 log.
+  start   Save proc_net_snmp.before.txt, configure P2 parameters, then enable P2 log.
   stop    Save proc_net_snmp.after.txt, then disable P2 log.
   run     start, sleep for --duration, then stop.
 
@@ -46,10 +45,6 @@ Options:
                       (single-node default: OUT_DIR/hpc_image_receive_p2.csv)
   --frame-log-dir DIR Directory for per-camera frame_id CSV files
                       (multi-camera default: OUT_DIR/frame_id)
-  --be-stats-path FILE
-                      BE subscriber snapshot CSV to capture before/after
-                      (default: AUTOSDV_BE_STATS_PATH or /tmp/autosdv_be_rx_stats.csv)
-  --no-be-stats       Do not capture BE subscriber snapshot CSV
   --eth-stats-iface IFACE
                       Optional interface for ethtool -S before/after capture
                       (default: disabled)
@@ -70,7 +65,7 @@ Options:
 
 Environment variables with the same names as the defaults are also accepted:
 NODE, CAMERA_NODES, OUT_ROOT, RUN_ID, P2_RUN_START_NS, LOG_PATH,
-FRAME_LOG_DIR, STATE_DIR, BE_STATS_PATH, ETH_STATS_IFACE, ADAS_LOG, ADAS_CONTROL_PATH,
+FRAME_LOG_DIR, STATE_DIR, ETH_STATS_IFACE, ADAS_LOG, ADAS_CONTROL_PATH,
 ADAS_SEQUENCE_LOG_DIR.
 EOF
 }
@@ -107,6 +102,38 @@ parse_camera_entry() {
 require_ros2() {
   if ! command -v ros2 >/dev/null 2>&1; then
     echo "ros2 command not found. Source the ROS 2 and workspace setup first." >&2
+    exit 1
+  fi
+}
+
+PARAM_SET_PIDS=()
+PARAM_SET_LABELS=()
+
+param_set_bg() {
+  local node="$1"
+  local param="$2"
+  local value="$3"
+
+  ros2 param set "${node}" "${param}" "${value}" &
+  PARAM_SET_PIDS+=("$!")
+  PARAM_SET_LABELS+=("${node} ${param}")
+}
+
+wait_param_sets() {
+  local status=0
+  local index
+
+  for index in "${!PARAM_SET_PIDS[@]}"; do
+    if ! wait "${PARAM_SET_PIDS[${index}]}"; then
+      echo "ros2 param set failed: ${PARAM_SET_LABELS[${index}]}" >&2
+      status=1
+    fi
+  done
+
+  PARAM_SET_PIDS=()
+  PARAM_SET_LABELS=()
+
+  if [[ "${status}" != "0" ]]; then
     exit 1
   fi
 }
@@ -183,24 +210,6 @@ capture_snmp() {
   echo "${target}"
 }
 
-capture_be_stats() {
-  local phase="$1"
-  local target="${OUT_DIR}/be_rx_stats.${phase}.csv"
-
-  if [[ -z "${BE_STATS_PATH}" ]]; then
-    return 0
-  fi
-
-  if [[ ! -r "${BE_STATS_PATH}" ]]; then
-    echo "BE stats snapshot not readable: ${BE_STATS_PATH}" >&2
-    return 0
-  fi
-
-  cp "${BE_STATS_PATH}" "${target}"
-  date --iso-8601=ns > "${OUT_DIR}/be_rx_stats.${phase}.timestamp.txt"
-  echo "${target}"
-}
-
 capture_eth_stats() {
   local phase="$1"
   local target="${OUT_DIR}/ethtool_stats.${phase}.txt"
@@ -226,38 +235,6 @@ capture_eth_stats() {
   echo "${target}"
 }
 
-write_be_stats_delta() {
-  local before="${OUT_DIR}/be_rx_stats.before.csv"
-  local after="${OUT_DIR}/be_rx_stats.after.csv"
-  local target="${OUT_DIR}/be_rx_stats.delta.csv"
-
-  if [[ ! -r "${before}" || ! -r "${after}" ]]; then
-    return 0
-  fi
-
-  awk -F, '
-    BEGIN {
-      OFS=",";
-      print "topic","received_delta","sequence_gap_delta","invalid_magic_delta","received_before","received_after","sequence_gap_before","sequence_gap_after","invalid_magic_before","invalid_magic_after";
-    }
-    NR == FNR {
-      if (FNR > 1) {
-        recv[$1] = $2;
-        gap[$1] = $3;
-        bad[$1] = $4;
-      }
-      next;
-    }
-    FNR > 1 {
-      topic = $1;
-      before_recv = (topic in recv) ? recv[topic] : 0;
-      before_gap = (topic in gap) ? gap[topic] : 0;
-      before_bad = (topic in bad) ? bad[topic] : 0;
-      print topic, $2 - before_recv, $3 - before_gap, $4 - before_bad, before_recv, $2, before_gap, $3, before_bad, $4;
-    }
-  ' "${before}" "${after}" > "${target}"
-}
-
 write_metadata_start() {
   {
     if [[ -n "${NODE}" ]]; then
@@ -272,7 +249,6 @@ write_metadata_start() {
     if [[ -n "${LOG_PATH}" ]]; then
       echo "log_path=${LOG_PATH}"
     fi
-    echo "be_stats_path=${BE_STATS_PATH}"
     echo "eth_stats_iface=${ETH_STATS_IFACE}"
     echo "adas_log=${ADAS_LOG}"
     echo "adas_control_path=${ADAS_CONTROL_PATH}"
@@ -298,7 +274,6 @@ write_state() {
     printf 'P2_RUN_START_NS=%q\n' "${P2_RUN_START_NS}"
     printf 'LOG_PATH=%q\n' "${LOG_PATH}"
     printf 'FRAME_LOG_DIR=%q\n' "${FRAME_LOG_DIR}"
-    printf 'BE_STATS_PATH=%q\n' "${BE_STATS_PATH}"
     printf 'ETH_STATS_IFACE=%q\n' "${ETH_STATS_IFACE}"
     printf 'ADAS_LOG=%q\n' "${ADAS_LOG}"
     printf 'ADAS_CONTROL_PATH=%q\n' "${ADAS_CONTROL_PATH}"
@@ -358,14 +333,15 @@ cmd_start() {
   make_run_paths
 
   capture_snmp before >/dev/null
-  capture_be_stats before >/dev/null
   capture_eth_stats before >/dev/null
 
   if [[ -n "${NODE}" ]]; then
-    ros2 param set "${NODE}" p2_log_run_id "${RUN_ID}"
-    ros2 param set "${NODE}" p2_log_start_ns "${P2_RUN_START_NS}"
-    ros2 param set "${NODE}" p2_log_path "${LOG_PATH}"
-    ros2 param set "${NODE}" p2_log_enabled true
+    param_set_bg "${NODE}" p2_log_run_id "${RUN_ID}"
+    param_set_bg "${NODE}" p2_log_start_ns "${P2_RUN_START_NS}"
+    param_set_bg "${NODE}" p2_log_path "${LOG_PATH}"
+    wait_param_sets
+    param_set_bg "${NODE}" p2_log_enabled true
+    wait_param_sets
   else
     local manifest="${OUT_DIR}/frame_id_logs.csv"
     printf 'node,topic,path\n' > "${manifest}"
@@ -376,12 +352,19 @@ cmd_start() {
       topic="${CAMERA_ENTRY_TOPIC}"
       safe_topic="$(safe_log_name "${topic}")"
       log_path="${FRAME_LOG_DIR}/${safe_topic}.csv"
-      ros2 param set "${node}" p2_log_run_id "${RUN_ID}"
-      ros2 param set "${node}" p2_log_start_ns "${P2_RUN_START_NS}"
-      ros2 param set "${node}" p2_log_path "${log_path}"
-      ros2 param set "${node}" p2_log_enabled true
+      param_set_bg "${node}" p2_log_run_id "${RUN_ID}"
+      param_set_bg "${node}" p2_log_start_ns "${P2_RUN_START_NS}"
+      param_set_bg "${node}" p2_log_path "${log_path}"
       printf '%s,%s,%s\n' "${node}" "${topic}" "${log_path}" >> "${manifest}"
     done
+    wait_param_sets
+
+    for entry in ${CAMERA_NODES}; do
+      parse_camera_entry "${entry}"
+      node="${CAMERA_ENTRY_NODE}"
+      param_set_bg "${node}" p2_log_enabled true
+    done
+    wait_param_sets
   fi
   write_adas_control 1
   write_metadata_start
@@ -400,9 +383,6 @@ cmd_start() {
     echo "ADAS control file: ${ADAS_CONTROL_PATH}"
   fi
   echo "SNMP before: ${OUT_DIR}/proc_net_snmp.before.txt"
-  if [[ -r "${OUT_DIR}/be_rx_stats.before.csv" ]]; then
-    echo "BE stats before: ${OUT_DIR}/be_rx_stats.before.csv"
-  fi
   if [[ -r "${OUT_DIR}/ethtool_stats.before.txt" ]]; then
     echo "ethtool stats before: ${OUT_DIR}/ethtool_stats.before.txt"
   fi
@@ -426,21 +406,21 @@ cmd_stop() {
   fi
 
   if [[ -n "${NODE}" ]]; then
-    ros2 param set "${NODE}" p2_log_enabled false
+    param_set_bg "${NODE}" p2_log_enabled false
+    wait_param_sets
   else
     local entry node
     for entry in ${CAMERA_NODES}; do
       parse_camera_entry "${entry}"
       node="${CAMERA_ENTRY_NODE}"
-      ros2 param set "${node}" p2_log_enabled false
+      param_set_bg "${node}" p2_log_enabled false
     done
+    wait_param_sets
   fi
   write_adas_control 0
   write_metadata_stop
   capture_snmp after >/dev/null
-  capture_be_stats after >/dev/null
   capture_eth_stats after >/dev/null
-  write_be_stats_delta
   rm -f "${STATE_FILE}"
 
   if [[ -n "${NODE}" ]]; then
@@ -450,12 +430,6 @@ cmd_stop() {
     echo "P2 CSV directory: ${FRAME_LOG_DIR}"
   fi
   echo "SNMP after: ${OUT_DIR}/proc_net_snmp.after.txt"
-  if [[ -r "${OUT_DIR}/be_rx_stats.after.csv" ]]; then
-    echo "BE stats after: ${OUT_DIR}/be_rx_stats.after.csv"
-  fi
-  if [[ -r "${OUT_DIR}/be_rx_stats.delta.csv" ]]; then
-    echo "BE stats delta: ${OUT_DIR}/be_rx_stats.delta.csv"
-  fi
   if [[ -r "${OUT_DIR}/ethtool_stats.after.txt" ]]; then
     echo "ethtool stats after: ${OUT_DIR}/ethtool_stats.after.txt"
   fi
@@ -518,14 +492,6 @@ while [[ $# -gt 0 ]]; do
     --frame-log-dir)
       FRAME_LOG_DIR="$2"
       shift 2
-      ;;
-    --be-stats-path)
-      BE_STATS_PATH="$2"
-      shift 2
-      ;;
-    --no-be-stats)
-      BE_STATS_PATH=""
-      shift
       ;;
     --eth-stats-iface)
       ETH_STATS_IFACE="$2"
