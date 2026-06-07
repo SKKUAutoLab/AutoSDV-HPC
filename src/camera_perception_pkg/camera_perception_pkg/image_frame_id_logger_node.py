@@ -1,4 +1,5 @@
 import os
+import re
 
 import rclpy
 from rclpy.node import Node
@@ -19,12 +20,16 @@ class ImageFrameIdLogger(Node):
 
         self.declare_parameter('input_topic', 'image_01_raw')
         self.declare_parameter('log_path', '')
+        self.declare_parameter('log_dir', '')
         self.declare_parameter('run_id', 'run_01')
         self.declare_parameter('flush_every', 1)
         self.declare_parameter('log_enabled', True)
 
         self.input_topic = self.get_parameter('input_topic').value
-        self.log_path = self._resolve_log_path(self.get_parameter('log_path').value)
+        self.log_path = self._resolve_log_path(
+            self.get_parameter('log_path').value,
+            self.get_parameter('log_dir').value,
+            self.input_topic)
         self.run_id = self.get_parameter('run_id').value
         self.flush_every = max(1, int(self.get_parameter('flush_every').value))
         self.log_enabled = self.get_parameter('log_enabled').value
@@ -61,12 +66,25 @@ class ImageFrameIdLogger(Node):
             self.get_logger().info(
                 f'Frame ID subscribe-only started: topic={self.input_topic}')
 
-    def _resolve_log_path(self, path):
+    def _resolve_log_path(self, path, log_dir, topic):
         if path:
-            return path
-        return os.environ.get(
-            'AUTOSDV_P2_LOG_PATH',
-            '/tmp/hpc_image_receive_p2.csv')
+            return os.path.abspath(os.path.expanduser(path))
+
+        if not log_dir:
+            log_dir = os.environ.get('AUTOSDV_P2_LOG_DIR', '')
+        if not log_dir:
+            env_path = os.environ.get('AUTOSDV_P2_LOG_PATH', '')
+            if env_path:
+                log_dir = os.path.dirname(os.path.abspath(os.path.expanduser(env_path)))
+        if not log_dir:
+            log_dir = '/tmp'
+
+        topic_name = re.sub(r'[^A-Za-z0-9_.-]+', '_', topic.strip('/'))
+        if not topic_name:
+            topic_name = 'image_frame_id'
+        return os.path.join(
+            os.path.abspath(os.path.expanduser(log_dir)),
+            f'{topic_name}.csv')
 
     def listener_callback(self, msg):
         self.received_count += 1

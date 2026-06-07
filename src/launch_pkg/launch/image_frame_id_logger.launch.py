@@ -23,11 +23,11 @@ def generate_launch_description():
     launch_pkg_share = get_package_share_directory('launch_pkg')
 
     input_topic = LaunchConfiguration('input_topic')
-    log_path = LaunchConfiguration('log_path')
+    log_dir = LaunchConfiguration('log_dir')
     run_id = LaunchConfiguration('run_id')
     flush_every = LaunchConfiguration('flush_every')
 
-    def logger_node(image_index, participant_id, topic, log_enabled, node_name):
+    def logger_node(image_index, participant_id, topic, node_name):
         return Node(
             package='camera_perception_pkg',
             executable='image_frame_id_logger_node',
@@ -39,10 +39,10 @@ def generate_launch_description():
                 participant_id),
             parameters=[{
                 'input_topic': topic,
-                'log_path': log_path,
+                'log_dir': log_dir,
                 'run_id': run_id,
                 'flush_every': ParameterValue(flush_every, value_type=int),
-                'log_enabled': log_enabled,
+                'log_enabled': True,
             }],
         )
 
@@ -51,10 +51,15 @@ def generate_launch_description():
             'input_topic',
             default_value='image_01_raw'),
         DeclareLaunchArgument(
-            'log_path',
+            'log_dir',
             default_value=os.environ.get(
-                'AUTOSDV_P2_LOG_PATH',
-                '/home/autolab/update/P2_log/hpc_image_receive_p2.csv')),
+                'AUTOSDV_P2_LOG_DIR',
+                os.path.dirname(os.environ.get(
+                    'AUTOSDV_P2_LOG_PATH',
+                    '/home/autolab/update/P2_log/hpc_image_receive_p2.csv')))),
+        DeclareLaunchArgument(
+            'log_path',
+            default_value=''),
         DeclareLaunchArgument(
             'run_id',
             default_value='run_01'),
@@ -65,30 +70,25 @@ def generate_launch_description():
             1,
             20,
             input_topic,
-            True,
             'image_frame_id_logger_node_1'),
         logger_node(
             2,
             21,
             'image_02_raw',
-            False,
             'image_frame_id_logger_node_2'),
         logger_node(
             3,
             22,
             'image_03_raw',
-            False,
             'image_frame_id_logger_node_3'),
         logger_node(
             4,
             23,
             'image_04_raw',
-            False,
             'image_frame_id_logger_node_4'),
         logger_node(
             5,
             24,
             'image_05_raw',
-            False,
             'image_frame_id_logger_node_5'),
     ])

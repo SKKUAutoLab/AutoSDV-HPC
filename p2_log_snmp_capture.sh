@@ -17,12 +17,11 @@ usage() {
   cat <<'EOF'
 Usage: p2_log_snmp_capture.sh start|stop|run [options]
 
-Wraps P2 ROS parameter toggling with /proc/net/snmp and sockstat snapshots.
+Wraps P2 ROS parameter toggling with /proc/net/snmp snapshots.
 
 Commands:
-  start   Save proc_net_snmp.before.txt and sockstat.before.txt, set
-          p2_log_path, then enable P2 log.
-  stop    Save proc_net_snmp.after.txt and sockstat.after.txt, then disable P2 log.
+  start   Save proc_net_snmp.before.txt, set p2_log_path, then enable P2 log.
+  stop    Save proc_net_snmp.after.txt, then disable P2 log.
   run     start, sleep for --duration, then stop.
 
 Options:
@@ -108,20 +107,6 @@ capture_snmp() {
 
   cat /proc/net/snmp > "${target}"
   date --iso-8601=ns > "${OUT_DIR}/proc_net_snmp.${phase}.timestamp.txt"
-  echo "${target}"
-}
-
-capture_sockstat() {
-  local phase="$1"
-  local target="${OUT_DIR}/sockstat.${phase}.txt"
-
-  if [[ ! -r /proc/net/sockstat ]]; then
-    echo "Cannot read /proc/net/sockstat" >&2
-    exit 1
-  fi
-
-  cat /proc/net/sockstat > "${target}"
-  date --iso-8601=ns > "${OUT_DIR}/sockstat.${phase}.timestamp.txt"
   echo "${target}"
 }
 
@@ -245,7 +230,6 @@ cmd_start() {
   make_run_paths
 
   capture_snmp before >/dev/null
-  capture_sockstat before >/dev/null
   capture_be_stats before >/dev/null
   capture_eth_stats before >/dev/null
 
@@ -257,7 +241,6 @@ cmd_start() {
   echo "P2 log enabled on ${NODE}"
   echo "P2 CSV: ${LOG_PATH}"
   echo "SNMP before: ${OUT_DIR}/proc_net_snmp.before.txt"
-  echo "sockstat before: ${OUT_DIR}/sockstat.before.txt"
   if [[ -r "${OUT_DIR}/be_rx_stats.before.csv" ]]; then
     echo "BE stats before: ${OUT_DIR}/be_rx_stats.before.csv"
   fi
@@ -279,7 +262,6 @@ cmd_stop() {
   ros2 param set "${NODE}" p2_log_enabled false
   write_metadata_stop
   capture_snmp after >/dev/null
-  capture_sockstat after >/dev/null
   capture_be_stats after >/dev/null
   capture_eth_stats after >/dev/null
   write_be_stats_delta
@@ -287,7 +269,6 @@ cmd_stop() {
 
   echo "P2 log disabled on ${NODE}"
   echo "SNMP after: ${OUT_DIR}/proc_net_snmp.after.txt"
-  echo "sockstat after: ${OUT_DIR}/sockstat.after.txt"
   if [[ -r "${OUT_DIR}/be_rx_stats.after.csv" ]]; then
     echo "BE stats after: ${OUT_DIR}/be_rx_stats.after.csv"
   fi
