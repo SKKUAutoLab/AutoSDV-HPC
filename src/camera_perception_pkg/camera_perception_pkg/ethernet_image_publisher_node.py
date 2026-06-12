@@ -13,8 +13,8 @@ from rclpy.qos import QoSProfile, QoSReliabilityPolicy, QoSHistoryPolicy, QoSDur
 from .p2_image_receive_logger import P2ImageReceiveCsvLogger
 
 
-class H264RtpDecoder:
-    def __init__(self, timeout_ms=5):
+class H264Decoder:
+    def __init__(self, timeout_ms=20):
         import gi
 
         gi.require_version('Gst', '1.0')
@@ -25,12 +25,9 @@ class H264RtpDecoder:
         Gst.init(None)
 
         decoder = os.environ.get('AUTOSDV_H264_GST_DECODER', 'avdec_h264')
-        payload_type = os.environ.get('AUTOSDV_H264_RTP_PAYLOAD_TYPE', '96')
         pipeline_desc = (
             'appsrc name=src is-live=true format=time do-timestamp=true block=false '
-            'caps=application/x-rtp,media=video,encoding-name=H264,'
-            f'payload={payload_type},clock-rate=90000 '
-            '! rtph264depay '
+            'caps=video/x-h264,stream-format=byte-stream,alignment=au '
             '! h264parse '
             f'! {decoder} '
             '! videoconvert '
@@ -80,7 +77,10 @@ class DDSImageListener(Node):
         self.declare_parameter('p2_log_path', '')
         self.declare_parameter('p2_log_run_id', '')
         self.declare_parameter('p2_log_start_ns', 0)
-        self.declare_parameter('h264_decode_timeout_ms', 5)
+        self.declare_parameter('h264_decode_timeout_ms', 20)
+        self.declare_parameter(
+            'encoded_qos_depth',
+            int(os.environ.get('AUTOSDV_ENCODED_QOS_DEPTH', '1')))
         # 파라미터 값을 가져옵니다.
         topic_name = self.get_parameter('image').get_parameter_value().string_value
         self.show_image = self.get_parameter('show_image').get_parameter_value().bool_value
@@ -97,18 +97,26 @@ class DDSImageListener(Node):
         self.h264_decode_timeout_ms = (
             self.get_parameter('h264_decode_timeout_ms').get_parameter_value().integer_value
         )
+        self.encoded_qos_depth = max(
+            1,
+            self.get_parameter('encoded_qos_depth').get_parameter_value().integer_value)
         self.image_window_name = f'DDS Image Viewer ({topic_name})'
         self.image_window_created = False
         self.h264_decoder = None
 
-        qos_profile = QoSProfile(
+        output_qos_profile = QoSProfile(
             reliability=QoSReliabilityPolicy.BEST_EFFORT,
             history=QoSHistoryPolicy.KEEP_LAST, depth=1,
             durability=QoSDurabilityPolicy.VOLATILE
         )
+        input_qos_profile = QoSProfile(
+            reliability=QoSReliabilityPolicy.BEST_EFFORT,
+            history=QoSHistoryPolicy.KEEP_LAST, depth=self.encoded_qos_depth,
+            durability=QoSDurabilityPolicy.VOLATILE
+        )
 
         # 가져온 파라미터 값(topic_name)을 사용하여 퍼블리셔를 생성합니다.
-        self.publisher_ = self.create_publisher(Image, topic_name, qos_profile)
+        self.publisher_ = self.create_publisher(Image, topic_name, output_qos_profile)
         self.get_logger().info(f'Publishing to topic: {topic_name}')
 
         self.input_topic_name = topic_name + '_raw'
@@ -128,7 +136,7 @@ class DDSImageListener(Node):
             Image,
             self.input_topic_name,
             self.listener_callback,
-            qos_profile
+            input_qos_profile
         )
         self.get_logger().info('DDS Image Listener Node has started.')
 
@@ -261,23 +269,23 @@ class DDSImageListener(Node):
                 except Exception as close_exc:
                     self.get_logger().error(f'P2 image receive logger close failed: {close_exc}')
 
-    def _is_h264_rtp(self, encoding):
+    def _is_h264(self, encoding):
         normalized = encoding.strip().lower().replace('-', '_')
-        return normalized in ('h264', 'h264_rtp', 'rtp/h264', 'h264/rtp')
+        return normalized in ('h264', 'h264_frame')
 
-    def _decode_h264_rtp(self, msg):
+    def _decode_h264(self, msg):
         if self.h264_decoder is None:
-            self.h264_decoder = H264RtpDecoder(self.h264_decode_timeout_ms)
-            self.get_logger().info('H.264/RTP decoder initialized.')
-        packet = bytes(msg.data)
-        return self.h264_decoder.push_packet(packet)
+            self.h264_decoder = H264Decoder(self.h264_decode_timeout_ms)
+            self.get_logger().info('H.264 decoder initialized.')
+        access_unit = bytes(msg.data)
+        return self.h264_decoder.push_packet(access_unit)
 
     def listener_callback(self, msg):
         try:
             self._write_p2_log(msg)
 
-            if self._is_h264_rtp(msg.encoding):
-                cv_image = self._decode_h264_rtp(msg)
+            if self._is_h264(msg.encoding):
+                cv_image = self._decode_h264(msg)
                 if cv_image is None:
                     return
             else:
