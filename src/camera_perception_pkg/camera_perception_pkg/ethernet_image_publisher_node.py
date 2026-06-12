@@ -13,6 +13,61 @@ from rclpy.qos import QoSProfile, QoSReliabilityPolicy, QoSHistoryPolicy, QoSDur
 from .p2_image_receive_logger import P2ImageReceiveCsvLogger
 
 
+class H264RtpDecoder:
+    def __init__(self, timeout_ms=5):
+        import gi
+
+        gi.require_version('Gst', '1.0')
+        from gi.repository import Gst
+
+        self.Gst = Gst
+        self.timeout_ns = int(timeout_ms * 1_000_000)
+        Gst.init(None)
+
+        decoder = os.environ.get('AUTOSDV_H264_GST_DECODER', 'avdec_h264')
+        payload_type = os.environ.get('AUTOSDV_H264_RTP_PAYLOAD_TYPE', '96')
+        pipeline_desc = (
+            'appsrc name=src is-live=true format=time do-timestamp=true block=false '
+            'caps=application/x-rtp,media=video,encoding-name=H264,'
+            f'payload={payload_type},clock-rate=90000 '
+            '! rtph264depay '
+            '! h264parse '
+            f'! {decoder} '
+            '! videoconvert '
+            '! video/x-raw,format=BGR '
+            '! appsink name=sink emit-signals=false sync=false max-buffers=1 drop=true'
+        )
+        self.pipeline = Gst.parse_launch(pipeline_desc)
+        self.appsrc = self.pipeline.get_by_name('src')
+        self.appsink = self.pipeline.get_by_name('sink')
+        self.pipeline.set_state(Gst.State.PLAYING)
+
+    def push_packet(self, packet):
+        Gst = self.Gst
+        buffer = Gst.Buffer.new_allocate(None, len(packet), None)
+        buffer.fill(0, packet)
+        result = self.appsrc.emit('push-buffer', buffer)
+        if result != Gst.FlowReturn.OK:
+            raise RuntimeError(f'GStreamer push-buffer failed: {result.value_name}')
+
+        latest_frame = None
+        while True:
+            sample = self.appsink.emit('try-pull-sample', self.timeout_ns)
+            if sample is None:
+                return latest_frame
+
+            caps = sample.get_caps().get_structure(0)
+            width = caps.get_value('width')
+            height = caps.get_value('height')
+            frame_buffer = sample.get_buffer()
+            frame_bytes = frame_buffer.extract_dup(0, frame_buffer.get_size())
+            latest_frame = np.frombuffer(frame_bytes, dtype=np.uint8).reshape(
+                (height, width, 3)).copy()
+
+    def close(self):
+        self.pipeline.set_state(self.Gst.State.NULL)
+
+
 class DDSImageListener(Node):
     def __init__(self):
         super().__init__('dds_image_publisher')
@@ -25,6 +80,7 @@ class DDSImageListener(Node):
         self.declare_parameter('p2_log_path', '')
         self.declare_parameter('p2_log_run_id', '')
         self.declare_parameter('p2_log_start_ns', 0)
+        self.declare_parameter('h264_decode_timeout_ms', 5)
         # 파라미터 값을 가져옵니다.
         topic_name = self.get_parameter('image').get_parameter_value().string_value
         self.show_image = self.get_parameter('show_image').get_parameter_value().bool_value
@@ -38,8 +94,12 @@ class DDSImageListener(Node):
         self.p2_log_start_ns = (
             self.get_parameter('p2_log_start_ns').get_parameter_value().integer_value
         )
+        self.h264_decode_timeout_ms = (
+            self.get_parameter('h264_decode_timeout_ms').get_parameter_value().integer_value
+        )
         self.image_window_name = f'DDS Image Viewer ({topic_name})'
         self.image_window_created = False
+        self.h264_decoder = None
 
         qos_profile = QoSProfile(
             reliability=QoSReliabilityPolicy.BEST_EFFORT,
@@ -151,6 +211,12 @@ class DDSImageListener(Node):
                         successful=False,
                         reason='p2_log_start_ns must be an integer')
                 p2_log_start_ns = param.value
+            elif param.name == 'h264_decode_timeout_ms':
+                if param.type_ != Parameter.Type.INTEGER:
+                    return SetParametersResult(
+                        successful=False,
+                        reason='h264_decode_timeout_ms must be an integer')
+                self.h264_decode_timeout_ms = param.value
 
         try:
             if show_image != self.show_image:
@@ -195,16 +261,32 @@ class DDSImageListener(Node):
                 except Exception as close_exc:
                     self.get_logger().error(f'P2 image receive logger close failed: {close_exc}')
 
+    def _is_h264_rtp(self, encoding):
+        normalized = encoding.strip().lower().replace('-', '_')
+        return normalized in ('h264', 'h264_rtp', 'rtp/h264', 'h264/rtp')
+
+    def _decode_h264_rtp(self, msg):
+        if self.h264_decoder is None:
+            self.h264_decoder = H264RtpDecoder(self.h264_decode_timeout_ms)
+            self.get_logger().info('H.264/RTP decoder initialized.')
+        packet = bytes(msg.data)
+        return self.h264_decoder.push_packet(packet)
+
     def listener_callback(self, msg):
         try:
             self._write_p2_log(msg)
 
-            # ROS 2 이미지 메시지에서 직접 JPEG 데이터를 디코딩합니다.
-            jpeg_data = np.frombuffer(msg.data, dtype=np.uint8)
-            cv_image = cv2.imdecode(jpeg_data, cv2.IMREAD_COLOR)
+            if self._is_h264_rtp(msg.encoding):
+                cv_image = self._decode_h264_rtp(msg)
+                if cv_image is None:
+                    return
+            else:
+                # ROS 2 이미지 메시지에서 직접 JPEG 데이터를 디코딩합니다.
+                jpeg_data = np.frombuffer(msg.data, dtype=np.uint8)
+                cv_image = cv2.imdecode(jpeg_data, cv2.IMREAD_COLOR)
 
             if cv_image is None:
-                self.get_logger().error('Failed to decode JPEG image.')
+                self.get_logger().error(f'Failed to decode image encoding={msg.encoding}.')
                 return
 
             if self.show_image:
@@ -231,6 +313,9 @@ class DDSImageListener(Node):
         if self.image_window_created:
             cv2.destroyWindow(self.image_window_name)
             self.image_window_created = False
+        if self.h264_decoder is not None:
+            self.h264_decoder.close()
+            self.h264_decoder = None
         super().destroy_node()
 
 
