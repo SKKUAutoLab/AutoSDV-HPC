@@ -9,6 +9,7 @@ from ament_index_python.packages import (
     get_package_prefix,
     get_package_share_directory,
 )
+from launch_pkg.rmw_profile import profile_env
 from PyQt5.QtCore import (
     pyqtSignal,
     QObject,
@@ -193,9 +194,10 @@ class NodeProcessManager(QObject):
         environment = QProcessEnvironment.systemEnvironment()
         if spec.dds_profile:
             launch_share = get_package_share_directory('launch_pkg')
-            profile = os.path.join(launch_share, 'config', spec.dds_profile)
-            environment.insert('FASTRTPS_DEFAULT_PROFILES_FILE', profile)
-            environment.insert('FASTDDS_DEFAULT_PROFILES_FILE', profile)
+            # nodes.yaml names the Fast DDS profile; rmw_profile maps it to the
+            # selected middleware's equivalent.
+            for name, value in profile_env(launch_share, spec.dds_profile).items():
+                environment.insert(name, value)
         process.setProcessEnvironment(environment)
 
         arguments = [

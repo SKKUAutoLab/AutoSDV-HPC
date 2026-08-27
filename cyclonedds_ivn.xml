@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Cyclone DDS counterpart of fastdds_whitelist.xml, used when the HPC runs with
+  RMW_IMPLEMENTATION=rmw_cyclonedds_cpp.
+
+  Mapping from the Fast DDS profile:
+    interfaceWhiteList 10.0.0.10 -> General/Interfaces/NetworkInterface[@address]
+    initialPeersList (ZCU1-4)    -> Discovery/Peers/Peer
+    useBuiltinTransports=false   -> restricting Interfaces to the wired IVN
+
+  127.0.0.1 is not listed as a second interface: node-to-node traffic on this
+  host addresses 10.0.0.10, which the kernel loops back, and multicast on
+  enp4s0 is delivered to local sockets as well.
+
+  MaxAutoParticipantIndex keeps auto-assigned nodes below the participant
+  indices 20-24 that the image nodes pin, and 19 still covers the ZCU
+  participant indices (5 for zcu, 6 for zcu_health_node) that unicast
+  discovery has to probe.
+-->
+<CycloneDDS xmlns="https://cdds.io/config">
+  <Domain id="any">
+    <General>
+      <Interfaces>
+        <NetworkInterface address="10.0.0.10" priority="default" multicast="default"/>
+      </Interfaces>
+    </General>
+    <Discovery>
+      <MaxAutoParticipantIndex>19</MaxAutoParticipantIndex>
+      <Peers>
+        <Peer address="10.0.0.2"/>
+        <Peer address="10.0.0.3"/>
+        <Peer address="10.0.0.4"/>
+        <Peer address="10.0.0.5"/>
+      </Peers>
+    </Discovery>
+  </Domain>
+</CycloneDDS>

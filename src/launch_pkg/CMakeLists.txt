@@ -7,6 +7,7 @@ endif()
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
+find_package(ament_cmake_python REQUIRED)
 # uncomment the following section in order to fill in
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
@@ -23,13 +24,18 @@ if(BUILD_TESTING)
   ament_lint_auto_find_test_dependencies()
 endif()
 
+# rmw_profile is imported by the launch files here and by autosdv_gui_pkg.
+ament_python_install_package(${PROJECT_NAME})
+
 install(
   DIRECTORY launch config
   DESTINATION share/${PROJECT_NAME}/
 )
 
 install(
-  FILES "${CMAKE_CURRENT_SOURCE_DIR}/../../fastdds_whitelist.xml"
+  FILES
+    "${CMAKE_CURRENT_SOURCE_DIR}/../../fastdds_whitelist.xml"
+    "${CMAKE_CURRENT_SOURCE_DIR}/../../cyclonedds_ivn.xml"
   DESTINATION share/${PROJECT_NAME}/config
 )
 

@@ -3,10 +3,11 @@ import threading
 from types import SimpleNamespace
 
 from diagnostic_msgs.msg import DiagnosticStatus
+import pytest
 
 from autosdv_gui_pkg.main import (
     compressed_image_to_qimage,
-    configure_default_fastdds_profile,
+    configure_default_dds_profile,
     MainWindow,
     remove_opencv_qt_plugin_paths,
     ros_image_to_qimage,
@@ -17,6 +18,7 @@ from autosdv_gui_pkg.process_manager import (
     load_node_specs,
 )
 from autosdv_gui_pkg.ros_bridge import GuiRosBridge
+from launch_pkg.rmw_profile import image_profile_env
 from autosdv_gui_pkg.safety_supervisor_node import SafetySupervisorNode
 from data_collection_pkg.drive_node import DriveController
 from interfaces_pkg.msg import DriveInput, MotionCommand
@@ -235,24 +237,74 @@ def test_opencv_qt_plugin_paths_are_removed(monkeypatch):
     assert os.environ['QT_PLUGIN_PATH'] == '/safe/qt/plugins'
 
 
-def test_gui_sets_wired_fastdds_profile_for_all_child_nodes(
-        monkeypatch, tmp_path):
+def _write_profiles(tmp_path):
     config_dir = tmp_path / 'config'
     config_dir.mkdir()
-    profile = config_dir / 'fastdds_whitelist.xml'
-    profile.write_text('<dds/>')
+    fastdds = config_dir / 'fastdds_whitelist.xml'
+    fastdds.write_text('<dds/>')
+    cyclonedds = config_dir / 'cyclonedds_ivn.xml'
+    cyclonedds.write_text('<CycloneDDS/>')
+    return fastdds, cyclonedds
+
+
+def test_gui_sets_wired_fastdds_profile_for_all_child_nodes(
+        monkeypatch, tmp_path):
+    fastdds, _ = _write_profiles(tmp_path)
     monkeypatch.setattr(
         'autosdv_gui_pkg.main.get_package_share_directory',
         lambda package: str(tmp_path),
     )
+    monkeypatch.delenv('AUTOSDV_RMW', raising=False)
     monkeypatch.delenv('FASTRTPS_DEFAULT_PROFILES_FILE', raising=False)
     monkeypatch.delenv('FASTDDS_DEFAULT_PROFILES_FILE', raising=False)
+    monkeypatch.delenv('CYCLONEDDS_URI', raising=False)
 
-    selected = configure_default_fastdds_profile()
+    selected = configure_default_dds_profile()
 
-    assert selected == str(profile)
-    assert os.environ['FASTRTPS_DEFAULT_PROFILES_FILE'] == str(profile)
-    assert os.environ['FASTDDS_DEFAULT_PROFILES_FILE'] == str(profile)
+    assert selected == str(fastdds)
+    assert os.environ['RMW_IMPLEMENTATION'] == 'rmw_fastrtps_cpp'
+    assert os.environ['FASTRTPS_DEFAULT_PROFILES_FILE'] == str(fastdds)
+    assert os.environ['FASTDDS_DEFAULT_PROFILES_FILE'] == str(fastdds)
+
+
+def test_gui_sets_wired_cyclonedds_profile_when_selected(monkeypatch, tmp_path):
+    _, cyclonedds = _write_profiles(tmp_path)
+    monkeypatch.setattr(
+        'autosdv_gui_pkg.main.get_package_share_directory',
+        lambda package: str(tmp_path),
+    )
+    monkeypatch.setenv('AUTOSDV_RMW', 'cyclonedds')
+    monkeypatch.delenv('CYCLONEDDS_URI', raising=False)
+
+    selected = configure_default_dds_profile()
+
+    assert selected == 'file://' + str(cyclonedds)
+    assert os.environ['RMW_IMPLEMENTATION'] == 'rmw_cyclonedds_cpp'
+    assert os.environ['CYCLONEDDS_URI'] == 'file://' + str(cyclonedds)
+
+
+def test_image_profile_env_follows_selected_middleware(monkeypatch, tmp_path):
+    config_dir = tmp_path / 'config'
+    config_dir.mkdir()
+    (config_dir / 'fastdds_image_03_participant22.xml').write_text('<dds/>')
+    (config_dir / 'cyclonedds_image_03_participant22.xml').write_text('<CycloneDDS/>')
+
+    monkeypatch.delenv('AUTOSDV_RMW', raising=False)
+    fastdds_env = image_profile_env(str(tmp_path), 3, 22)
+    assert fastdds_env['RMW_IMPLEMENTATION'] == 'rmw_fastrtps_cpp'
+    assert fastdds_env['FASTDDS_DEFAULT_PROFILES_FILE'].endswith(
+        'fastdds_image_03_participant22.xml')
+
+    monkeypatch.setenv('AUTOSDV_RMW', 'cyclonedds')
+    cyclone_env = image_profile_env(str(tmp_path), 3, 22)
+    assert cyclone_env['RMW_IMPLEMENTATION'] == 'rmw_cyclonedds_cpp'
+    assert cyclone_env['CYCLONEDDS_URI'].endswith(
+        'cyclonedds_image_03_participant22.xml')
+    assert 'FASTDDS_DEFAULT_PROFILES_FILE' not in cyclone_env
+
+    monkeypatch.setenv('AUTOSDV_RMW', 'zenoh')
+    with pytest.raises(RuntimeError):
+        image_profile_env(str(tmp_path), 3, 22)
 
 
 def test_preview_notifications_coalesce_to_latest_frame():

@@ -6,6 +6,7 @@ import sys
 import threading
 
 from ament_index_python.packages import get_package_share_directory
+from launch_pkg.rmw_profile import default_profile_env
 from PyQt5.QtCore import (
     pyqtSignal,
     QEvent,
@@ -82,18 +83,15 @@ ZCU_LAYOUT_ZONE_IDS = {
 }
 
 
-def configure_default_fastdds_profile():
-    """Force GUI and generic child nodes onto the wired IVN interfaces."""
-    profile = os.path.join(
-        get_package_share_directory('launch_pkg'),
-        'config',
-        'fastdds_whitelist.xml',
-    )
-    if not os.path.isfile(profile):
-        raise RuntimeError(f'Fast DDS profile not found: {profile}')
-    os.environ['FASTRTPS_DEFAULT_PROFILES_FILE'] = profile
-    os.environ['FASTDDS_DEFAULT_PROFILES_FILE'] = profile
-    return profile
+def configure_default_dds_profile():
+    """Force GUI and generic child nodes onto the wired IVN interfaces.
+
+    Returns the profile path of whichever middleware AUTOSDV_RMW selected.
+    """
+    environment = default_profile_env(get_package_share_directory('launch_pkg'))
+    os.environ.update(environment)
+    return environment.get(
+        'CYCLONEDDS_URI', environment.get('FASTDDS_DEFAULT_PROFILES_FILE', ''))
 
 
 def ros_image_to_qimage(message):
@@ -1461,7 +1459,7 @@ class MainWindow(QMainWindow):
 
 
 def main(args=None):
-    configure_default_fastdds_profile()
+    configure_default_dds_profile()
     remove_opencv_qt_plugin_paths()
     app = QApplication(sys.argv)
     app.setApplicationName('AutoSDV HPC Control')

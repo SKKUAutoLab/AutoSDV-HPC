@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Cyclone DDS counterpart of fastdds_image_04_participant23.xml.
+  participantID 23 -> Discovery/ParticipantIndex 23
+  (unicast meta port 7456, user data 7457).
+-->
+<CycloneDDS xmlns="https://cdds.io/config">
+  <Domain id="any">
+    <General>
+      <Interfaces>
+        <NetworkInterface address="10.0.0.10" priority="default" multicast="default"/>
+      </Interfaces>
+    </General>
+    <Discovery>
+      <ParticipantIndex>23</ParticipantIndex>
+      <MaxAutoParticipantIndex>19</MaxAutoParticipantIndex>
+      <Peers>
+        <Peer address="10.0.0.4"/>
+      </Peers>
+    </Discovery>
+  </Domain>
+</CycloneDDS>

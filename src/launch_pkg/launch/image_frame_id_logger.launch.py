@@ -5,18 +5,10 @@ from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument
 from launch.substitutions import LaunchConfiguration
 from launch_ros.actions import Node
+from launch_pkg.rmw_profile import image_profile_env
 from launch_ros.parameter_descriptions import ParameterValue
 
 
-def fastdds_profile_env(share_dir, image_index, participant_id):
-    profile = os.path.join(
-        share_dir,
-        'config',
-        f'fastdds_image_{image_index:02d}_participant{participant_id}.xml')
-    return {
-        'FASTRTPS_DEFAULT_PROFILES_FILE': profile,
-        'FASTDDS_DEFAULT_PROFILES_FILE': profile,
-    }
 
 
 def generate_launch_description():
@@ -33,7 +25,7 @@ def generate_launch_description():
             executable='image_frame_id_logger_node',
             name=node_name,
             output='screen',
-            additional_env=fastdds_profile_env(
+            additional_env=image_profile_env(
                 launch_pkg_share,
                 image_index,
                 participant_id),
