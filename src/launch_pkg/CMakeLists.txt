@@ -36,6 +36,8 @@ install(
   FILES
     "${CMAKE_CURRENT_SOURCE_DIR}/../../fastdds_whitelist.xml"
     "${CMAKE_CURRENT_SOURCE_DIR}/../../cyclonedds_ivn.xml"
+    "${CMAKE_CURRENT_SOURCE_DIR}/../../zenoh_session_ivn.json5"
+    "${CMAKE_CURRENT_SOURCE_DIR}/../../zenoh_router_ivn.json5"
   DESTINATION share/${PROJECT_NAME}/config
 )
 

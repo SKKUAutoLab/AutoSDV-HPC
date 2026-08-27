@@ -244,12 +244,14 @@ def _write_profiles(tmp_path):
     fastdds.write_text('<dds/>')
     cyclonedds = config_dir / 'cyclonedds_ivn.xml'
     cyclonedds.write_text('<CycloneDDS/>')
-    return fastdds, cyclonedds
+    zenoh = config_dir / 'zenoh_session_ivn.json5'
+    zenoh.write_text('{}')
+    return fastdds, cyclonedds, zenoh
 
 
 def test_gui_sets_wired_fastdds_profile_for_all_child_nodes(
         monkeypatch, tmp_path):
-    fastdds, _ = _write_profiles(tmp_path)
+    fastdds, _, _ = _write_profiles(tmp_path)
     monkeypatch.setattr(
         'autosdv_gui_pkg.main.get_package_share_directory',
         lambda package: str(tmp_path),
@@ -268,7 +270,7 @@ def test_gui_sets_wired_fastdds_profile_for_all_child_nodes(
 
 
 def test_gui_sets_wired_cyclonedds_profile_when_selected(monkeypatch, tmp_path):
-    _, cyclonedds = _write_profiles(tmp_path)
+    _, cyclonedds, _ = _write_profiles(tmp_path)
     monkeypatch.setattr(
         'autosdv_gui_pkg.main.get_package_share_directory',
         lambda package: str(tmp_path),
@@ -283,11 +285,27 @@ def test_gui_sets_wired_cyclonedds_profile_when_selected(monkeypatch, tmp_path):
     assert os.environ['CYCLONEDDS_URI'] == 'file://' + str(cyclonedds)
 
 
+def test_gui_sets_wired_zenoh_profile_when_selected(monkeypatch, tmp_path):
+    _, _, zenoh = _write_profiles(tmp_path)
+    monkeypatch.setattr(
+        'autosdv_gui_pkg.main.get_package_share_directory',
+        lambda package: str(tmp_path),
+    )
+    monkeypatch.setenv('AUTOSDV_RMW', 'zenoh')
+    monkeypatch.delenv('ZENOH_SESSION_CONFIG_URI', raising=False)
+
+    configure_default_dds_profile()
+
+    assert os.environ['RMW_IMPLEMENTATION'] == 'rmw_zenoh_cpp'
+    assert os.environ['ZENOH_SESSION_CONFIG_URI'] == str(zenoh)
+
+
 def test_image_profile_env_follows_selected_middleware(monkeypatch, tmp_path):
     config_dir = tmp_path / 'config'
     config_dir.mkdir()
     (config_dir / 'fastdds_image_03_participant22.xml').write_text('<dds/>')
     (config_dir / 'cyclonedds_image_03_participant22.xml').write_text('<CycloneDDS/>')
+    (config_dir / 'zenoh_image_03_participant22.json5').write_text('{}')
 
     monkeypatch.delenv('AUTOSDV_RMW', raising=False)
     fastdds_env = image_profile_env(str(tmp_path), 3, 22)
@@ -303,6 +321,12 @@ def test_image_profile_env_follows_selected_middleware(monkeypatch, tmp_path):
     assert 'FASTDDS_DEFAULT_PROFILES_FILE' not in cyclone_env
 
     monkeypatch.setenv('AUTOSDV_RMW', 'zenoh')
+    zenoh_env = image_profile_env(str(tmp_path), 3, 22)
+    assert zenoh_env['RMW_IMPLEMENTATION'] == 'rmw_zenoh_cpp'
+    assert zenoh_env['ZENOH_SESSION_CONFIG_URI'].endswith(
+        'zenoh_image_03_participant22.json5')
+
+    monkeypatch.setenv('AUTOSDV_RMW', 'nonsense')
     with pytest.raises(RuntimeError):
         image_profile_env(str(tmp_path), 3, 22)
 

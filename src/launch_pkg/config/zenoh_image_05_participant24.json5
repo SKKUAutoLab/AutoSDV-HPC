@@ -1,0 +1,13 @@
+// Zenoh session config for the image_05 node. Derived from
+// /opt/ros/jazzy/share/rmw_zenoh_cpp/config/DEFAULT_RMW_ZENOH_SESSION_CONFIG.json5
+// with the router endpoint pointed at the wired IVN instead of localhost.
+{
+  mode: "peer",
+  connect: {
+    endpoints: ["tcp/10.0.0.10:7447"],
+  },
+  scouting: {
+    multicast: { enabled: false },
+    gossip: { enabled: true },
+  },
+}
