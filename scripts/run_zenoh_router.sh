@@ -1,0 +1,27 @@
+#!/bin/bash
+# Starts the Zenoh router for the wired IVN.
+#
+# rmw_zenoh disables multicast discovery, so with AUTOSDV_RMW=zenoh nothing
+# finds anything until this is running. It listens on two ports so the ZCU can
+# keep its camera and control flows on separate links:
+#   7447  camera images
+#   7448  control, health and everything else
+# See AutoSDV-HPC/zenoh_router_ivn.json5 for the full config.
+set -euo pipefail
+
+source /opt/ros/jazzy/setup.bash
+WORKSPACE="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+if [ -f "$WORKSPACE/install/local_setup.bash" ]; then
+    source "$WORKSPACE/install/local_setup.bash"
+fi
+
+CONFIG="${ZENOH_ROUTER_CONFIG_URI:-$WORKSPACE/zenoh_router_ivn.json5}"
+if [ ! -f "$CONFIG" ]; then
+    echo "router config not found: $CONFIG" >&2
+    exit 1
+fi
+
+export RMW_IMPLEMENTATION=rmw_zenoh_cpp
+export ZENOH_ROUTER_CONFIG_URI="$CONFIG"
+echo "starting zenoh router with $CONFIG"
+exec ros2 run rmw_zenoh_cpp rmw_zenohd
