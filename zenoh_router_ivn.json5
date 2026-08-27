@@ -8,8 +8,11 @@
 // ports give them separate links:
 //   7447  camera images  (the ZCU marks this link CS5 via #dscp on its endpoint)
 //   7448  control, health and everything else
-// udp/ is offered alongside tcp/ so the ZCU can use a datagram link, which is
-// the closer comparison against the RTPS backends.
+// udp/ is offered alongside tcp/ on both ports so the ZCU can use a datagram
+// link, which is the closer comparison against the RTPS backends. The ZCU
+// connects as a client rather than a peer: a peer joined to a router does not
+// receive other peers' liveliness declarations, so it would publish fine but
+// never appear in the ROS graph.
 //
 // Start with: scripts/run_zenoh_router.sh
 /// This file attempts to list and document available configuration elements.
@@ -108,7 +111,8 @@
       "tcp/[::]:7447",
       "udp/[::]:7447",
       // Control, health and everything else.
-      "tcp/[::]:7448"
+      "tcp/[::]:7448",
+      "udp/[::]:7448"
     ],
 
     /// Global listen configuration,
