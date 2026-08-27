@@ -12,7 +12,17 @@ inodes through procfs and keeps an nftables source-port set up to date.
 
 With the default RTPS port mapping, metatraffic/discovery unicast ports are
 even and user-data unicast ports are odd.  The Q6 rule contains only the
-calculated user-data ports; discovery therefore remains CS1.
+calculated user-data ports; discovery therefore remains CS1.  Cyclone DDS uses
+the same mapping, so --middleware cyclonedds needs no other change.
+
+Zenoh is different in kind.  Every HPC node reaches a ZCU through the zenohd
+router, so nothing a ZCU receives originates from the safety supervisor's own
+socket and the procfs tracking has nothing to attach to.  What is left to match
+on is the router's listening port, which is per flow rather than per node:
+7447 carries camera images and 7448 carries control together with health.
+--middleware zenoh therefore marks CS6 on egress from the control port, which
+is wider than the Fast DDS rule -- it covers health diagnostics as well.  Give
+the safety supervisor its own router port if the experiment needs them apart.
 """
 
 from __future__ import annotations
@@ -44,6 +54,15 @@ DEFAULT_ZCU_ADDRESSES = (
 )
 DEFAULT_POLL_INTERVAL = 0.25
 DEFAULT_MAX_PARTICIPANT_ID = 119
+
+FASTDDS = "fastdds"
+CYCLONEDDS = "cyclonedds"
+ZENOH = "zenoh"
+MIDDLEWARES = (FASTDDS, CYCLONEDDS, ZENOH)
+
+# Router ports from AutoSDV-HPC/zenoh_router_ivn.json5.
+ZENOH_CAMERA_PORT = 7447
+ZENOH_CONTROL_PORT = 7448
 
 _INTERFACE_RE = re.compile(r"^[A-Za-z0-9_.:-]+$")
 _SOCKET_INODE_RE = re.compile(r"^socket:\[(\d+)\]$")
@@ -91,18 +110,44 @@ def render_ruleset(
     zcu_addresses: Iterable[str],
     domain_id: int,
     max_participant_id: int,
+    middleware: str = FASTDDS,
 ) -> str:
     """Render the owned nftables table.
 
     Rule order is intentional: CS1 is the baseline and the second rule
-    overwrites only safety-supervisor RTPS user data with CS6.  `ip dscp set`
-    changes only the six DSCP bits and preserves ECN.
+    overwrites only the control traffic with CS6.  `ip dscp set` changes only
+    the six DSCP bits and preserves ECN.
+
+    For the RTPS middlewares the second rule is the intersection of the safety
+    supervisor's live source ports (kept current by this daemon) and the
+    calculated RTPS user-data destination ports.  For zenoh neither set exists,
+    so it matches the router's control port instead; see the module docstring
+    for why that is wider.
     """
     interface = validate_interface(interface)
     zcus = validate_zcu_addresses(zcu_addresses)
-    user_ports = rtps_user_unicast_ports(domain_id, max_participant_id)
-    return f"""table {TABLE_FAMILY} {TABLE_NAME} {{
-    set {ZCU_SET} {{
+    if middleware not in MIDDLEWARES:
+        raise ValueError(f"unknown middleware: {middleware!r}")
+
+    if middleware == ZENOH:
+        control_rule = (
+            f'oifname "{interface}" ip daddr @{ZCU_SET} meta l4proto {{ tcp, udp }} '
+            f"th sport {ZENOH_CONTROL_PORT} ip dscp set cs6 counter "
+            f'comment "AutoSDV control Q6 (zenoh router control port)"'
+        )
+        sets = f"""    set {ZCU_SET} {{
+        type ipv4_addr
+        elements = {{ {_nft_elements(zcus)} }}
+    }}
+"""
+    else:
+        user_ports = rtps_user_unicast_ports(domain_id, max_participant_id)
+        control_rule = (
+            f'oifname "{interface}" ip daddr @{ZCU_SET} meta l4proto udp '
+            f"udp sport @{CONTROL_SPORT_SET} udp dport @{RTPS_USER_DPORT_SET} "
+            f'ip dscp set cs6 counter comment "AutoSDV control Q6"'
+        )
+        sets = f"""    set {ZCU_SET} {{
         type ipv4_addr
         elements = {{ {_nft_elements(zcus)} }}
     }}
@@ -115,12 +160,15 @@ def render_ruleset(
         type inet_service
         elements = {{ {_nft_elements(user_ports)} }}
     }}
+"""
 
+    return f"""table {TABLE_FAMILY} {TABLE_NAME} {{
+{sets}
     chain output {{
         type route hook output priority mangle; policy accept;
 
         oifname \"{interface}\" ip dscp set cs1 counter comment \"AutoSDV default Q1\"
-        oifname \"{interface}\" ip daddr @{ZCU_SET} meta l4proto udp udp sport @{CONTROL_SPORT_SET} udp dport @{RTPS_USER_DPORT_SET} ip dscp set cs6 counter comment \"AutoSDV control Q6\"
+        {control_rule}
     }}
 }}
 """
@@ -255,6 +303,7 @@ def apply_rules(args: argparse.Namespace) -> None:
         args.zcu,
         args.domain_id,
         args.max_participant_id,
+        args.middleware,
     )
     delete_owned_table(args.nft)
     run_nft(args.nft, ruleset)
@@ -268,6 +317,20 @@ def update_ports(args: argparse.Namespace) -> tuple[int, ...]:
 
 def watch(args: argparse.Namespace) -> int:
     apply_rules(args)
+    if args.middleware == ZENOH:
+        # The zenoh rule matches the router's fixed control port, so there is no
+        # per-process source-port set to keep current and nothing to poll.
+        print(
+            f"AutoSDV DSCP policy active on {args.interface}: "
+            f"default=CS1/Q1, control=CS6/Q6 (zenoh router port "
+            f"{ZENOH_CONTROL_PORT})",
+            flush=True,
+        )
+        signal.signal(signal.SIGINT, lambda *_: sys.exit(0))
+        signal.signal(signal.SIGTERM, lambda *_: sys.exit(0))
+        while True:
+            time.sleep(args.poll_interval)
+
     stopping = False
 
     def request_stop(signum: int, frame: object) -> None:
@@ -305,6 +368,12 @@ def build_parser() -> argparse.ArgumentParser:
         choices=("render", "once", "watch", "ports", "remove", "status"),
     )
     parser.add_argument("--interface", default=DEFAULT_INTERFACE)
+    parser.add_argument(
+        "--middleware",
+        choices=MIDDLEWARES,
+        default=os.environ.get("AUTOSDV_RMW", FASTDDS),
+        help="selects how control traffic is identified; see the module docstring",
+    )
     parser.add_argument("--zcu", action="append", default=None)
     parser.add_argument(
         "--domain-id",
@@ -339,6 +408,7 @@ def main(argv: list[str] | None = None) -> int:
                     args.zcu,
                     args.domain_id,
                     args.max_participant_id,
+                    args.middleware,
                 ),
                 end="",
             )
@@ -347,8 +417,14 @@ def main(argv: list[str] | None = None) -> int:
                 Path(args.proc_root))))
         elif args.command == "once":
             apply_rules(args)
-            ports = update_ports(args)
-            print(f"active safety supervisor UDP source ports: {ports or 'none'}")
+            if args.middleware == ZENOH:
+                print(
+                    "zenoh: control marked by router port "
+                    f"{ZENOH_CONTROL_PORT}; no source-port tracking needed"
+                )
+            else:
+                ports = update_ports(args)
+                print(f"active safety supervisor UDP source ports: {ports or 'none'}")
         elif args.command == "watch":
             return watch(args)
         elif args.command == "remove":

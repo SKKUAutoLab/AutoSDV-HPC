@@ -1,3 +1,4 @@
+import pytest
 import importlib.util
 from pathlib import Path
 
@@ -63,7 +64,38 @@ def test_apply_does_not_require_effective_uid_zero(monkeypatch):
         'domain_id': 0,
         'max_participant_id': 1,
         'nft': '/usr/sbin/nft',
+        'middleware': qos.FASTDDS,
     })()
     qos.apply_rules(args)
 
     assert calls == ['delete', 'apply']
+
+
+def test_zenoh_ruleset_matches_the_router_control_port():
+    ruleset = qos.render_ruleset(
+        "enp4s0", ("10.0.0.5",), 0, 119, qos.ZENOH)
+
+    # Every HPC node reaches a ZCU through zenohd, so there is no per-process
+    # source port to follow and no RTPS destination port to calculate.
+    assert qos.CONTROL_SPORT_SET not in ruleset
+    assert qos.RTPS_USER_DPORT_SET not in ruleset
+    assert f"th sport {qos.ZENOH_CONTROL_PORT}" in ruleset
+    assert "ip dscp set cs6" in ruleset
+    assert "ip dscp set cs1" in ruleset
+    # The camera port must not be marked CS6; it is CS5 at the ZCU already.
+    assert str(qos.ZENOH_CAMERA_PORT) not in ruleset
+
+
+def test_rtps_rulesets_are_unchanged_for_both_dds_middlewares():
+    fastdds = qos.render_ruleset(
+        "enp4s0", ("10.0.0.5",), 0, 119, qos.FASTDDS)
+    cyclonedds = qos.render_ruleset(
+        "enp4s0", ("10.0.0.5",), 0, 119, qos.CYCLONEDDS)
+    assert fastdds == cyclonedds
+    assert qos.CONTROL_SPORT_SET in fastdds
+    assert qos.RTPS_USER_DPORT_SET in fastdds
+
+
+def test_unknown_middleware_is_rejected():
+    with pytest.raises(ValueError):
+        qos.render_ruleset("enp4s0", ("10.0.0.5",), 0, 119, "rti")
