@@ -35,7 +35,7 @@ def generate_launch_description():
             additional_env=fastdds_profile_env(launch_pkg_share, 1, 20),
             parameters=[{
                 'image': 'image_01',
-                'show_image': False,
+                'show_image': True,
                 'p2_log_enabled': False,
                 'p2_log_path': os.environ.get(
                     'AUTOSDV_P2_LOG_PATH',
@@ -51,82 +51,86 @@ def generate_launch_description():
         #     output='screen',
         #     parameters=[{'image_num': 'image_02'}]  
         # ),
-        Node(
-            package='camera_perception_pkg',
-            executable='ethernet_image_publisher_node',
-            name='ethernet_image_publisher_node_2',
-            output='screen',
-            additional_env=fastdds_profile_env(launch_pkg_share, 2, 21),
-            parameters=[{
-                'image': 'image_02',
-                'show_image': False,
-            }]
-        ),
-        Node(
-            package='camera_perception_pkg',
-            executable='ethernet_image_publisher_node',
-            name='ethernet_image_publisher_node_3',
-            output='screen',
-            additional_env=fastdds_profile_env(launch_pkg_share, 3, 22),
-            parameters=[{
-                'image': 'image_03',
-                'show_image': False,
-            }]
-        ),
-        Node(
-            package='camera_perception_pkg',
-            executable='ethernet_image_publisher_node',
-            name='ethernet_image_publisher_node_4',
-            output='screen',
-            additional_env=fastdds_profile_env(launch_pkg_share, 4, 23),
-            parameters=[{
-                'image': 'image_04',
-                'show_image': False,
-            }]
-        ),
-        Node(
-            package='camera_perception_pkg',
-            executable='ethernet_image_publisher_node',
-            name='ethernet_image_publisher_node_5',
-            output='screen',
-            additional_env=fastdds_profile_env(launch_pkg_share, 5, 24),
-            parameters=[{
-                'image': 'image_05',
-                'show_image': False,
-            }]
-        ),
+        # Node(
+        #     package='camera_perception_pkg',
+        #     executable='ethernet_image_publisher_node',
+        #     name='ethernet_image_publisher_node_2',
+        #     output='screen',
+        #     additional_env=fastdds_profile_env(launch_pkg_share, 2, 21),
+        #     parameters=[{
+        #         'image': 'image_02',
+        #         'show_image': True,
+        #     }]
+        # ),
+        # Node(
+        #     package='camera_perception_pkg',
+        #     executable='ethernet_image_publisher_node',
+        #     name='ethernet_image_publisher_node_3',
+        #     output='screen',
+        #     additional_env=fastdds_profile_env(launch_pkg_share, 3, 22),
+        #     parameters=[{
+        #         'image': 'image_03',
+        #         'show_image': True,
+        #     }]
+        # ),
+        # Node(
+        #     package='camera_perception_pkg',
+        #     executable='ethernet_image_publisher_node',
+        #     name='ethernet_image_publisher_node_4',
+        #     output='screen',
+        #     additional_env=fastdds_profile_env(launch_pkg_share, 4, 23),
+        #     parameters=[{
+        #         'image': 'image_04',
+        #         'show_image': True,
+        #     }]
+        # ),
+        # Node(
+        #     package='camera_perception_pkg',
+        #     executable='ethernet_image_publisher_node',
+        #     name='ethernet_image_publisher_node_5',
+        #     output='screen',
+        #     additional_env=fastdds_profile_env(launch_pkg_share, 5, 24),
+        #     parameters=[{
+        #         'image': 'image_05',
+        #         'show_image': True,
+        #     }]
+        # ),
 
         # BEV/SVM perception (image_02..05 -> bev_surround)
-        bev_launch,
+        ##bev_launch,
 
-        #Node(
-        #    package='camera_perception_pkg',
-        #    executable='yolov8_node',
-        #    name='yolov8_node',
-        #    output='screen'
-        #),
-        #Node(
-        #    package='camera_perception_pkg',
-        #    executable='lane_info_extractor_node',
-        #    name='lane_info_extractor_node',
-        #    output='screen'
-        #),
-        #Node(
-        #    package='decision_making_pkg',
-        #    executable='path_planner_node',
-        #    name='path_planner_node',
-        #    output='screen'
-        #),
+        ##Node(
+        ##    package='camera_perception_pkg',
+        ##    executable='yolov8_node',
+        ##    name='yolov8_node',
+        ##    output='screen',
+        ##    parameters=[{'log_image_header': True}]
+        ##),
+        ##Node(
+        ##    package='camera_perception_pkg',
+        ##    executable='lane_info_extractor_node',
+        ##    name='lane_info_extractor_node',
+        ##    output='screen',
+        ##    parameters=[{'show_image': True}]
+        ##),
+        ##Node(
+        ##    package='decision_making_pkg',
+        ##    executable='path_planner_node',
+        ##    name='path_planner_node',
+        ##    output='screen',
+        ##    parameters=[{'log_planning': True}]
+        ##),
         ## Node(
         ##    package='serial_communication_pkg',
         ##    executable='serial_sender_node',
         ##    name='serial_sender_node',
         ##    output='screen'
         ## ),
-        #Node(
-        #    package='decision_making_pkg',
-        #    executable='motion_planner_node',
-        #    name='motion_planner_node',
-        #    output='screen'
+        ##Node(
+        ##    package='decision_making_pkg',
+        ##    executable='motion_planner_node',
+        ##    name='motion_planner_node',
+        ##    output='screen',
+        #    parameters=[{'log_commands': True}]
         #),
     ])

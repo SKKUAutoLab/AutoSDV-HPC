@@ -63,7 +63,7 @@ class Yolov8Node(LifecycleNode):
         
         self.declare_parameter("threshold", 0.5)
         self.declare_parameter("enable", True)
-        self.declare_parameter("log_image_header", False)
+        self.declare_parameter("log_image_header", True)
         self.declare_parameter("image_reliability",
                                QoSReliabilityPolicy.BEST_EFFORT)
 

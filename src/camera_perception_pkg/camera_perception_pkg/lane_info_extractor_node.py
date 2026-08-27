@@ -1,4 +1,5 @@
 import cv2
+from rcl_interfaces.msg import SetParametersResult
 import rclpy
 from rclpy.node import Node
 from rclpy.qos import QoSProfile
@@ -21,7 +22,7 @@ PUB_TOPIC_NAME = "yolov8_lane_info"
 ROI_IMAGE_TOPIC_NAME = "roi_image"  # 추가: ROI 이미지 퍼블리시 토픽
 
 # 화면에 이미지를 처리하는 과정을 띄울것인지 여부: True, 또는 False 중 택1하여 입력
-SHOW_IMAGE = False
+SHOW_IMAGE = True
 PUBLISH_ROI_IMAGE = False
 #----------------------------------------------
 
@@ -53,6 +54,20 @@ class Yolov8InfoExtractor(Node):
         if self.publish_roi_image:
             self.roi_image_publisher = self.create_publisher(
                 Image, ROI_IMAGE_TOPIC_NAME, self.qos_profile)
+        self.add_on_set_parameters_callback(self._parameter_callback)
+
+    def _parameter_callback(self, parameters):
+        for parameter in parameters:
+            if parameter.name == 'show_image':
+                self.show_image = bool(parameter.value)
+                if not self.show_image:
+                    for window_name in (
+                            'lane2_edge_image', 'lane2_bird_img', 'roi_img'):
+                        try:
+                            cv2.destroyWindow(window_name)
+                        except cv2.error:
+                            pass
+        return SetParametersResult(successful=True)
 
     def yolov8_detections_callback(self, detection_msg: DetectionArray):
         if len(detection_msg.detections) == 0:

@@ -1,0 +1,10 @@
+# Request a one-shot, end-to-end IVN data-flow check.
+bool check_data_flow
+---
+bool success
+string summary
+diagnostic_msgs/DiagnosticStatus[] results
+---
+uint16 completed_checks
+uint16 total_checks
+string current_check

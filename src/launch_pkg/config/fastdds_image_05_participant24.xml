@@ -15,6 +15,13 @@
         <participant profile_name="participant_profile" is_default_profile="true">
             <rtps>
                 <participantID>24</participantID>
+                <builtin>
+                    <initialPeersList>
+                        <locator>
+                            <udpv4><address>10.0.0.5</address></udpv4>
+                        </locator>
+                    </initialPeersList>
+                </builtin>
                 <userTransports>
                     <transport_id>WiredUDP</transport_id>
                 </userTransports>

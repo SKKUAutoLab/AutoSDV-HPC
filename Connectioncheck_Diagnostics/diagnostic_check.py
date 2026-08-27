@@ -6,7 +6,7 @@ Pre-flight checklist for SDV experiments.
 Checks L0 (HPC environment), L1 (network), L3 (DDS data flow).
 
 Usage:
-    source /opt/ros/humble/setup.bash
+    source /opt/ros/jazzy/setup.bash
     python3 diagnostic_check.py
 """
 
@@ -328,7 +328,7 @@ def main():
 
     # L0
     if not check_l0():
-        print(f"\n{RED}L0 FAILED: source /opt/ros/humble/setup.bash 실행 필요{RESET}")
+        print(f"\n{RED}L0 FAILED: source /opt/ros/jazzy/setup.bash 실행 필요{RESET}")
         return EXIT_ENV_ERR
 
     # L1 + L3 per zone

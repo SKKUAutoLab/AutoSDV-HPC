@@ -1,6 +1,4 @@
 from setuptools import setup
-import os
-from glob import glob
 
 package_name = 'data_collection_pkg'
 
@@ -12,9 +10,6 @@ setup(
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
-        # Include your specific .pyc file
-        (os.path.join('lib', package_name), 
-         [os.path.join(package_name, 'data_collection_func_lib.cpython-310.pyc')]),
     ],
     install_requires=['setuptools'],
     zip_safe=True,

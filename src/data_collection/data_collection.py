@@ -1,15 +1,5 @@
 import serial
-import marshal
-import types
-import os
-
-real_path = os.path.dirname(os.path.realpath(__file__))
-pyc = open((real_path)+'/data_collection_func_lib.cpython-310.pyc', 'rb').read()
-code = marshal.loads(pyc[16:])
-module = types.ModuleType('module_name')
-exec(code, module.__dict__)
-
-#import data_collection_func_lib as DCFL  # 숨겨진 코드 모듈
+from data_collection_pkg import data_collection_func_lib as module
 
 def main():
     DATA_PATH = "./Collected_Datasets"

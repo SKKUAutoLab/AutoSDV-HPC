@@ -33,12 +33,12 @@ WATCHDOG_PERIOD = 0.1
 PATH_TIMEOUT_SEC = 0.5
 
 # 정상 주행 시 좌/우 속도 (0~255)
-DEFAULT_LEFT_SPEED = 80
-DEFAULT_RIGHT_SPEED = 80
+DEFAULT_LEFT_SPEED = 30
+DEFAULT_RIGHT_SPEED = 30
 
 # 실험 중 control publish path에 불필요한 callback/log 부하를 넣지 않기 위한 기본값
 ENABLE_AUX_SUBSCRIPTIONS = False
-LOG_COMMANDS = False
+LOG_COMMANDS = True
 
 # 종료(SIGINT/SIGTERM) 시 정지 명령을 도배할 횟수와 간격 (초)
 # CAN/DDS 누락 대비용. 총 SHUTDOWN_STOP_REPEATS * SHUTDOWN_STOP_INTERVAL 초간 정지 명령 송출

@@ -6,6 +6,8 @@ find_package(ament_cmake REQUIRED)
 find_package(rosidl_default_generators REQUIRED)
 find_package(std_msgs REQUIRED)
 find_package(geometry_msgs REQUIRED)
+find_package(action_msgs REQUIRED)
+find_package(diagnostic_msgs REQUIRED)
 
 rosidl_generate_interfaces(${PROJECT_NAME}
   "msg/Point2D.msg"
@@ -22,10 +24,14 @@ rosidl_generate_interfaces(${PROJECT_NAME}
   "msg/DetectionArray.msg"
   "msg/LaneInfo.msg"
   "msg/MotionCommand.msg"
+  "msg/DriveInput.msg"
+  "msg/GuiHeartbeat.msg"
+  "msg/SafetyStatus.msg"
   "msg/TargetPoint.msg"
   "msg/PathPlanningResult.msg"
+  "action/RunIvnDiagnostics.action"
   
-  DEPENDENCIES std_msgs geometry_msgs
+  DEPENDENCIES std_msgs geometry_msgs action_msgs diagnostic_msgs
 )
 
 ament_package()
