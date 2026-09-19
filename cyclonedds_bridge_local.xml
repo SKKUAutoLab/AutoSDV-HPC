@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Cyclone DDS profile for the zenoh-DDS bridge environment (AUTOSDV_RMW=zenoh_bridge).
+
+  In the CycloneDDS and native Zenoh environments the HPC talks straight to the
+  ZCUs, so every profile pins the wired interface 10.0.0.10 and, for the image
+  nodes, a participant index that makes the RTPS destination port predictable.
+
+  Here nothing DDS may leave the host: the only thing on the wire is the zenoh
+  session between zenoh-bridge-ros2dds on the HPC and the plain Zenoh client
+  on the ZCU.  So this profile does the opposite of the others: it confines DDS to
+  the loopback interface, and the same file is used by every HPC node and by
+  the bridge processes themselves.  Anything that escaped to enP2p1s0 would
+  reach the ZCU as plain RTPS and quietly bypass the bridge, which is exactly
+  the variable this experiment is trying to isolate.
+
+  This is ROS_AUTOMATIC_DISCOVERY_RANGE=LOCALHOST spelled out, matching what
+  rmw_cyclonedds (rmw_node.cpp) and zenoh-plugin-ros2dds (lib.rs,
+  create_cyclonedds_config) generate for that setting: loopback interface,
+  no multicast, localhost as the single unicast discovery peer.
+
+  MaxAutoParticipantIndex is 32 rather than the 19 the wired profiles use.
+  There is no fixed index to protect here, and the count is higher: every HPC
+  node plus the two bridge participants share the loopback discovery range.
+-->
+<CycloneDDS xmlns="https://cdds.io/config">
+  <Domain id="any">
+    <General>
+      <Interfaces>
+        <NetworkInterface address="127.0.0.1" priority="default" multicast="false"/>
+      </Interfaces>
+      <AllowMulticast>false</AllowMulticast>
+    </General>
+    <Discovery>
+      <ParticipantIndex>auto</ParticipantIndex>
+      <MaxAutoParticipantIndex>32</MaxAutoParticipantIndex>
+      <Peers>
+        <Peer address="localhost"/>
+      </Peers>
+    </Discovery>
+  </Domain>
+</CycloneDDS>

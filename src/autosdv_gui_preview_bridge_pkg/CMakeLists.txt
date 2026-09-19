@@ -6,8 +6,7 @@ if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
 endif()
 
 find_package(ament_cmake REQUIRED)
-find_package(cv_bridge REQUIRED)
-find_package(OpenCV REQUIRED COMPONENTS imgcodecs)
+find_package(OpenCV REQUIRED COMPONENTS core imgcodecs imgproc)
 find_package(rclcpp REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(std_msgs REQUIRED)
@@ -15,7 +14,6 @@ find_package(std_msgs REQUIRED)
 add_executable(preview_bridge_node src/preview_bridge_node.cpp)
 ament_target_dependencies(
   preview_bridge_node
-  cv_bridge
   rclcpp
   sensor_msgs
   std_msgs

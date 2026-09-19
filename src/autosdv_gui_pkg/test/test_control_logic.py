@@ -27,6 +27,12 @@ from PyQt5.QtWidgets import QMessageBox
 from sensor_msgs.msg import CompressedImage, Image
 
 
+@pytest.fixture(autouse=True)
+def isolated_mode_state(monkeypatch, tmp_path):
+    # Profile unit tests must not inherit the vehicle's persisted selection.
+    monkeypatch.setattr('launch_pkg.communication_mode.STATE', tmp_path / 'mode.json')
+
+
 def test_drive_controller_accelerates_and_decelerates():
     controller = DriveController(
         acceleration_rate=50.0,
@@ -59,7 +65,7 @@ def test_node_registry_enforces_control_dependencies():
     assert specs['path_visualizer'].executable == 'path_visualizer_node'
     assert specs['preview_bridge'].executable == 'preview_bridge_node'
     assert specs['motion_planner'].dependencies == ['path_planner']
-    assert specs['drive'].dependencies == ['camera_01']
+    assert specs['drive'].dependencies == []
     assert specs['motion_planner'].parameters['pub_topic'] == '/control/auto_cmd'
     assert specs['drive'].parameters['output_topic'] == '/control/manual_cmd'
     assert specs['ivn_diagnostics'].package == 'ivn_diagnostics_pkg'
@@ -103,6 +109,28 @@ def test_graph_maps_camera_fault_to_camera_not_zcu():
 
     assert zone_states['zone_3'] == 'ok'
     assert camera_states['image_04'] == 'error'
+
+
+def test_manual_drive_has_no_missing_pipeline_dependencies():
+    from autosdv_gui_pkg.process_manager import NodeProcessManager
+
+    manager = SimpleNamespace(specs=load_node_specs(), state=lambda _: 'STOPPED')
+    assert NodeProcessManager.missing_dependencies(manager, 'drive') == []
+    assert NodeProcessManager.missing_dependencies(manager, 'motion_planner') == [
+        'path_planner']
+
+
+@pytest.mark.parametrize('source,node,should_stop', [
+    ('manual', 'camera_01', False), ('manual', 'lane', False),
+    ('manual', 'drive', True), ('auto', 'camera_01', True),
+    ('auto', 'lane', True),
+])
+def test_pipeline_crash_only_stops_relevant_control(source, node, should_stop):
+    from unittest.mock import Mock
+
+    window = SimpleNamespace(control_source=source, emergency_stop=Mock())
+    MainWindow._process_finished(window, node, False, 1)
+    assert window.emergency_stop.called is should_stop
 
 
 def test_reset_centers_steering_without_resetting_speed():
@@ -325,6 +353,16 @@ def test_image_profile_env_follows_selected_middleware(monkeypatch, tmp_path):
     assert zenoh_env['RMW_IMPLEMENTATION'] == 'rmw_zenoh_cpp'
     assert zenoh_env['ZENOH_SESSION_CONFIG_URI'].endswith(
         'zenoh_image_03_participant22.json5')
+
+    # The bridge environment has no per-node profile: DDS never leaves the
+    # host, so every node shares the one loopback config and the bridges carry
+    # the traffic. The Fast DDS name is still validated, hence the same call.
+    monkeypatch.setenv('AUTOSDV_RMW', 'zenoh_bridge')
+    (config_dir / 'cyclonedds_bridge_local.xml').write_text('<CycloneDDS/>')
+    bridge_env = image_profile_env(str(tmp_path), 3, 22)
+    assert bridge_env['RMW_IMPLEMENTATION'] == 'rmw_cyclonedds_cpp'
+    assert bridge_env['CYCLONEDDS_URI'].endswith('cyclonedds_bridge_local.xml')
+    assert bridge_env == image_profile_env(str(tmp_path), 5, 24)
 
     monkeypatch.setenv('AUTOSDV_RMW', 'nonsense')
     with pytest.raises(RuntimeError):

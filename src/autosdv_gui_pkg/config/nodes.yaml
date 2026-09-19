@@ -123,7 +123,7 @@ nodes:
     package: data_collection_pkg
     executable: drive_node
     node_name: drive_node
-    dependencies: [camera_01]
+    dependencies: []
     parameters:
       input_topic: /gui/manual_input
       output_topic: /control/manual_cmd

@@ -1,0 +1,46 @@
+{
+  "preview": {
+    "camera_01": {
+      "frames": 20,
+      "ready_s": 7.44,
+      "size": [
+        640,
+        480
+      ]
+    },
+    "camera_02": {
+      "frames": 20,
+      "ready_s": 0.7,
+      "size": [
+        640,
+        480
+      ]
+    },
+    "camera_03": {
+      "frames": 22,
+      "ready_s": 0.81,
+      "size": [
+        640,
+        480
+      ]
+    },
+    "camera_04": {
+      "frames": 22,
+      "ready_s": 0.91,
+      "size": [
+        640,
+        480
+      ]
+    },
+    "camera_05": {
+      "frames": 21,
+      "ready_s": 0.81,
+      "size": [
+        640,
+        480
+      ]
+    }
+  },
+  "log": "PREVIEW_RESULTS {'camera_01': {'frames': 20, 'ready_s': 7.44, 'size': [640, 480]}, 'camera_02': {'frames': 20, 'ready_s': 0.7, 'size': [640, 480]}, 'camera_03': {'frames': 22, 'ready_s': 0.81, 'size': [640, 480]}, 'camera_04': {'frames': 22, 'ready_s': 0.91, 'size': [640, 480]}, 'camera_05': {'frames': 21, 'ready_s': 0.81, 'size': [640, 480]}}\nSTATES {'camera_01': 'RUNNING', 'camera_02': 'RUNNING', 'camera_03': 'RUNNING', 'camera_04': 'RUNNING', 'camera_05': 'RUNNING', 'yolo': 'STOPPED', 'yolo_visualizer': 'STOPPED', 'lane': 'STOPPED', 'path_planner': 'STOPPED', 'path_visualizer': 'STOPPED', 'preview_bridge': 'RUNNING', 'motion_planner': 'STOPPED', 'drive': 'STOPPED', 'safety_supervisor': 'RUNNING', 'ivn_diagnostics': 'RUNNING'}\nDIAG [('IVN/ZCU/zone_1/Runtime', 'health publish loop is running'), ('IVN/ZCU/zone_1/Health', 'all components healthy'), ('IVN/ZCU/zone_2/Runtime', 'health publish loop is running'), ('IVN/ZCU/zone_2/Health', 'all components healthy'), ('IVN/ZCU/zone_3/Runtime', 'health publish loop is running'), ('IVN/ZCU/zone_3/Health', 'all components healthy'), ('IVN/ZCU/zone_4/Runtime', 'health publish loop is running'), ('IVN/ZCU/zone_4/Health', 'all components healthy')]\nPREVIEW 114\nPROCESS safety_supervisor 581338 2\nPROCESS ivn_diagnostics 581345 2\nPROCESS camera_01 581348 2\nPROCESS camera_02 581355 2\nPROCESS camera_03 581356 2\nPROCESS camera_04 581360 2\nPROCESS camera_05 581368 2\nPROCESS preview_bridge 582005 2\n",
+  "method": "offscreen QApplication; real MainWindow, NodeProcessManager, ROS nodes and ZCU boards; condition wait for frames and QImage"
+}

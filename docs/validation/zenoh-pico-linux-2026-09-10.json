@@ -1,0 +1,1932 @@
+{
+  "mode": "zenoh_bridge_pico",
+  "gui": {
+    "mode": "zenoh_bridge_pico",
+    "announcement_test": "/tmp/pico-announcement.json",
+    "health": [
+      [
+        "IVN/ZCU/zone_1/Runtime",
+        "health publish loop is running"
+      ],
+      [
+        "IVN/ZCU/zone_1/Health",
+        "all components healthy"
+      ],
+      [
+        "IVN/ZCU/zone_2/Runtime",
+        "health publish loop is running"
+      ],
+      [
+        "IVN/ZCU/zone_2/Health",
+        "all components healthy"
+      ],
+      [
+        "IVN/ZCU/zone_3/Runtime",
+        "health publish loop is running"
+      ],
+      [
+        "IVN/ZCU/zone_3/Health",
+        "all components healthy"
+      ],
+      [
+        "IVN/ZCU/zone_4/Runtime",
+        "health publish loop is running"
+      ],
+      [
+        "IVN/ZCU/zone_4/Health",
+        "all components healthy"
+      ]
+    ],
+    "previews": {
+      "camera_01": {
+        "frames": 20,
+        "size": [
+          640,
+          480
+        ],
+        "ready_s": 0.91
+      },
+      "camera_02": {
+        "frames": 21,
+        "size": [
+          640,
+          480
+        ],
+        "ready_s": 0.7
+      },
+      "camera_03": {
+        "frames": 21,
+        "size": [
+          640,
+          480
+        ],
+        "ready_s": 0.71
+      },
+      "camera_04": {
+        "frames": 21,
+        "size": [
+          640,
+          480
+        ],
+        "ready_s": 0.7
+      },
+      "camera_05": {
+        "frames": 22,
+        "size": [
+          640,
+          480
+        ],
+        "ready_s": 0.81
+      }
+    },
+    "yolo_preview_frames": 20,
+    "control_source": "manual",
+    "counts": {
+      "detections": 93,
+      "manual": 21,
+      "output": 1280
+    },
+    "autonomous_states": {
+      "lane": "RUNNING",
+      "path_planner": "RUNNING",
+      "motion_planner": "RUNNING"
+    },
+    "dds_endpoints": {
+      "/image_01_raw": [
+        {
+          "node": "zenoh_bridge_camera",
+          "reliability": "1",
+          "depth": 1,
+          "type": "sensor_msgs/msg/Image"
+        }
+      ],
+      "/ivn/zcu_health": [
+        {
+          "node": "zenoh_bridge_control",
+          "reliability": "1",
+          "depth": 10,
+          "type": "diagnostic_msgs/msg/DiagnosticArray"
+        }
+      ],
+      "/topic_control_signal": [
+        {
+          "node": "autosdv_gui",
+          "reliability": "2",
+          "depth": 1,
+          "type": "interfaces_pkg/msg/MotionCommand"
+        },
+        {
+          "node": "safety_supervisor_node",
+          "reliability": "2",
+          "depth": 1,
+          "type": "interfaces_pkg/msg/MotionCommand"
+        }
+      ]
+    },
+    "process_rmw": {
+      "2745876": {
+        "command": "/usr/bin/python3 /home/nvidia/Workspace/update_AutoSDV/AutoSDV-HPC/install/autosdv_gui_pkg/lib/autosdv_gui_pkg/safety_supervisor_node --ros-args -r __node:=safety_supervisor_node -p zcu_disconnect_timeout_sec:=1.0 -p owner_pid:=2745756 ",
+        "libs": [
+          "/opt/ros/jazzy/lib/librmw_cyclonedds_cpp.so"
+        ]
+      },
+      "2745877": {
+        "command": "/usr/bin/python3 /home/nvidia/Workspace/update_AutoSDV/AutoSDV-HPC/install/ivn_diagnostics_pkg/lib/ivn_diagnostics_pkg/IVN_diagnostics_node --ros-args -r __node:=IVN_diagnostics_node -p monitor_period_sec:=1.0 -p zcu_health_topic:=/ivn/zcu_health -p zcu_health_timeout_sec:=2.0 -p expected_zone_ids:=[zone_1,zone_2,zone_3,zone_4] ",
+        "libs": [
+          "/opt/ros/jazzy/lib/librmw_cyclonedds_cpp.so"
+        ]
+      },
+      "2748270": {
+        "command": "/usr/bin/python3 /home/nvidia/Workspace/update_AutoSDV/AutoSDV-HPC/install/camera_perception_pkg/lib/camera_perception_pkg/ethernet_image_publisher_node --ros-args -r __node:=ethernet_image_publisher_node_1 -p image:=image_01 -p show_image:=false -p p2_log_enabled:=false ",
+        "libs": [
+          "/opt/ros/jazzy/lib/librmw_cyclonedds_cpp.so"
+        ]
+      },
+      "2748280": {
+        "command": "/usr/bin/python3 /home/nvidia/Workspace/update_AutoSDV/AutoSDV-HPC/install/camera_perception_pkg/lib/camera_perception_pkg/ethernet_image_publisher_node --ros-args -r __node:=ethernet_image_publisher_node_2 -p image:=image_02 -p show_image:=false -p p2_log_enabled:=false ",
+        "libs": [
+          "/opt/ros/jazzy/lib/librmw_cyclonedds_cpp.so"
+        ]
+      },
+      "2748316": {
+        "command": "/usr/bin/python3 /home/nvidia/Workspace/update_AutoSDV/AutoSDV-HPC/install/camera_perception_pkg/lib/camera_perception_pkg/ethernet_image_publisher_node --ros-args -r __node:=ethernet_image_publisher_node_3 -p image:=image_03 -p show_image:=false -p p2_log_enabled:=false ",
+        "libs": [
+          "/opt/ros/jazzy/lib/librmw_cyclonedds_cpp.so"
+        ]
+      },
+      "2748326": {
+        "command": "/usr/bin/python3 /home/nvidia/Workspace/update_AutoSDV/AutoSDV-HPC/install/camera_perception_pkg/lib/camera_perception_pkg/ethernet_image_publisher_node --ros-args -r __node:=ethernet_image_publisher_node_4 -p image:=image_04 -p show_image:=false -p p2_log_enabled:=false ",
+        "libs": [
+          "/opt/ros/jazzy/lib/librmw_cyclonedds_cpp.so"
+        ]
+      },
+      "2748349": {
+        "command": "/usr/bin/python3 /home/nvidia/Workspace/update_AutoSDV/AutoSDV-HPC/install/camera_perception_pkg/lib/camera_perception_pkg/ethernet_image_publisher_node --ros-args -r __node:=ethernet_image_publisher_node_5 -p image:=image_05 -p show_image:=false -p p2_log_enabled:=false ",
+        "libs": [
+          "/opt/ros/jazzy/lib/librmw_cyclonedds_cpp.so"
+        ]
+      },
+      "2748363": {
+        "command": "/home/nvidia/Workspace/update_AutoSDV/AutoSDV-HPC/install/autosdv_gui_preview_bridge_pkg/lib/autosdv_gui_preview_bridge_pkg/preview_bridge_node --ros-args -r __node:=autosdv_gui_preview_bridge -p jpeg_quality:=85 ",
+        "libs": [
+          "/opt/ros/jazzy/lib/librmw_cyclonedds_cpp.so"
+        ]
+      },
+      "2748563": {
+        "command": "/usr/bin/python3 /home/nvidia/Workspace/update_AutoSDV/AutoSDV-HPC/install/camera_perception_pkg/lib/camera_perception_pkg/yolov8_node --ros-args -r __node:=yolov8_node -p log_image_header:=false ",
+        "libs": [
+          "/opt/ros/jazzy/lib/librmw_cyclonedds_cpp.so"
+        ]
+      },
+      "2749113": {
+        "command": "/usr/bin/python3 /home/nvidia/Workspace/update_AutoSDV/AutoSDV-HPC/install/camera_perception_pkg/lib/camera_perception_pkg/lane_info_extractor_node --ros-args -r __node:=lane_info_extractor_node -p show_image:=false -p publish_roi_image:=true ",
+        "libs": [
+          "/opt/ros/jazzy/lib/librmw_cyclonedds_cpp.so"
+        ]
+      },
+      "2749137": {
+        "command": "/usr/bin/python3 /home/nvidia/Workspace/update_AutoSDV/AutoSDV-HPC/install/decision_making_pkg/lib/decision_making_pkg/path_planner_node --ros-args -r __node:=path_planner_node -p log_planning:=false ",
+        "libs": [
+          "/opt/ros/jazzy/lib/librmw_cyclonedds_cpp.so"
+        ]
+      },
+      "2749162": {
+        "command": "/usr/bin/python3 /home/nvidia/Workspace/update_AutoSDV/AutoSDV-HPC/install/decision_making_pkg/lib/decision_making_pkg/motion_planner_node --ros-args -r __node:=motion_planner_node -p pub_topic:=/control/auto_cmd -p log_commands:=false ",
+        "libs": [
+          "/opt/ros/jazzy/lib/librmw_cyclonedds_cpp.so"
+        ]
+      }
+    },
+    "states": {
+      "camera_01": "RUNNING",
+      "camera_02": "RUNNING",
+      "camera_03": "RUNNING",
+      "camera_04": "RUNNING",
+      "camera_05": "RUNNING",
+      "yolo": "RUNNING",
+      "yolo_visualizer": "RUNNING",
+      "lane": "RUNNING",
+      "path_planner": "RUNNING",
+      "path_visualizer": "STOPPED",
+      "preview_bridge": "RUNNING",
+      "motion_planner": "RUNNING",
+      "drive": "STOPPED",
+      "safety_supervisor": "RUNNING",
+      "ivn_diagnostics": "RUNNING"
+    },
+    "errors": [],
+    "heartbeat_forced_disarmed": true,
+    "router_restart_recovered": {
+      "camera_01": 20,
+      "camera_02": 21,
+      "camera_03": 21,
+      "camera_04": 20,
+      "camera_05": 20
+    },
+    "dialog_apply_log": "HPC: check OK — {\"host\": \"hpc\", \"mode\": \"zenoh_bridge_pico\", \"ready\": true}\n10.0.0.5: check OK — {\"host\": \"zcu\", \"mode\": \"zenoh_bridge_pico\", \"ready\": true}\n10.0.0.3: check OK — {\"host\": \"zcu\", \"mode\": \"zenoh_bridge_pico\", \"ready\": true}\n10.0.0.4: check OK — {\"host\": \"zcu\", \"mode\": \"zenoh_bridge_pico\", \"ready\": true}\n10.0.0.2: check OK — {\"host\": \"zcu\", \"mode\": \"zenoh_bridge_pico\", \"ready\": true}\nHPC: begin OK — {\"applying\": \"zenoh_bridge_pico\"}\n10.0.0.2: begin OK — {\"applying\": \"zenoh_bridge_pico\"}\n10.0.0.5: begin OK — {\"applying\": \"zenoh_bridge_pico\"}\n10.0.0.4: begin OK — {\"applying\": \"zenoh_bridge_pico\"}\n10.0.0.3: begin OK — {\"applying\": \"zenoh_bridge_pico\"}\nHPC: stop OK — {\"stopped\": true}\n10.0.0.5: stop OK — {\"stopped\": true}\n10.0.0.4: stop OK — {\"stopped\": true}\n10.0.0.2: stop OK — {\"stopped\": true}\n10.0.0.3: stop OK — {\"stopped\": true}\nHPC: daemon OK — {\"daemon_stopped\": true}\nHPC: prepare OK — {\"prepared\": \"zenoh_bridge_pico\"}\n10.0.0.4: prepare OK — {\"prepared\": \"zenoh_bridge_pico\"}\n10.0.0.2: prepare OK — {\"prepared\": \"zenoh_bridge_pico\"}\n10.0.0.5: prepare OK — {\"prepared\": \"zenoh_bridge_pico\"}\n10.0.0.3: prepare OK — {\"prepared\": \"zenoh_bridge_pico\"}\nHPC: start OK — {\"started\": \"zenoh_bridge_pico\"}\nHPC: verify OK — {\"mode\": \"zenoh_bridge_pico\", \"processes_verified\": true, \"data_path_verified\": false}\n10.0.0.3: start OK — {\"started\": \"zenoh_bridge_pico\"}\n10.0.0.5: start OK — {\"started\": \"zenoh_bridge_pico\"}\n10.0.0.4: start OK — {\"started\": \"zenoh_bridge_pico\"}\n10.0.0.2: start OK — {\"started\": \"zenoh_bridge_pico\"}\n10.0.0.5: verify OK — {\"mode\": \"zenoh_bridge_pico\", \"processes_verified\": true, \"data_path_verified\": false}\n10.0.0.3: verify OK — {\"mode\": \"zenoh_bridge_pico\", \"processes_verified\": true, \"data_path_verified\": false}\n10.0.0.2: verify OK — {\"mode\": \"zenoh_bridge_pico\", \"processes_verified\": true, \"data_path_verified\": false}\n10.0.0.4: verify OK — {\"mode\": \"zenoh_bridge_pico\", \"processes_verified\": true, \"data_path_verified\": false}\n10.0.0.2: commit OK — {\"status\": \"ready\", \"mode\": \"zenoh_bridge_pico\", \"data_path_verified\": false}\n10.0.0.5: commit OK — {\"status\": \"ready\", \"mode\": \"zenoh_bridge_pico\", \"data_path_verified\": false}\n10.0.0.3: commit OK — {\"status\": \"ready\", \"mode\": \"zenoh_bridge_pico\", \"data_path_verified\": false}\n10.0.0.4: commit OK — {\"status\": \"ready\", \"mode\": \"zenoh_bridge_pico\", \"data_path_verified\": false}\nHPC: commit OK — {\"status\": \"ready\", \"mode\": \"zenoh_bridge_pico\", \"data_path_verified\": false}\nMode applied. Processes verified; live image/control/health validation pending.\n",
+    "restore_nodes": [
+      "camera_01",
+      "camera_02",
+      "camera_03",
+      "camera_04",
+      "camera_05",
+      "yolo",
+      "lane",
+      "path_planner",
+      "preview_bridge",
+      "safety_supervisor",
+      "ivn_diagnostics"
+    ]
+  },
+  "fresh_gui": {
+    "mode": "zenoh_bridge_pico",
+    "health": [
+      [
+        "IVN/ZCU/zone_1/Runtime",
+        "health publish loop is running"
+      ],
+      [
+        "IVN/ZCU/zone_1/Health",
+        "all components healthy"
+      ],
+      [
+        "IVN/ZCU/zone_2/Runtime",
+        "health publish loop is running"
+      ],
+      [
+        "IVN/ZCU/zone_2/Health",
+        "all components healthy"
+      ],
+      [
+        "IVN/ZCU/zone_3/Runtime",
+        "health publish loop is running"
+      ],
+      [
+        "IVN/ZCU/zone_3/Health",
+        "all components healthy"
+      ],
+      [
+        "IVN/ZCU/zone_4/Runtime",
+        "health publish loop is running"
+      ],
+      [
+        "IVN/ZCU/zone_4/Health",
+        "all components healthy"
+      ]
+    ],
+    "previews": {
+      "camera_01": {
+        "frames": 20,
+        "size": [
+          640,
+          480
+        ],
+        "ready_s": 1.01
+      },
+      "camera_02": {
+        "frames": 21,
+        "size": [
+          640,
+          480
+        ],
+        "ready_s": 0.71
+      },
+      "camera_03": {
+        "frames": 20,
+        "size": [
+          640,
+          480
+        ],
+        "ready_s": 0.7
+      },
+      "camera_04": {
+        "frames": 21,
+        "size": [
+          640,
+          480
+        ],
+        "ready_s": 0.71
+      },
+      "camera_05": {
+        "frames": 20,
+        "size": [
+          640,
+          480
+        ],
+        "ready_s": 1.11
+      }
+    },
+    "yolo_preview_frames": 21,
+    "control_source": "manual",
+    "counts": {
+      "detections": 168,
+      "manual": 20,
+      "output": 283
+    },
+    "dds_endpoints": {
+      "/image_01_raw": [
+        {
+          "node": "zenoh_bridge_camera",
+          "reliability": "1",
+          "depth": 1,
+          "type": "sensor_msgs/msg/Image"
+        }
+      ],
+      "/ivn/zcu_health": [
+        {
+          "node": "zenoh_bridge_control",
+          "reliability": "1",
+          "depth": 10,
+          "type": "diagnostic_msgs/msg/DiagnosticArray"
+        }
+      ],
+      "/topic_control_signal": [
+        {
+          "node": "autosdv_gui",
+          "reliability": "2",
+          "depth": 1,
+          "type": "interfaces_pkg/msg/MotionCommand"
+        },
+        {
+          "node": "safety_supervisor_node",
+          "reliability": "2",
+          "depth": 1,
+          "type": "interfaces_pkg/msg/MotionCommand"
+        }
+      ]
+    },
+    "process_rmw": {
+      "2752327": {
+        "command": "/usr/bin/python3 /home/nvidia/Workspace/update_AutoSDV/AutoSDV-HPC/install/autosdv_gui_pkg/lib/autosdv_gui_pkg/safety_supervisor_node --ros-args -r __node:=safety_supervisor_node -p zcu_disconnect_timeout_sec:=1.0 -p owner_pid:=2752219 ",
+        "libs": [
+          "/opt/ros/jazzy/lib/librmw_cyclonedds_cpp.so"
+        ]
+      },
+      "2752328": {
+        "command": "/usr/bin/python3 /home/nvidia/Workspace/update_AutoSDV/AutoSDV-HPC/install/ivn_diagnostics_pkg/lib/ivn_diagnostics_pkg/IVN_diagnostics_node --ros-args -r __node:=IVN_diagnostics_node -p monitor_period_sec:=1.0 -p zcu_health_topic:=/ivn/zcu_health -p zcu_health_timeout_sec:=2.0 -p expected_zone_ids:=[zone_1,zone_2,zone_3,zone_4] ",
+        "libs": [
+          "/opt/ros/jazzy/lib/librmw_cyclonedds_cpp.so"
+        ]
+      },
+      "2752329": {
+        "command": "/usr/bin/python3 /home/nvidia/Workspace/update_AutoSDV/AutoSDV-HPC/install/camera_perception_pkg/lib/camera_perception_pkg/ethernet_image_publisher_node --ros-args -r __node:=ethernet_image_publisher_node_1 -p image:=image_01 -p show_image:=false -p p2_log_enabled:=false ",
+        "libs": [
+          "/opt/ros/jazzy/lib/librmw_cyclonedds_cpp.so"
+        ]
+      },
+      "2752368": {
+        "command": "/usr/bin/python3 /home/nvidia/Workspace/update_AutoSDV/AutoSDV-HPC/install/camera_perception_pkg/lib/camera_perception_pkg/ethernet_image_publisher_node --ros-args -r __node:=ethernet_image_publisher_node_2 -p image:=image_02 -p show_image:=false -p p2_log_enabled:=false ",
+        "libs": [
+          "/opt/ros/jazzy/lib/librmw_cyclonedds_cpp.so"
+        ]
+      },
+      "2752380": {
+        "command": "/usr/bin/python3 /home/nvidia/Workspace/update_AutoSDV/AutoSDV-HPC/install/camera_perception_pkg/lib/camera_perception_pkg/ethernet_image_publisher_node --ros-args -r __node:=ethernet_image_publisher_node_3 -p image:=image_03 -p show_image:=false -p p2_log_enabled:=false ",
+        "libs": [
+          "/opt/ros/jazzy/lib/librmw_cyclonedds_cpp.so"
+        ]
+      },
+      "2752405": {
+        "command": "/usr/bin/python3 /home/nvidia/Workspace/update_AutoSDV/AutoSDV-HPC/install/camera_perception_pkg/lib/camera_perception_pkg/ethernet_image_publisher_node --ros-args -r __node:=ethernet_image_publisher_node_4 -p image:=image_04 -p show_image:=false -p p2_log_enabled:=false ",
+        "libs": [
+          "/opt/ros/jazzy/lib/librmw_cyclonedds_cpp.so"
+        ]
+      },
+      "2752423": {
+        "command": "/usr/bin/python3 /home/nvidia/Workspace/update_AutoSDV/AutoSDV-HPC/install/camera_perception_pkg/lib/camera_perception_pkg/ethernet_image_publisher_node --ros-args -r __node:=ethernet_image_publisher_node_5 -p image:=image_05 -p show_image:=false -p p2_log_enabled:=false ",
+        "libs": [
+          "/opt/ros/jazzy/lib/librmw_cyclonedds_cpp.so"
+        ]
+      },
+      "2752518": {
+        "command": "/home/nvidia/Workspace/update_AutoSDV/AutoSDV-HPC/install/autosdv_gui_preview_bridge_pkg/lib/autosdv_gui_preview_bridge_pkg/preview_bridge_node --ros-args -r __node:=autosdv_gui_preview_bridge -p jpeg_quality:=85 ",
+        "libs": [
+          "/opt/ros/jazzy/lib/librmw_cyclonedds_cpp.so"
+        ]
+      },
+      "2752701": {
+        "command": "/usr/bin/python3 /home/nvidia/Workspace/update_AutoSDV/AutoSDV-HPC/install/camera_perception_pkg/lib/camera_perception_pkg/yolov8_node --ros-args -r __node:=yolov8_node -p log_image_header:=false ",
+        "libs": [
+          "/opt/ros/jazzy/lib/librmw_cyclonedds_cpp.so"
+        ]
+      },
+      "2753095": {
+        "command": "/usr/bin/python3 /home/nvidia/Workspace/update_AutoSDV/AutoSDV-HPC/install/data_collection_pkg/lib/data_collection_pkg/drive_node --ros-args -r __node:=drive_node -p input_topic:=/gui/manual_input -p output_topic:=/control/manual_cmd -p terminal_input:=false ",
+        "libs": [
+          "/opt/ros/jazzy/lib/librmw_cyclonedds_cpp.so"
+        ]
+      }
+    },
+    "states": {
+      "camera_01": "RUNNING",
+      "camera_02": "RUNNING",
+      "camera_03": "RUNNING",
+      "camera_04": "RUNNING",
+      "camera_05": "RUNNING",
+      "yolo": "RUNNING",
+      "yolo_visualizer": "RUNNING",
+      "lane": "STOPPED",
+      "path_planner": "STOPPED",
+      "path_visualizer": "STOPPED",
+      "preview_bridge": "RUNNING",
+      "motion_planner": "STOPPED",
+      "drive": "RUNNING",
+      "safety_supervisor": "RUNNING",
+      "ivn_diagnostics": "RUNNING"
+    },
+    "errors": [],
+    "heartbeat_forced_disarmed": true
+  },
+  "announcements": [
+    {
+      "phase": "no_new_image_subscriptions",
+      "publishers": {
+        "/image_01_raw": [
+          {
+            "node": "zenoh_bridge_camera",
+            "reliability": 1,
+            "depth": 1,
+            "typehash": "RIHS01_d31d41a9a4c4bc8eae9be757b0beed306564f7526c88ea6a4588fb9582527d47"
+          }
+        ],
+        "/image_02_raw": [
+          {
+            "node": "zenoh_bridge_camera",
+            "reliability": 1,
+            "depth": 1,
+            "typehash": "RIHS01_d31d41a9a4c4bc8eae9be757b0beed306564f7526c88ea6a4588fb9582527d47"
+          }
+        ],
+        "/image_03_raw": [
+          {
+            "node": "zenoh_bridge_camera",
+            "reliability": 1,
+            "depth": 1,
+            "typehash": "RIHS01_d31d41a9a4c4bc8eae9be757b0beed306564f7526c88ea6a4588fb9582527d47"
+          }
+        ],
+        "/image_04_raw": [
+          {
+            "node": "zenoh_bridge_camera",
+            "reliability": 1,
+            "depth": 1,
+            "typehash": "RIHS01_d31d41a9a4c4bc8eae9be757b0beed306564f7526c88ea6a4588fb9582527d47"
+          }
+        ],
+        "/image_05_raw": [
+          {
+            "node": "zenoh_bridge_camera",
+            "reliability": 1,
+            "depth": 1,
+            "typehash": "RIHS01_d31d41a9a4c4bc8eae9be757b0beed306564f7526c88ea6a4588fb9582527d47"
+          }
+        ]
+      },
+      "subscribers": {
+        "/image_01_raw": 0,
+        "/image_02_raw": 0,
+        "/image_03_raw": 0,
+        "/image_04_raw": 0,
+        "/image_05_raw": 0
+      },
+      "gui_zone_states": {
+        "zone_1": "ok",
+        "zone_2": "ok",
+        "zone_3": "ok",
+        "zone_4": "ok"
+      },
+      "gui_camera_states": {
+        "image_01": "ok",
+        "image_02": "ok",
+        "image_03": "ok",
+        "image_04": "ok",
+        "image_05": "ok"
+      },
+      "diagnostics": [
+        {
+          "name": "IVN/Summary",
+          "level": 0,
+          "message": "IVN reachability and discovery are healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_1/Network",
+          "level": 0,
+          "message": "ZCU reachable"
+        },
+        {
+          "name": "IVN/ZCU/zone_1/DDS",
+          "level": 0,
+          "message": "Expected camera publishers discovered"
+        },
+        {
+          "name": "IVN/ZCU/zone_1/Runtime",
+          "level": 0,
+          "message": "health publish loop is running"
+        },
+        {
+          "name": "IVN/Camera/image_01",
+          "level": 0,
+          "message": "1 publisher(s) discovered; camera producer and frame activity are healthy"
+        },
+        {
+          "name": "IVN/Camera/image_02",
+          "level": 0,
+          "message": "1 publisher(s) discovered; camera producer and frame activity are healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_1/Health",
+          "level": 0,
+          "message": "all components healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_2/Network",
+          "level": 0,
+          "message": "ZCU reachable"
+        },
+        {
+          "name": "IVN/ZCU/zone_2/DDS",
+          "level": 0,
+          "message": "Expected camera publishers discovered"
+        },
+        {
+          "name": "IVN/ZCU/zone_2/Runtime",
+          "level": 0,
+          "message": "health publish loop is running"
+        },
+        {
+          "name": "IVN/Camera/image_03",
+          "level": 0,
+          "message": "1 publisher(s) discovered; camera producer and frame activity are healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_2/Health",
+          "level": 0,
+          "message": "all components healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_3/Network",
+          "level": 0,
+          "message": "ZCU reachable"
+        },
+        {
+          "name": "IVN/ZCU/zone_3/DDS",
+          "level": 0,
+          "message": "Expected camera publishers discovered"
+        },
+        {
+          "name": "IVN/ZCU/zone_3/Runtime",
+          "level": 0,
+          "message": "health publish loop is running"
+        },
+        {
+          "name": "IVN/Camera/image_04",
+          "level": 0,
+          "message": "1 publisher(s) discovered; camera producer and frame activity are healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_3/Health",
+          "level": 0,
+          "message": "all components healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_4/Network",
+          "level": 0,
+          "message": "ZCU reachable"
+        },
+        {
+          "name": "IVN/ZCU/zone_4/DDS",
+          "level": 0,
+          "message": "Expected camera publishers discovered"
+        },
+        {
+          "name": "IVN/ZCU/zone_4/Runtime",
+          "level": 0,
+          "message": "health publish loop is running"
+        },
+        {
+          "name": "IVN/Camera/image_05",
+          "level": 0,
+          "message": "1 publisher(s) discovered; camera producer and frame activity are healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_4/Health",
+          "level": 0,
+          "message": "all components healthy"
+        }
+      ],
+      "frames": {
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 0
+      }
+    },
+    {
+      "phase": "subscribed",
+      "publishers": {
+        "/image_01_raw": [
+          {
+            "node": "zenoh_bridge_camera",
+            "reliability": 1,
+            "depth": 1,
+            "typehash": "RIHS01_d31d41a9a4c4bc8eae9be757b0beed306564f7526c88ea6a4588fb9582527d47"
+          }
+        ],
+        "/image_02_raw": [
+          {
+            "node": "zenoh_bridge_camera",
+            "reliability": 1,
+            "depth": 1,
+            "typehash": "RIHS01_d31d41a9a4c4bc8eae9be757b0beed306564f7526c88ea6a4588fb9582527d47"
+          }
+        ],
+        "/image_03_raw": [
+          {
+            "node": "zenoh_bridge_camera",
+            "reliability": 1,
+            "depth": 1,
+            "typehash": "RIHS01_d31d41a9a4c4bc8eae9be757b0beed306564f7526c88ea6a4588fb9582527d47"
+          }
+        ],
+        "/image_04_raw": [
+          {
+            "node": "zenoh_bridge_camera",
+            "reliability": 1,
+            "depth": 1,
+            "typehash": "RIHS01_d31d41a9a4c4bc8eae9be757b0beed306564f7526c88ea6a4588fb9582527d47"
+          }
+        ],
+        "/image_05_raw": [
+          {
+            "node": "zenoh_bridge_camera",
+            "reliability": 1,
+            "depth": 1,
+            "typehash": "RIHS01_d31d41a9a4c4bc8eae9be757b0beed306564f7526c88ea6a4588fb9582527d47"
+          }
+        ]
+      },
+      "subscribers": {
+        "/image_01_raw": 1,
+        "/image_02_raw": 1,
+        "/image_03_raw": 1,
+        "/image_04_raw": 1,
+        "/image_05_raw": 1
+      },
+      "gui_zone_states": {
+        "zone_1": "ok",
+        "zone_2": "ok",
+        "zone_3": "ok",
+        "zone_4": "ok"
+      },
+      "gui_camera_states": {
+        "image_01": "ok",
+        "image_02": "ok",
+        "image_03": "ok",
+        "image_04": "ok",
+        "image_05": "ok"
+      },
+      "diagnostics": [
+        {
+          "name": "IVN/Summary",
+          "level": 0,
+          "message": "IVN reachability and discovery are healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_1/Network",
+          "level": 0,
+          "message": "ZCU reachable"
+        },
+        {
+          "name": "IVN/ZCU/zone_1/DDS",
+          "level": 0,
+          "message": "Expected camera publishers discovered"
+        },
+        {
+          "name": "IVN/ZCU/zone_1/Runtime",
+          "level": 0,
+          "message": "health publish loop is running"
+        },
+        {
+          "name": "IVN/Camera/image_01",
+          "level": 0,
+          "message": "1 publisher(s) discovered; camera producer and frame activity are healthy"
+        },
+        {
+          "name": "IVN/Camera/image_02",
+          "level": 0,
+          "message": "1 publisher(s) discovered; camera producer and frame activity are healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_1/Health",
+          "level": 0,
+          "message": "all components healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_2/Network",
+          "level": 0,
+          "message": "ZCU reachable"
+        },
+        {
+          "name": "IVN/ZCU/zone_2/DDS",
+          "level": 0,
+          "message": "Expected camera publishers discovered"
+        },
+        {
+          "name": "IVN/ZCU/zone_2/Runtime",
+          "level": 0,
+          "message": "health publish loop is running"
+        },
+        {
+          "name": "IVN/Camera/image_03",
+          "level": 0,
+          "message": "1 publisher(s) discovered; camera producer and frame activity are healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_2/Health",
+          "level": 0,
+          "message": "all components healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_3/Network",
+          "level": 0,
+          "message": "ZCU reachable"
+        },
+        {
+          "name": "IVN/ZCU/zone_3/DDS",
+          "level": 0,
+          "message": "Expected camera publishers discovered"
+        },
+        {
+          "name": "IVN/ZCU/zone_3/Runtime",
+          "level": 0,
+          "message": "health publish loop is running"
+        },
+        {
+          "name": "IVN/Camera/image_04",
+          "level": 0,
+          "message": "1 publisher(s) discovered; camera producer and frame activity are healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_3/Health",
+          "level": 0,
+          "message": "all components healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_4/Network",
+          "level": 0,
+          "message": "ZCU reachable"
+        },
+        {
+          "name": "IVN/ZCU/zone_4/DDS",
+          "level": 0,
+          "message": "Expected camera publishers discovered"
+        },
+        {
+          "name": "IVN/ZCU/zone_4/Runtime",
+          "level": 0,
+          "message": "health publish loop is running"
+        },
+        {
+          "name": "IVN/Camera/image_05",
+          "level": 0,
+          "message": "1 publisher(s) discovered; camera producer and frame activity are healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_4/Health",
+          "level": 0,
+          "message": "all components healthy"
+        }
+      ],
+      "frames": {
+        "1": 119,
+        "2": 120,
+        "3": 120,
+        "4": 119,
+        "5": 119
+      }
+    },
+    {
+      "phase": "subscriptions_removed",
+      "publishers": {
+        "/image_01_raw": [
+          {
+            "node": "zenoh_bridge_camera",
+            "reliability": 1,
+            "depth": 1,
+            "typehash": "RIHS01_d31d41a9a4c4bc8eae9be757b0beed306564f7526c88ea6a4588fb9582527d47"
+          }
+        ],
+        "/image_02_raw": [
+          {
+            "node": "zenoh_bridge_camera",
+            "reliability": 1,
+            "depth": 1,
+            "typehash": "RIHS01_d31d41a9a4c4bc8eae9be757b0beed306564f7526c88ea6a4588fb9582527d47"
+          }
+        ],
+        "/image_03_raw": [
+          {
+            "node": "zenoh_bridge_camera",
+            "reliability": 1,
+            "depth": 1,
+            "typehash": "RIHS01_d31d41a9a4c4bc8eae9be757b0beed306564f7526c88ea6a4588fb9582527d47"
+          }
+        ],
+        "/image_04_raw": [
+          {
+            "node": "zenoh_bridge_camera",
+            "reliability": 1,
+            "depth": 1,
+            "typehash": "RIHS01_d31d41a9a4c4bc8eae9be757b0beed306564f7526c88ea6a4588fb9582527d47"
+          }
+        ],
+        "/image_05_raw": [
+          {
+            "node": "zenoh_bridge_camera",
+            "reliability": 1,
+            "depth": 1,
+            "typehash": "RIHS01_d31d41a9a4c4bc8eae9be757b0beed306564f7526c88ea6a4588fb9582527d47"
+          }
+        ]
+      },
+      "subscribers": {
+        "/image_01_raw": 0,
+        "/image_02_raw": 0,
+        "/image_03_raw": 0,
+        "/image_04_raw": 0,
+        "/image_05_raw": 0
+      },
+      "gui_zone_states": {
+        "zone_1": "ok",
+        "zone_2": "ok",
+        "zone_3": "ok",
+        "zone_4": "ok"
+      },
+      "gui_camera_states": {
+        "image_01": "ok",
+        "image_02": "ok",
+        "image_03": "ok",
+        "image_04": "ok",
+        "image_05": "ok"
+      },
+      "diagnostics": [
+        {
+          "name": "IVN/Summary",
+          "level": 0,
+          "message": "IVN reachability and discovery are healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_1/Network",
+          "level": 0,
+          "message": "ZCU reachable"
+        },
+        {
+          "name": "IVN/ZCU/zone_1/DDS",
+          "level": 0,
+          "message": "Expected camera publishers discovered"
+        },
+        {
+          "name": "IVN/ZCU/zone_1/Runtime",
+          "level": 0,
+          "message": "health publish loop is running"
+        },
+        {
+          "name": "IVN/Camera/image_01",
+          "level": 0,
+          "message": "1 publisher(s) discovered; camera producer and frame activity are healthy"
+        },
+        {
+          "name": "IVN/Camera/image_02",
+          "level": 0,
+          "message": "1 publisher(s) discovered; camera producer and frame activity are healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_1/Health",
+          "level": 0,
+          "message": "all components healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_2/Network",
+          "level": 0,
+          "message": "ZCU reachable"
+        },
+        {
+          "name": "IVN/ZCU/zone_2/DDS",
+          "level": 0,
+          "message": "Expected camera publishers discovered"
+        },
+        {
+          "name": "IVN/ZCU/zone_2/Runtime",
+          "level": 0,
+          "message": "health publish loop is running"
+        },
+        {
+          "name": "IVN/Camera/image_03",
+          "level": 0,
+          "message": "1 publisher(s) discovered; camera producer and frame activity are healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_2/Health",
+          "level": 0,
+          "message": "all components healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_3/Network",
+          "level": 0,
+          "message": "ZCU reachable"
+        },
+        {
+          "name": "IVN/ZCU/zone_3/DDS",
+          "level": 0,
+          "message": "Expected camera publishers discovered"
+        },
+        {
+          "name": "IVN/ZCU/zone_3/Runtime",
+          "level": 0,
+          "message": "health publish loop is running"
+        },
+        {
+          "name": "IVN/Camera/image_04",
+          "level": 0,
+          "message": "1 publisher(s) discovered; camera producer and frame activity are healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_3/Health",
+          "level": 0,
+          "message": "all components healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_4/Network",
+          "level": 0,
+          "message": "ZCU reachable"
+        },
+        {
+          "name": "IVN/ZCU/zone_4/DDS",
+          "level": 0,
+          "message": "Expected camera publishers discovered"
+        },
+        {
+          "name": "IVN/ZCU/zone_4/Runtime",
+          "level": 0,
+          "message": "health publish loop is running"
+        },
+        {
+          "name": "IVN/Camera/image_05",
+          "level": 0,
+          "message": "1 publisher(s) discovered; camera producer and frame activity are healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_4/Health",
+          "level": 0,
+          "message": "all components healthy"
+        }
+      ],
+      "frames": {
+        "1": 119,
+        "2": 120,
+        "3": 120,
+        "4": 119,
+        "5": 119
+      }
+    },
+    {
+      "phase": "zcu4_stopped",
+      "publishers": {
+        "/image_01_raw": [
+          {
+            "node": "zenoh_bridge_camera",
+            "reliability": 1,
+            "depth": 1,
+            "typehash": "RIHS01_d31d41a9a4c4bc8eae9be757b0beed306564f7526c88ea6a4588fb9582527d47"
+          }
+        ],
+        "/image_02_raw": [
+          {
+            "node": "zenoh_bridge_camera",
+            "reliability": 1,
+            "depth": 1,
+            "typehash": "RIHS01_d31d41a9a4c4bc8eae9be757b0beed306564f7526c88ea6a4588fb9582527d47"
+          }
+        ],
+        "/image_03_raw": [
+          {
+            "node": "zenoh_bridge_camera",
+            "reliability": 1,
+            "depth": 1,
+            "typehash": "RIHS01_d31d41a9a4c4bc8eae9be757b0beed306564f7526c88ea6a4588fb9582527d47"
+          }
+        ],
+        "/image_04_raw": [
+          {
+            "node": "zenoh_bridge_camera",
+            "reliability": 1,
+            "depth": 1,
+            "typehash": "RIHS01_d31d41a9a4c4bc8eae9be757b0beed306564f7526c88ea6a4588fb9582527d47"
+          }
+        ],
+        "/image_05_raw": []
+      },
+      "subscribers": {
+        "/image_01_raw": 0,
+        "/image_02_raw": 0,
+        "/image_03_raw": 0,
+        "/image_04_raw": 0,
+        "/image_05_raw": 0
+      },
+      "gui_zone_states": {
+        "zone_1": "ok",
+        "zone_2": "ok",
+        "zone_3": "ok",
+        "zone_4": "ok"
+      },
+      "gui_camera_states": {
+        "image_01": "ok",
+        "image_02": "ok",
+        "image_03": "ok",
+        "image_04": "ok",
+        "image_05": "error"
+      },
+      "diagnostics": [
+        {
+          "name": "IVN/Summary",
+          "level": 2,
+          "message": "One or more IVN components require attention"
+        },
+        {
+          "name": "IVN/ZCU/zone_1/Network",
+          "level": 0,
+          "message": "ZCU reachable"
+        },
+        {
+          "name": "IVN/ZCU/zone_1/DDS",
+          "level": 0,
+          "message": "Expected camera publishers discovered"
+        },
+        {
+          "name": "IVN/ZCU/zone_1/Runtime",
+          "level": 0,
+          "message": "health publish loop is running"
+        },
+        {
+          "name": "IVN/Camera/image_01",
+          "level": 0,
+          "message": "1 publisher(s) discovered; camera producer and frame activity are healthy"
+        },
+        {
+          "name": "IVN/Camera/image_02",
+          "level": 0,
+          "message": "1 publisher(s) discovered; camera producer and frame activity are healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_1/Health",
+          "level": 0,
+          "message": "all components healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_2/Network",
+          "level": 0,
+          "message": "ZCU reachable"
+        },
+        {
+          "name": "IVN/ZCU/zone_2/DDS",
+          "level": 0,
+          "message": "Expected camera publishers discovered"
+        },
+        {
+          "name": "IVN/ZCU/zone_2/Runtime",
+          "level": 0,
+          "message": "health publish loop is running"
+        },
+        {
+          "name": "IVN/Camera/image_03",
+          "level": 0,
+          "message": "1 publisher(s) discovered; camera producer and frame activity are healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_2/Health",
+          "level": 0,
+          "message": "all components healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_3/Network",
+          "level": 0,
+          "message": "ZCU reachable"
+        },
+        {
+          "name": "IVN/ZCU/zone_3/DDS",
+          "level": 0,
+          "message": "Expected camera publishers discovered"
+        },
+        {
+          "name": "IVN/ZCU/zone_3/Runtime",
+          "level": 0,
+          "message": "health publish loop is running"
+        },
+        {
+          "name": "IVN/Camera/image_04",
+          "level": 0,
+          "message": "1 publisher(s) discovered; camera producer and frame activity are healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_3/Health",
+          "level": 0,
+          "message": "all components healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_4/Network",
+          "level": 0,
+          "message": "ZCU reachable"
+        },
+        {
+          "name": "IVN/ZCU/zone_4/DDS",
+          "level": 2,
+          "message": "One or more camera publishers are missing"
+        },
+        {
+          "name": "IVN/ZCU/zone_4/Runtime",
+          "level": 0,
+          "message": "health publish loop is running"
+        },
+        {
+          "name": "IVN/Camera/image_05",
+          "level": 2,
+          "message": "No publisher discovered; camera producer heartbeat is missing"
+        },
+        {
+          "name": "IVN/ZCU/zone_4/Health",
+          "level": 2,
+          "message": "camera producer heartbeat is missing: OK=1 WARN=0 ERROR=2 STALE=0"
+        }
+      ],
+      "frames": {
+        "1": 119,
+        "2": 120,
+        "3": 120,
+        "4": 119,
+        "5": 119
+      }
+    },
+    {
+      "phase": "zcu4_restarted",
+      "publishers": {
+        "/image_01_raw": [
+          {
+            "node": "zenoh_bridge_camera",
+            "reliability": 1,
+            "depth": 1,
+            "typehash": "RIHS01_d31d41a9a4c4bc8eae9be757b0beed306564f7526c88ea6a4588fb9582527d47"
+          }
+        ],
+        "/image_02_raw": [
+          {
+            "node": "zenoh_bridge_camera",
+            "reliability": 1,
+            "depth": 1,
+            "typehash": "RIHS01_d31d41a9a4c4bc8eae9be757b0beed306564f7526c88ea6a4588fb9582527d47"
+          }
+        ],
+        "/image_03_raw": [
+          {
+            "node": "zenoh_bridge_camera",
+            "reliability": 1,
+            "depth": 1,
+            "typehash": "RIHS01_d31d41a9a4c4bc8eae9be757b0beed306564f7526c88ea6a4588fb9582527d47"
+          }
+        ],
+        "/image_04_raw": [
+          {
+            "node": "zenoh_bridge_camera",
+            "reliability": 1,
+            "depth": 1,
+            "typehash": "RIHS01_d31d41a9a4c4bc8eae9be757b0beed306564f7526c88ea6a4588fb9582527d47"
+          }
+        ],
+        "/image_05_raw": [
+          {
+            "node": "zenoh_bridge_camera",
+            "reliability": 1,
+            "depth": 1,
+            "typehash": "RIHS01_d31d41a9a4c4bc8eae9be757b0beed306564f7526c88ea6a4588fb9582527d47"
+          }
+        ]
+      },
+      "subscribers": {
+        "/image_01_raw": 0,
+        "/image_02_raw": 0,
+        "/image_03_raw": 0,
+        "/image_04_raw": 0,
+        "/image_05_raw": 0
+      },
+      "gui_zone_states": {
+        "zone_1": "ok",
+        "zone_2": "ok",
+        "zone_3": "ok",
+        "zone_4": "ok"
+      },
+      "gui_camera_states": {
+        "image_01": "ok",
+        "image_02": "ok",
+        "image_03": "ok",
+        "image_04": "ok",
+        "image_05": "ok"
+      },
+      "diagnostics": [
+        {
+          "name": "IVN/Summary",
+          "level": 0,
+          "message": "IVN reachability and discovery are healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_1/Network",
+          "level": 0,
+          "message": "ZCU reachable"
+        },
+        {
+          "name": "IVN/ZCU/zone_1/DDS",
+          "level": 0,
+          "message": "Expected camera publishers discovered"
+        },
+        {
+          "name": "IVN/ZCU/zone_1/Runtime",
+          "level": 0,
+          "message": "health publish loop is running"
+        },
+        {
+          "name": "IVN/Camera/image_01",
+          "level": 0,
+          "message": "1 publisher(s) discovered; camera producer and frame activity are healthy"
+        },
+        {
+          "name": "IVN/Camera/image_02",
+          "level": 0,
+          "message": "1 publisher(s) discovered; camera producer and frame activity are healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_1/Health",
+          "level": 0,
+          "message": "all components healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_2/Network",
+          "level": 0,
+          "message": "ZCU reachable"
+        },
+        {
+          "name": "IVN/ZCU/zone_2/DDS",
+          "level": 0,
+          "message": "Expected camera publishers discovered"
+        },
+        {
+          "name": "IVN/ZCU/zone_2/Runtime",
+          "level": 0,
+          "message": "health publish loop is running"
+        },
+        {
+          "name": "IVN/Camera/image_03",
+          "level": 0,
+          "message": "1 publisher(s) discovered; camera producer and frame activity are healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_2/Health",
+          "level": 0,
+          "message": "all components healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_3/Network",
+          "level": 0,
+          "message": "ZCU reachable"
+        },
+        {
+          "name": "IVN/ZCU/zone_3/DDS",
+          "level": 0,
+          "message": "Expected camera publishers discovered"
+        },
+        {
+          "name": "IVN/ZCU/zone_3/Runtime",
+          "level": 0,
+          "message": "health publish loop is running"
+        },
+        {
+          "name": "IVN/Camera/image_04",
+          "level": 0,
+          "message": "1 publisher(s) discovered; camera producer and frame activity are healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_3/Health",
+          "level": 0,
+          "message": "all components healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_4/Network",
+          "level": 0,
+          "message": "ZCU reachable"
+        },
+        {
+          "name": "IVN/ZCU/zone_4/DDS",
+          "level": 0,
+          "message": "Expected camera publishers discovered"
+        },
+        {
+          "name": "IVN/ZCU/zone_4/Runtime",
+          "level": 0,
+          "message": "health publish loop is running"
+        },
+        {
+          "name": "IVN/Camera/image_05",
+          "level": 0,
+          "message": "1 publisher(s) discovered; camera producer and frame activity are healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_4/Health",
+          "level": 0,
+          "message": "all components healthy"
+        }
+      ],
+      "frames": {
+        "1": 119,
+        "2": 120,
+        "3": 120,
+        "4": 119,
+        "5": 119
+      }
+    },
+    {
+      "phase": "bridge_restarted",
+      "publishers": {
+        "/image_01_raw": [
+          {
+            "node": "zenoh_bridge_camera",
+            "reliability": 1,
+            "depth": 1,
+            "typehash": "RIHS01_d31d41a9a4c4bc8eae9be757b0beed306564f7526c88ea6a4588fb9582527d47"
+          }
+        ],
+        "/image_02_raw": [
+          {
+            "node": "zenoh_bridge_camera",
+            "reliability": 1,
+            "depth": 1,
+            "typehash": "RIHS01_d31d41a9a4c4bc8eae9be757b0beed306564f7526c88ea6a4588fb9582527d47"
+          }
+        ],
+        "/image_03_raw": [
+          {
+            "node": "zenoh_bridge_camera",
+            "reliability": 1,
+            "depth": 1,
+            "typehash": "RIHS01_d31d41a9a4c4bc8eae9be757b0beed306564f7526c88ea6a4588fb9582527d47"
+          }
+        ],
+        "/image_04_raw": [
+          {
+            "node": "zenoh_bridge_camera",
+            "reliability": 1,
+            "depth": 1,
+            "typehash": "RIHS01_d31d41a9a4c4bc8eae9be757b0beed306564f7526c88ea6a4588fb9582527d47"
+          }
+        ],
+        "/image_05_raw": [
+          {
+            "node": "zenoh_bridge_camera",
+            "reliability": 1,
+            "depth": 1,
+            "typehash": "RIHS01_d31d41a9a4c4bc8eae9be757b0beed306564f7526c88ea6a4588fb9582527d47"
+          }
+        ]
+      },
+      "subscribers": {
+        "/image_01_raw": 0,
+        "/image_02_raw": 0,
+        "/image_03_raw": 0,
+        "/image_04_raw": 0,
+        "/image_05_raw": 0
+      },
+      "gui_zone_states": {
+        "zone_1": "ok",
+        "zone_2": "ok",
+        "zone_3": "ok",
+        "zone_4": "ok"
+      },
+      "gui_camera_states": {
+        "image_01": "ok",
+        "image_02": "ok",
+        "image_03": "ok",
+        "image_04": "ok",
+        "image_05": "ok"
+      },
+      "diagnostics": [
+        {
+          "name": "IVN/Summary",
+          "level": 0,
+          "message": "IVN reachability and discovery are healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_1/Network",
+          "level": 0,
+          "message": "ZCU reachable"
+        },
+        {
+          "name": "IVN/ZCU/zone_1/DDS",
+          "level": 0,
+          "message": "Expected camera publishers discovered"
+        },
+        {
+          "name": "IVN/ZCU/zone_1/Runtime",
+          "level": 0,
+          "message": "health publish loop is running"
+        },
+        {
+          "name": "IVN/Camera/image_01",
+          "level": 0,
+          "message": "1 publisher(s) discovered; camera producer and frame activity are healthy"
+        },
+        {
+          "name": "IVN/Camera/image_02",
+          "level": 0,
+          "message": "1 publisher(s) discovered; camera producer and frame activity are healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_1/Health",
+          "level": 0,
+          "message": "all components healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_2/Network",
+          "level": 0,
+          "message": "ZCU reachable"
+        },
+        {
+          "name": "IVN/ZCU/zone_2/DDS",
+          "level": 0,
+          "message": "Expected camera publishers discovered"
+        },
+        {
+          "name": "IVN/ZCU/zone_2/Runtime",
+          "level": 0,
+          "message": "health publish loop is running"
+        },
+        {
+          "name": "IVN/Camera/image_03",
+          "level": 0,
+          "message": "1 publisher(s) discovered; camera producer and frame activity are healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_2/Health",
+          "level": 0,
+          "message": "all components healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_3/Network",
+          "level": 0,
+          "message": "ZCU reachable"
+        },
+        {
+          "name": "IVN/ZCU/zone_3/DDS",
+          "level": 0,
+          "message": "Expected camera publishers discovered"
+        },
+        {
+          "name": "IVN/ZCU/zone_3/Runtime",
+          "level": 0,
+          "message": "health publish loop is running"
+        },
+        {
+          "name": "IVN/Camera/image_04",
+          "level": 0,
+          "message": "1 publisher(s) discovered; camera producer and frame activity are healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_3/Health",
+          "level": 0,
+          "message": "all components healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_4/Network",
+          "level": 0,
+          "message": "ZCU reachable"
+        },
+        {
+          "name": "IVN/ZCU/zone_4/DDS",
+          "level": 0,
+          "message": "Expected camera publishers discovered"
+        },
+        {
+          "name": "IVN/ZCU/zone_4/Runtime",
+          "level": 0,
+          "message": "health publish loop is running"
+        },
+        {
+          "name": "IVN/Camera/image_05",
+          "level": 0,
+          "message": "1 publisher(s) discovered; camera producer and frame activity are healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_4/Health",
+          "level": 0,
+          "message": "all components healthy"
+        }
+      ],
+      "frames": {
+        "1": 119,
+        "2": 120,
+        "3": 120,
+        "4": 119,
+        "5": 119
+      }
+    }
+  ],
+  "deployment": {
+    "2": {
+      "source_sha256": {
+        "CMakeLists.txt": "aecacee3db3ccf983b27dde6c899b0a0f9f59efec9bb2b0844dc8a14a794b7a4",
+        "scripts/install_zenoh_pico.sh": "4b2c6bb22064c6dac00d23807149d90709a7663a4b5b087144f3923a54bb4a25",
+        "patches/zenoh-pico-1.10.0-fragment-reliability.patch": "8bd10fd18335a8248c87802838b7dfee8447b2ab2a59ff0c1723466913d3addb",
+        "src/backend/zenoh/ros_keyexpr.cpp": "b9a16f1f188b157267248e51fd909cffd868aad309545e03a97c1d85bd621ec7",
+        "src/backend/zenoh/ros_keyexpr.hpp": "0cdbce75822cb587d5a187038a81f1b4a89a20ad9c166f22af2fc98e1729d396",
+        "src/backend/zenoh/type_hashes.hpp": "c0d0e9479652d32158f49311944c578d3a644f1a92053dafe69d9cab50359299",
+        "test/pico_interop_test.cpp": "704939b6f3bd5b9c06f5ca3af7db58a78241c6d93e719c116047cedc0cdc0a6c",
+        "src/backend/zenoh_bridge_pico/motion_command_subscriber.cpp": "fd54c60f868404eaf2e700f6e7165d1b4722c03671b9d0b487e2327c8b6aa6d3",
+        "src/backend/zenoh_bridge_pico/diagnostic_publisher.cpp": "b416037d0837481a12afb5bfdf82d72db022aab9d70c68f764a4c5eb2e95266a",
+        "src/backend/zenoh_bridge_pico/backend_internal.hpp": "c0b4b36b15e8348d2473018e8d3a458b8ed6b586a7193e88ff498b9cdcf0908f",
+        "src/backend/zenoh_bridge_pico/graph_probe.cpp": "f6f6b4d9d8b23452388c9a5e97f8a5b1bff64d4010e8f88cb3bb4b6537436660",
+        "src/backend/zenoh_bridge_pico/transport.cpp": "5c271b201dd8e9bb149dd349edde3fab43d276ad9dd11113d85cc67be745db62",
+        "src/backend/zenoh_bridge_pico/image_publisher.cpp": "ce9d77593dfe7b9cdf53a22c8763c143d839262c2ebc66ca7bf41d114339c887"
+      },
+      "processes": {
+        "zcu.service": {
+          "pid": "4160",
+          "libraries": [
+            "/lib/ld-linux-aarch64.so.1",
+            "/lib/libc.so.6",
+            "/lib/libgcc_s.so.1",
+            "/lib/libm.so.6",
+            "/lib/libpthread.so.0",
+            "/lib/librt.so.1",
+            "/usr/lib/libstdc++.so.6.0.29",
+            "/usr/local/lib/libzenohpico.so"
+          ],
+          "executable_sha256": "d5edf7bde59969a9a5fe4c91a0a5fc692ebbf6783cdbde5e8f08e64577cbe8ce"
+        },
+        "zcu-health@zone_1.service": {
+          "pid": "4161",
+          "libraries": [
+            "/lib/ld-linux-aarch64.so.1",
+            "/lib/libc.so.6",
+            "/lib/libgcc_s.so.1",
+            "/lib/libm.so.6",
+            "/lib/libpthread.so.0",
+            "/lib/librt.so.1",
+            "/usr/lib/libstdc++.so.6.0.29",
+            "/usr/local/lib/libzenohpico.so"
+          ],
+          "executable_sha256": "1830d3dc75ff1d7211693a7f834bc9a2c9dc3148a29d4b464d514fef2cec2aa1"
+        }
+      },
+      "library_sha256": "e07908ad8f784cf45715a6f57e319beaff140ba295ae2031a726fca0bc8f9879"
+    },
+    "3": {
+      "source_sha256": {
+        "CMakeLists.txt": "aecacee3db3ccf983b27dde6c899b0a0f9f59efec9bb2b0844dc8a14a794b7a4",
+        "scripts/install_zenoh_pico.sh": "4b2c6bb22064c6dac00d23807149d90709a7663a4b5b087144f3923a54bb4a25",
+        "patches/zenoh-pico-1.10.0-fragment-reliability.patch": "8bd10fd18335a8248c87802838b7dfee8447b2ab2a59ff0c1723466913d3addb",
+        "src/backend/zenoh/ros_keyexpr.cpp": "b9a16f1f188b157267248e51fd909cffd868aad309545e03a97c1d85bd621ec7",
+        "src/backend/zenoh/ros_keyexpr.hpp": "0cdbce75822cb587d5a187038a81f1b4a89a20ad9c166f22af2fc98e1729d396",
+        "src/backend/zenoh/type_hashes.hpp": "c0d0e9479652d32158f49311944c578d3a644f1a92053dafe69d9cab50359299",
+        "test/pico_interop_test.cpp": "704939b6f3bd5b9c06f5ca3af7db58a78241c6d93e719c116047cedc0cdc0a6c",
+        "src/backend/zenoh_bridge_pico/motion_command_subscriber.cpp": "fd54c60f868404eaf2e700f6e7165d1b4722c03671b9d0b487e2327c8b6aa6d3",
+        "src/backend/zenoh_bridge_pico/diagnostic_publisher.cpp": "b416037d0837481a12afb5bfdf82d72db022aab9d70c68f764a4c5eb2e95266a",
+        "src/backend/zenoh_bridge_pico/backend_internal.hpp": "c0b4b36b15e8348d2473018e8d3a458b8ed6b586a7193e88ff498b9cdcf0908f",
+        "src/backend/zenoh_bridge_pico/graph_probe.cpp": "f6f6b4d9d8b23452388c9a5e97f8a5b1bff64d4010e8f88cb3bb4b6537436660",
+        "src/backend/zenoh_bridge_pico/transport.cpp": "5c271b201dd8e9bb149dd349edde3fab43d276ad9dd11113d85cc67be745db62",
+        "src/backend/zenoh_bridge_pico/image_publisher.cpp": "ce9d77593dfe7b9cdf53a22c8763c143d839262c2ebc66ca7bf41d114339c887"
+      },
+      "processes": {
+        "zcu.service": {
+          "pid": "4123",
+          "libraries": [
+            "/lib/ld-linux-aarch64.so.1",
+            "/lib/libc.so.6",
+            "/lib/libgcc_s.so.1",
+            "/lib/libm.so.6",
+            "/lib/libpthread.so.0",
+            "/lib/librt.so.1",
+            "/usr/lib/libstdc++.so.6.0.29",
+            "/usr/local/lib/libzenohpico.so"
+          ],
+          "executable_sha256": "dec97414b271509be869b0ea2a758bfd057eb87d649b2e0079f23625ba231700"
+        },
+        "zcu-health@zone_2.service": {
+          "pid": "4125",
+          "libraries": [
+            "/lib/ld-linux-aarch64.so.1",
+            "/lib/libc.so.6",
+            "/lib/libgcc_s.so.1",
+            "/lib/libm.so.6",
+            "/lib/libpthread.so.0",
+            "/lib/librt.so.1",
+            "/usr/lib/libstdc++.so.6.0.29",
+            "/usr/local/lib/libzenohpico.so"
+          ],
+          "executable_sha256": "1830d3dc75ff1d7211693a7f834bc9a2c9dc3148a29d4b464d514fef2cec2aa1"
+        }
+      },
+      "library_sha256": "e07908ad8f784cf45715a6f57e319beaff140ba295ae2031a726fca0bc8f9879"
+    },
+    "4": {
+      "source_sha256": {
+        "CMakeLists.txt": "aecacee3db3ccf983b27dde6c899b0a0f9f59efec9bb2b0844dc8a14a794b7a4",
+        "scripts/install_zenoh_pico.sh": "4b2c6bb22064c6dac00d23807149d90709a7663a4b5b087144f3923a54bb4a25",
+        "patches/zenoh-pico-1.10.0-fragment-reliability.patch": "8bd10fd18335a8248c87802838b7dfee8447b2ab2a59ff0c1723466913d3addb",
+        "src/backend/zenoh/ros_keyexpr.cpp": "b9a16f1f188b157267248e51fd909cffd868aad309545e03a97c1d85bd621ec7",
+        "src/backend/zenoh/ros_keyexpr.hpp": "0cdbce75822cb587d5a187038a81f1b4a89a20ad9c166f22af2fc98e1729d396",
+        "src/backend/zenoh/type_hashes.hpp": "c0d0e9479652d32158f49311944c578d3a644f1a92053dafe69d9cab50359299",
+        "test/pico_interop_test.cpp": "704939b6f3bd5b9c06f5ca3af7db58a78241c6d93e719c116047cedc0cdc0a6c",
+        "src/backend/zenoh_bridge_pico/motion_command_subscriber.cpp": "fd54c60f868404eaf2e700f6e7165d1b4722c03671b9d0b487e2327c8b6aa6d3",
+        "src/backend/zenoh_bridge_pico/diagnostic_publisher.cpp": "b416037d0837481a12afb5bfdf82d72db022aab9d70c68f764a4c5eb2e95266a",
+        "src/backend/zenoh_bridge_pico/backend_internal.hpp": "c0b4b36b15e8348d2473018e8d3a458b8ed6b586a7193e88ff498b9cdcf0908f",
+        "src/backend/zenoh_bridge_pico/graph_probe.cpp": "f6f6b4d9d8b23452388c9a5e97f8a5b1bff64d4010e8f88cb3bb4b6537436660",
+        "src/backend/zenoh_bridge_pico/transport.cpp": "5c271b201dd8e9bb149dd349edde3fab43d276ad9dd11113d85cc67be745db62",
+        "src/backend/zenoh_bridge_pico/image_publisher.cpp": "ce9d77593dfe7b9cdf53a22c8763c143d839262c2ebc66ca7bf41d114339c887"
+      },
+      "processes": {
+        "zcu.service": {
+          "pid": "4061",
+          "libraries": [
+            "/lib/ld-linux-aarch64.so.1",
+            "/lib/libc.so.6",
+            "/lib/libgcc_s.so.1",
+            "/lib/libm.so.6",
+            "/lib/libpthread.so.0",
+            "/lib/librt.so.1",
+            "/usr/lib/libstdc++.so.6.0.29",
+            "/usr/local/lib/libzenohpico.so"
+          ],
+          "executable_sha256": "987b69a12d43d9eb8a383a867be819b623f04f76dc09e476270b12357b71d91e"
+        },
+        "zcu-health@zone_3.service": {
+          "pid": "4064",
+          "libraries": [
+            "/lib/ld-linux-aarch64.so.1",
+            "/lib/libc.so.6",
+            "/lib/libgcc_s.so.1",
+            "/lib/libm.so.6",
+            "/lib/libpthread.so.0",
+            "/lib/librt.so.1",
+            "/usr/lib/libstdc++.so.6.0.29",
+            "/usr/local/lib/libzenohpico.so"
+          ],
+          "executable_sha256": "1830d3dc75ff1d7211693a7f834bc9a2c9dc3148a29d4b464d514fef2cec2aa1"
+        }
+      },
+      "library_sha256": "e07908ad8f784cf45715a6f57e319beaff140ba295ae2031a726fca0bc8f9879"
+    },
+    "5": {
+      "source_sha256": {
+        "CMakeLists.txt": "aecacee3db3ccf983b27dde6c899b0a0f9f59efec9bb2b0844dc8a14a794b7a4",
+        "scripts/install_zenoh_pico.sh": "4b2c6bb22064c6dac00d23807149d90709a7663a4b5b087144f3923a54bb4a25",
+        "patches/zenoh-pico-1.10.0-fragment-reliability.patch": "8bd10fd18335a8248c87802838b7dfee8447b2ab2a59ff0c1723466913d3addb",
+        "src/backend/zenoh/ros_keyexpr.cpp": "b9a16f1f188b157267248e51fd909cffd868aad309545e03a97c1d85bd621ec7",
+        "src/backend/zenoh/ros_keyexpr.hpp": "0cdbce75822cb587d5a187038a81f1b4a89a20ad9c166f22af2fc98e1729d396",
+        "src/backend/zenoh/type_hashes.hpp": "c0d0e9479652d32158f49311944c578d3a644f1a92053dafe69d9cab50359299",
+        "test/pico_interop_test.cpp": "704939b6f3bd5b9c06f5ca3af7db58a78241c6d93e719c116047cedc0cdc0a6c",
+        "src/backend/zenoh_bridge_pico/motion_command_subscriber.cpp": "fd54c60f868404eaf2e700f6e7165d1b4722c03671b9d0b487e2327c8b6aa6d3",
+        "src/backend/zenoh_bridge_pico/diagnostic_publisher.cpp": "b416037d0837481a12afb5bfdf82d72db022aab9d70c68f764a4c5eb2e95266a",
+        "src/backend/zenoh_bridge_pico/backend_internal.hpp": "c0b4b36b15e8348d2473018e8d3a458b8ed6b586a7193e88ff498b9cdcf0908f",
+        "src/backend/zenoh_bridge_pico/graph_probe.cpp": "f6f6b4d9d8b23452388c9a5e97f8a5b1bff64d4010e8f88cb3bb4b6537436660",
+        "src/backend/zenoh_bridge_pico/transport.cpp": "5c271b201dd8e9bb149dd349edde3fab43d276ad9dd11113d85cc67be745db62",
+        "src/backend/zenoh_bridge_pico/image_publisher.cpp": "ce9d77593dfe7b9cdf53a22c8763c143d839262c2ebc66ca7bf41d114339c887"
+      },
+      "processes": {
+        "zcu.service": {
+          "pid": "4151",
+          "libraries": [
+            "/lib/ld-linux-aarch64.so.1",
+            "/lib/libc.so.6",
+            "/lib/libgcc_s.so.1",
+            "/lib/libm.so.6",
+            "/lib/libpthread.so.0",
+            "/lib/librt.so.1",
+            "/usr/lib/libstdc++.so.6.0.29",
+            "/usr/local/lib/libzenohpico.so"
+          ],
+          "executable_sha256": "87e06a8bc39fba925a80a4fd3c62ec27e0f2fb9325aa97f7f61d45ab43ec5584"
+        },
+        "zcu-health@zone_4.service": {
+          "pid": "4153",
+          "libraries": [
+            "/lib/ld-linux-aarch64.so.1",
+            "/lib/libc.so.6",
+            "/lib/libgcc_s.so.1",
+            "/lib/libm.so.6",
+            "/lib/libpthread.so.0",
+            "/lib/librt.so.1",
+            "/usr/lib/libstdc++.so.6.0.29",
+            "/usr/local/lib/libzenohpico.so"
+          ],
+          "executable_sha256": "1830d3dc75ff1d7211693a7f834bc9a2c9dc3148a29d4b464d514fef2cec2aa1"
+        }
+      },
+      "library_sha256": "e07908ad8f784cf45715a6f57e319beaff140ba295ae2031a726fca0bc8f9879"
+    }
+  },
+  "interop": [
+    {
+      "transport": "tcp",
+      "image_sizes_received": {
+        "0": 20,
+        "43200": 20,
+        "65503": 20
+      },
+      "health": 60,
+      "probe": "Pico session pico_interop at tcp/127.0.0.1:27447\nPico session pico_interop at tcp/127.0.0.1:27447\nRaw health=60 ROS commands=1100 valid codec commands=5\n"
+    },
+    {
+      "transport": "udp",
+      "image_sizes_received": {
+        "0": 20,
+        "43200": 20,
+        "65503": 20
+      },
+      "health": 60,
+      "probe": "Pico session pico_interop at udp/127.0.0.1:27447\nPico session pico_interop at udp/127.0.0.1:27447\nRaw health=60 ROS commands=1130 valid codec commands=5\n"
+    }
+  ],
+  "initial_router_absence": [
+    {
+      "transport": "tcp",
+      "image_sizes_received": {
+        "0": 20,
+        "43200": 20,
+        "65503": 20
+      },
+      "health": 60,
+      "probe": "Pico waiting for tcp/127.0.0.1:27447\nPico session pico_interop at tcp/127.0.0.1:27447\nPico session pico_interop at tcp/127.0.0.1:27447\nRaw health=60 ROS commands=220 valid codec commands=5\n"
+    },
+    {
+      "transport": "udp",
+      "image_sizes_received": {
+        "0": 20,
+        "43200": 20,
+        "65503": 20
+      },
+      "health": 60,
+      "probe": "Pico session pico_interop at udp/127.0.0.1:27447\nPico session pico_interop at udp/127.0.0.1:27447\nRaw health=60 ROS commands=230 valid codec commands=5\n"
+    }
+  ],
+  "can_stop_frames": {
+    "2": [
+      "(1780637094.651683) can0 111#00000007",
+      "(1780637094.651933) can0 123#0000000000000000",
+      "(1780637094.701610) can0 111#00000007",
+      "(1780637094.701863) can0 123#0000000000000000",
+      "(1780637094.751609) can0 111#00000007",
+      "(1780637094.751860) can0 123#0000000000000000",
+      "(1780637094.801589) can0 111#00000007",
+      "(1780637094.801841) can0 123#0000000000000000",
+      "(1780637094.851622) can0 111#00000007",
+      "(1780637094.851875) can0 123#0000000000000000"
+    ],
+    "3": [
+      "(1780608550.079222) can0 111#00000007",
+      "(1780608550.079472) can0 123#0000000000000000",
+      "(1780608550.129116) can0 111#00000007",
+      "(1780608550.129367) can0 123#0000000000000000",
+      "(1780608550.179109) can0 111#00000007",
+      "(1780608550.179359) can0 123#0000000000000000",
+      "(1780608550.229101) can0 111#00000007",
+      "(1780608550.229351) can0 123#0000000000000000",
+      "(1780608550.279095) can0 111#00000007",
+      "(1780608550.279346) can0 123#0000000000000000"
+    ],
+    "4": [
+      "(1786122817.050111) can0 111#00000007",
+      "(1786122817.050361) can0 123#0000000000000000",
+      "(1786122817.100040) can0 111#00000007",
+      "(1786122817.100291) can0 123#0000000000000000",
+      "(1786122817.150051) can0 111#00000007",
+      "(1786122817.150302) can0 123#0000000000000000",
+      "(1786122817.200040) can0 111#00000007",
+      "(1786122817.200292) can0 123#0000000000000000",
+      "(1786122817.250023) can0 111#00000007",
+      "(1786122817.250275) can0 123#0000000000000000"
+    ],
+    "5": [
+      "(1780536616.253929) can0 111#00000007",
+      "(1780536616.254180) can0 123#0000000000000000",
+      "(1780536616.303826) can0 111#00000007",
+      "(1780536616.304079) can0 123#0000000000000000",
+      "(1780536616.354000) can0 111#00000007",
+      "(1780536616.354254) can0 123#0000000000000000",
+      "(1780536616.403908) can0 111#00000007",
+      "(1780536616.404160) can0 123#0000000000000000",
+      "(1780536616.453814) can0 111#00000007",
+      "(1780536616.454066) can0 123#0000000000000000"
+    ]
+  },
+  "wire_active": {
+    "seconds": 30,
+    "rtps_packets": 0,
+    "ip_fragments": 0,
+    "zenoh_udp_flows": {
+      "10.0.0.2:46625->10.0.0.10:7447 TOS=0xa0": 15827,
+      "10.0.0.5:47639->10.0.0.10:7447 TOS=0xa0": 3159,
+      "10.0.0.4:35029->10.0.0.10:7447 TOS=0xa0": 3922,
+      "10.0.0.3:50291->10.0.0.10:7447 TOS=0xa0": 5292,
+      "10.0.0.10:7448->10.0.0.4:57401 TOS=0xc0": 181,
+      "10.0.0.10:7448->10.0.0.3:57103 TOS=0xc0": 181,
+      "10.0.0.10:7448->10.0.0.2:56080 TOS=0xc0": 181,
+      "10.0.0.10:7448->10.0.0.5:43589 TOS=0xc0": 181,
+      "10.0.0.10:7447->10.0.0.5:47639 TOS=0x20": 6,
+      "10.0.0.4:42513->10.0.0.10:7448 TOS=0x00": 36,
+      "10.0.0.10:7447->10.0.0.3:50291 TOS=0x20": 6,
+      "10.0.0.10:7447->10.0.0.2:46625 TOS=0x20": 6,
+      "10.0.0.10:7447->10.0.0.4:35029 TOS=0x20": 5,
+      "10.0.0.10:7448->10.0.0.4:42513 TOS=0xc0": 6,
+      "10.0.0.5:52357->10.0.0.10:7448 TOS=0x00": 36,
+      "10.0.0.10:7448->10.0.0.5:52357 TOS=0xc0": 6,
+      "10.0.0.2:33749->10.0.0.10:7448 TOS=0x00": 52,
+      "10.0.0.3:39833->10.0.0.10:7448 TOS=0x00": 36,
+      "10.0.0.10:7448->10.0.0.2:33749 TOS=0xc0": 6,
+      "10.0.0.10:7448->10.0.0.3:39833 TOS=0xc0": 6,
+      "10.0.0.4:57401->10.0.0.10:7448 TOS=0x00": 6,
+      "10.0.0.10:7447->10.0.0.3:46408 TOS=0x20": 2,
+      "10.0.0.3:57103->10.0.0.10:7448 TOS=0x00": 6,
+      "10.0.0.2:56080->10.0.0.10:7448 TOS=0x00": 6,
+      "10.0.0.5:43589->10.0.0.10:7448 TOS=0x00": 6,
+      "10.0.0.3:40246->10.0.0.10:7447 TOS=0xa0": 10,
+      "10.0.0.10:7447->10.0.0.3:40246 TOS=0x20": 8,
+      "10.0.0.3:34286->10.0.0.10:7448 TOS=0x00": 8,
+      "10.0.0.10:7448->10.0.0.3:34286 TOS=0xc0": 7,
+      "10.0.0.3:44032->10.0.0.10:7448 TOS=0x00": 10,
+      "10.0.0.10:7448->10.0.0.3:44032 TOS=0xc0": 8,
+      "10.0.0.5:51823->10.0.0.10:7447 TOS=0xa0": 10,
+      "10.0.0.10:7447->10.0.0.5:51823 TOS=0x20": 8,
+      "10.0.0.5:36248->10.0.0.10:7448 TOS=0x00": 8,
+      "10.0.0.10:7448->10.0.0.5:36248 TOS=0xc0": 7,
+      "10.0.0.5:59060->10.0.0.10:7448 TOS=0x00": 10,
+      "10.0.0.10:7448->10.0.0.5:59060 TOS=0xc0": 8,
+      "10.0.0.4:37145->10.0.0.10:7447 TOS=0xa0": 10,
+      "10.0.0.10:7447->10.0.0.4:37145 TOS=0x20": 8,
+      "10.0.0.4:60698->10.0.0.10:7448 TOS=0x00": 8,
+      "10.0.0.10:7448->10.0.0.4:60698 TOS=0xc0": 7,
+      "10.0.0.4:36839->10.0.0.10:7448 TOS=0x00": 10,
+      "10.0.0.10:7448->10.0.0.4:36839 TOS=0xc0": 8,
+      "10.0.0.2:55652->10.0.0.10:7447 TOS=0xa0": 14,
+      "10.0.0.10:7447->10.0.0.2:55652 TOS=0x20": 9,
+      "10.0.0.2:60648->10.0.0.10:7448 TOS=0x00": 8,
+      "10.0.0.10:7448->10.0.0.2:60648 TOS=0xc0": 7,
+      "10.0.0.2:52963->10.0.0.10:7448 TOS=0x00": 10,
+      "10.0.0.10:7448->10.0.0.2:52963 TOS=0xc0": 8
+    }
+  },
+  "idle_wire": {
+    "seconds": 5,
+    "zcu4_to_camera_port_packets": 1,
+    "bytes": 60,
+    "packets_over_300_bytes": 0
+  },
+  "payload_monitor": {
+    "payload_count": 90,
+    "publisher_discovered": false
+  },
+  "final_process_verification": {
+    "HPC": {
+      "mode": "zenoh_bridge_pico",
+      "processes_verified": true,
+      "data_path_verified": false
+    },
+    "10.0.0.2": {
+      "mode": "zenoh_bridge_pico",
+      "processes_verified": true,
+      "data_path_verified": false
+    },
+    "10.0.0.3": {
+      "mode": "zenoh_bridge_pico",
+      "processes_verified": true,
+      "data_path_verified": false
+    },
+    "10.0.0.4": {
+      "mode": "zenoh_bridge_pico",
+      "processes_verified": true,
+      "data_path_verified": false
+    },
+    "10.0.0.5": {
+      "mode": "zenoh_bridge_pico",
+      "processes_verified": true,
+      "data_path_verified": false
+    }
+  },
+  "mode_apply_log": "HPC: check OK — {\"host\": \"hpc\", \"mode\": \"zenoh_bridge_pico\", \"ready\": true}\n10.0.0.2: check OK — {\"host\": \"zcu\", \"mode\": \"zenoh_bridge_pico\", \"ready\": true}\n10.0.0.5: check OK — {\"host\": \"zcu\", \"mode\": \"zenoh_bridge_pico\", \"ready\": true}\n10.0.0.4: check OK — {\"host\": \"zcu\", \"mode\": \"zenoh_bridge_pico\", \"ready\": true}\n10.0.0.3: check OK — {\"host\": \"zcu\", \"mode\": \"zenoh_bridge_pico\", \"ready\": true}\nHPC: begin OK — {\"applying\": \"zenoh_bridge_pico\"}\n10.0.0.5: begin OK — {\"applying\": \"zenoh_bridge_pico\"}\n10.0.0.2: begin OK — {\"applying\": \"zenoh_bridge_pico\"}\n10.0.0.3: begin OK — {\"applying\": \"zenoh_bridge_pico\"}\n10.0.0.4: begin OK — {\"applying\": \"zenoh_bridge_pico\"}\nHPC: stop OK — {\"stopped\": true}\n10.0.0.5: stop OK — {\"stopped\": true}\n10.0.0.2: stop OK — {\"stopped\": true}\n10.0.0.3: stop OK — {\"stopped\": true}\n10.0.0.4: stop OK — {\"stopped\": true}\nHPC: daemon OK — {\"daemon_stopped\": true}\nHPC: prepare OK — {\"prepared\": \"zenoh_bridge_pico\"}\n10.0.0.3: prepare OK — {\"prepared\": \"zenoh_bridge_pico\"}\n10.0.0.4: prepare OK — {\"prepared\": \"zenoh_bridge_pico\"}\n10.0.0.5: prepare OK — {\"prepared\": \"zenoh_bridge_pico\"}\n10.0.0.2: prepare OK — {\"prepared\": \"zenoh_bridge_pico\"}\nHPC: start OK — {\"started\": \"zenoh_bridge_pico\"}\nHPC: verify OK — {\"mode\": \"zenoh_bridge_pico\", \"processes_verified\": true, \"data_path_verified\": false}\n10.0.0.4: start OK — {\"started\": \"zenoh_bridge_pico\"}\n10.0.0.5: start OK — {\"started\": \"zenoh_bridge_pico\"}\n10.0.0.3: start OK — {\"started\": \"zenoh_bridge_pico\"}\n10.0.0.2: start OK — {\"started\": \"zenoh_bridge_pico\"}\n10.0.0.4: verify OK — {\"mode\": \"zenoh_bridge_pico\", \"processes_verified\": true, \"data_path_verified\": false}\n10.0.0.5: verify OK — {\"mode\": \"zenoh_bridge_pico\", \"processes_verified\": true, \"data_path_verified\": false}\n10.0.0.3: verify OK — {\"mode\": \"zenoh_bridge_pico\", \"processes_verified\": true, \"data_path_verified\": false}\n10.0.0.2: verify OK — {\"mode\": \"zenoh_bridge_pico\", \"processes_verified\": true, \"data_path_verified\": false}\n10.0.0.5: commit OK — {\"status\": \"ready\", \"mode\": \"zenoh_bridge_pico\", \"data_path_verified\": false}\n10.0.0.3: commit OK — {\"status\": \"ready\", \"mode\": \"zenoh_bridge_pico\", \"data_path_verified\": false}\n10.0.0.4: commit OK — {\"status\": \"ready\", \"mode\": \"zenoh_bridge_pico\", \"data_path_verified\": false}\n10.0.0.2: commit OK — {\"status\": \"ready\", \"mode\": \"zenoh_bridge_pico\", \"data_path_verified\": false}\nHPC: commit OK — {\"status\": \"ready\", \"mode\": \"zenoh_bridge_pico\", \"data_path_verified\": false}\nMode applied. Processes verified; live image/control/health validation pending.\n",
+  "ctest": {
+    "host": "health policy + keyexpr passed; transport smoke skipped",
+    "zcu_1_to_4": "health policy + keyexpr passed; transport smoke skipped"
+  },
+  "pytest": "30 passed: common mode, mode dialog, QoS",
+  "limits": [
+    "Offscreen Qt with real ROS nodes and ZCU hardware; no desktop click validation",
+    "Heartbeat forced to none in test harness; no nonzero hardware command",
+    "No latency/resource/long-duration performance measurement",
+    "M-core/RTOS deferred"
+  ]
+}

@@ -7,6 +7,8 @@
 <CycloneDDS xmlns="https://cdds.io/config">
   <Domain id="any">
     <General>
+      <!-- IVN discovery and payload delivery must not depend on multicast. -->
+      <AllowMulticast>false</AllowMulticast>
       <Interfaces>
         <NetworkInterface address="10.0.0.10" priority="default" multicast="default"/>
       </Interfaces>
@@ -15,6 +17,8 @@
       <ParticipantIndex>21</ParticipantIndex>
       <MaxAutoParticipantIndex>19</MaxAutoParticipantIndex>
       <Peers>
+        <!-- Discover HPC processes explicitly when multicast is disabled. -->
+        <Peer address="10.0.0.10"/>
         <Peer address="10.0.0.2"/>
       </Peers>
     </Discovery>

@@ -318,6 +318,11 @@ class GuiRosBridge(Node):
         msg.steer_right = bool(state.get('right'))
         msg.reset = bool(state.get('reset'))
         msg.emergency_stop = bool(state.get('emergency_stop'))
+        msg.analog = bool(state.get('analog'))
+        msg.throttle = float(state.get('throttle', 0.0))
+        msg.brake = float(state.get('brake', 0.0))
+        msg.steering_position = bool(state.get('steering_position'))
+        msg.steering = float(state.get('steering', 0.0))
         self.drive_pub.publish(msg)
 
     def publish_heartbeat(self, source):
@@ -334,7 +339,7 @@ class GuiRosBridge(Node):
         self._call_trigger(self.estop_client, 'Emergency stop')
 
     def request_estop_reset(self):
-        self._call_trigger(self.reset_client, 'E-stop reset')
+        return self._call_trigger(self.reset_client, 'E-stop reset')
 
     def _call_trigger(self, client, label):
         if not client.service_is_ready():
@@ -353,3 +358,4 @@ class GuiRosBridge(Node):
                 self._events.append(event)
 
         future.add_done_callback(done)
+        return future

@@ -1,0 +1,1469 @@
+{
+  "date": "2026-09-10",
+  "mode": "zenoh_bridge",
+  "before": {
+    "safety": {
+      "armed": false,
+      "active_source": "none",
+      "emergency_stop": false
+    },
+    "diagnostics": [
+      {
+        "name": "IVN/Summary",
+        "level": 2,
+        "message": "One or more IVN components require attention"
+      },
+      {
+        "name": "IVN/ZCU/zone_1/Network",
+        "level": 0,
+        "message": "ZCU reachable"
+      },
+      {
+        "name": "IVN/ZCU/zone_1/DDS",
+        "level": 2,
+        "message": "One or more camera publishers are missing"
+      },
+      {
+        "name": "IVN/ZCU/zone_1/Runtime",
+        "level": 0,
+        "message": "health publish loop is running"
+      },
+      {
+        "name": "IVN/Camera/image_01",
+        "level": 0,
+        "message": "1 publisher(s) discovered; camera producer and frame activity are healthy"
+      },
+      {
+        "name": "IVN/Camera/image_02",
+        "level": 2,
+        "message": "No publisher discovered"
+      },
+      {
+        "name": "IVN/ZCU/zone_1/Health",
+        "level": 0,
+        "message": "all components healthy"
+      },
+      {
+        "name": "IVN/ZCU/zone_2/Network",
+        "level": 0,
+        "message": "ZCU reachable"
+      },
+      {
+        "name": "IVN/ZCU/zone_2/DDS",
+        "level": 2,
+        "message": "One or more camera publishers are missing"
+      },
+      {
+        "name": "IVN/ZCU/zone_2/Runtime",
+        "level": 0,
+        "message": "health publish loop is running"
+      },
+      {
+        "name": "IVN/Camera/image_03",
+        "level": 2,
+        "message": "No publisher discovered"
+      },
+      {
+        "name": "IVN/ZCU/zone_2/Health",
+        "level": 0,
+        "message": "all components healthy"
+      },
+      {
+        "name": "IVN/ZCU/zone_3/Network",
+        "level": 0,
+        "message": "ZCU reachable"
+      },
+      {
+        "name": "IVN/ZCU/zone_3/DDS",
+        "level": 2,
+        "message": "One or more camera publishers are missing"
+      },
+      {
+        "name": "IVN/ZCU/zone_3/Runtime",
+        "level": 0,
+        "message": "health publish loop is running"
+      },
+      {
+        "name": "IVN/Camera/image_04",
+        "level": 2,
+        "message": "No publisher discovered"
+      },
+      {
+        "name": "IVN/ZCU/zone_3/Health",
+        "level": 0,
+        "message": "all components healthy"
+      },
+      {
+        "name": "IVN/ZCU/zone_4/Network",
+        "level": 0,
+        "message": "ZCU reachable"
+      },
+      {
+        "name": "IVN/ZCU/zone_4/DDS",
+        "level": 2,
+        "message": "One or more camera publishers are missing"
+      },
+      {
+        "name": "IVN/ZCU/zone_4/Runtime",
+        "level": 0,
+        "message": "health publish loop is running"
+      },
+      {
+        "name": "IVN/Camera/image_05",
+        "level": 2,
+        "message": "No publisher discovered"
+      },
+      {
+        "name": "IVN/ZCU/zone_4/Health",
+        "level": 0,
+        "message": "all components healthy"
+      }
+    ],
+    "publishers": {
+      "image_01": 1,
+      "image_02": 0,
+      "image_03": 0,
+      "image_04": 0,
+      "image_05": 0
+    },
+    "subscribers": {
+      "image_01": 1,
+      "image_02": 0,
+      "image_03": 0,
+      "image_04": 0,
+      "image_05": 0
+    }
+  },
+  "validation": [
+    {
+      "phase": "no_new_image_subscriptions",
+      "publishers": {
+        "/image_01_raw": [
+          {
+            "node": "zenoh_bridge_camera",
+            "reliability": 1,
+            "depth": 1,
+            "typehash": "RIHS01_d31d41a9a4c4bc8eae9be757b0beed306564f7526c88ea6a4588fb9582527d47"
+          }
+        ],
+        "/image_02_raw": [
+          {
+            "node": "zenoh_bridge_camera",
+            "reliability": 1,
+            "depth": 1,
+            "typehash": "RIHS01_d31d41a9a4c4bc8eae9be757b0beed306564f7526c88ea6a4588fb9582527d47"
+          }
+        ],
+        "/image_03_raw": [
+          {
+            "node": "zenoh_bridge_camera",
+            "reliability": 1,
+            "depth": 1,
+            "typehash": "RIHS01_d31d41a9a4c4bc8eae9be757b0beed306564f7526c88ea6a4588fb9582527d47"
+          }
+        ],
+        "/image_04_raw": [
+          {
+            "node": "zenoh_bridge_camera",
+            "reliability": 1,
+            "depth": 1,
+            "typehash": "RIHS01_d31d41a9a4c4bc8eae9be757b0beed306564f7526c88ea6a4588fb9582527d47"
+          }
+        ],
+        "/image_05_raw": [
+          {
+            "node": "zenoh_bridge_camera",
+            "reliability": 1,
+            "depth": 1,
+            "typehash": "RIHS01_d31d41a9a4c4bc8eae9be757b0beed306564f7526c88ea6a4588fb9582527d47"
+          }
+        ]
+      },
+      "subscribers": {
+        "/image_01_raw": 1,
+        "/image_02_raw": 0,
+        "/image_03_raw": 0,
+        "/image_04_raw": 0,
+        "/image_05_raw": 0
+      },
+      "gui_zone_states": {
+        "zone_1": "ok",
+        "zone_2": "ok",
+        "zone_3": "ok",
+        "zone_4": "ok"
+      },
+      "gui_camera_states": {
+        "image_01": "ok",
+        "image_02": "ok",
+        "image_03": "ok",
+        "image_04": "ok",
+        "image_05": "ok"
+      },
+      "diagnostics": [
+        {
+          "name": "IVN/Summary",
+          "level": 0,
+          "message": "IVN reachability and discovery are healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_1/Network",
+          "level": 0,
+          "message": "ZCU reachable"
+        },
+        {
+          "name": "IVN/ZCU/zone_1/DDS",
+          "level": 0,
+          "message": "Expected camera publishers discovered"
+        },
+        {
+          "name": "IVN/ZCU/zone_1/Runtime",
+          "level": 0,
+          "message": "health publish loop is running"
+        },
+        {
+          "name": "IVN/Camera/image_01",
+          "level": 0,
+          "message": "1 publisher(s) discovered; camera producer and frame activity are healthy"
+        },
+        {
+          "name": "IVN/Camera/image_02",
+          "level": 0,
+          "message": "1 publisher(s) discovered; camera producer and frame activity are healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_1/Health",
+          "level": 0,
+          "message": "all components healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_2/Network",
+          "level": 0,
+          "message": "ZCU reachable"
+        },
+        {
+          "name": "IVN/ZCU/zone_2/DDS",
+          "level": 0,
+          "message": "Expected camera publishers discovered"
+        },
+        {
+          "name": "IVN/ZCU/zone_2/Runtime",
+          "level": 0,
+          "message": "health publish loop is running"
+        },
+        {
+          "name": "IVN/Camera/image_03",
+          "level": 0,
+          "message": "1 publisher(s) discovered; camera producer and frame activity are healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_2/Health",
+          "level": 0,
+          "message": "all components healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_3/Network",
+          "level": 0,
+          "message": "ZCU reachable"
+        },
+        {
+          "name": "IVN/ZCU/zone_3/DDS",
+          "level": 0,
+          "message": "Expected camera publishers discovered"
+        },
+        {
+          "name": "IVN/ZCU/zone_3/Runtime",
+          "level": 0,
+          "message": "health publish loop is running"
+        },
+        {
+          "name": "IVN/Camera/image_04",
+          "level": 0,
+          "message": "1 publisher(s) discovered; camera producer and frame activity are healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_3/Health",
+          "level": 0,
+          "message": "all components healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_4/Network",
+          "level": 0,
+          "message": "ZCU reachable"
+        },
+        {
+          "name": "IVN/ZCU/zone_4/DDS",
+          "level": 0,
+          "message": "Expected camera publishers discovered"
+        },
+        {
+          "name": "IVN/ZCU/zone_4/Runtime",
+          "level": 0,
+          "message": "health publish loop is running"
+        },
+        {
+          "name": "IVN/Camera/image_05",
+          "level": 0,
+          "message": "1 publisher(s) discovered; camera producer and frame activity are healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_4/Health",
+          "level": 0,
+          "message": "all components healthy"
+        }
+      ],
+      "frames": {
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 0
+      }
+    },
+    {
+      "phase": "subscribed",
+      "publishers": {
+        "/image_01_raw": [
+          {
+            "node": "zenoh_bridge_camera",
+            "reliability": 1,
+            "depth": 1,
+            "typehash": "RIHS01_d31d41a9a4c4bc8eae9be757b0beed306564f7526c88ea6a4588fb9582527d47"
+          }
+        ],
+        "/image_02_raw": [
+          {
+            "node": "zenoh_bridge_camera",
+            "reliability": 1,
+            "depth": 1,
+            "typehash": "RIHS01_d31d41a9a4c4bc8eae9be757b0beed306564f7526c88ea6a4588fb9582527d47"
+          }
+        ],
+        "/image_03_raw": [
+          {
+            "node": "zenoh_bridge_camera",
+            "reliability": 1,
+            "depth": 1,
+            "typehash": "RIHS01_d31d41a9a4c4bc8eae9be757b0beed306564f7526c88ea6a4588fb9582527d47"
+          }
+        ],
+        "/image_04_raw": [
+          {
+            "node": "zenoh_bridge_camera",
+            "reliability": 1,
+            "depth": 1,
+            "typehash": "RIHS01_d31d41a9a4c4bc8eae9be757b0beed306564f7526c88ea6a4588fb9582527d47"
+          }
+        ],
+        "/image_05_raw": [
+          {
+            "node": "zenoh_bridge_camera",
+            "reliability": 1,
+            "depth": 1,
+            "typehash": "RIHS01_d31d41a9a4c4bc8eae9be757b0beed306564f7526c88ea6a4588fb9582527d47"
+          }
+        ]
+      },
+      "subscribers": {
+        "/image_01_raw": 2,
+        "/image_02_raw": 1,
+        "/image_03_raw": 1,
+        "/image_04_raw": 1,
+        "/image_05_raw": 1
+      },
+      "gui_zone_states": {
+        "zone_1": "ok",
+        "zone_2": "ok",
+        "zone_3": "ok",
+        "zone_4": "ok"
+      },
+      "gui_camera_states": {
+        "image_01": "ok",
+        "image_02": "ok",
+        "image_03": "ok",
+        "image_04": "ok",
+        "image_05": "ok"
+      },
+      "diagnostics": [
+        {
+          "name": "IVN/Summary",
+          "level": 0,
+          "message": "IVN reachability and discovery are healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_1/Network",
+          "level": 0,
+          "message": "ZCU reachable"
+        },
+        {
+          "name": "IVN/ZCU/zone_1/DDS",
+          "level": 0,
+          "message": "Expected camera publishers discovered"
+        },
+        {
+          "name": "IVN/ZCU/zone_1/Runtime",
+          "level": 0,
+          "message": "health publish loop is running"
+        },
+        {
+          "name": "IVN/Camera/image_01",
+          "level": 0,
+          "message": "1 publisher(s) discovered; camera producer and frame activity are healthy"
+        },
+        {
+          "name": "IVN/Camera/image_02",
+          "level": 0,
+          "message": "1 publisher(s) discovered; camera producer and frame activity are healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_1/Health",
+          "level": 0,
+          "message": "all components healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_2/Network",
+          "level": 0,
+          "message": "ZCU reachable"
+        },
+        {
+          "name": "IVN/ZCU/zone_2/DDS",
+          "level": 0,
+          "message": "Expected camera publishers discovered"
+        },
+        {
+          "name": "IVN/ZCU/zone_2/Runtime",
+          "level": 0,
+          "message": "health publish loop is running"
+        },
+        {
+          "name": "IVN/Camera/image_03",
+          "level": 0,
+          "message": "1 publisher(s) discovered; camera producer and frame activity are healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_2/Health",
+          "level": 0,
+          "message": "all components healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_3/Network",
+          "level": 0,
+          "message": "ZCU reachable"
+        },
+        {
+          "name": "IVN/ZCU/zone_3/DDS",
+          "level": 0,
+          "message": "Expected camera publishers discovered"
+        },
+        {
+          "name": "IVN/ZCU/zone_3/Runtime",
+          "level": 0,
+          "message": "health publish loop is running"
+        },
+        {
+          "name": "IVN/Camera/image_04",
+          "level": 0,
+          "message": "1 publisher(s) discovered; camera producer and frame activity are healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_3/Health",
+          "level": 0,
+          "message": "all components healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_4/Network",
+          "level": 0,
+          "message": "ZCU reachable"
+        },
+        {
+          "name": "IVN/ZCU/zone_4/DDS",
+          "level": 0,
+          "message": "Expected camera publishers discovered"
+        },
+        {
+          "name": "IVN/ZCU/zone_4/Runtime",
+          "level": 0,
+          "message": "health publish loop is running"
+        },
+        {
+          "name": "IVN/Camera/image_05",
+          "level": 0,
+          "message": "1 publisher(s) discovered; camera producer and frame activity are healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_4/Health",
+          "level": 0,
+          "message": "all components healthy"
+        }
+      ],
+      "frames": {
+        "1": 120,
+        "2": 117,
+        "3": 118,
+        "4": 118,
+        "5": 118
+      }
+    },
+    {
+      "phase": "subscriptions_removed",
+      "publishers": {
+        "/image_01_raw": [
+          {
+            "node": "zenoh_bridge_camera",
+            "reliability": 1,
+            "depth": 1,
+            "typehash": "RIHS01_d31d41a9a4c4bc8eae9be757b0beed306564f7526c88ea6a4588fb9582527d47"
+          }
+        ],
+        "/image_02_raw": [
+          {
+            "node": "zenoh_bridge_camera",
+            "reliability": 1,
+            "depth": 1,
+            "typehash": "RIHS01_d31d41a9a4c4bc8eae9be757b0beed306564f7526c88ea6a4588fb9582527d47"
+          }
+        ],
+        "/image_03_raw": [
+          {
+            "node": "zenoh_bridge_camera",
+            "reliability": 1,
+            "depth": 1,
+            "typehash": "RIHS01_d31d41a9a4c4bc8eae9be757b0beed306564f7526c88ea6a4588fb9582527d47"
+          }
+        ],
+        "/image_04_raw": [
+          {
+            "node": "zenoh_bridge_camera",
+            "reliability": 1,
+            "depth": 1,
+            "typehash": "RIHS01_d31d41a9a4c4bc8eae9be757b0beed306564f7526c88ea6a4588fb9582527d47"
+          }
+        ],
+        "/image_05_raw": [
+          {
+            "node": "zenoh_bridge_camera",
+            "reliability": 1,
+            "depth": 1,
+            "typehash": "RIHS01_d31d41a9a4c4bc8eae9be757b0beed306564f7526c88ea6a4588fb9582527d47"
+          }
+        ]
+      },
+      "subscribers": {
+        "/image_01_raw": 1,
+        "/image_02_raw": 0,
+        "/image_03_raw": 0,
+        "/image_04_raw": 0,
+        "/image_05_raw": 0
+      },
+      "gui_zone_states": {
+        "zone_1": "ok",
+        "zone_2": "ok",
+        "zone_3": "ok",
+        "zone_4": "ok"
+      },
+      "gui_camera_states": {
+        "image_01": "ok",
+        "image_02": "ok",
+        "image_03": "ok",
+        "image_04": "ok",
+        "image_05": "ok"
+      },
+      "diagnostics": [
+        {
+          "name": "IVN/Summary",
+          "level": 0,
+          "message": "IVN reachability and discovery are healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_1/Network",
+          "level": 0,
+          "message": "ZCU reachable"
+        },
+        {
+          "name": "IVN/ZCU/zone_1/DDS",
+          "level": 0,
+          "message": "Expected camera publishers discovered"
+        },
+        {
+          "name": "IVN/ZCU/zone_1/Runtime",
+          "level": 0,
+          "message": "health publish loop is running"
+        },
+        {
+          "name": "IVN/Camera/image_01",
+          "level": 0,
+          "message": "1 publisher(s) discovered; camera producer and frame activity are healthy"
+        },
+        {
+          "name": "IVN/Camera/image_02",
+          "level": 0,
+          "message": "1 publisher(s) discovered; camera producer and frame activity are healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_1/Health",
+          "level": 0,
+          "message": "all components healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_2/Network",
+          "level": 0,
+          "message": "ZCU reachable"
+        },
+        {
+          "name": "IVN/ZCU/zone_2/DDS",
+          "level": 0,
+          "message": "Expected camera publishers discovered"
+        },
+        {
+          "name": "IVN/ZCU/zone_2/Runtime",
+          "level": 0,
+          "message": "health publish loop is running"
+        },
+        {
+          "name": "IVN/Camera/image_03",
+          "level": 0,
+          "message": "1 publisher(s) discovered; camera producer and frame activity are healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_2/Health",
+          "level": 0,
+          "message": "all components healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_3/Network",
+          "level": 0,
+          "message": "ZCU reachable"
+        },
+        {
+          "name": "IVN/ZCU/zone_3/DDS",
+          "level": 0,
+          "message": "Expected camera publishers discovered"
+        },
+        {
+          "name": "IVN/ZCU/zone_3/Runtime",
+          "level": 0,
+          "message": "health publish loop is running"
+        },
+        {
+          "name": "IVN/Camera/image_04",
+          "level": 0,
+          "message": "1 publisher(s) discovered; camera producer and frame activity are healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_3/Health",
+          "level": 0,
+          "message": "all components healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_4/Network",
+          "level": 0,
+          "message": "ZCU reachable"
+        },
+        {
+          "name": "IVN/ZCU/zone_4/DDS",
+          "level": 0,
+          "message": "Expected camera publishers discovered"
+        },
+        {
+          "name": "IVN/ZCU/zone_4/Runtime",
+          "level": 0,
+          "message": "health publish loop is running"
+        },
+        {
+          "name": "IVN/Camera/image_05",
+          "level": 0,
+          "message": "1 publisher(s) discovered; camera producer and frame activity are healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_4/Health",
+          "level": 0,
+          "message": "all components healthy"
+        }
+      ],
+      "frames": {
+        "1": 120,
+        "2": 117,
+        "3": 118,
+        "4": 118,
+        "5": 118
+      }
+    },
+    {
+      "phase": "zcu4_stopped",
+      "publishers": {
+        "/image_01_raw": [
+          {
+            "node": "zenoh_bridge_camera",
+            "reliability": 1,
+            "depth": 1,
+            "typehash": "RIHS01_d31d41a9a4c4bc8eae9be757b0beed306564f7526c88ea6a4588fb9582527d47"
+          }
+        ],
+        "/image_02_raw": [
+          {
+            "node": "zenoh_bridge_camera",
+            "reliability": 1,
+            "depth": 1,
+            "typehash": "RIHS01_d31d41a9a4c4bc8eae9be757b0beed306564f7526c88ea6a4588fb9582527d47"
+          }
+        ],
+        "/image_03_raw": [
+          {
+            "node": "zenoh_bridge_camera",
+            "reliability": 1,
+            "depth": 1,
+            "typehash": "RIHS01_d31d41a9a4c4bc8eae9be757b0beed306564f7526c88ea6a4588fb9582527d47"
+          }
+        ],
+        "/image_04_raw": [
+          {
+            "node": "zenoh_bridge_camera",
+            "reliability": 1,
+            "depth": 1,
+            "typehash": "RIHS01_d31d41a9a4c4bc8eae9be757b0beed306564f7526c88ea6a4588fb9582527d47"
+          }
+        ],
+        "/image_05_raw": []
+      },
+      "subscribers": {
+        "/image_01_raw": 1,
+        "/image_02_raw": 0,
+        "/image_03_raw": 0,
+        "/image_04_raw": 0,
+        "/image_05_raw": 0
+      },
+      "gui_zone_states": {
+        "zone_1": "ok",
+        "zone_2": "ok",
+        "zone_3": "ok",
+        "zone_4": "ok"
+      },
+      "gui_camera_states": {
+        "image_01": "ok",
+        "image_02": "ok",
+        "image_03": "ok",
+        "image_04": "ok",
+        "image_05": "error"
+      },
+      "diagnostics": [
+        {
+          "name": "IVN/Summary",
+          "level": 2,
+          "message": "One or more IVN components require attention"
+        },
+        {
+          "name": "IVN/ZCU/zone_1/Network",
+          "level": 0,
+          "message": "ZCU reachable"
+        },
+        {
+          "name": "IVN/ZCU/zone_1/DDS",
+          "level": 0,
+          "message": "Expected camera publishers discovered"
+        },
+        {
+          "name": "IVN/ZCU/zone_1/Runtime",
+          "level": 0,
+          "message": "health publish loop is running"
+        },
+        {
+          "name": "IVN/Camera/image_01",
+          "level": 0,
+          "message": "1 publisher(s) discovered; camera producer and frame activity are healthy"
+        },
+        {
+          "name": "IVN/Camera/image_02",
+          "level": 0,
+          "message": "1 publisher(s) discovered; camera producer and frame activity are healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_1/Health",
+          "level": 0,
+          "message": "all components healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_2/Network",
+          "level": 0,
+          "message": "ZCU reachable"
+        },
+        {
+          "name": "IVN/ZCU/zone_2/DDS",
+          "level": 0,
+          "message": "Expected camera publishers discovered"
+        },
+        {
+          "name": "IVN/ZCU/zone_2/Runtime",
+          "level": 0,
+          "message": "health publish loop is running"
+        },
+        {
+          "name": "IVN/Camera/image_03",
+          "level": 0,
+          "message": "1 publisher(s) discovered; camera producer and frame activity are healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_2/Health",
+          "level": 0,
+          "message": "all components healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_3/Network",
+          "level": 0,
+          "message": "ZCU reachable"
+        },
+        {
+          "name": "IVN/ZCU/zone_3/DDS",
+          "level": 0,
+          "message": "Expected camera publishers discovered"
+        },
+        {
+          "name": "IVN/ZCU/zone_3/Runtime",
+          "level": 0,
+          "message": "health publish loop is running"
+        },
+        {
+          "name": "IVN/Camera/image_04",
+          "level": 0,
+          "message": "1 publisher(s) discovered; camera producer and frame activity are healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_3/Health",
+          "level": 0,
+          "message": "all components healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_4/Network",
+          "level": 0,
+          "message": "ZCU reachable"
+        },
+        {
+          "name": "IVN/ZCU/zone_4/DDS",
+          "level": 2,
+          "message": "One or more camera publishers are missing"
+        },
+        {
+          "name": "IVN/ZCU/zone_4/Runtime",
+          "level": 0,
+          "message": "health publish loop is running"
+        },
+        {
+          "name": "IVN/Camera/image_05",
+          "level": 2,
+          "message": "No publisher discovered; camera producer heartbeat is missing"
+        },
+        {
+          "name": "IVN/ZCU/zone_4/Health",
+          "level": 2,
+          "message": "camera producer heartbeat is missing: OK=1 WARN=0 ERROR=2 STALE=0"
+        }
+      ],
+      "frames": {
+        "1": 120,
+        "2": 117,
+        "3": 118,
+        "4": 118,
+        "5": 118
+      }
+    },
+    {
+      "phase": "zcu4_restarted",
+      "publishers": {
+        "/image_01_raw": [
+          {
+            "node": "zenoh_bridge_camera",
+            "reliability": 1,
+            "depth": 1,
+            "typehash": "RIHS01_d31d41a9a4c4bc8eae9be757b0beed306564f7526c88ea6a4588fb9582527d47"
+          }
+        ],
+        "/image_02_raw": [
+          {
+            "node": "zenoh_bridge_camera",
+            "reliability": 1,
+            "depth": 1,
+            "typehash": "RIHS01_d31d41a9a4c4bc8eae9be757b0beed306564f7526c88ea6a4588fb9582527d47"
+          }
+        ],
+        "/image_03_raw": [
+          {
+            "node": "zenoh_bridge_camera",
+            "reliability": 1,
+            "depth": 1,
+            "typehash": "RIHS01_d31d41a9a4c4bc8eae9be757b0beed306564f7526c88ea6a4588fb9582527d47"
+          }
+        ],
+        "/image_04_raw": [
+          {
+            "node": "zenoh_bridge_camera",
+            "reliability": 1,
+            "depth": 1,
+            "typehash": "RIHS01_d31d41a9a4c4bc8eae9be757b0beed306564f7526c88ea6a4588fb9582527d47"
+          }
+        ],
+        "/image_05_raw": [
+          {
+            "node": "zenoh_bridge_camera",
+            "reliability": 1,
+            "depth": 1,
+            "typehash": "RIHS01_d31d41a9a4c4bc8eae9be757b0beed306564f7526c88ea6a4588fb9582527d47"
+          }
+        ]
+      },
+      "subscribers": {
+        "/image_01_raw": 1,
+        "/image_02_raw": 0,
+        "/image_03_raw": 0,
+        "/image_04_raw": 0,
+        "/image_05_raw": 0
+      },
+      "gui_zone_states": {
+        "zone_1": "ok",
+        "zone_2": "ok",
+        "zone_3": "ok",
+        "zone_4": "ok"
+      },
+      "gui_camera_states": {
+        "image_01": "ok",
+        "image_02": "ok",
+        "image_03": "ok",
+        "image_04": "ok",
+        "image_05": "ok"
+      },
+      "diagnostics": [
+        {
+          "name": "IVN/Summary",
+          "level": 0,
+          "message": "IVN reachability and discovery are healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_1/Network",
+          "level": 0,
+          "message": "ZCU reachable"
+        },
+        {
+          "name": "IVN/ZCU/zone_1/DDS",
+          "level": 0,
+          "message": "Expected camera publishers discovered"
+        },
+        {
+          "name": "IVN/ZCU/zone_1/Runtime",
+          "level": 0,
+          "message": "health publish loop is running"
+        },
+        {
+          "name": "IVN/Camera/image_01",
+          "level": 0,
+          "message": "1 publisher(s) discovered; camera producer and frame activity are healthy"
+        },
+        {
+          "name": "IVN/Camera/image_02",
+          "level": 0,
+          "message": "1 publisher(s) discovered; camera producer and frame activity are healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_1/Health",
+          "level": 0,
+          "message": "all components healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_2/Network",
+          "level": 0,
+          "message": "ZCU reachable"
+        },
+        {
+          "name": "IVN/ZCU/zone_2/DDS",
+          "level": 0,
+          "message": "Expected camera publishers discovered"
+        },
+        {
+          "name": "IVN/ZCU/zone_2/Runtime",
+          "level": 0,
+          "message": "health publish loop is running"
+        },
+        {
+          "name": "IVN/Camera/image_03",
+          "level": 0,
+          "message": "1 publisher(s) discovered; camera producer and frame activity are healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_2/Health",
+          "level": 0,
+          "message": "all components healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_3/Network",
+          "level": 0,
+          "message": "ZCU reachable"
+        },
+        {
+          "name": "IVN/ZCU/zone_3/DDS",
+          "level": 0,
+          "message": "Expected camera publishers discovered"
+        },
+        {
+          "name": "IVN/ZCU/zone_3/Runtime",
+          "level": 0,
+          "message": "health publish loop is running"
+        },
+        {
+          "name": "IVN/Camera/image_04",
+          "level": 0,
+          "message": "1 publisher(s) discovered; camera producer and frame activity are healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_3/Health",
+          "level": 0,
+          "message": "all components healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_4/Network",
+          "level": 0,
+          "message": "ZCU reachable"
+        },
+        {
+          "name": "IVN/ZCU/zone_4/DDS",
+          "level": 0,
+          "message": "Expected camera publishers discovered"
+        },
+        {
+          "name": "IVN/ZCU/zone_4/Runtime",
+          "level": 0,
+          "message": "health publish loop is running"
+        },
+        {
+          "name": "IVN/Camera/image_05",
+          "level": 0,
+          "message": "1 publisher(s) discovered; camera producer and frame activity are healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_4/Health",
+          "level": 0,
+          "message": "all components healthy"
+        }
+      ],
+      "frames": {
+        "1": 120,
+        "2": 117,
+        "3": 118,
+        "4": 118,
+        "5": 118
+      }
+    },
+    {
+      "phase": "bridge_restarted",
+      "publishers": {
+        "/image_01_raw": [
+          {
+            "node": "zenoh_bridge_camera",
+            "reliability": 1,
+            "depth": 1,
+            "typehash": "RIHS01_d31d41a9a4c4bc8eae9be757b0beed306564f7526c88ea6a4588fb9582527d47"
+          }
+        ],
+        "/image_02_raw": [
+          {
+            "node": "zenoh_bridge_camera",
+            "reliability": 1,
+            "depth": 1,
+            "typehash": "RIHS01_d31d41a9a4c4bc8eae9be757b0beed306564f7526c88ea6a4588fb9582527d47"
+          }
+        ],
+        "/image_03_raw": [
+          {
+            "node": "zenoh_bridge_camera",
+            "reliability": 1,
+            "depth": 1,
+            "typehash": "RIHS01_d31d41a9a4c4bc8eae9be757b0beed306564f7526c88ea6a4588fb9582527d47"
+          }
+        ],
+        "/image_04_raw": [
+          {
+            "node": "zenoh_bridge_camera",
+            "reliability": 1,
+            "depth": 1,
+            "typehash": "RIHS01_d31d41a9a4c4bc8eae9be757b0beed306564f7526c88ea6a4588fb9582527d47"
+          }
+        ],
+        "/image_05_raw": [
+          {
+            "node": "zenoh_bridge_camera",
+            "reliability": 1,
+            "depth": 1,
+            "typehash": "RIHS01_d31d41a9a4c4bc8eae9be757b0beed306564f7526c88ea6a4588fb9582527d47"
+          }
+        ]
+      },
+      "subscribers": {
+        "/image_01_raw": 1,
+        "/image_02_raw": 0,
+        "/image_03_raw": 0,
+        "/image_04_raw": 0,
+        "/image_05_raw": 0
+      },
+      "gui_zone_states": {
+        "zone_1": "ok",
+        "zone_2": "ok",
+        "zone_3": "ok",
+        "zone_4": "ok"
+      },
+      "gui_camera_states": {
+        "image_01": "ok",
+        "image_02": "ok",
+        "image_03": "ok",
+        "image_04": "ok",
+        "image_05": "ok"
+      },
+      "diagnostics": [
+        {
+          "name": "IVN/Summary",
+          "level": 0,
+          "message": "IVN reachability and discovery are healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_1/Network",
+          "level": 0,
+          "message": "ZCU reachable"
+        },
+        {
+          "name": "IVN/ZCU/zone_1/DDS",
+          "level": 0,
+          "message": "Expected camera publishers discovered"
+        },
+        {
+          "name": "IVN/ZCU/zone_1/Runtime",
+          "level": 0,
+          "message": "health publish loop is running"
+        },
+        {
+          "name": "IVN/Camera/image_01",
+          "level": 0,
+          "message": "1 publisher(s) discovered; camera producer and frame activity are healthy"
+        },
+        {
+          "name": "IVN/Camera/image_02",
+          "level": 0,
+          "message": "1 publisher(s) discovered; camera producer and frame activity are healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_1/Health",
+          "level": 0,
+          "message": "all components healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_2/Network",
+          "level": 0,
+          "message": "ZCU reachable"
+        },
+        {
+          "name": "IVN/ZCU/zone_2/DDS",
+          "level": 0,
+          "message": "Expected camera publishers discovered"
+        },
+        {
+          "name": "IVN/ZCU/zone_2/Runtime",
+          "level": 0,
+          "message": "health publish loop is running"
+        },
+        {
+          "name": "IVN/Camera/image_03",
+          "level": 0,
+          "message": "1 publisher(s) discovered; camera producer and frame activity are healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_2/Health",
+          "level": 0,
+          "message": "all components healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_3/Network",
+          "level": 0,
+          "message": "ZCU reachable"
+        },
+        {
+          "name": "IVN/ZCU/zone_3/DDS",
+          "level": 0,
+          "message": "Expected camera publishers discovered"
+        },
+        {
+          "name": "IVN/ZCU/zone_3/Runtime",
+          "level": 0,
+          "message": "health publish loop is running"
+        },
+        {
+          "name": "IVN/Camera/image_04",
+          "level": 0,
+          "message": "1 publisher(s) discovered; camera producer and frame activity are healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_3/Health",
+          "level": 0,
+          "message": "all components healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_4/Network",
+          "level": 0,
+          "message": "ZCU reachable"
+        },
+        {
+          "name": "IVN/ZCU/zone_4/DDS",
+          "level": 0,
+          "message": "Expected camera publishers discovered"
+        },
+        {
+          "name": "IVN/ZCU/zone_4/Runtime",
+          "level": 0,
+          "message": "health publish loop is running"
+        },
+        {
+          "name": "IVN/Camera/image_05",
+          "level": 0,
+          "message": "1 publisher(s) discovered; camera producer and frame activity are healthy"
+        },
+        {
+          "name": "IVN/ZCU/zone_4/Health",
+          "level": 0,
+          "message": "all components healthy"
+        }
+      ],
+      "frames": {
+        "1": 120,
+        "2": 117,
+        "3": 118,
+        "4": 118,
+        "5": 118
+      }
+    }
+  ],
+  "final": {
+    "safety": {
+      "armed": false,
+      "active_source": "none",
+      "emergency_stop": false
+    },
+    "diagnostics": [
+      {
+        "name": "IVN/Summary",
+        "level": 0,
+        "message": "IVN reachability and discovery are healthy"
+      },
+      {
+        "name": "IVN/ZCU/zone_1/Network",
+        "level": 0,
+        "message": "ZCU reachable"
+      },
+      {
+        "name": "IVN/ZCU/zone_1/DDS",
+        "level": 0,
+        "message": "Expected camera publishers discovered"
+      },
+      {
+        "name": "IVN/ZCU/zone_1/Runtime",
+        "level": 0,
+        "message": "health publish loop is running"
+      },
+      {
+        "name": "IVN/Camera/image_01",
+        "level": 0,
+        "message": "1 publisher(s) discovered; camera producer and frame activity are healthy"
+      },
+      {
+        "name": "IVN/Camera/image_02",
+        "level": 0,
+        "message": "1 publisher(s) discovered; camera producer and frame activity are healthy"
+      },
+      {
+        "name": "IVN/ZCU/zone_1/Health",
+        "level": 0,
+        "message": "all components healthy"
+      },
+      {
+        "name": "IVN/ZCU/zone_2/Network",
+        "level": 0,
+        "message": "ZCU reachable"
+      },
+      {
+        "name": "IVN/ZCU/zone_2/DDS",
+        "level": 0,
+        "message": "Expected camera publishers discovered"
+      },
+      {
+        "name": "IVN/ZCU/zone_2/Runtime",
+        "level": 0,
+        "message": "health publish loop is running"
+      },
+      {
+        "name": "IVN/Camera/image_03",
+        "level": 0,
+        "message": "1 publisher(s) discovered; camera producer and frame activity are healthy"
+      },
+      {
+        "name": "IVN/ZCU/zone_2/Health",
+        "level": 0,
+        "message": "all components healthy"
+      },
+      {
+        "name": "IVN/ZCU/zone_3/Network",
+        "level": 0,
+        "message": "ZCU reachable"
+      },
+      {
+        "name": "IVN/ZCU/zone_3/DDS",
+        "level": 0,
+        "message": "Expected camera publishers discovered"
+      },
+      {
+        "name": "IVN/ZCU/zone_3/Runtime",
+        "level": 0,
+        "message": "health publish loop is running"
+      },
+      {
+        "name": "IVN/Camera/image_04",
+        "level": 0,
+        "message": "1 publisher(s) discovered; camera producer and frame activity are healthy"
+      },
+      {
+        "name": "IVN/ZCU/zone_3/Health",
+        "level": 0,
+        "message": "all components healthy"
+      },
+      {
+        "name": "IVN/ZCU/zone_4/Network",
+        "level": 0,
+        "message": "ZCU reachable"
+      },
+      {
+        "name": "IVN/ZCU/zone_4/DDS",
+        "level": 0,
+        "message": "Expected camera publishers discovered"
+      },
+      {
+        "name": "IVN/ZCU/zone_4/Runtime",
+        "level": 0,
+        "message": "health publish loop is running"
+      },
+      {
+        "name": "IVN/Camera/image_05",
+        "level": 0,
+        "message": "1 publisher(s) discovered; camera producer and frame activity are healthy"
+      },
+      {
+        "name": "IVN/ZCU/zone_4/Health",
+        "level": 0,
+        "message": "all components healthy"
+      }
+    ],
+    "publishers": {
+      "image_01": 1,
+      "image_02": 1,
+      "image_03": 1,
+      "image_04": 1,
+      "image_05": 1
+    },
+    "subscribers": {
+      "image_01": 1,
+      "image_02": 0,
+      "image_03": 0,
+      "image_04": 0,
+      "image_05": 0
+    },
+    "health_publishers": [
+      {
+        "node": "zenoh_bridge_control",
+        "hash": "RIHS01_5a8a36efb05fb25070fa0fb3810290c0e6cd4862b54a8fb975a1ee8dc55a333e"
+      }
+    ]
+  },
+  "idle_wire": {
+    "seconds": 5,
+    "zcu4_to_camera_port_packets": 2,
+    "bytes": 120,
+    "packets_over_300_bytes": 0
+  },
+  "deployment": {
+    "2": {
+      "source_hashes": {
+        "src/backend/zenoh/ros_keyexpr.cpp": "b9a16f1f188b157267248e51fd909cffd868aad309545e03a97c1d85bd621ec7",
+        "src/backend/zenoh/ros_keyexpr.hpp": "0cdbce75822cb587d5a187038a81f1b4a89a20ad9c166f22af2fc98e1729d396",
+        "src/backend/zenoh/image_publisher.cpp": "a6910a81eb6ae5d510173ff4a3a4ac38818d8af2b66fdec42585d8cf7493dbd4",
+        "src/backend/zenoh/diagnostic_publisher.cpp": "f61eefba52abe139fcffd53dccc66db5ecc34569f5f0f46cc2407dcb54daa131",
+        "test/zenoh_keyexpr_test.cpp": "9cfa3939983447a500dbbe9ceaeb826d0ba9cd912bf379aac78d114614b6f7b9"
+      },
+      "verify": {
+        "mode": "zenoh_bridge",
+        "processes_verified": true,
+        "data_path_verified": false
+      }
+    },
+    "3": {
+      "source_hashes": {
+        "src/backend/zenoh/ros_keyexpr.cpp": "b9a16f1f188b157267248e51fd909cffd868aad309545e03a97c1d85bd621ec7",
+        "src/backend/zenoh/ros_keyexpr.hpp": "0cdbce75822cb587d5a187038a81f1b4a89a20ad9c166f22af2fc98e1729d396",
+        "src/backend/zenoh/image_publisher.cpp": "a6910a81eb6ae5d510173ff4a3a4ac38818d8af2b66fdec42585d8cf7493dbd4",
+        "src/backend/zenoh/diagnostic_publisher.cpp": "f61eefba52abe139fcffd53dccc66db5ecc34569f5f0f46cc2407dcb54daa131",
+        "test/zenoh_keyexpr_test.cpp": "9cfa3939983447a500dbbe9ceaeb826d0ba9cd912bf379aac78d114614b6f7b9"
+      },
+      "verify": {
+        "mode": "zenoh_bridge",
+        "processes_verified": true,
+        "data_path_verified": false
+      }
+    },
+    "4": {
+      "source_hashes": {
+        "src/backend/zenoh/ros_keyexpr.cpp": "b9a16f1f188b157267248e51fd909cffd868aad309545e03a97c1d85bd621ec7",
+        "src/backend/zenoh/ros_keyexpr.hpp": "0cdbce75822cb587d5a187038a81f1b4a89a20ad9c166f22af2fc98e1729d396",
+        "src/backend/zenoh/image_publisher.cpp": "a6910a81eb6ae5d510173ff4a3a4ac38818d8af2b66fdec42585d8cf7493dbd4",
+        "src/backend/zenoh/diagnostic_publisher.cpp": "f61eefba52abe139fcffd53dccc66db5ecc34569f5f0f46cc2407dcb54daa131",
+        "test/zenoh_keyexpr_test.cpp": "9cfa3939983447a500dbbe9ceaeb826d0ba9cd912bf379aac78d114614b6f7b9"
+      },
+      "verify": {
+        "mode": "zenoh_bridge",
+        "processes_verified": true,
+        "data_path_verified": false
+      }
+    },
+    "5": {
+      "source_hashes": {
+        "src/backend/zenoh/ros_keyexpr.cpp": "b9a16f1f188b157267248e51fd909cffd868aad309545e03a97c1d85bd621ec7",
+        "src/backend/zenoh/ros_keyexpr.hpp": "0cdbce75822cb587d5a187038a81f1b4a89a20ad9c166f22af2fc98e1729d396",
+        "src/backend/zenoh/image_publisher.cpp": "a6910a81eb6ae5d510173ff4a3a4ac38818d8af2b66fdec42585d8cf7493dbd4",
+        "src/backend/zenoh/diagnostic_publisher.cpp": "f61eefba52abe139fcffd53dccc66db5ecc34569f5f0f46cc2407dcb54daa131",
+        "test/zenoh_keyexpr_test.cpp": "9cfa3939983447a500dbbe9ceaeb826d0ba9cd912bf379aac78d114614b6f7b9"
+      },
+      "verify": {
+        "mode": "zenoh_bridge",
+        "processes_verified": true,
+        "data_path_verified": false
+      }
+    }
+  },
+  "builds": {
+    "2": {
+      "bridge": "tar: src/backend/zenoh/ros_keyexpr.cpp: time stamp 2026-09-10 02:29:24 is 8381419.2326362 s in the future\ntar: src/backend/zenoh/ros_keyexpr.hpp: time stamp 2026-09-10 02:29:24 is 8381419.2323252 s in the future\ntar: src/backend/zenoh/image_publisher.cpp: time stamp 2026-09-10 02:29:24 is 8381419.232115 s in the future\ntar: src/backend/zenoh/diagnostic_publisher.cpp: time stamp 2026-09-10 02:29:24 is 8381419.2319226 s in the future\ntar: test/zenoh_keyexpr_test.cpp: time stamp 2026-09-10 02:29:24 is 8381419.2316984 s in the future\n-- ZCU DDS backend: zenoh_bridge\n-- Configuring done\n-- Generating done\n-- Build files have been written to: /home/root/Workspace/S32G3_ZCU/build-zenoh_bridge\nConsolidate compiler generated dependencies of target zcu_health_node\nConsolidate compiler generated dependencies of target zcu\nmake[2]: Warning: File '../src/zcu_health_main.cpp' has modification time 5979365 s in the future\nmake[2]: Warning: File '../src/main.cpp' has modification time 7291073 s in the future\n[  2%] Building CXX object CMakeFiles/zcu_health_node.dir/src/zcu_health_main.cpp.o\n[  5%] Building CXX object CMakeFiles/zcu.dir/src/main.cpp.o\n[  8%] Building CXX object CMakeFiles/zcu_health_node.dir/src/health_module/zcu_health_node.cpp.o\n[ 11%] Building CXX object CMakeFiles/zcu.dir/src/health_state.cpp.o\n[ 14%] Building CXX object CMakeFiles/zcu.dir/src/backend/zenoh/transport.cpp.o\n[ 17%] Building CXX object CMakeFiles/zcu_health_node.dir/src/health_module/health_policy.cpp.o\n[ 20%] Building CXX object CMakeFiles/zcu.dir/src/backend/zenoh/ros_keyexpr.cpp.o\n[ 23%] Building CXX object CMakeFiles/zcu.dir/src/backend/zenoh/image_publisher.cpp.o\n[ 26%] Building CXX object CMakeFiles/zcu_health_node.dir/src/backend/zenoh/transport.cpp.o\n[ 29%] Building CXX object CMakeFiles/zcu.dir/src/backend/zenoh/motion_command_subscriber.cpp.o\n[ 32%] Building CXX object CMakeFiles/zcu.dir/src/camera_module/camera_server.cpp.o\n[ 35%] Building CXX object CMakeFiles/zcu_health_node.dir/src/backend/zenoh/ros_keyexpr.cpp.o\n[ 38%] Building CXX object CMakeFiles/zcu_health_node.dir/src/backend/zenoh/diagnostic_publisher.cpp.o\n[ 41%] Building CXX object CMakeFiles/zcu.dir/src/control_module/control_subscriber.cpp.o\n[ 44%] Building C object CMakeFiles/zcu.dir/src/control_module/s32g3_skku_can_setting.c.o\n[ 47%] Linking CXX executable zcu\nmake[2]: warning:  Clock skew detected.  Your build may be incomplete.\n[ 52%] Built target zcu\nConsolidate compiler generated dependencies of target zcu_health_policy_test\nmake[2]: Warning: File '../test/health_policy_test.cpp' has modification time 5980638 s in the future\n[ 55%] Building CXX object CMakeFiles/zcu_health_policy_test.dir/test/health_policy_test.cpp.o\n[ 58%] Building CXX object CMakeFiles/zcu_health_node.dir/src/backend/zenoh/graph_probe.cpp.o\n[ 61%] Building CXX object CMakeFiles/zcu_health_policy_test.dir/src/health_module/health_policy.cpp.o\n[ 64%] Building CXX object CMakeFiles/zcu_health_node.dir/src/common/diagnostic_cdr.cpp.o\n[ 67%] Linking CXX executable zcu_health_node\nmake[2]: warning:  Clock skew detected.  Your build may be incomplete.\n[ 70%] Built target zcu_health_node\nConsolidate compiler generated dependencies of target zcu_transport_test\nmake[2]: Warning: File '../test/transport_test.cpp' has modification time 7209960 s in the future\n[ 73%] Building CXX object CMakeFiles/zcu_transport_test.dir/test/transport_test.cpp.o\n[ 76%] Linking CXX executable zcu_health_policy_test\nmake[2]: warning:  Clock skew detected.  Your build may be incomplete.\n[ 76%] Built target zcu_health_policy_test\nConsolidate compiler generated dependencies of target zcu_zenoh_keyexpr_test\nmake[2]: Warning: File '../test/zenoh_keyexpr_test.cpp' has modification time 8381343 s in the future\n[ 79%] Building CXX object CMakeFiles/zcu_zenoh_keyexpr_test.dir/test/zenoh_keyexpr_test.cpp.o\n[ 82%] Building CXX object CMakeFiles/zcu_transport_test.dir/src/backend/zenoh/transport.cpp.o\n[ 85%] Building CXX object CMakeFiles/zcu_zenoh_keyexpr_test.dir/src/backend/zenoh/ros_keyexpr.cpp.o\n[ 88%] Linking CXX executable zcu_zenoh_keyexpr_test\nmake[2]: warning:  Clock skew detected.  Your build may be incomplete.\n[ 88%] Built target zcu_zenoh_keyexpr_test\n[ 91%] Building CXX object CMakeFiles/zcu_transport_test.dir/src/backend/zenoh/ros_keyexpr.cpp.o\n[ 94%] Building CXX object CMakeFiles/zcu_transport_test.dir/src/backend/zenoh/graph_probe.cpp.o\n[ 97%] Linking CXX executable zcu_transport_test\nmake[2]: warning:  Clock skew detected.  Your build may be incomplete.\n[100%] Built target zcu_transport_test\nInternal ctest changing into directory: /home/root/Workspace/S32G3_ZCU/build-zenoh_bridge\nTest project /home/root/Workspace/S32G3_ZCU/build-zenoh_bridge\n    Start 1: zcu_health_policy_test\n1/3 Test #1: zcu_health_policy_test ...........   Passed    0.02 sec\n    Start 2: zcu_transport_test\n2/3 Test #2: zcu_transport_test ...............***Skipped   2.02 sec\n    Start 3: zcu_zenoh_keyexpr_test\n3/3 Test #3: zcu_zenoh_keyexpr_test ...........   Passed    0.01 sec\n\n100% tests passed, 0 tests failed out of 3\n\nTotal Test time (real) =   2.05 sec\n\nThe following tests did not run:\n\t  2 - zcu_transport_test (Skipped)\n",
+      "native": "-- ZCU DDS backend: zenoh\n-- Configuring done\n-- Generating done\n-- Build files have been written to: /home/root/Workspace/S32G3_ZCU/build-zenoh\nConsolidate compiler generated dependencies of target zcu_health_node\nConsolidate compiler generated dependencies of target zcu\nmake[2]: Warning: File '../src/zcu_health_main.cpp' has modification time 5979168 s in the future\nmake[2]: Warning: File '../src/main.cpp' has modification time 7290876 s in the future\n[  2%] Building CXX object CMakeFiles/zcu_health_node.dir/src/zcu_health_main.cpp.o\n[  5%] Building CXX object CMakeFiles/zcu.dir/src/main.cpp.o\n[  8%] Building CXX object CMakeFiles/zcu_health_node.dir/src/health_module/zcu_health_node.cpp.o\n[ 11%] Building CXX object CMakeFiles/zcu.dir/src/health_state.cpp.o\n[ 14%] Building CXX object CMakeFiles/zcu.dir/src/backend/zenoh/transport.cpp.o\n[ 17%] Building CXX object CMakeFiles/zcu_health_node.dir/src/health_module/health_policy.cpp.o\n[ 20%] Building CXX object CMakeFiles/zcu.dir/src/backend/zenoh/ros_keyexpr.cpp.o\n[ 23%] Building CXX object CMakeFiles/zcu.dir/src/backend/zenoh/image_publisher.cpp.o\n[ 26%] Building CXX object CMakeFiles/zcu_health_node.dir/src/backend/zenoh/transport.cpp.o\n[ 29%] Building CXX object CMakeFiles/zcu.dir/src/backend/zenoh/motion_command_subscriber.cpp.o\n[ 32%] Building CXX object CMakeFiles/zcu_health_node.dir/src/backend/zenoh/ros_keyexpr.cpp.o\n[ 35%] Building CXX object CMakeFiles/zcu_health_node.dir/src/backend/zenoh/diagnostic_publisher.cpp.o\n[ 38%] Building CXX object CMakeFiles/zcu.dir/src/camera_module/camera_server.cpp.o\n[ 41%] Building CXX object CMakeFiles/zcu.dir/src/control_module/control_subscriber.cpp.o\n[ 44%] Building C object CMakeFiles/zcu.dir/src/control_module/s32g3_skku_can_setting.c.o\n[ 47%] Linking CXX executable zcu\n[ 50%] Building CXX object CMakeFiles/zcu_health_node.dir/src/backend/zenoh/graph_probe.cpp.o\nmake[2]: warning:  Clock skew detected.  Your build may be incomplete.\n[ 55%] Built target zcu\nConsolidate compiler generated dependencies of target zcu_health_policy_test\nmake[2]: Warning: File '../test/health_policy_test.cpp' has modification time 5980438 s in the future\n[ 58%] Building CXX object CMakeFiles/zcu_health_policy_test.dir/test/health_policy_test.cpp.o\n[ 61%] Building CXX object CMakeFiles/zcu_health_policy_test.dir/src/health_module/health_policy.cpp.o\n[ 64%] Building CXX object CMakeFiles/zcu_health_node.dir/src/common/diagnostic_cdr.cpp.o\n[ 67%] Linking CXX executable zcu_health_node\nmake[2]: warning:  Clock skew detected.  Your build may be incomplete.\n[ 70%] Built target zcu_health_node\nConsolidate compiler generated dependencies of target zcu_transport_test\nmake[2]: Warning: File '../test/transport_test.cpp' has modification time 7209765 s in the future\n[ 73%] Building CXX object CMakeFiles/zcu_transport_test.dir/test/transport_test.cpp.o\n[ 76%] Building CXX object CMakeFiles/zcu_transport_test.dir/src/backend/zenoh/transport.cpp.o\n[ 79%] Linking CXX executable zcu_health_policy_test\nmake[2]: warning:  Clock skew detected.  Your build may be incomplete.\n[ 79%] Built target zcu_health_policy_test\nConsolidate compiler generated dependencies of target zcu_zenoh_keyexpr_test\nmake[2]: Warning: File '../test/zenoh_keyexpr_test.cpp' has modification time 8381143 s in the future\n[ 82%] Building CXX object CMakeFiles/zcu_zenoh_keyexpr_test.dir/test/zenoh_keyexpr_test.cpp.o\n[ 85%] Building CXX object CMakeFiles/zcu_zenoh_keyexpr_test.dir/src/backend/zenoh/ros_keyexpr.cpp.o\n[ 88%] Linking CXX executable zcu_zenoh_keyexpr_test\nmake[2]: warning:  Clock skew detected.  Your build may be incomplete.\n[ 88%] Built target zcu_zenoh_keyexpr_test\n[ 91%] Building CXX object CMakeFiles/zcu_transport_test.dir/src/backend/zenoh/ros_keyexpr.cpp.o\n[ 94%] Building CXX object CMakeFiles/zcu_transport_test.dir/src/backend/zenoh/graph_probe.cpp.o\n[ 97%] Linking CXX executable zcu_transport_test\nmake[2]: warning:  Clock skew detected.  Your build may be incomplete.\n[100%] Built target zcu_transport_test\nInternal ctest changing into directory: /home/root/Workspace/S32G3_ZCU/build-zenoh\nTest project /home/root/Workspace/S32G3_ZCU/build-zenoh\n    Start 1: zcu_health_policy_test\n1/3 Test #1: zcu_health_policy_test ...........   Passed    0.02 sec\n    Start 2: zcu_transport_test\n2/3 Test #2: zcu_transport_test ...............***Skipped   2.02 sec\n    Start 3: zcu_zenoh_keyexpr_test\n3/3 Test #3: zcu_zenoh_keyexpr_test ...........   Passed    0.01 sec\n\n100% tests passed, 0 tests failed out of 3\n\nTotal Test time (real) =   2.05 sec\n\nThe following tests did not run:\n\t  2 - zcu_transport_test (Skipped)\n"
+    },
+    "3": {
+      "bridge": "tar: src/backend/zenoh/ros_keyexpr.cpp: time stamp 2026-09-10 02:29:24 is 8409963.9242088 s in the future\ntar: src/backend/zenoh/ros_keyexpr.hpp: time stamp 2026-09-10 02:29:24 is 8409963.9239292 s in the future\ntar: src/backend/zenoh/image_publisher.cpp: time stamp 2026-09-10 02:29:24 is 8409963.9237208 s in the future\ntar: src/backend/zenoh/diagnostic_publisher.cpp: time stamp 2026-09-10 02:29:24 is 8409963.9234964 s in the future\ntar: test/zenoh_keyexpr_test.cpp: time stamp 2026-09-10 02:29:24 is 8409963.9232698 s in the future\n-- ZCU DDS backend: zenoh_bridge\n-- Configuring done\n-- Generating done\n-- Build files have been written to: /home/root/Workspace/S32G3_ZCU/build-zenoh_bridge\nConsolidate compiler generated dependencies of target zcu_health_node\nConsolidate compiler generated dependencies of target zcu\nmake[2]: Warning: File '../src/zcu_health_main.cpp' has modification time 6007910 s in the future\nmake[2]: Warning: File '../src/main.cpp' has modification time 7319618 s in the future\n[  2%] Building CXX object CMakeFiles/zcu_health_node.dir/src/zcu_health_main.cpp.o\n[  5%] Building CXX object CMakeFiles/zcu.dir/src/main.cpp.o\n[  8%] Building CXX object CMakeFiles/zcu_health_node.dir/src/health_module/zcu_health_node.cpp.o\n[ 11%] Building CXX object CMakeFiles/zcu.dir/src/health_state.cpp.o\n[ 14%] Building CXX object CMakeFiles/zcu.dir/src/backend/zenoh/transport.cpp.o\n[ 17%] Building CXX object CMakeFiles/zcu_health_node.dir/src/health_module/health_policy.cpp.o\n[ 20%] Building CXX object CMakeFiles/zcu.dir/src/backend/zenoh/ros_keyexpr.cpp.o\n[ 23%] Building CXX object CMakeFiles/zcu.dir/src/backend/zenoh/image_publisher.cpp.o\n[ 26%] Building CXX object CMakeFiles/zcu_health_node.dir/src/backend/zenoh/transport.cpp.o\n[ 29%] Building CXX object CMakeFiles/zcu.dir/src/backend/zenoh/motion_command_subscriber.cpp.o\n[ 32%] Building CXX object CMakeFiles/zcu_health_node.dir/src/backend/zenoh/ros_keyexpr.cpp.o\n[ 35%] Building CXX object CMakeFiles/zcu.dir/src/camera_module/camera_server.cpp.o\n[ 38%] Building CXX object CMakeFiles/zcu_health_node.dir/src/backend/zenoh/diagnostic_publisher.cpp.o\n[ 41%] Building CXX object CMakeFiles/zcu.dir/src/control_module/control_subscriber.cpp.o\n[ 44%] Building C object CMakeFiles/zcu.dir/src/control_module/s32g3_skku_can_setting.c.o\n[ 47%] Linking CXX executable zcu\nmake[2]: warning:  Clock skew detected.  Your build may be incomplete.\n[ 52%] Built target zcu\nConsolidate compiler generated dependencies of target zcu_health_policy_test\nmake[2]: Warning: File '../test/health_policy_test.cpp' has modification time 6009182 s in the future\n[ 55%] Building CXX object CMakeFiles/zcu_health_policy_test.dir/test/health_policy_test.cpp.o\n[ 58%] Building CXX object CMakeFiles/zcu_health_node.dir/src/backend/zenoh/graph_probe.cpp.o\n[ 61%] Building CXX object CMakeFiles/zcu_health_policy_test.dir/src/health_module/health_policy.cpp.o\n[ 64%] Building CXX object CMakeFiles/zcu_health_node.dir/src/common/diagnostic_cdr.cpp.o\n[ 67%] Linking CXX executable zcu_health_node\nmake[2]: warning:  Clock skew detected.  Your build may be incomplete.\n[ 70%] Built target zcu_health_node\nConsolidate compiler generated dependencies of target zcu_transport_test\nmake[2]: Warning: File '../test/transport_test.cpp' has modification time 7238508 s in the future\n[ 73%] Building CXX object CMakeFiles/zcu_transport_test.dir/test/transport_test.cpp.o\n[ 76%] Building CXX object CMakeFiles/zcu_transport_test.dir/src/backend/zenoh/transport.cpp.o\n[ 79%] Linking CXX executable zcu_health_policy_test\nmake[2]: warning:  Clock skew detected.  Your build may be incomplete.\n[ 79%] Built target zcu_health_policy_test\nConsolidate compiler generated dependencies of target zcu_zenoh_keyexpr_test\nmake[2]: Warning: File '../test/zenoh_keyexpr_test.cpp' has modification time 8409887 s in the future\n[ 82%] Building CXX object CMakeFiles/zcu_zenoh_keyexpr_test.dir/test/zenoh_keyexpr_test.cpp.o\n[ 85%] Building CXX object CMakeFiles/zcu_zenoh_keyexpr_test.dir/src/backend/zenoh/ros_keyexpr.cpp.o\n[ 88%] Linking CXX executable zcu_zenoh_keyexpr_test\nmake[2]: warning:  Clock skew detected.  Your build may be incomplete.\n[ 88%] Built target zcu_zenoh_keyexpr_test\n[ 91%] Building CXX object CMakeFiles/zcu_transport_test.dir/src/backend/zenoh/ros_keyexpr.cpp.o\n[ 94%] Building CXX object CMakeFiles/zcu_transport_test.dir/src/backend/zenoh/graph_probe.cpp.o\n[ 97%] Linking CXX executable zcu_transport_test\nmake[2]: warning:  Clock skew detected.  Your build may be incomplete.\n[100%] Built target zcu_transport_test\nInternal ctest changing into directory: /home/root/Workspace/S32G3_ZCU/build-zenoh_bridge\nTest project /home/root/Workspace/S32G3_ZCU/build-zenoh_bridge\n    Start 1: zcu_health_policy_test\n1/3 Test #1: zcu_health_policy_test ...........   Passed    0.02 sec\n    Start 2: zcu_transport_test\n2/3 Test #2: zcu_transport_test ...............***Skipped   2.02 sec\n    Start 3: zcu_zenoh_keyexpr_test\n3/3 Test #3: zcu_zenoh_keyexpr_test ...........   Passed    0.01 sec\n\n100% tests passed, 0 tests failed out of 3\n\nTotal Test time (real) =   2.05 sec\n\nThe following tests did not run:\n\t  2 - zcu_transport_test (Skipped)\n",
+      "native": "-- ZCU DDS backend: zenoh\n-- Configuring done\n-- Generating done\n-- Build files have been written to: /home/root/Workspace/S32G3_ZCU/build-zenoh\nConsolidate compiler generated dependencies of target zcu_health_node\nConsolidate compiler generated dependencies of target zcu\nmake[2]: Warning: File '../src/zcu_health_main.cpp' has modification time 6007713 s in the future\nmake[2]: Warning: File '../src/main.cpp' has modification time 7319421 s in the future\n[  2%] Building CXX object CMakeFiles/zcu_health_node.dir/src/zcu_health_main.cpp.o\n[  5%] Building CXX object CMakeFiles/zcu.dir/src/main.cpp.o\n[  8%] Building CXX object CMakeFiles/zcu_health_node.dir/src/health_module/zcu_health_node.cpp.o\n[ 11%] Building CXX object CMakeFiles/zcu.dir/src/health_state.cpp.o\n[ 14%] Building CXX object CMakeFiles/zcu.dir/src/backend/zenoh/transport.cpp.o\n[ 17%] Building CXX object CMakeFiles/zcu_health_node.dir/src/health_module/health_policy.cpp.o\n[ 20%] Building CXX object CMakeFiles/zcu.dir/src/backend/zenoh/ros_keyexpr.cpp.o\n[ 23%] Building CXX object CMakeFiles/zcu.dir/src/backend/zenoh/image_publisher.cpp.o\n[ 26%] Building CXX object CMakeFiles/zcu_health_node.dir/src/backend/zenoh/transport.cpp.o\n[ 29%] Building CXX object CMakeFiles/zcu.dir/src/backend/zenoh/motion_command_subscriber.cpp.o\n[ 32%] Building CXX object CMakeFiles/zcu_health_node.dir/src/backend/zenoh/ros_keyexpr.cpp.o\n[ 35%] Building CXX object CMakeFiles/zcu.dir/src/camera_module/camera_server.cpp.o\n[ 38%] Building CXX object CMakeFiles/zcu_health_node.dir/src/backend/zenoh/diagnostic_publisher.cpp.o\n[ 41%] Building CXX object CMakeFiles/zcu.dir/src/control_module/control_subscriber.cpp.o\n[ 44%] Building C object CMakeFiles/zcu.dir/src/control_module/s32g3_skku_can_setting.c.o\n[ 47%] Linking CXX executable zcu\nmake[2]: warning:  Clock skew detected.  Your build may be incomplete.\n[ 52%] Built target zcu\nConsolidate compiler generated dependencies of target zcu_health_policy_test\nmake[2]: Warning: File '../test/health_policy_test.cpp' has modification time 6008984 s in the future\n[ 55%] Building CXX object CMakeFiles/zcu_health_policy_test.dir/test/health_policy_test.cpp.o\n[ 58%] Building CXX object CMakeFiles/zcu_health_node.dir/src/backend/zenoh/graph_probe.cpp.o\n[ 61%] Building CXX object CMakeFiles/zcu_health_policy_test.dir/src/health_module/health_policy.cpp.o\n[ 64%] Building CXX object CMakeFiles/zcu_health_node.dir/src/common/diagnostic_cdr.cpp.o\n[ 67%] Linking CXX executable zcu_health_node\nmake[2]: warning:  Clock skew detected.  Your build may be incomplete.\n[ 70%] Built target zcu_health_node\nConsolidate compiler generated dependencies of target zcu_transport_test\nmake[2]: Warning: File '../test/transport_test.cpp' has modification time 7238310 s in the future\n[ 73%] Building CXX object CMakeFiles/zcu_transport_test.dir/test/transport_test.cpp.o\n[ 76%] Building CXX object CMakeFiles/zcu_transport_test.dir/src/backend/zenoh/transport.cpp.o\n[ 79%] Linking CXX executable zcu_health_policy_test\nmake[2]: warning:  Clock skew detected.  Your build may be incomplete.\n[ 79%] Built target zcu_health_policy_test\nConsolidate compiler generated dependencies of target zcu_zenoh_keyexpr_test\nmake[2]: Warning: File '../test/zenoh_keyexpr_test.cpp' has modification time 8409689 s in the future\n[ 82%] Building CXX object CMakeFiles/zcu_zenoh_keyexpr_test.dir/test/zenoh_keyexpr_test.cpp.o\n[ 85%] Building CXX object CMakeFiles/zcu_zenoh_keyexpr_test.dir/src/backend/zenoh/ros_keyexpr.cpp.o\n[ 88%] Linking CXX executable zcu_zenoh_keyexpr_test\nmake[2]: warning:  Clock skew detected.  Your build may be incomplete.\n[ 88%] Built target zcu_zenoh_keyexpr_test\n[ 91%] Building CXX object CMakeFiles/zcu_transport_test.dir/src/backend/zenoh/ros_keyexpr.cpp.o\n[ 94%] Building CXX object CMakeFiles/zcu_transport_test.dir/src/backend/zenoh/graph_probe.cpp.o\n[ 97%] Linking CXX executable zcu_transport_test\nmake[2]: warning:  Clock skew detected.  Your build may be incomplete.\n[100%] Built target zcu_transport_test\nInternal ctest changing into directory: /home/root/Workspace/S32G3_ZCU/build-zenoh\nTest project /home/root/Workspace/S32G3_ZCU/build-zenoh\n    Start 1: zcu_health_policy_test\n1/3 Test #1: zcu_health_policy_test ...........   Passed    0.02 sec\n    Start 2: zcu_transport_test\n2/3 Test #2: zcu_transport_test ...............***Skipped   2.02 sec\n    Start 3: zcu_zenoh_keyexpr_test\n3/3 Test #3: zcu_zenoh_keyexpr_test ...........   Passed    0.01 sec\n\n100% tests passed, 0 tests failed out of 3\n\nTotal Test time (real) =   2.05 sec\n\nThe following tests did not run:\n\t  2 - zcu_transport_test (Skipped)\n"
+    },
+    "4": {
+      "bridge": "tar: src/backend/zenoh/ros_keyexpr.cpp: time stamp 2026-09-10 02:29:24 is 2895696.91116 s in the future\ntar: src/backend/zenoh/ros_keyexpr.hpp: time stamp 2026-09-10 02:29:24 is 2895696.910885 s in the future\ntar: src/backend/zenoh/image_publisher.cpp: time stamp 2026-09-10 02:29:24 is 2895696.9106758 s in the future\ntar: src/backend/zenoh/diagnostic_publisher.cpp: time stamp 2026-09-10 02:29:24 is 2895696.9104842 s in the future\ntar: test/zenoh_keyexpr_test.cpp: time stamp 2026-09-10 02:29:24 is 2895696.9102566 s in the future\n-- ZCU DDS backend: zenoh_bridge\n-- Configuring done\n-- Generating done\n-- Build files have been written to: /home/root/Workspace/S32G3_ZCU/build-zenoh_bridge\nConsolidate compiler generated dependencies of target zcu_health_node\nConsolidate compiler generated dependencies of target zcu\nmake[2]: Warning: File '../src/zcu_health_main.cpp' has modification time 493643 s in the future\nmake[2]: Warning: File '../src/main.cpp' has modification time 1805351 s in the future\n[  2%] Building CXX object CMakeFiles/zcu_health_node.dir/src/zcu_health_main.cpp.o\n[  5%] Building CXX object CMakeFiles/zcu.dir/src/main.cpp.o\n[  8%] Building CXX object CMakeFiles/zcu_health_node.dir/src/health_module/zcu_health_node.cpp.o\n[ 11%] Building CXX object CMakeFiles/zcu.dir/src/health_state.cpp.o\n[ 14%] Building CXX object CMakeFiles/zcu.dir/src/backend/zenoh/transport.cpp.o\n[ 17%] Building CXX object CMakeFiles/zcu_health_node.dir/src/health_module/health_policy.cpp.o\n[ 20%] Building CXX object CMakeFiles/zcu.dir/src/backend/zenoh/ros_keyexpr.cpp.o\n[ 23%] Building CXX object CMakeFiles/zcu.dir/src/backend/zenoh/image_publisher.cpp.o\n[ 26%] Building CXX object CMakeFiles/zcu_health_node.dir/src/backend/zenoh/transport.cpp.o\n[ 29%] Building CXX object CMakeFiles/zcu.dir/src/backend/zenoh/motion_command_subscriber.cpp.o\n[ 32%] Building CXX object CMakeFiles/zcu_health_node.dir/src/backend/zenoh/ros_keyexpr.cpp.o\n[ 35%] Building CXX object CMakeFiles/zcu.dir/src/camera_module/camera_server.cpp.o\n[ 38%] Building CXX object CMakeFiles/zcu_health_node.dir/src/backend/zenoh/diagnostic_publisher.cpp.o\n[ 41%] Building CXX object CMakeFiles/zcu.dir/src/control_module/control_subscriber.cpp.o\n[ 44%] Building C object CMakeFiles/zcu.dir/src/control_module/s32g3_skku_can_setting.c.o\n[ 47%] Linking CXX executable zcu\nmake[2]: warning:  Clock skew detected.  Your build may be incomplete.\n[ 52%] Built target zcu\nConsolidate compiler generated dependencies of target zcu_health_policy_test\nmake[2]: Warning: File '../test/health_policy_test.cpp' has modification time 494915 s in the future\n[ 55%] Building CXX object CMakeFiles/zcu_health_policy_test.dir/test/health_policy_test.cpp.o\n[ 58%] Building CXX object CMakeFiles/zcu_health_node.dir/src/backend/zenoh/graph_probe.cpp.o\n[ 61%] Building CXX object CMakeFiles/zcu_health_policy_test.dir/src/health_module/health_policy.cpp.o\n[ 64%] Building CXX object CMakeFiles/zcu_health_node.dir/src/common/diagnostic_cdr.cpp.o\n[ 67%] Linking CXX executable zcu_health_node\nmake[2]: warning:  Clock skew detected.  Your build may be incomplete.\n[ 70%] Built target zcu_health_node\nConsolidate compiler generated dependencies of target zcu_transport_test\nmake[2]: Warning: File '../test/transport_test.cpp' has modification time 1724241 s in the future\n[ 73%] Building CXX object CMakeFiles/zcu_transport_test.dir/test/transport_test.cpp.o\n[ 76%] Building CXX object CMakeFiles/zcu_transport_test.dir/src/backend/zenoh/transport.cpp.o\n[ 79%] Linking CXX executable zcu_health_policy_test\nmake[2]: warning:  Clock skew detected.  Your build may be incomplete.\n[ 79%] Built target zcu_health_policy_test\nConsolidate compiler generated dependencies of target zcu_zenoh_keyexpr_test\nmake[2]: Warning: File '../test/zenoh_keyexpr_test.cpp' has modification time 2895620 s in the future\n[ 82%] Building CXX object CMakeFiles/zcu_zenoh_keyexpr_test.dir/test/zenoh_keyexpr_test.cpp.o\n[ 85%] Building CXX object CMakeFiles/zcu_zenoh_keyexpr_test.dir/src/backend/zenoh/ros_keyexpr.cpp.o\n[ 88%] Linking CXX executable zcu_zenoh_keyexpr_test\nmake[2]: warning:  Clock skew detected.  Your build may be incomplete.\n[ 88%] Built target zcu_zenoh_keyexpr_test\n[ 91%] Building CXX object CMakeFiles/zcu_transport_test.dir/src/backend/zenoh/ros_keyexpr.cpp.o\n[ 94%] Building CXX object CMakeFiles/zcu_transport_test.dir/src/backend/zenoh/graph_probe.cpp.o\n[ 97%] Linking CXX executable zcu_transport_test\nmake[2]: warning:  Clock skew detected.  Your build may be incomplete.\n[100%] Built target zcu_transport_test\nInternal ctest changing into directory: /home/root/Workspace/S32G3_ZCU/build-zenoh_bridge\nTest project /home/root/Workspace/S32G3_ZCU/build-zenoh_bridge\n    Start 1: zcu_health_policy_test\n1/3 Test #1: zcu_health_policy_test ...........   Passed    0.02 sec\n    Start 2: zcu_transport_test\n2/3 Test #2: zcu_transport_test ...............***Skipped   2.02 sec\n    Start 3: zcu_zenoh_keyexpr_test\n3/3 Test #3: zcu_zenoh_keyexpr_test ...........   Passed    0.01 sec\n\n100% tests passed, 0 tests failed out of 3\n\nTotal Test time (real) =   2.05 sec\n\nThe following tests did not run:\n\t  2 - zcu_transport_test (Skipped)\n",
+      "native": "-- ZCU DDS backend: zenoh\n-- Configuring done\n-- Generating done\n-- Build files have been written to: /home/root/Workspace/S32G3_ZCU/build-zenoh\nConsolidate compiler generated dependencies of target zcu_health_node\nConsolidate compiler generated dependencies of target zcu\nmake[2]: Warning: File '../src/zcu_health_main.cpp' has modification time 493446 s in the future\nmake[2]: Warning: File '../src/main.cpp' has modification time 1805154 s in the future\n[  2%] Building CXX object CMakeFiles/zcu_health_node.dir/src/zcu_health_main.cpp.o\n[  5%] Building CXX object CMakeFiles/zcu.dir/src/main.cpp.o\n[  8%] Building CXX object CMakeFiles/zcu_health_node.dir/src/health_module/zcu_health_node.cpp.o\n[ 11%] Building CXX object CMakeFiles/zcu.dir/src/health_state.cpp.o\n[ 14%] Building CXX object CMakeFiles/zcu.dir/src/backend/zenoh/transport.cpp.o\n[ 17%] Building CXX object CMakeFiles/zcu_health_node.dir/src/health_module/health_policy.cpp.o\n[ 20%] Building CXX object CMakeFiles/zcu.dir/src/backend/zenoh/ros_keyexpr.cpp.o\n[ 23%] Building CXX object CMakeFiles/zcu.dir/src/backend/zenoh/image_publisher.cpp.o\n[ 26%] Building CXX object CMakeFiles/zcu_health_node.dir/src/backend/zenoh/transport.cpp.o\n[ 29%] Building CXX object CMakeFiles/zcu.dir/src/backend/zenoh/motion_command_subscriber.cpp.o\n[ 32%] Building CXX object CMakeFiles/zcu_health_node.dir/src/backend/zenoh/ros_keyexpr.cpp.o\n[ 35%] Building CXX object CMakeFiles/zcu.dir/src/camera_module/camera_server.cpp.o\n[ 38%] Building CXX object CMakeFiles/zcu_health_node.dir/src/backend/zenoh/diagnostic_publisher.cpp.o\n[ 41%] Building CXX object CMakeFiles/zcu.dir/src/control_module/control_subscriber.cpp.o\n[ 44%] Building C object CMakeFiles/zcu.dir/src/control_module/s32g3_skku_can_setting.c.o\n[ 47%] Linking CXX executable zcu\nmake[2]: warning:  Clock skew detected.  Your build may be incomplete.\n[ 52%] Built target zcu\nConsolidate compiler generated dependencies of target zcu_health_policy_test\nmake[2]: Warning: File '../test/health_policy_test.cpp' has modification time 494718 s in the future\n[ 55%] Building CXX object CMakeFiles/zcu_health_policy_test.dir/test/health_policy_test.cpp.o\n[ 58%] Building CXX object CMakeFiles/zcu_health_node.dir/src/backend/zenoh/graph_probe.cpp.o\n[ 61%] Building CXX object CMakeFiles/zcu_health_policy_test.dir/src/health_module/health_policy.cpp.o\n[ 64%] Building CXX object CMakeFiles/zcu_health_node.dir/src/common/diagnostic_cdr.cpp.o\n[ 67%] Linking CXX executable zcu_health_node\nmake[2]: warning:  Clock skew detected.  Your build may be incomplete.\n[ 70%] Built target zcu_health_node\nConsolidate compiler generated dependencies of target zcu_transport_test\nmake[2]: Warning: File '../test/transport_test.cpp' has modification time 1724042 s in the future\n[ 73%] Building CXX object CMakeFiles/zcu_transport_test.dir/test/transport_test.cpp.o\n[ 76%] Linking CXX executable zcu_health_policy_test\n[ 79%] Building CXX object CMakeFiles/zcu_transport_test.dir/src/backend/zenoh/transport.cpp.o\nmake[2]: warning:  Clock skew detected.  Your build may be incomplete.\n[ 79%] Built target zcu_health_policy_test\nConsolidate compiler generated dependencies of target zcu_zenoh_keyexpr_test\nmake[2]: Warning: File '../test/zenoh_keyexpr_test.cpp' has modification time 2895423 s in the future\n[ 82%] Building CXX object CMakeFiles/zcu_zenoh_keyexpr_test.dir/test/zenoh_keyexpr_test.cpp.o\n[ 85%] Building CXX object CMakeFiles/zcu_zenoh_keyexpr_test.dir/src/backend/zenoh/ros_keyexpr.cpp.o\n[ 88%] Linking CXX executable zcu_zenoh_keyexpr_test\nmake[2]: warning:  Clock skew detected.  Your build may be incomplete.\n[ 88%] Built target zcu_zenoh_keyexpr_test\n[ 91%] Building CXX object CMakeFiles/zcu_transport_test.dir/src/backend/zenoh/ros_keyexpr.cpp.o\n[ 94%] Building CXX object CMakeFiles/zcu_transport_test.dir/src/backend/zenoh/graph_probe.cpp.o\n[ 97%] Linking CXX executable zcu_transport_test\nmake[2]: warning:  Clock skew detected.  Your build may be incomplete.\n[100%] Built target zcu_transport_test\nInternal ctest changing into directory: /home/root/Workspace/S32G3_ZCU/build-zenoh\nTest project /home/root/Workspace/S32G3_ZCU/build-zenoh\n    Start 1: zcu_health_policy_test\n1/3 Test #1: zcu_health_policy_test ...........   Passed    0.02 sec\n    Start 2: zcu_transport_test\n2/3 Test #2: zcu_transport_test ...............***Skipped   2.02 sec\n    Start 3: zcu_zenoh_keyexpr_test\n3/3 Test #3: zcu_zenoh_keyexpr_test ...........   Passed    0.01 sec\n\n100% tests passed, 0 tests failed out of 3\n\nTotal Test time (real) =   2.05 sec\n\nThe following tests did not run:\n\t  2 - zcu_transport_test (Skipped)\n"
+    },
+    "5": {
+      "bridge": "tar: src/backend/zenoh/ros_keyexpr.cpp: time stamp 2026-09-10 02:29:24 is 8481897.749943 s in the future\ntar: src/backend/zenoh/ros_keyexpr.hpp: time stamp 2026-09-10 02:29:24 is 8481897.7496098 s in the future\ntar: src/backend/zenoh/image_publisher.cpp: time stamp 2026-09-10 02:29:24 is 8481897.7493678 s in the future\ntar: src/backend/zenoh/diagnostic_publisher.cpp: time stamp 2026-09-10 02:29:24 is 8481897.7490972 s in the future\ntar: test/zenoh_keyexpr_test.cpp: time stamp 2026-09-10 02:29:24 is 8481897.7488682 s in the future\n-- ZCU DDS backend: zenoh_bridge\n-- Configuring done\n-- Generating done\n-- Build files have been written to: /home/root/Workspace/S32G3_ZCU/build-zenoh_bridge\nConsolidate compiler generated dependencies of target zcu_health_node\nConsolidate compiler generated dependencies of target zcu\nmake[2]: Warning: File '../src/zcu_health_main.cpp' has modification time 6079844 s in the future\nmake[2]: Warning: File '../src/main.cpp' has modification time 7391552 s in the future\n[  2%] Building CXX object CMakeFiles/zcu_health_node.dir/src/zcu_health_main.cpp.o\n[  5%] Building CXX object CMakeFiles/zcu.dir/src/main.cpp.o\n[  8%] Building CXX object CMakeFiles/zcu_health_node.dir/src/health_module/zcu_health_node.cpp.o\n[ 11%] Building CXX object CMakeFiles/zcu.dir/src/health_state.cpp.o\n[ 14%] Building CXX object CMakeFiles/zcu.dir/src/backend/zenoh/transport.cpp.o\n[ 17%] Building CXX object CMakeFiles/zcu_health_node.dir/src/health_module/health_policy.cpp.o\n[ 20%] Building CXX object CMakeFiles/zcu.dir/src/backend/zenoh/ros_keyexpr.cpp.o\n[ 23%] Building CXX object CMakeFiles/zcu.dir/src/backend/zenoh/image_publisher.cpp.o\n[ 26%] Building CXX object CMakeFiles/zcu_health_node.dir/src/backend/zenoh/transport.cpp.o\n[ 29%] Building CXX object CMakeFiles/zcu.dir/src/backend/zenoh/motion_command_subscriber.cpp.o\n[ 32%] Building CXX object CMakeFiles/zcu_health_node.dir/src/backend/zenoh/ros_keyexpr.cpp.o\n[ 35%] Building CXX object CMakeFiles/zcu.dir/src/camera_module/camera_server.cpp.o\n[ 38%] Building CXX object CMakeFiles/zcu_health_node.dir/src/backend/zenoh/diagnostic_publisher.cpp.o\n[ 41%] Building CXX object CMakeFiles/zcu.dir/src/control_module/control_subscriber.cpp.o\n[ 44%] Building C object CMakeFiles/zcu.dir/src/control_module/s32g3_skku_can_setting.c.o\n[ 47%] Linking CXX executable zcu\nmake[2]: warning:  Clock skew detected.  Your build may be incomplete.\n[ 52%] Built target zcu\nConsolidate compiler generated dependencies of target zcu_health_policy_test\nmake[2]: Warning: File '../test/health_policy_test.cpp' has modification time 6081116 s in the future\n[ 55%] Building CXX object CMakeFiles/zcu_health_policy_test.dir/test/health_policy_test.cpp.o\n[ 58%] Building CXX object CMakeFiles/zcu_health_node.dir/src/backend/zenoh/graph_probe.cpp.o\n[ 61%] Building CXX object CMakeFiles/zcu_health_policy_test.dir/src/health_module/health_policy.cpp.o\n[ 64%] Building CXX object CMakeFiles/zcu_health_node.dir/src/common/diagnostic_cdr.cpp.o\n[ 67%] Linking CXX executable zcu_health_node\nmake[2]: warning:  Clock skew detected.  Your build may be incomplete.\n[ 70%] Built target zcu_health_node\nConsolidate compiler generated dependencies of target zcu_transport_test\nmake[2]: Warning: File '../test/transport_test.cpp' has modification time 7310441 s in the future\n[ 73%] Building CXX object CMakeFiles/zcu_transport_test.dir/test/transport_test.cpp.o\n[ 76%] Building CXX object CMakeFiles/zcu_transport_test.dir/src/backend/zenoh/transport.cpp.o\n[ 79%] Linking CXX executable zcu_health_policy_test\nmake[2]: warning:  Clock skew detected.  Your build may be incomplete.\n[ 79%] Built target zcu_health_policy_test\nConsolidate compiler generated dependencies of target zcu_zenoh_keyexpr_test\nmake[2]: Warning: File '../test/zenoh_keyexpr_test.cpp' has modification time 8481822 s in the future\n[ 82%] Building CXX object CMakeFiles/zcu_zenoh_keyexpr_test.dir/test/zenoh_keyexpr_test.cpp.o\n[ 85%] Building CXX object CMakeFiles/zcu_zenoh_keyexpr_test.dir/src/backend/zenoh/ros_keyexpr.cpp.o\n[ 88%] Linking CXX executable zcu_zenoh_keyexpr_test\nmake[2]: warning:  Clock skew detected.  Your build may be incomplete.\n[ 88%] Built target zcu_zenoh_keyexpr_test\n[ 91%] Building CXX object CMakeFiles/zcu_transport_test.dir/src/backend/zenoh/ros_keyexpr.cpp.o\n[ 94%] Building CXX object CMakeFiles/zcu_transport_test.dir/src/backend/zenoh/graph_probe.cpp.o\n[ 97%] Linking CXX executable zcu_transport_test\nmake[2]: warning:  Clock skew detected.  Your build may be incomplete.\n[100%] Built target zcu_transport_test\nInternal ctest changing into directory: /home/root/Workspace/S32G3_ZCU/build-zenoh_bridge\nTest project /home/root/Workspace/S32G3_ZCU/build-zenoh_bridge\n    Start 1: zcu_health_policy_test\n1/3 Test #1: zcu_health_policy_test ...........   Passed    0.02 sec\n    Start 2: zcu_transport_test\n2/3 Test #2: zcu_transport_test ...............***Skipped   2.02 sec\n    Start 3: zcu_zenoh_keyexpr_test\n3/3 Test #3: zcu_zenoh_keyexpr_test ...........   Passed    0.01 sec\n\n100% tests passed, 0 tests failed out of 3\n\nTotal Test time (real) =   2.05 sec\n\nThe following tests did not run:\n\t  2 - zcu_transport_test (Skipped)\n",
+      "native": "-- ZCU DDS backend: zenoh\n-- Configuring done\n-- Generating done\n-- Build files have been written to: /home/root/Workspace/S32G3_ZCU/build-zenoh\nConsolidate compiler generated dependencies of target zcu_health_node\nConsolidate compiler generated dependencies of target zcu\nmake[2]: Warning: File '../src/zcu_health_main.cpp' has modification time 6079647 s in the future\nmake[2]: Warning: File '../src/main.cpp' has modification time 7391355 s in the future\n[  2%] Building CXX object CMakeFiles/zcu_health_node.dir/src/zcu_health_main.cpp.o\n[  5%] Building CXX object CMakeFiles/zcu.dir/src/main.cpp.o\n[  8%] Building CXX object CMakeFiles/zcu_health_node.dir/src/health_module/zcu_health_node.cpp.o\n[ 11%] Building CXX object CMakeFiles/zcu.dir/src/health_state.cpp.o\n[ 14%] Building CXX object CMakeFiles/zcu.dir/src/backend/zenoh/transport.cpp.o\n[ 17%] Building CXX object CMakeFiles/zcu_health_node.dir/src/health_module/health_policy.cpp.o\n[ 20%] Building CXX object CMakeFiles/zcu.dir/src/backend/zenoh/ros_keyexpr.cpp.o\n[ 23%] Building CXX object CMakeFiles/zcu.dir/src/backend/zenoh/image_publisher.cpp.o\n[ 26%] Building CXX object CMakeFiles/zcu_health_node.dir/src/backend/zenoh/transport.cpp.o\n[ 29%] Building CXX object CMakeFiles/zcu.dir/src/backend/zenoh/motion_command_subscriber.cpp.o\n[ 32%] Building CXX object CMakeFiles/zcu_health_node.dir/src/backend/zenoh/ros_keyexpr.cpp.o\n[ 35%] Building CXX object CMakeFiles/zcu.dir/src/camera_module/camera_server.cpp.o\n[ 38%] Building CXX object CMakeFiles/zcu_health_node.dir/src/backend/zenoh/diagnostic_publisher.cpp.o\n[ 41%] Building CXX object CMakeFiles/zcu.dir/src/control_module/control_subscriber.cpp.o\n[ 44%] Building C object CMakeFiles/zcu.dir/src/control_module/s32g3_skku_can_setting.c.o\n[ 47%] Linking CXX executable zcu\nmake[2]: warning:  Clock skew detected.  Your build may be incomplete.\n[ 52%] Built target zcu\nConsolidate compiler generated dependencies of target zcu_health_policy_test\nmake[2]: Warning: File '../test/health_policy_test.cpp' has modification time 6080918 s in the future\n[ 55%] Building CXX object CMakeFiles/zcu_health_policy_test.dir/test/health_policy_test.cpp.o\n[ 58%] Building CXX object CMakeFiles/zcu_health_node.dir/src/backend/zenoh/graph_probe.cpp.o\n[ 61%] Building CXX object CMakeFiles/zcu_health_policy_test.dir/src/health_module/health_policy.cpp.o\n[ 64%] Building CXX object CMakeFiles/zcu_health_node.dir/src/common/diagnostic_cdr.cpp.o\n[ 67%] Linking CXX executable zcu_health_node\nmake[2]: warning:  Clock skew detected.  Your build may be incomplete.\n[ 70%] Built target zcu_health_node\nConsolidate compiler generated dependencies of target zcu_transport_test\nmake[2]: Warning: File '../test/transport_test.cpp' has modification time 7310243 s in the future\n[ 73%] Building CXX object CMakeFiles/zcu_transport_test.dir/test/transport_test.cpp.o\n[ 76%] Building CXX object CMakeFiles/zcu_transport_test.dir/src/backend/zenoh/transport.cpp.o\n[ 79%] Linking CXX executable zcu_health_policy_test\nmake[2]: warning:  Clock skew detected.  Your build may be incomplete.\n[ 79%] Built target zcu_health_policy_test\nConsolidate compiler generated dependencies of target zcu_zenoh_keyexpr_test\nmake[2]: Warning: File '../test/zenoh_keyexpr_test.cpp' has modification time 8481624 s in the future\n[ 82%] Building CXX object CMakeFiles/zcu_zenoh_keyexpr_test.dir/test/zenoh_keyexpr_test.cpp.o\n[ 85%] Building CXX object CMakeFiles/zcu_zenoh_keyexpr_test.dir/src/backend/zenoh/ros_keyexpr.cpp.o\n[ 88%] Linking CXX executable zcu_zenoh_keyexpr_test\nmake[2]: warning:  Clock skew detected.  Your build may be incomplete.\n[ 88%] Built target zcu_zenoh_keyexpr_test\n[ 91%] Building CXX object CMakeFiles/zcu_transport_test.dir/src/backend/zenoh/ros_keyexpr.cpp.o\n[ 94%] Building CXX object CMakeFiles/zcu_transport_test.dir/src/backend/zenoh/graph_probe.cpp.o\n[ 97%] Linking CXX executable zcu_transport_test\nmake[2]: warning:  Clock skew detected.  Your build may be incomplete.\n[100%] Built target zcu_transport_test\nInternal ctest changing into directory: /home/root/Workspace/S32G3_ZCU/build-zenoh\nTest project /home/root/Workspace/S32G3_ZCU/build-zenoh\n    Start 1: zcu_health_policy_test\n1/3 Test #1: zcu_health_policy_test ...........   Passed    0.02 sec\n    Start 2: zcu_transport_test\n2/3 Test #2: zcu_transport_test ...............***Skipped   2.02 sec\n    Start 3: zcu_zenoh_keyexpr_test\n3/3 Test #3: zcu_zenoh_keyexpr_test ...........   Passed    0.01 sec\n\n100% tests passed, 0 tests failed out of 3\n\nTotal Test time (real) =   2.05 sec\n\nThe following tests did not run:\n\t  2 - zcu_transport_test (Skipped)\n"
+    }
+  },
+  "validation_source": "from autosdv_gui_pkg.main import configure_default_dds_profile,MainWindow\nconfigure_default_dds_profile()\nimport rclpy,time,json,subprocess\nfrom diagnostic_msgs.msg import DiagnosticArray\nfrom sensor_msgs.msg import Image\nfrom interfaces_pkg.msg import SafetyStatus\nfrom rclpy.qos import qos_profile_sensor_data\nrclpy.init();n=rclpy.create_node('bridge_announcement_validation');latest={};frames={i:0 for i in range(1,6)}\nn.create_subscription(DiagnosticArray,'/ivn/diagnostics/status',lambda m:latest.update(diag=m),10)\nn.create_subscription(SafetyStatus,'/safety/status',lambda m:latest.update(safety=m),10)\ndef spin(seconds):\n end=time.monotonic()+seconds\n while time.monotonic()<end:rclpy.spin_once(n,timeout_sec=.1)\ndef snapshot(label):\n topics=[f'/image_{i:02d}_raw' for i in range(1,6)]\n pubs={topic:[{'node':p.node_name,'reliability':int(p.qos_profile.reliability),'depth':p.qos_profile.depth,'typehash':str(p.topic_type_hash)} for p in n.get_publishers_info_by_topic(topic)] for topic in topics}\n states=MainWindow._graph_diagnostic_states(latest['diag'].status)\n rows=[{'name':s.name,'level':s.level[0] if isinstance(s.level,bytes) else s.level,'message':s.message} for s in latest['diag'].status]\n return {'phase':label,'publishers':pubs,'subscribers':{t:len(n.get_subscriptions_info_by_topic(t)) for t in topics},'gui_zone_states':states[0],'gui_camera_states':states[1],'diagnostics':rows,'frames':dict(frames)}\ndef check_green(r):\n assert all(len(p)==1 for p in r['publishers'].values()),r\n assert r['gui_camera_states']=={f'image_{i:02d}':'ok' for i in range(1,6)},r\nresult=[];subs=[]\ntry:\n spin(5);result.append(snapshot('no_new_image_subscriptions'));check_green(result[-1])\n assert result[-1]['subscribers']['/image_05_raw']==0\n for i in range(1,6):subs.append(n.create_subscription(Image,f'/image_{i:02d}_raw',lambda m,i=i:frames.update({i:frames[i]+1}),qos_profile_sensor_data))\n spin(4);result.append(snapshot('subscribed'));assert min(frames.values())>20;check_green(result[-1])\n for sub in subs:n.destroy_subscription(sub)\n subs=[];spin(4);result.append(snapshot('subscriptions_removed'));check_green(result[-1])\n assert result[-1]['subscribers']['/image_05_raw']==0\n assert not latest['safety'].armed and latest['safety'].active_source=='none'\n # With no local image05 reader, withdrawing its sole producer must remove its DDS writer.\n try:\n  subprocess.run(['ssh','root@10.0.0.5','systemctl stop zcu.service'],check=True)\n  spin(7);result.append(snapshot('zcu4_stopped'))\n  assert not result[-1]['publishers']['/image_05_raw'],result[-1]\n  assert result[-1]['gui_camera_states']['image_05']=='error',result[-1]\n finally:subprocess.run(['ssh','root@10.0.0.5','systemctl start zcu.service'],check=True)\n spin(8);result.append(snapshot('zcu4_restarted'));check_green(result[-1])\n assert not latest['safety'].armed\n subprocess.run(['sudo','-n','systemctl','restart','autosdv-communication.service'],check=True)\n spin(18);result.append(snapshot('bridge_restarted'));check_green(result[-1])\n # Raw health is still mandatory; validate all zone runtime/health messages have recovered.\n assert all(any(s['name']==f'IVN/ZCU/zone_{i}/Runtime' and s['level']==0 for s in result[-1]['diagnostics']) for i in range(1,5))\n print(json.dumps(result,ensure_ascii=False,indent=2))\nfinally:\n for sub in subs:n.destroy_subscription(sub)\n n.destroy_node();rclpy.shutdown()\n",
+  "observer_source": "from autosdv_gui_pkg.main import configure_default_dds_profile\nconfigure_default_dds_profile()\nimport rclpy,time,json\nfrom interfaces_pkg.msg import SafetyStatus\nfrom diagnostic_msgs.msg import DiagnosticArray\nrclpy.init();n=rclpy.create_node('announcement_preflight');r={}\nn.create_subscription(SafetyStatus,'/safety/status',lambda m:r.update(safety={'armed':m.armed,'active_source':m.active_source,'emergency_stop':m.emergency_stop}),10)\ndef diag(m):\n r['diagnostics']=[{'name':s.name,'level':s.level[0] if isinstance(s.level,bytes) else s.level,'message':s.message} for s in m.status]\nn.create_subscription(DiagnosticArray,'/ivn/diagnostics/status',diag,10)\nend=time.monotonic()+3\nwhile time.monotonic()<end:rclpy.spin_once(n,timeout_sec=.1)\nr['publishers']={f'image_{i:02d}':len(n.get_publishers_info_by_topic(f'/image_{i:02d}_raw')) for i in range(1,6)}\nr['subscribers']={f'image_{i:02d}':len(n.get_subscriptions_info_by_topic(f'/image_{i:02d}_raw')) for i in range(1,6)}\nr['health_publishers']=[{'node':p.node_name,'hash':str(p.topic_type_hash)} for p in n.get_publishers_info_by_topic('/ivn/zcu_health')]\nprint(json.dumps(r,ensure_ascii=False))\nn.destroy_node();rclpy.shutdown()\n",
+  "wire_source": "import socket,time,struct,json\ns=socket.socket(socket.AF_PACKET,socket.SOCK_RAW,socket.htons(3));s.bind(('enP2p1s0',0));s.settimeout(.5)\nn=large=total=0;end=time.monotonic()+5\nwhile time.monotonic()<end:\n try:b=s.recv(65535)\n except socket.timeout:continue\n if len(b)<42 or b[12:14]!=b'\\x08\\x00' or b[23]!=17:continue\n ip=b[14:];off=(ip[0]&15)*4\n if socket.inet_ntoa(ip[12:16])!='10.0.0.5' or socket.inet_ntoa(ip[16:20])!='10.0.0.10':continue\n if struct.unpack('!H',ip[off+2:off+4])[0]!=7447:continue\n n+=1;total+=len(b);large+=len(b)>300\nprint(json.dumps({'seconds':5,'zcu4_to_camera_port_packets':n,'bytes':total,'packets_over_300_bytes':large}))\n",
+  "local_keyexpr_tests": {
+    "native": "passed",
+    "bridge": "passed"
+  },
+  "notes": [
+    "Existing GUI/image_01 subscription preserved; no nonzero commands or driving activation.",
+    "GUI colors verified by feeding real diagnostics to the same MainWindow mapping method, not screenshot/UI automation.",
+    "Graceful gateway stop and bridge restart tested; power loss/network lease timing not measured."
+  ]
+}

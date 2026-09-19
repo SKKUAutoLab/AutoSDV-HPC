@@ -1,0 +1,1442 @@
+{
+  "date": "2026-09-08",
+  "final_mode": "cyclonedds",
+  "hosts": {
+    "10.0.0.2": "f1b4dec5-fcbb-4786-907d-329e81c510b4\n{\"status\": \"ready\", \"mode\": \"cyclonedds\", \"data_path_verified\": false}\n{\"mode\": \"cyclonedds\", \"processes_verified\": true, \"data_path_verified\": false}\nNRestarts=0\nEnvironment=AUTOSDV_CAMERA_ENCODING=h264\nef8fdac4b1bf1da6adffaabbe3b5da81b3f5a5eccc62c76523465ffa83f8415f  /usr/local/libexec/autosdv-communication-host\n",
+    "10.0.0.3": "8eca7050-ca5c-461e-bbaf-df8275f62df1\n{\"status\": \"ready\", \"mode\": \"cyclonedds\", \"data_path_verified\": false}\n{\"mode\": \"cyclonedds\", \"processes_verified\": true, \"data_path_verified\": false}\nNRestarts=0\nEnvironment=AUTOSDV_CAMERA_ENCODING=h264\nef8fdac4b1bf1da6adffaabbe3b5da81b3f5a5eccc62c76523465ffa83f8415f  /usr/local/libexec/autosdv-communication-host\n",
+    "10.0.0.4": "03cacec9-5864-405f-bf24-baff7738079d\n{\"status\": \"ready\", \"mode\": \"cyclonedds\", \"data_path_verified\": false}\n{\"mode\": \"cyclonedds\", \"processes_verified\": true, \"data_path_verified\": false}\nNRestarts=0\nEnvironment=AUTOSDV_CAMERA_ENCODING=h264\nef8fdac4b1bf1da6adffaabbe3b5da81b3f5a5eccc62c76523465ffa83f8415f  /usr/local/libexec/autosdv-communication-host\n",
+    "10.0.0.5": "b65ead68-5f2c-416c-a713-985f4f68b40b\n{\"status\": \"ready\", \"mode\": \"cyclonedds\", \"data_path_verified\": false}\n{\"mode\": \"cyclonedds\", \"processes_verified\": true, \"data_path_verified\": false}\nNRestarts=0\nEnvironment=AUTOSDV_CAMERA_ENCODING=h264\nef8fdac4b1bf1da6adffaabbe3b5da81b3f5a5eccc62c76523465ffa83f8415f  /usr/local/libexec/autosdv-communication-host\n"
+  },
+  "boot_ids_before": {
+    "10.0.0.2": "504922a9-ae35-4c9c-a680-dd9365cc5829",
+    "10.0.0.3": "d6d4a72c-1f28-4cd1-bbd4-fc94521ecf63",
+    "10.0.0.4": "730b93ec-5214-4272-93a3-6e04c5e35e95",
+    "10.0.0.5": "60175a2d-6f73-4e6b-bffe-632b14cbc534"
+  },
+  "receive": {
+    "cyclonedds_initial": [
+      {
+        "mode": "cyclonedds",
+        "index": 0,
+        "duration_s": 20,
+        "count": 161,
+        "metadata": {},
+        "first": null,
+        "health": {
+          "IVN/ZCU/zone_1/Summary": {
+            "level": 2,
+            "message": "CAN RX activity has not been observed: OK=3 WARN=0 ERROR=1 STALE=0"
+          },
+          "IVN/ZCU/zone_1/Runtime": {
+            "level": 0,
+            "message": "health publish loop is running"
+          },
+          "IVN/ZCU/zone_1/Camera/image_01": {
+            "level": 0,
+            "message": "camera producer and frame activity are healthy"
+          },
+          "IVN/ZCU/zone_1/Camera/image_02": {
+            "level": 0,
+            "message": "camera producer and frame activity are healthy"
+          },
+          "IVN/ZCU/zone_1/CAN/can0": {
+            "level": 2,
+            "message": "CAN RX activity has not been observed"
+          },
+          "IVN/ZCU/zone_3/Summary": {
+            "level": 2,
+            "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+          },
+          "IVN/ZCU/zone_3/Runtime": {
+            "level": 0,
+            "message": "health publish loop is running"
+          },
+          "IVN/ZCU/zone_3/Camera/image_04": {
+            "level": 0,
+            "message": "camera producer and frame activity are healthy"
+          },
+          "IVN/ZCU/zone_3/CAN/can0": {
+            "level": 2,
+            "message": "CAN RX activity has not been observed"
+          },
+          "IVN/ZCU/zone_4/Summary": {
+            "level": 2,
+            "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+          },
+          "IVN/ZCU/zone_4/Runtime": {
+            "level": 0,
+            "message": "health publish loop is running"
+          },
+          "IVN/ZCU/zone_4/Camera/image_05": {
+            "level": 0,
+            "message": "camera producer and frame activity are healthy"
+          },
+          "IVN/ZCU/zone_4/CAN/can0": {
+            "level": 2,
+            "message": "CAN RX activity has not been observed"
+          },
+          "IVN/ZCU/zone_2/Summary": {
+            "level": 2,
+            "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+          },
+          "IVN/ZCU/zone_2/Runtime": {
+            "level": 0,
+            "message": "health publish loop is running"
+          },
+          "IVN/ZCU/zone_2/Camera/image_03": {
+            "level": 0,
+            "message": "camera producer and frame activity are healthy"
+          },
+          "IVN/ZCU/zone_2/CAN/can0": {
+            "level": 2,
+            "message": "CAN RX activity has not been observed"
+          }
+        }
+      },
+      {
+        "mode": "cyclonedds",
+        "index": 1,
+        "duration_s": 20,
+        "count": 598,
+        "metadata": {
+          "width": 640,
+          "height": 480,
+          "encoding": "jpeg",
+          "bytes": 53313
+        },
+        "first": {
+          "decoded_shape": [
+            480,
+            640,
+            3
+          ]
+        },
+        "health": {}
+      },
+      {
+        "mode": "cyclonedds",
+        "index": 2,
+        "duration_s": 20,
+        "count": 598,
+        "metadata": {
+          "width": 640,
+          "height": 480,
+          "encoding": "jpeg",
+          "bytes": 43458
+        },
+        "first": {
+          "decoded_shape": [
+            480,
+            640,
+            3
+          ]
+        },
+        "health": {}
+      },
+      {
+        "mode": "cyclonedds",
+        "index": 3,
+        "duration_s": 20,
+        "count": 597,
+        "metadata": {
+          "width": 640,
+          "height": 480,
+          "encoding": "jpeg",
+          "bytes": 29869
+        },
+        "first": {
+          "decoded_shape": [
+            480,
+            640,
+            3
+          ]
+        },
+        "health": {}
+      },
+      {
+        "mode": "cyclonedds",
+        "index": 4,
+        "duration_s": 20,
+        "count": 599,
+        "metadata": {
+          "width": 640,
+          "height": 480,
+          "encoding": "jpeg",
+          "bytes": 42377
+        },
+        "first": {
+          "decoded_shape": [
+            480,
+            640,
+            3
+          ]
+        },
+        "health": {}
+      },
+      {
+        "mode": "cyclonedds",
+        "index": 5,
+        "duration_s": 20,
+        "count": 597,
+        "metadata": {
+          "width": 640,
+          "height": 480,
+          "encoding": "jpeg",
+          "bytes": 36764
+        },
+        "first": {
+          "decoded_shape": [
+            480,
+            640,
+            3
+          ]
+        },
+        "health": {}
+      }
+    ],
+    "zenoh": [
+      {
+        "mode": "zenoh",
+        "index": 0,
+        "duration_s": 20,
+        "count": 160,
+        "metadata": {},
+        "first": null,
+        "health": {
+          "IVN/ZCU/zone_3/Summary": {
+            "level": 2,
+            "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+          },
+          "IVN/ZCU/zone_3/Runtime": {
+            "level": 0,
+            "message": "health publish loop is running"
+          },
+          "IVN/ZCU/zone_3/Camera/image_04": {
+            "level": 0,
+            "message": "camera producer and frame activity are healthy"
+          },
+          "IVN/ZCU/zone_3/CAN/can0": {
+            "level": 2,
+            "message": "CAN RX activity has not been observed"
+          },
+          "IVN/ZCU/zone_4/Summary": {
+            "level": 2,
+            "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+          },
+          "IVN/ZCU/zone_4/Runtime": {
+            "level": 0,
+            "message": "health publish loop is running"
+          },
+          "IVN/ZCU/zone_4/Camera/image_05": {
+            "level": 0,
+            "message": "camera producer and frame activity are healthy"
+          },
+          "IVN/ZCU/zone_4/CAN/can0": {
+            "level": 2,
+            "message": "CAN RX activity has not been observed"
+          },
+          "IVN/ZCU/zone_1/Summary": {
+            "level": 2,
+            "message": "CAN RX activity has not been observed: OK=3 WARN=0 ERROR=1 STALE=0"
+          },
+          "IVN/ZCU/zone_1/Runtime": {
+            "level": 0,
+            "message": "health publish loop is running"
+          },
+          "IVN/ZCU/zone_1/Camera/image_01": {
+            "level": 0,
+            "message": "camera producer and frame activity are healthy"
+          },
+          "IVN/ZCU/zone_1/Camera/image_02": {
+            "level": 0,
+            "message": "camera producer and frame activity are healthy"
+          },
+          "IVN/ZCU/zone_1/CAN/can0": {
+            "level": 2,
+            "message": "CAN RX activity has not been observed"
+          },
+          "IVN/ZCU/zone_2/Summary": {
+            "level": 2,
+            "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+          },
+          "IVN/ZCU/zone_2/Runtime": {
+            "level": 0,
+            "message": "health publish loop is running"
+          },
+          "IVN/ZCU/zone_2/Camera/image_03": {
+            "level": 0,
+            "message": "camera producer and frame activity are healthy"
+          },
+          "IVN/ZCU/zone_2/CAN/can0": {
+            "level": 2,
+            "message": "CAN RX activity has not been observed"
+          }
+        }
+      },
+      {
+        "mode": "zenoh",
+        "index": 1,
+        "duration_s": 20,
+        "count": 601,
+        "metadata": {
+          "width": 640,
+          "height": 480,
+          "encoding": "jpeg",
+          "bytes": 50833
+        },
+        "first": {
+          "decoded_shape": [
+            480,
+            640,
+            3
+          ]
+        },
+        "health": {}
+      },
+      {
+        "mode": "zenoh",
+        "index": 2,
+        "duration_s": 20,
+        "count": 600,
+        "metadata": {
+          "width": 640,
+          "height": 480,
+          "encoding": "jpeg",
+          "bytes": 44903
+        },
+        "first": {
+          "decoded_shape": [
+            480,
+            640,
+            3
+          ]
+        },
+        "health": {}
+      },
+      {
+        "mode": "zenoh",
+        "index": 3,
+        "duration_s": 20,
+        "count": 600,
+        "metadata": {
+          "width": 640,
+          "height": 480,
+          "encoding": "jpeg",
+          "bytes": 38899
+        },
+        "first": {
+          "decoded_shape": [
+            480,
+            640,
+            3
+          ]
+        },
+        "health": {}
+      },
+      {
+        "mode": "zenoh",
+        "index": 4,
+        "duration_s": 20,
+        "count": 601,
+        "metadata": {
+          "width": 640,
+          "height": 480,
+          "encoding": "jpeg",
+          "bytes": 39715
+        },
+        "first": {
+          "decoded_shape": [
+            480,
+            640,
+            3
+          ]
+        },
+        "health": {}
+      },
+      {
+        "mode": "zenoh",
+        "index": 5,
+        "duration_s": 20,
+        "count": 601,
+        "metadata": {
+          "width": 640,
+          "height": 480,
+          "encoding": "jpeg",
+          "bytes": 30967
+        },
+        "first": {
+          "decoded_shape": [
+            480,
+            640,
+            3
+          ]
+        },
+        "health": {}
+      }
+    ],
+    "cyclonedds_after_reboot": [
+      {
+        "mode": "cyclonedds",
+        "index": 0,
+        "duration_s": 20,
+        "count": 160,
+        "metadata": {},
+        "first": null,
+        "health": {
+          "IVN/ZCU/zone_3/Summary": {
+            "level": 2,
+            "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+          },
+          "IVN/ZCU/zone_3/Runtime": {
+            "level": 0,
+            "message": "health publish loop is running"
+          },
+          "IVN/ZCU/zone_3/Camera/image_04": {
+            "level": 0,
+            "message": "camera producer and frame activity are healthy"
+          },
+          "IVN/ZCU/zone_3/CAN/can0": {
+            "level": 2,
+            "message": "CAN RX activity has not been observed"
+          },
+          "IVN/ZCU/zone_4/Summary": {
+            "level": 2,
+            "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+          },
+          "IVN/ZCU/zone_4/Runtime": {
+            "level": 0,
+            "message": "health publish loop is running"
+          },
+          "IVN/ZCU/zone_4/Camera/image_05": {
+            "level": 0,
+            "message": "camera producer and frame activity are healthy"
+          },
+          "IVN/ZCU/zone_4/CAN/can0": {
+            "level": 2,
+            "message": "CAN RX activity has not been observed"
+          },
+          "IVN/ZCU/zone_2/Summary": {
+            "level": 2,
+            "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+          },
+          "IVN/ZCU/zone_2/Runtime": {
+            "level": 0,
+            "message": "health publish loop is running"
+          },
+          "IVN/ZCU/zone_2/Camera/image_03": {
+            "level": 0,
+            "message": "camera producer and frame activity are healthy"
+          },
+          "IVN/ZCU/zone_2/CAN/can0": {
+            "level": 2,
+            "message": "CAN RX activity has not been observed"
+          },
+          "IVN/ZCU/zone_1/Summary": {
+            "level": 2,
+            "message": "CAN RX activity has not been observed: OK=3 WARN=0 ERROR=1 STALE=0"
+          },
+          "IVN/ZCU/zone_1/Runtime": {
+            "level": 0,
+            "message": "health publish loop is running"
+          },
+          "IVN/ZCU/zone_1/Camera/image_01": {
+            "level": 0,
+            "message": "camera producer and frame activity are healthy"
+          },
+          "IVN/ZCU/zone_1/Camera/image_02": {
+            "level": 0,
+            "message": "camera producer and frame activity are healthy"
+          },
+          "IVN/ZCU/zone_1/CAN/can0": {
+            "level": 2,
+            "message": "CAN RX activity has not been observed"
+          }
+        }
+      },
+      {
+        "mode": "cyclonedds",
+        "index": 1,
+        "duration_s": 20,
+        "count": 598,
+        "metadata": {
+          "width": 640,
+          "height": 480,
+          "encoding": "jpeg",
+          "bytes": 53850
+        },
+        "first": {
+          "decoded_shape": [
+            480,
+            640,
+            3
+          ]
+        },
+        "health": {}
+      },
+      {
+        "mode": "cyclonedds",
+        "index": 2,
+        "duration_s": 20,
+        "count": 601,
+        "metadata": {
+          "width": 640,
+          "height": 480,
+          "encoding": "jpeg",
+          "bytes": 42888
+        },
+        "first": {
+          "decoded_shape": [
+            480,
+            640,
+            3
+          ]
+        },
+        "health": {}
+      },
+      {
+        "mode": "cyclonedds",
+        "index": 3,
+        "duration_s": 20,
+        "count": 601,
+        "metadata": {
+          "width": 640,
+          "height": 480,
+          "encoding": "jpeg",
+          "bytes": 36392
+        },
+        "first": {
+          "decoded_shape": [
+            480,
+            640,
+            3
+          ]
+        },
+        "health": {}
+      },
+      {
+        "mode": "cyclonedds",
+        "index": 4,
+        "duration_s": 20,
+        "count": 601,
+        "metadata": {
+          "width": 640,
+          "height": 480,
+          "encoding": "jpeg",
+          "bytes": 43804
+        },
+        "first": {
+          "decoded_shape": [
+            480,
+            640,
+            3
+          ]
+        },
+        "health": {}
+      },
+      {
+        "mode": "cyclonedds",
+        "index": 5,
+        "duration_s": 20,
+        "count": 600,
+        "metadata": {
+          "width": 640,
+          "height": 480,
+          "encoding": "jpeg",
+          "bytes": 31090
+        },
+        "first": {
+          "decoded_shape": [
+            480,
+            640,
+            3
+          ]
+        },
+        "health": {}
+      }
+    ]
+  },
+  "packets": {
+    "cyclonedds-dscp": [
+      {
+        "src": "10.0.0.2",
+        "sport": 34474,
+        "dport": 7450,
+        "dscp": 0,
+        "packets": 3
+      },
+      {
+        "src": "10.0.0.2",
+        "sport": 34474,
+        "dport": 7452,
+        "dscp": 0,
+        "packets": 3
+      },
+      {
+        "src": "10.0.0.2",
+        "sport": 34474,
+        "dport": 7454,
+        "dscp": 0,
+        "packets": 3
+      },
+      {
+        "src": "10.0.0.2",
+        "sport": 34474,
+        "dport": 7456,
+        "dscp": 0,
+        "packets": 2
+      },
+      {
+        "src": "10.0.0.2",
+        "sport": 34474,
+        "dport": 7458,
+        "dscp": 0,
+        "packets": 3
+      },
+      {
+        "src": "10.0.0.2",
+        "sport": 34474,
+        "dport": 40034,
+        "dscp": 0,
+        "packets": 8
+      },
+      {
+        "src": "10.0.0.2",
+        "sport": 60366,
+        "dport": 7450,
+        "dscp": 0,
+        "packets": 3
+      },
+      {
+        "src": "10.0.0.2",
+        "sport": 60366,
+        "dport": 7451,
+        "dscp": 40,
+        "packets": 2560
+      },
+      {
+        "src": "10.0.0.2",
+        "sport": 60366,
+        "dport": 7452,
+        "dscp": 0,
+        "packets": 3
+      },
+      {
+        "src": "10.0.0.2",
+        "sport": 60366,
+        "dport": 7453,
+        "dscp": 40,
+        "packets": 2172
+      },
+      {
+        "src": "10.0.0.2",
+        "sport": 60366,
+        "dport": 7454,
+        "dscp": 0,
+        "packets": 3
+      },
+      {
+        "src": "10.0.0.2",
+        "sport": 60366,
+        "dport": 7456,
+        "dscp": 0,
+        "packets": 2
+      },
+      {
+        "src": "10.0.0.2",
+        "sport": 60366,
+        "dport": 7458,
+        "dscp": 0,
+        "packets": 3
+      },
+      {
+        "src": "10.0.0.2",
+        "sport": 60366,
+        "dport": 40034,
+        "dscp": 0,
+        "packets": 3
+      },
+      {
+        "src": "10.0.0.3",
+        "sport": 47646,
+        "dport": 7450,
+        "dscp": 0,
+        "packets": 3
+      },
+      {
+        "src": "10.0.0.3",
+        "sport": 47646,
+        "dport": 7452,
+        "dscp": 0,
+        "packets": 3
+      },
+      {
+        "src": "10.0.0.3",
+        "sport": 47646,
+        "dport": 7454,
+        "dscp": 0,
+        "packets": 3
+      },
+      {
+        "src": "10.0.0.3",
+        "sport": 47646,
+        "dport": 7456,
+        "dscp": 0,
+        "packets": 2
+      },
+      {
+        "src": "10.0.0.3",
+        "sport": 47646,
+        "dport": 7458,
+        "dscp": 0,
+        "packets": 3
+      },
+      {
+        "src": "10.0.0.3",
+        "sport": 47646,
+        "dport": 40034,
+        "dscp": 0,
+        "packets": 8
+      },
+      {
+        "src": "10.0.0.3",
+        "sport": 52390,
+        "dport": 7450,
+        "dscp": 0,
+        "packets": 3
+      },
+      {
+        "src": "10.0.0.3",
+        "sport": 52390,
+        "dport": 7452,
+        "dscp": 0,
+        "packets": 3
+      },
+      {
+        "src": "10.0.0.3",
+        "sport": 52390,
+        "dport": 7454,
+        "dscp": 0,
+        "packets": 3
+      },
+      {
+        "src": "10.0.0.3",
+        "sport": 52390,
+        "dport": 7455,
+        "dscp": 40,
+        "packets": 1504
+      },
+      {
+        "src": "10.0.0.3",
+        "sport": 52390,
+        "dport": 7456,
+        "dscp": 0,
+        "packets": 2
+      },
+      {
+        "src": "10.0.0.3",
+        "sport": 52390,
+        "dport": 7458,
+        "dscp": 0,
+        "packets": 3
+      },
+      {
+        "src": "10.0.0.3",
+        "sport": 52390,
+        "dport": 40034,
+        "dscp": 0,
+        "packets": 3
+      },
+      {
+        "src": "10.0.0.4",
+        "sport": 36743,
+        "dport": 7450,
+        "dscp": 0,
+        "packets": 3
+      },
+      {
+        "src": "10.0.0.4",
+        "sport": 36743,
+        "dport": 7452,
+        "dscp": 0,
+        "packets": 3
+      },
+      {
+        "src": "10.0.0.4",
+        "sport": 36743,
+        "dport": 7454,
+        "dscp": 0,
+        "packets": 3
+      },
+      {
+        "src": "10.0.0.4",
+        "sport": 36743,
+        "dport": 7456,
+        "dscp": 0,
+        "packets": 2
+      },
+      {
+        "src": "10.0.0.4",
+        "sport": 36743,
+        "dport": 7458,
+        "dscp": 0,
+        "packets": 3
+      },
+      {
+        "src": "10.0.0.4",
+        "sport": 36743,
+        "dport": 40034,
+        "dscp": 0,
+        "packets": 7
+      },
+      {
+        "src": "10.0.0.4",
+        "sport": 46430,
+        "dport": 7450,
+        "dscp": 0,
+        "packets": 3
+      },
+      {
+        "src": "10.0.0.4",
+        "sport": 46430,
+        "dport": 7452,
+        "dscp": 0,
+        "packets": 3
+      },
+      {
+        "src": "10.0.0.4",
+        "sport": 46430,
+        "dport": 7454,
+        "dscp": 0,
+        "packets": 3
+      },
+      {
+        "src": "10.0.0.4",
+        "sport": 46430,
+        "dport": 7456,
+        "dscp": 0,
+        "packets": 2
+      },
+      {
+        "src": "10.0.0.4",
+        "sport": 46430,
+        "dport": 7457,
+        "dscp": 40,
+        "packets": 2115
+      },
+      {
+        "src": "10.0.0.4",
+        "sport": 46430,
+        "dport": 7458,
+        "dscp": 0,
+        "packets": 3
+      },
+      {
+        "src": "10.0.0.4",
+        "sport": 46430,
+        "dport": 40034,
+        "dscp": 0,
+        "packets": 3
+      },
+      {
+        "src": "10.0.0.5",
+        "sport": 52779,
+        "dport": 7450,
+        "dscp": 0,
+        "packets": 3
+      },
+      {
+        "src": "10.0.0.5",
+        "sport": 52779,
+        "dport": 7452,
+        "dscp": 0,
+        "packets": 3
+      },
+      {
+        "src": "10.0.0.5",
+        "sport": 52779,
+        "dport": 7454,
+        "dscp": 0,
+        "packets": 3
+      },
+      {
+        "src": "10.0.0.5",
+        "sport": 52779,
+        "dport": 7456,
+        "dscp": 0,
+        "packets": 2
+      },
+      {
+        "src": "10.0.0.5",
+        "sport": 52779,
+        "dport": 7458,
+        "dscp": 0,
+        "packets": 3
+      },
+      {
+        "src": "10.0.0.5",
+        "sport": 52779,
+        "dport": 40034,
+        "dscp": 0,
+        "packets": 8
+      },
+      {
+        "src": "10.0.0.5",
+        "sport": 59501,
+        "dport": 7450,
+        "dscp": 0,
+        "packets": 3
+      },
+      {
+        "src": "10.0.0.5",
+        "sport": 59501,
+        "dport": 7452,
+        "dscp": 0,
+        "packets": 3
+      },
+      {
+        "src": "10.0.0.5",
+        "sport": 59501,
+        "dport": 7454,
+        "dscp": 0,
+        "packets": 3
+      },
+      {
+        "src": "10.0.0.5",
+        "sport": 59501,
+        "dport": 7456,
+        "dscp": 0,
+        "packets": 2
+      },
+      {
+        "src": "10.0.0.5",
+        "sport": 59501,
+        "dport": 7458,
+        "dscp": 0,
+        "packets": 3
+      },
+      {
+        "src": "10.0.0.5",
+        "sport": 59501,
+        "dport": 7459,
+        "dscp": 40,
+        "packets": 2022
+      },
+      {
+        "src": "10.0.0.5",
+        "sport": 59501,
+        "dport": 40034,
+        "dscp": 0,
+        "packets": 3
+      }
+    ],
+    "zenoh-dscp": [
+      {
+        "src": "10.0.0.2",
+        "sport": 38451,
+        "dport": 7448,
+        "dscp": 0,
+        "packets": 60
+      },
+      {
+        "src": "10.0.0.2",
+        "sport": 49867,
+        "dport": 7447,
+        "dscp": 40,
+        "packets": 19574
+      },
+      {
+        "src": "10.0.0.2",
+        "sport": 58299,
+        "dport": 7448,
+        "dscp": 0,
+        "packets": 4
+      },
+      {
+        "src": "10.0.0.3",
+        "sport": 54947,
+        "dport": 7447,
+        "dscp": 40,
+        "packets": 10442
+      },
+      {
+        "src": "10.0.0.3",
+        "sport": 55936,
+        "dport": 7448,
+        "dscp": 0,
+        "packets": 4
+      },
+      {
+        "src": "10.0.0.3",
+        "sport": 59367,
+        "dport": 7448,
+        "dscp": 0,
+        "packets": 40
+      },
+      {
+        "src": "10.0.0.4",
+        "sport": 33690,
+        "dport": 7448,
+        "dscp": 0,
+        "packets": 40
+      },
+      {
+        "src": "10.0.0.4",
+        "sport": 38968,
+        "dport": 7447,
+        "dscp": 40,
+        "packets": 8560
+      },
+      {
+        "src": "10.0.0.4",
+        "sport": 43899,
+        "dport": 7448,
+        "dscp": 0,
+        "packets": 4
+      },
+      {
+        "src": "10.0.0.5",
+        "sport": 35891,
+        "dport": 7448,
+        "dscp": 0,
+        "packets": 4
+      },
+      {
+        "src": "10.0.0.5",
+        "sport": 44335,
+        "dport": 7448,
+        "dscp": 0,
+        "packets": 40
+      },
+      {
+        "src": "10.0.0.5",
+        "sport": 52049,
+        "dport": 7447,
+        "dscp": 40,
+        "packets": 10654
+      }
+    ],
+    "zenoh-hpc-egress": [
+      {
+        "dst": "10.0.0.2",
+        "sport": 7447,
+        "dscp": 8,
+        "packets": 1
+      },
+      {
+        "dst": "10.0.0.2",
+        "sport": 7448,
+        "dscp": 48,
+        "packets": 12
+      },
+      {
+        "dst": "10.0.0.3",
+        "sport": 7447,
+        "dscp": 8,
+        "packets": 1
+      },
+      {
+        "dst": "10.0.0.3",
+        "sport": 7448,
+        "dscp": 48,
+        "packets": 12
+      },
+      {
+        "dst": "10.0.0.4",
+        "sport": 7447,
+        "dscp": 8,
+        "packets": 1
+      },
+      {
+        "dst": "10.0.0.4",
+        "sport": 7448,
+        "dscp": 48,
+        "packets": 11
+      },
+      {
+        "dst": "10.0.0.5",
+        "sport": 7447,
+        "dscp": 8,
+        "packets": 1
+      },
+      {
+        "dst": "10.0.0.5",
+        "sport": 7448,
+        "dscp": 48,
+        "packets": 12
+      }
+    ],
+    "cyclonedds-reboot-dscp": [
+      {
+        "src": "10.0.0.2",
+        "sport": 56880,
+        "dport": 7450,
+        "dscp": 0,
+        "packets": 1
+      },
+      {
+        "src": "10.0.0.2",
+        "sport": 56880,
+        "dport": 7451,
+        "dscp": 40,
+        "packets": 12232
+      },
+      {
+        "src": "10.0.0.2",
+        "sport": 56880,
+        "dport": 7452,
+        "dscp": 0,
+        "packets": 1
+      },
+      {
+        "src": "10.0.0.2",
+        "sport": 56880,
+        "dport": 7453,
+        "dscp": 40,
+        "packets": 10527
+      },
+      {
+        "src": "10.0.0.2",
+        "sport": 56880,
+        "dport": 7454,
+        "dscp": 0,
+        "packets": 1
+      },
+      {
+        "src": "10.0.0.2",
+        "sport": 56880,
+        "dport": 7456,
+        "dscp": 0,
+        "packets": 1
+      },
+      {
+        "src": "10.0.0.2",
+        "sport": 56880,
+        "dport": 7458,
+        "dscp": 0,
+        "packets": 1
+      },
+      {
+        "src": "10.0.0.2",
+        "sport": 56880,
+        "dport": 51184,
+        "dscp": 0,
+        "packets": 1
+      },
+      {
+        "src": "10.0.0.2",
+        "sport": 59990,
+        "dport": 7450,
+        "dscp": 0,
+        "packets": 1
+      },
+      {
+        "src": "10.0.0.2",
+        "sport": 59990,
+        "dport": 7452,
+        "dscp": 0,
+        "packets": 1
+      },
+      {
+        "src": "10.0.0.2",
+        "sport": 59990,
+        "dport": 7454,
+        "dscp": 0,
+        "packets": 1
+      },
+      {
+        "src": "10.0.0.2",
+        "sport": 59990,
+        "dport": 7456,
+        "dscp": 0,
+        "packets": 1
+      },
+      {
+        "src": "10.0.0.2",
+        "sport": 59990,
+        "dport": 7458,
+        "dscp": 0,
+        "packets": 1
+      },
+      {
+        "src": "10.0.0.2",
+        "sport": 59990,
+        "dport": 51184,
+        "dscp": 0,
+        "packets": 21
+      },
+      {
+        "src": "10.0.0.3",
+        "sport": 50649,
+        "dport": 7450,
+        "dscp": 0,
+        "packets": 1
+      },
+      {
+        "src": "10.0.0.3",
+        "sport": 50649,
+        "dport": 7452,
+        "dscp": 0,
+        "packets": 1
+      },
+      {
+        "src": "10.0.0.3",
+        "sport": 50649,
+        "dport": 7454,
+        "dscp": 0,
+        "packets": 1
+      },
+      {
+        "src": "10.0.0.3",
+        "sport": 50649,
+        "dport": 7456,
+        "dscp": 0,
+        "packets": 1
+      },
+      {
+        "src": "10.0.0.3",
+        "sport": 50649,
+        "dport": 7458,
+        "dscp": 0,
+        "packets": 1
+      },
+      {
+        "src": "10.0.0.3",
+        "sport": 50649,
+        "dport": 51184,
+        "dscp": 0,
+        "packets": 21
+      },
+      {
+        "src": "10.0.0.3",
+        "sport": 56601,
+        "dport": 7450,
+        "dscp": 0,
+        "packets": 1
+      },
+      {
+        "src": "10.0.0.3",
+        "sport": 56601,
+        "dport": 7452,
+        "dscp": 0,
+        "packets": 1
+      },
+      {
+        "src": "10.0.0.3",
+        "sport": 56601,
+        "dport": 7454,
+        "dscp": 0,
+        "packets": 1
+      },
+      {
+        "src": "10.0.0.3",
+        "sport": 56601,
+        "dport": 7455,
+        "dscp": 40,
+        "packets": 8267
+      },
+      {
+        "src": "10.0.0.3",
+        "sport": 56601,
+        "dport": 7456,
+        "dscp": 0,
+        "packets": 1
+      },
+      {
+        "src": "10.0.0.3",
+        "sport": 56601,
+        "dport": 7458,
+        "dscp": 0,
+        "packets": 1
+      },
+      {
+        "src": "10.0.0.3",
+        "sport": 56601,
+        "dport": 51184,
+        "dscp": 0,
+        "packets": 1
+      },
+      {
+        "src": "10.0.0.4",
+        "sport": 47402,
+        "dport": 7450,
+        "dscp": 0,
+        "packets": 1
+      },
+      {
+        "src": "10.0.0.4",
+        "sport": 47402,
+        "dport": 7452,
+        "dscp": 0,
+        "packets": 1
+      },
+      {
+        "src": "10.0.0.4",
+        "sport": 47402,
+        "dport": 7454,
+        "dscp": 0,
+        "packets": 1
+      },
+      {
+        "src": "10.0.0.4",
+        "sport": 47402,
+        "dport": 7456,
+        "dscp": 0,
+        "packets": 1
+      },
+      {
+        "src": "10.0.0.4",
+        "sport": 47402,
+        "dport": 7457,
+        "dscp": 40,
+        "packets": 10535
+      },
+      {
+        "src": "10.0.0.4",
+        "sport": 47402,
+        "dport": 7458,
+        "dscp": 0,
+        "packets": 1
+      },
+      {
+        "src": "10.0.0.4",
+        "sport": 47402,
+        "dport": 51184,
+        "dscp": 0,
+        "packets": 1
+      },
+      {
+        "src": "10.0.0.4",
+        "sport": 58881,
+        "dport": 7450,
+        "dscp": 0,
+        "packets": 1
+      },
+      {
+        "src": "10.0.0.4",
+        "sport": 58881,
+        "dport": 7452,
+        "dscp": 0,
+        "packets": 1
+      },
+      {
+        "src": "10.0.0.4",
+        "sport": 58881,
+        "dport": 7454,
+        "dscp": 0,
+        "packets": 1
+      },
+      {
+        "src": "10.0.0.4",
+        "sport": 58881,
+        "dport": 7456,
+        "dscp": 0,
+        "packets": 1
+      },
+      {
+        "src": "10.0.0.4",
+        "sport": 58881,
+        "dport": 7458,
+        "dscp": 0,
+        "packets": 1
+      },
+      {
+        "src": "10.0.0.4",
+        "sport": 58881,
+        "dport": 51184,
+        "dscp": 0,
+        "packets": 21
+      },
+      {
+        "src": "10.0.0.5",
+        "sport": 37362,
+        "dport": 7450,
+        "dscp": 0,
+        "packets": 1
+      },
+      {
+        "src": "10.0.0.5",
+        "sport": 37362,
+        "dport": 7452,
+        "dscp": 0,
+        "packets": 1
+      },
+      {
+        "src": "10.0.0.5",
+        "sport": 37362,
+        "dport": 7454,
+        "dscp": 0,
+        "packets": 1
+      },
+      {
+        "src": "10.0.0.5",
+        "sport": 37362,
+        "dport": 7456,
+        "dscp": 0,
+        "packets": 1
+      },
+      {
+        "src": "10.0.0.5",
+        "sport": 37362,
+        "dport": 7458,
+        "dscp": 0,
+        "packets": 1
+      },
+      {
+        "src": "10.0.0.5",
+        "sport": 37362,
+        "dport": 51184,
+        "dscp": 0,
+        "packets": 21
+      },
+      {
+        "src": "10.0.0.5",
+        "sport": 54959,
+        "dport": 7450,
+        "dscp": 0,
+        "packets": 1
+      },
+      {
+        "src": "10.0.0.5",
+        "sport": 54959,
+        "dport": 7452,
+        "dscp": 0,
+        "packets": 1
+      },
+      {
+        "src": "10.0.0.5",
+        "sport": 54959,
+        "dport": 7454,
+        "dscp": 0,
+        "packets": 1
+      },
+      {
+        "src": "10.0.0.5",
+        "sport": 54959,
+        "dport": 7456,
+        "dscp": 0,
+        "packets": 1
+      },
+      {
+        "src": "10.0.0.5",
+        "sport": 54959,
+        "dport": 7458,
+        "dscp": 0,
+        "packets": 1
+      },
+      {
+        "src": "10.0.0.5",
+        "sport": 54959,
+        "dport": 7459,
+        "dscp": 40,
+        "packets": 8386
+      },
+      {
+        "src": "10.0.0.5",
+        "sport": 54959,
+        "dport": 51184,
+        "dscp": 0,
+        "packets": 1
+      }
+    ]
+  }
+}

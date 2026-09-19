@@ -9,8 +9,7 @@
     useBuiltinTransports=false   -> restricting Interfaces to the wired IVN
 
   127.0.0.1 is not listed as a second interface: node-to-node traffic on this
-  host addresses 10.0.0.10, which the kernel loops back, and multicast on
-  enp4s0 is delivered to local sockets as well.
+  host addresses 10.0.0.10, which the kernel loops back, with unicast discovery also covering local peers.
 
   MaxAutoParticipantIndex keeps auto-assigned nodes below the participant
   indices 20-24 that the image nodes pin, and 19 still covers the ZCU
@@ -20,13 +19,18 @@
 <CycloneDDS xmlns="https://cdds.io/config">
   <Domain id="any">
     <General>
+      <!-- IVN discovery and payload delivery must not depend on multicast. -->
+      <AllowMulticast>false</AllowMulticast>
       <Interfaces>
         <NetworkInterface address="10.0.0.10" priority="default" multicast="default"/>
       </Interfaces>
     </General>
     <Discovery>
+      <ParticipantIndex>auto</ParticipantIndex>
       <MaxAutoParticipantIndex>19</MaxAutoParticipantIndex>
       <Peers>
+        <!-- Discover HPC processes explicitly when multicast is disabled. -->
+        <Peer address="10.0.0.10"/>
         <Peer address="10.0.0.2"/>
         <Peer address="10.0.0.3"/>
         <Peer address="10.0.0.4"/>

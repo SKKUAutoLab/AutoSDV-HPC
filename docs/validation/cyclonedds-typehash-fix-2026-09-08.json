@@ -1,0 +1,211 @@
+{
+  "endpoint_hashes": {
+    "/image_01_raw": [
+      "RIHS01_d31d41a9a4c4bc8eae9be757b0beed306564f7526c88ea6a4588fb9582527d47"
+    ],
+    "/image_02_raw": [
+      "RIHS01_d31d41a9a4c4bc8eae9be757b0beed306564f7526c88ea6a4588fb9582527d47"
+    ],
+    "/image_03_raw": [
+      "RIHS01_d31d41a9a4c4bc8eae9be757b0beed306564f7526c88ea6a4588fb9582527d47"
+    ],
+    "/image_04_raw": [
+      "RIHS01_d31d41a9a4c4bc8eae9be757b0beed306564f7526c88ea6a4588fb9582527d47"
+    ],
+    "/image_05_raw": [
+      "RIHS01_d31d41a9a4c4bc8eae9be757b0beed306564f7526c88ea6a4588fb9582527d47"
+    ],
+    "/ivn/zcu_health": [
+      "RIHS01_5a8a36efb05fb25070fa0fb3810290c0e6cd4862b54a8fb975a1ee8dc55a333e",
+      "RIHS01_5a8a36efb05fb25070fa0fb3810290c0e6cd4862b54a8fb975a1ee8dc55a333e",
+      "RIHS01_5a8a36efb05fb25070fa0fb3810290c0e6cd4862b54a8fb975a1ee8dc55a333e",
+      "RIHS01_5a8a36efb05fb25070fa0fb3810290c0e6cd4862b54a8fb975a1ee8dc55a333e"
+    ],
+    "/topic_control_signal": [
+      "RIHS01_b15321e6dda1eab1ed3ab9c47fadeea4b53dcff2a6232267a08f8da019cb32e3",
+      "RIHS01_b15321e6dda1eab1ed3ab9c47fadeea4b53dcff2a6232267a08f8da019cb32e3",
+      "RIHS01_b15321e6dda1eab1ed3ab9c47fadeea4b53dcff2a6232267a08f8da019cb32e3",
+      "RIHS01_b15321e6dda1eab1ed3ab9c47fadeea4b53dcff2a6232267a08f8da019cb32e3"
+    ]
+  },
+  "receive": [
+    {
+      "mode": "cyclonedds",
+      "index": 0,
+      "duration_s": 20,
+      "count": 160,
+      "metadata": {},
+      "first": null,
+      "health": {
+        "IVN/ZCU/zone_3/Summary": {
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+        },
+        "IVN/ZCU/zone_3/Runtime": {
+          "level": 0,
+          "message": "health publish loop is running"
+        },
+        "IVN/ZCU/zone_3/Camera/image_04": {
+          "level": 0,
+          "message": "camera producer and frame activity are healthy"
+        },
+        "IVN/ZCU/zone_3/CAN/can0": {
+          "level": 2,
+          "message": "CAN RX activity has not been observed"
+        },
+        "IVN/ZCU/zone_1/Summary": {
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=3 WARN=0 ERROR=1 STALE=0"
+        },
+        "IVN/ZCU/zone_1/Runtime": {
+          "level": 0,
+          "message": "health publish loop is running"
+        },
+        "IVN/ZCU/zone_1/Camera/image_01": {
+          "level": 0,
+          "message": "camera producer and frame activity are healthy"
+        },
+        "IVN/ZCU/zone_1/Camera/image_02": {
+          "level": 0,
+          "message": "camera producer and frame activity are healthy"
+        },
+        "IVN/ZCU/zone_1/CAN/can0": {
+          "level": 2,
+          "message": "CAN RX activity has not been observed"
+        },
+        "IVN/ZCU/zone_2/Summary": {
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+        },
+        "IVN/ZCU/zone_2/Runtime": {
+          "level": 0,
+          "message": "health publish loop is running"
+        },
+        "IVN/ZCU/zone_2/Camera/image_03": {
+          "level": 0,
+          "message": "camera producer and frame activity are healthy"
+        },
+        "IVN/ZCU/zone_2/CAN/can0": {
+          "level": 2,
+          "message": "CAN RX activity has not been observed"
+        },
+        "IVN/ZCU/zone_4/Summary": {
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+        },
+        "IVN/ZCU/zone_4/Runtime": {
+          "level": 0,
+          "message": "health publish loop is running"
+        },
+        "IVN/ZCU/zone_4/Camera/image_05": {
+          "level": 0,
+          "message": "camera producer and frame activity are healthy"
+        },
+        "IVN/ZCU/zone_4/CAN/can0": {
+          "level": 2,
+          "message": "CAN RX activity has not been observed"
+        }
+      }
+    },
+    {
+      "mode": "cyclonedds",
+      "index": 1,
+      "duration_s": 20,
+      "count": 601,
+      "metadata": {
+        "width": 640,
+        "height": 480,
+        "encoding": "jpeg",
+        "bytes": 54024
+      },
+      "first": {
+        "decoded_shape": [
+          480,
+          640,
+          3
+        ]
+      },
+      "health": {}
+    },
+    {
+      "mode": "cyclonedds",
+      "index": 2,
+      "duration_s": 20,
+      "count": 573,
+      "metadata": {
+        "width": 640,
+        "height": 480,
+        "encoding": "jpeg",
+        "bytes": 40780
+      },
+      "first": {
+        "decoded_shape": [
+          480,
+          640,
+          3
+        ]
+      },
+      "health": {}
+    },
+    {
+      "mode": "cyclonedds",
+      "index": 3,
+      "duration_s": 20,
+      "count": 601,
+      "metadata": {
+        "width": 640,
+        "height": 480,
+        "encoding": "jpeg",
+        "bytes": 40860
+      },
+      "first": {
+        "decoded_shape": [
+          480,
+          640,
+          3
+        ]
+      },
+      "health": {}
+    },
+    {
+      "mode": "cyclonedds",
+      "index": 4,
+      "duration_s": 20,
+      "count": 601,
+      "metadata": {
+        "width": 640,
+        "height": 480,
+        "encoding": "jpeg",
+        "bytes": 45087
+      },
+      "first": {
+        "decoded_shape": [
+          480,
+          640,
+          3
+        ]
+      },
+      "health": {}
+    },
+    {
+      "mode": "cyclonedds",
+      "index": 5,
+      "duration_s": 20,
+      "count": 601,
+      "metadata": {
+        "width": 640,
+        "height": 480,
+        "encoding": "jpeg",
+        "bytes": 53147
+      },
+      "first": {
+        "decoded_shape": [
+          480,
+          640,
+          3
+        ]
+      },
+      "health": {}
+    }
+  ]
+}

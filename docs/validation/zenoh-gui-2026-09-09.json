@@ -1,0 +1,420 @@
+{
+  "initial_reconnect_dialog": {
+    "health": [
+      [
+        "IVN/ZCU/zone_1/Runtime",
+        "health publish loop is running"
+      ],
+      [
+        "IVN/ZCU/zone_1/Health",
+        "all components healthy"
+      ],
+      [
+        "IVN/ZCU/zone_2/Runtime",
+        "health publish loop is running"
+      ],
+      [
+        "IVN/ZCU/zone_2/Health",
+        "all components healthy"
+      ],
+      [
+        "IVN/ZCU/zone_3/Runtime",
+        "health publish loop is running"
+      ],
+      [
+        "IVN/ZCU/zone_3/Health",
+        "all components healthy"
+      ],
+      [
+        "IVN/ZCU/zone_4/Runtime",
+        "health publish loop is running"
+      ],
+      [
+        "IVN/ZCU/zone_4/Health",
+        "all components healthy"
+      ]
+    ],
+    "previews": {
+      "camera_01": {
+        "frames": 21,
+        "size": [
+          640,
+          480
+        ],
+        "ready_s": 0.91
+      },
+      "camera_02": {
+        "frames": 21,
+        "size": [
+          640,
+          480
+        ],
+        "ready_s": 0.7
+      },
+      "camera_03": {
+        "frames": 21,
+        "size": [
+          640,
+          480
+        ],
+        "ready_s": 0.7
+      },
+      "camera_04": {
+        "frames": 21,
+        "size": [
+          640,
+          480
+        ],
+        "ready_s": 0.71
+      },
+      "camera_05": {
+        "frames": 21,
+        "size": [
+          640,
+          480
+        ],
+        "ready_s": 0.71
+      }
+    },
+    "yolo_preview_frames": 22,
+    "control_source": "manual",
+    "counts": {
+      "detections": 146,
+      "manual": 20,
+      "output": 250
+    },
+    "process_rmw": {
+      "684342": {
+        "command": "/usr/bin/python3 /home/nvidia/Workspace/update_AutoSDV/AutoSDV-HPC/install/autosdv_gui_pkg/lib/autosdv_gui_pkg/safety_supervisor_node --ros-args -r __node:=safety_supervisor_node -p zcu_disconnect_timeout_sec:=1.0 -p owner_pid:=684265 ",
+        "libs": [
+          "/opt/ros/jazzy/lib/librmw_zenoh_cpp.so"
+        ]
+      },
+      "684343": {
+        "command": "/usr/bin/python3 /home/nvidia/Workspace/update_AutoSDV/AutoSDV-HPC/install/ivn_diagnostics_pkg/lib/ivn_diagnostics_pkg/IVN_diagnostics_node --ros-args -r __node:=IVN_diagnostics_node -p monitor_period_sec:=1.0 -p zcu_health_topic:=/ivn/zcu_health -p zcu_health_timeout_sec:=2.0 -p expected_zone_ids:=[zone_1,zone_2,zone_3,zone_4] ",
+        "libs": [
+          "/opt/ros/jazzy/lib/librmw_zenoh_cpp.so"
+        ]
+      },
+      "684344": {
+        "command": "/usr/bin/python3 /home/nvidia/Workspace/update_AutoSDV/AutoSDV-HPC/install/camera_perception_pkg/lib/camera_perception_pkg/ethernet_image_publisher_node --ros-args -r __node:=ethernet_image_publisher_node_1 -p image:=image_01 -p show_image:=false -p p2_log_enabled:=false ",
+        "libs": [
+          "/opt/ros/jazzy/lib/librmw_zenoh_cpp.so"
+        ]
+      },
+      "684354": {
+        "command": "/usr/bin/python3 /home/nvidia/Workspace/update_AutoSDV/AutoSDV-HPC/install/camera_perception_pkg/lib/camera_perception_pkg/ethernet_image_publisher_node --ros-args -r __node:=ethernet_image_publisher_node_2 -p image:=image_02 -p show_image:=false -p p2_log_enabled:=false ",
+        "libs": [
+          "/opt/ros/jazzy/lib/librmw_zenoh_cpp.so"
+        ]
+      },
+      "684360": {
+        "command": "/usr/bin/python3 /home/nvidia/Workspace/update_AutoSDV/AutoSDV-HPC/install/camera_perception_pkg/lib/camera_perception_pkg/ethernet_image_publisher_node --ros-args -r __node:=ethernet_image_publisher_node_3 -p image:=image_03 -p show_image:=false -p p2_log_enabled:=false ",
+        "libs": [
+          "/opt/ros/jazzy/lib/librmw_zenoh_cpp.so"
+        ]
+      },
+      "684397": {
+        "command": "/usr/bin/python3 /home/nvidia/Workspace/update_AutoSDV/AutoSDV-HPC/install/camera_perception_pkg/lib/camera_perception_pkg/ethernet_image_publisher_node --ros-args -r __node:=ethernet_image_publisher_node_4 -p image:=image_04 -p show_image:=false -p p2_log_enabled:=false ",
+        "libs": [
+          "/opt/ros/jazzy/lib/librmw_zenoh_cpp.so"
+        ]
+      },
+      "684402": {
+        "command": "/usr/bin/python3 /home/nvidia/Workspace/update_AutoSDV/AutoSDV-HPC/install/camera_perception_pkg/lib/camera_perception_pkg/ethernet_image_publisher_node --ros-args -r __node:=ethernet_image_publisher_node_5 -p image:=image_05 -p show_image:=false -p p2_log_enabled:=false ",
+        "libs": [
+          "/opt/ros/jazzy/lib/librmw_zenoh_cpp.so"
+        ]
+      },
+      "684532": {
+        "command": "/home/nvidia/Workspace/update_AutoSDV/AutoSDV-HPC/install/autosdv_gui_preview_bridge_pkg/lib/autosdv_gui_preview_bridge_pkg/preview_bridge_node --ros-args -r __node:=autosdv_gui_preview_bridge -p jpeg_quality:=85 ",
+        "libs": [
+          "/opt/ros/jazzy/lib/librmw_zenoh_cpp.so"
+        ]
+      },
+      "684696": {
+        "command": "/usr/bin/python3 /home/nvidia/Workspace/update_AutoSDV/AutoSDV-HPC/install/camera_perception_pkg/lib/camera_perception_pkg/yolov8_node --ros-args -r __node:=yolov8_node -p log_image_header:=false ",
+        "libs": [
+          "/opt/ros/jazzy/lib/librmw_zenoh_cpp.so"
+        ]
+      },
+      "685109": {
+        "command": "/usr/bin/python3 /home/nvidia/Workspace/update_AutoSDV/AutoSDV-HPC/install/data_collection_pkg/lib/data_collection_pkg/drive_node --ros-args -r __node:=drive_node -p input_topic:=/gui/manual_input -p output_topic:=/control/manual_cmd -p terminal_input:=false ",
+        "libs": [
+          "/opt/ros/jazzy/lib/librmw_zenoh_cpp.so"
+        ]
+      }
+    },
+    "states": {
+      "camera_01": "RUNNING",
+      "camera_02": "RUNNING",
+      "camera_03": "RUNNING",
+      "camera_04": "RUNNING",
+      "camera_05": "RUNNING",
+      "yolo": "RUNNING",
+      "yolo_visualizer": "RUNNING",
+      "lane": "STOPPED",
+      "path_planner": "STOPPED",
+      "path_visualizer": "STOPPED",
+      "preview_bridge": "RUNNING",
+      "motion_planner": "STOPPED",
+      "drive": "RUNNING",
+      "safety_supervisor": "RUNNING",
+      "ivn_diagnostics": "RUNNING"
+    },
+    "errors": [],
+    "heartbeat_forced_disarmed": true,
+    "router_restart_recovered": {
+      "camera_01": 21,
+      "camera_02": 21,
+      "camera_03": 21,
+      "camera_04": 21,
+      "camera_05": 21
+    },
+    "dialog_apply_log": "HPC: check OK \u2014 {\"host\": \"hpc\", \"mode\": \"zenoh\", \"ready\": true}\n10.0.0.4: check OK \u2014 {\"host\": \"zcu\", \"mode\": \"zenoh\", \"ready\": true}\n10.0.0.5: check OK \u2014 {\"host\": \"zcu\", \"mode\": \"zenoh\", \"ready\": true}\n10.0.0.3: check OK \u2014 {\"host\": \"zcu\", \"mode\": \"zenoh\", \"ready\": true}\n10.0.0.2: check OK \u2014 {\"host\": \"zcu\", \"mode\": \"zenoh\", \"ready\": true}\nHPC: begin OK \u2014 {\"applying\": \"zenoh\"}\n10.0.0.4: begin OK \u2014 {\"applying\": \"zenoh\"}\n10.0.0.5: begin OK \u2014 {\"applying\": \"zenoh\"}\n10.0.0.3: begin OK \u2014 {\"applying\": \"zenoh\"}\n10.0.0.2: begin OK \u2014 {\"applying\": \"zenoh\"}\nHPC: stop OK \u2014 {\"stopped\": true}\n10.0.0.3: stop OK \u2014 {\"stopped\": true}\n10.0.0.5: stop OK \u2014 {\"stopped\": true}\n10.0.0.4: stop OK \u2014 {\"stopped\": true}\n10.0.0.2: stop OK \u2014 {\"stopped\": true}\nHPC: daemon OK \u2014 {\"daemon_stopped\": true}\nHPC: prepare OK \u2014 {\"prepared\": \"zenoh\"}\n10.0.0.2: prepare OK \u2014 {\"prepared\": \"zenoh\"}\n10.0.0.5: prepare OK \u2014 {\"prepared\": \"zenoh\"}\n10.0.0.3: prepare OK \u2014 {\"prepared\": \"zenoh\"}\n10.0.0.4: prepare OK \u2014 {\"prepared\": \"zenoh\"}\nHPC: start OK \u2014 {\"started\": \"zenoh\"}\nHPC: verify: Zenoh UDP listeners not ready on 7447/7448\nHPC: verify OK \u2014 {\"mode\": \"zenoh\", \"processes_verified\": true, \"data_path_verified\": false}\n10.0.0.4: start OK \u2014 {\"started\": \"zenoh\"}\n10.0.0.3: start OK \u2014 {\"started\": \"zenoh\"}\n10.0.0.5: start OK \u2014 {\"started\": \"zenoh\"}\n10.0.0.2: start OK \u2014 {\"started\": \"zenoh\"}\n10.0.0.3: verify OK \u2014 {\"mode\": \"zenoh\", \"processes_verified\": true, \"data_path_verified\": false}\n10.0.0.5: verify OK \u2014 {\"mode\": \"zenoh\", \"processes_verified\": true, \"data_path_verified\": false}\n10.0.0.4: verify OK \u2014 {\"mode\": \"zenoh\", \"processes_verified\": true, \"data_path_verified\": false}\n10.0.0.2: verify OK \u2014 {\"mode\": \"zenoh\", \"processes_verified\": true, \"data_path_verified\": false}\n10.0.0.2: commit OK \u2014 {\"status\": \"ready\", \"mode\": \"zenoh\", \"data_path_verified\": false}\n10.0.0.5: commit OK \u2014 {\"status\": \"ready\", \"mode\": \"zenoh\", \"data_path_verified\": false}\n10.0.0.3: commit OK \u2014 {\"status\": \"ready\", \"mode\": \"zenoh\", \"data_path_verified\": false}\n10.0.0.4: commit OK \u2014 {\"status\": \"ready\", \"mode\": \"zenoh\", \"data_path_verified\": false}\nHPC: commit OK \u2014 {\"status\": \"ready\", \"mode\": \"zenoh\", \"data_path_verified\": false}\nMode applied. Processes verified; live image/control/health validation pending.\n",
+    "restore_nodes": [
+      "camera_01",
+      "camera_02",
+      "camera_03",
+      "camera_04",
+      "camera_05",
+      "yolo",
+      "preview_bridge",
+      "safety_supervisor",
+      "ivn_diagnostics"
+    ]
+  },
+  "relaunch": {
+    "health": [
+      [
+        "IVN/ZCU/zone_1/Runtime",
+        "health publish loop is running"
+      ],
+      [
+        "IVN/ZCU/zone_1/Health",
+        "all components healthy"
+      ],
+      [
+        "IVN/ZCU/zone_2/Runtime",
+        "health publish loop is running"
+      ],
+      [
+        "IVN/ZCU/zone_2/Health",
+        "all components healthy"
+      ],
+      [
+        "IVN/ZCU/zone_3/Runtime",
+        "health publish loop is running"
+      ],
+      [
+        "IVN/ZCU/zone_3/Health",
+        "all components healthy"
+      ],
+      [
+        "IVN/ZCU/zone_4/Runtime",
+        "health publish loop is running"
+      ],
+      [
+        "IVN/ZCU/zone_4/Health",
+        "all components healthy"
+      ]
+    ],
+    "previews": {
+      "camera_01": {
+        "frames": 21,
+        "size": [
+          640,
+          480
+        ],
+        "ready_s": 0.91
+      },
+      "camera_02": {
+        "frames": 21,
+        "size": [
+          640,
+          480
+        ],
+        "ready_s": 0.7
+      },
+      "camera_03": {
+        "frames": 21,
+        "size": [
+          640,
+          480
+        ],
+        "ready_s": 0.71
+      },
+      "camera_04": {
+        "frames": 21,
+        "size": [
+          640,
+          480
+        ],
+        "ready_s": 0.7
+      },
+      "camera_05": {
+        "frames": 20,
+        "size": [
+          640,
+          480
+        ],
+        "ready_s": 0.7
+      }
+    },
+    "yolo_preview_frames": 20,
+    "control_source": "manual",
+    "counts": {
+      "detections": 148,
+      "manual": 21,
+      "output": 251
+    },
+    "autonomous_states": {
+      "lane": "RUNNING",
+      "path_planner": "RUNNING",
+      "motion_planner": "RUNNING"
+    },
+    "process_rmw": {
+      "687774": {
+        "command": "/usr/bin/python3 /home/nvidia/Workspace/update_AutoSDV/AutoSDV-HPC/install/autosdv_gui_pkg/lib/autosdv_gui_pkg/safety_supervisor_node --ros-args -r __node:=safety_supervisor_node -p zcu_disconnect_timeout_sec:=1.0 -p owner_pid:=687690 ",
+        "libs": [
+          "/opt/ros/jazzy/lib/librmw_zenoh_cpp.so"
+        ]
+      },
+      "687775": {
+        "command": "/usr/bin/python3 /home/nvidia/Workspace/update_AutoSDV/AutoSDV-HPC/install/ivn_diagnostics_pkg/lib/ivn_diagnostics_pkg/IVN_diagnostics_node --ros-args -r __node:=IVN_diagnostics_node -p monitor_period_sec:=1.0 -p zcu_health_topic:=/ivn/zcu_health -p zcu_health_timeout_sec:=2.0 -p expected_zone_ids:=[zone_1,zone_2,zone_3,zone_4] ",
+        "libs": [
+          "/opt/ros/jazzy/lib/librmw_zenoh_cpp.so"
+        ]
+      },
+      "687779": {
+        "command": "/usr/bin/python3 /home/nvidia/Workspace/update_AutoSDV/AutoSDV-HPC/install/camera_perception_pkg/lib/camera_perception_pkg/ethernet_image_publisher_node --ros-args -r __node:=ethernet_image_publisher_node_1 -p image:=image_01 -p show_image:=false -p p2_log_enabled:=false ",
+        "libs": [
+          "/opt/ros/jazzy/lib/librmw_zenoh_cpp.so"
+        ]
+      },
+      "687798": {
+        "command": "/usr/bin/python3 /home/nvidia/Workspace/update_AutoSDV/AutoSDV-HPC/install/camera_perception_pkg/lib/camera_perception_pkg/ethernet_image_publisher_node --ros-args -r __node:=ethernet_image_publisher_node_2 -p image:=image_02 -p show_image:=false -p p2_log_enabled:=false ",
+        "libs": [
+          "/opt/ros/jazzy/lib/librmw_zenoh_cpp.so"
+        ]
+      },
+      "687804": {
+        "command": "/usr/bin/python3 /home/nvidia/Workspace/update_AutoSDV/AutoSDV-HPC/install/camera_perception_pkg/lib/camera_perception_pkg/ethernet_image_publisher_node --ros-args -r __node:=ethernet_image_publisher_node_3 -p image:=image_03 -p show_image:=false -p p2_log_enabled:=false ",
+        "libs": [
+          "/opt/ros/jazzy/lib/librmw_zenoh_cpp.so"
+        ]
+      },
+      "687838": {
+        "command": "/usr/bin/python3 /home/nvidia/Workspace/update_AutoSDV/AutoSDV-HPC/install/camera_perception_pkg/lib/camera_perception_pkg/ethernet_image_publisher_node --ros-args -r __node:=ethernet_image_publisher_node_4 -p image:=image_04 -p show_image:=false -p p2_log_enabled:=false ",
+        "libs": [
+          "/opt/ros/jazzy/lib/librmw_zenoh_cpp.so"
+        ]
+      },
+      "687847": {
+        "command": "/usr/bin/python3 /home/nvidia/Workspace/update_AutoSDV/AutoSDV-HPC/install/camera_perception_pkg/lib/camera_perception_pkg/ethernet_image_publisher_node --ros-args -r __node:=ethernet_image_publisher_node_5 -p image:=image_05 -p show_image:=false -p p2_log_enabled:=false ",
+        "libs": [
+          "/opt/ros/jazzy/lib/librmw_zenoh_cpp.so"
+        ]
+      },
+      "687974": {
+        "command": "/home/nvidia/Workspace/update_AutoSDV/AutoSDV-HPC/install/autosdv_gui_preview_bridge_pkg/lib/autosdv_gui_preview_bridge_pkg/preview_bridge_node --ros-args -r __node:=autosdv_gui_preview_bridge -p jpeg_quality:=85 ",
+        "libs": [
+          "/opt/ros/jazzy/lib/librmw_zenoh_cpp.so"
+        ]
+      },
+      "688149": {
+        "command": "/usr/bin/python3 /home/nvidia/Workspace/update_AutoSDV/AutoSDV-HPC/install/camera_perception_pkg/lib/camera_perception_pkg/yolov8_node --ros-args -r __node:=yolov8_node -p log_image_header:=false ",
+        "libs": [
+          "/opt/ros/jazzy/lib/librmw_zenoh_cpp.so"
+        ]
+      },
+      "688569": {
+        "command": "/usr/bin/python3 /home/nvidia/Workspace/update_AutoSDV/AutoSDV-HPC/install/camera_perception_pkg/lib/camera_perception_pkg/lane_info_extractor_node --ros-args -r __node:=lane_info_extractor_node -p show_image:=false -p publish_roi_image:=true ",
+        "libs": [
+          "/opt/ros/jazzy/lib/librmw_zenoh_cpp.so"
+        ]
+      },
+      "688573": {
+        "command": "/usr/bin/python3 /home/nvidia/Workspace/update_AutoSDV/AutoSDV-HPC/install/decision_making_pkg/lib/decision_making_pkg/path_planner_node --ros-args -r __node:=path_planner_node -p log_planning:=false ",
+        "libs": [
+          "/opt/ros/jazzy/lib/librmw_zenoh_cpp.so"
+        ]
+      },
+      "688582": {
+        "command": "/usr/bin/python3 /home/nvidia/Workspace/update_AutoSDV/AutoSDV-HPC/install/decision_making_pkg/lib/decision_making_pkg/motion_planner_node --ros-args -r __node:=motion_planner_node -p pub_topic:=/control/auto_cmd -p log_commands:=false ",
+        "libs": [
+          "/opt/ros/jazzy/lib/librmw_zenoh_cpp.so"
+        ]
+      }
+    },
+    "states": {
+      "camera_01": "RUNNING",
+      "camera_02": "RUNNING",
+      "camera_03": "RUNNING",
+      "camera_04": "RUNNING",
+      "camera_05": "RUNNING",
+      "yolo": "RUNNING",
+      "yolo_visualizer": "RUNNING",
+      "lane": "RUNNING",
+      "path_planner": "RUNNING",
+      "path_visualizer": "STOPPED",
+      "preview_bridge": "RUNNING",
+      "motion_planner": "RUNNING",
+      "drive": "STOPPED",
+      "safety_supervisor": "RUNNING",
+      "ivn_diagnostics": "RUNNING"
+    },
+    "errors": [],
+    "heartbeat_forced_disarmed": true
+  },
+  "can_stop_frames": {
+    "10.0.0.2": [
+      "(1780615366.986928) can0 111#00000007",
+      "(1780615366.987179) can0 123#0000000000000000",
+      "(1780615367.036885) can0 111#00000007",
+      "(1780615367.037135) can0 123#0000000000000000",
+      "(1780615367.087886) can0 111#00000007",
+      "(1780615367.088138) can0 123#0000000000000000",
+      "(1780615367.136865) can0 111#00000007",
+      "(1780615367.137116) can0 123#0000000000000000",
+      "(1780615367.186881) can0 111#00000007",
+      "(1780615367.187131) can0 123#0000000000000000"
+    ],
+    "10.0.0.3": [
+      "(1780586853.347478) can0 111#00000007",
+      "(1780586853.347729) can0 123#0000000000000000",
+      "(1780586853.398435) can0 111#00000007",
+      "(1780586853.398685) can0 123#0000000000000000",
+      "(1780586853.447417) can0 111#00000007",
+      "(1780586853.447667) can0 123#0000000000000000",
+      "(1780586853.497394) can0 111#00000007",
+      "(1780586853.497645) can0 123#0000000000000000",
+      "(1780586853.547442) can0 111#00000007",
+      "(1780586853.547692) can0 123#0000000000000000"
+    ],
+    "10.0.0.4": [
+      "(1786101091.119905) can0 111#00000007",
+      "(1786101091.120157) can0 123#0000000000000000",
+      "(1786101091.168794) can0 111#00000007",
+      "(1786101091.169046) can0 123#0000000000000000",
+      "(1786101091.219792) can0 111#00000007",
+      "(1786101091.220046) can0 123#0000000000000000",
+      "(1786101091.269785) can0 111#00000007",
+      "(1786101091.270036) can0 123#0000000000000000",
+      "(1786101091.319779) can0 111#00000007",
+      "(1786101091.320031) can0 123#0000000000000000"
+    ],
+    "10.0.0.5": [
+      "(1780514921.529539) can0 111#00000007",
+      "(1780514921.529792) can0 123#0000000000000000",
+      "(1780514921.579323) can0 111#00000007",
+      "(1780514921.579575) can0 123#0000000000000000",
+      "(1780514921.628310) can0 111#00000007",
+      "(1780514921.628562) can0 123#0000000000000000",
+      "(1780514921.679306) can0 111#00000007",
+      "(1780514921.679557) can0 123#0000000000000000",
+      "(1780514921.728298) can0 111#00000007",
+      "(1780514921.728549) can0 123#0000000000000000"
+    ]
+  }
+}

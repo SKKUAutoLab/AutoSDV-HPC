@@ -1,0 +1,219 @@
+[
+  {
+    "camera": "camera_01",
+    "initial": {
+      "camera_id": "camera_01",
+      "state": {
+        "ok": true,
+        "source": "camera",
+        "video_path": "/home/pi/camera/driving_simulation.mp4"
+      },
+      "error": ""
+    },
+    "pid_before": "1466",
+    "switch": {
+      "camera_id": "camera_01",
+      "state": {
+        "ok": true,
+        "source": "video",
+        "video_path": "/home/pi/camera/driving_simulation.mp4"
+      },
+      "error": ""
+    },
+    "switched_traffic": "00:31:48.551238 IP 12.0.0.5.57992 > 12.0.0.2.8486: UDP, length 53329\n00:31:48.584569 IP 12.0.0.5.57992 > 12.0.0.2.8486: UDP, length 53160\n00:31:48.617903 IP 12.0.0.5.57992 > 12.0.0.2.8486: UDP, length 53240",
+    "invalid_file": {
+      "camera_id": "camera_01",
+      "state": {
+        "ok": true,
+        "source": "video",
+        "video_path": "/home/pi/camera/driving_simulation.mp4"
+      },
+      "error": "Failed to open video file: /home/pi/camera/nonexistent-runtime-test.mp4"
+    },
+    "restored": {
+      "camera_id": "camera_01",
+      "state": {
+        "ok": true,
+        "source": "camera",
+        "video_path": "/home/pi/camera/driving_simulation.mp4"
+      },
+      "error": ""
+    },
+    "restored_traffic": "00:31:53.803227 IP 12.0.0.5.57992 > 12.0.0.2.8486: UDP, length 50087\n00:31:53.835189 IP 12.0.0.5.57992 > 12.0.0.2.8486: UDP, length 50157\n00:31:53.867199 IP 12.0.0.5.57992 > 12.0.0.2.8486: UDP, length 50233",
+    "pid_after": "1466"
+  },
+  {
+    "camera": "camera_02",
+    "initial": {
+      "camera_id": "camera_02",
+      "state": {
+        "ok": true,
+        "source": "video",
+        "video_path": "/home/pi/camera/driving_simulation.mp4"
+      },
+      "error": ""
+    },
+    "pid_before": "1685",
+    "switch": {
+      "camera_id": "camera_02",
+      "state": {
+        "ok": true,
+        "source": "camera",
+        "video_path": "/home/pi/camera/driving_simulation.mp4"
+      },
+      "error": ""
+    },
+    "switched_traffic": "00:31:59.094341 IP 11.0.0.5.57547 > 11.0.0.2.8485: UDP, length 6322\n00:31:59.156991 IP 11.0.0.5.57547 > 11.0.0.2.8485: UDP, length 6315\n00:31:59.220043 IP 11.0.0.5.57547 > 11.0.0.2.8485: UDP, length 6319",
+    "invalid_file": {
+      "camera_id": "camera_02",
+      "state": {
+        "ok": true,
+        "source": "camera",
+        "video_path": "/home/pi/camera/driving_simulation.mp4"
+      },
+      "error": "Failed to open video file: /home/pi/camera/nonexistent-runtime-test.mp4"
+    },
+    "restored": {
+      "camera_id": "camera_02",
+      "state": {
+        "ok": true,
+        "source": "video",
+        "video_path": "/home/pi/camera/driving_simulation.mp4"
+      },
+      "error": ""
+    },
+    "restored_traffic": "00:32:03.528037 IP 11.0.0.5.57547 > 11.0.0.2.8485: UDP, length 53364\n00:32:03.561368 IP 11.0.0.5.57547 > 11.0.0.2.8485: UDP, length 53375\n00:32:03.594693 IP 11.0.0.5.57547 > 11.0.0.2.8485: UDP, length 53348",
+    "pid_after": "1685"
+  },
+  {
+    "camera": "camera_03",
+    "initial": {
+      "camera_id": "camera_03",
+      "state": {
+        "ok": true,
+        "source": "video",
+        "video_path": "/home/pi/camera/driving_simulation.mp4"
+      },
+      "error": ""
+    },
+    "pid_before": "1410",
+    "switch": {
+      "camera_id": "camera_03",
+      "state": {
+        "ok": true,
+        "source": "video",
+        "video_path": "/home/pi/camera/driving_simulation.mp4"
+      },
+      "error": "Camera failed to initialize after max retries"
+    },
+    "camera_inventory": "No cameras available!",
+    "switched_traffic": "16:36:56.740588 IP 11.0.0.5.39879 > 11.0.0.2.8485: UDP, length 32347\n16:36:56.773919 IP 11.0.0.5.39879 > 11.0.0.2.8485: UDP, length 31082\n16:36:56.807259 IP 11.0.0.5.39879 > 11.0.0.2.8485: UDP, length 31161",
+    "invalid_file": {
+      "camera_id": "camera_03",
+      "state": {
+        "ok": true,
+        "source": "video",
+        "video_path": "/home/pi/camera/driving_simulation.mp4"
+      },
+      "error": "Failed to open video file: /home/pi/camera/nonexistent-runtime-test.mp4"
+    },
+    "restored": {
+      "camera_id": "camera_03",
+      "state": {
+        "ok": true,
+        "source": "video",
+        "video_path": "/home/pi/camera/driving_simulation.mp4"
+      },
+      "error": ""
+    },
+    "restored_traffic": "16:37:01.615611 IP 11.0.0.5.39879 > 11.0.0.2.8485: UDP, length 39161\n16:37:01.648957 IP 11.0.0.5.39879 > 11.0.0.2.8485: UDP, length 38926\n16:37:01.682293 IP 11.0.0.5.39879 > 11.0.0.2.8485: UDP, length 38984",
+    "pid_after": "1410"
+  },
+  {
+    "camera": "camera_04",
+    "initial": {
+      "camera_id": "camera_04",
+      "state": {
+        "ok": true,
+        "source": "video",
+        "video_path": "/home/pi/camera/driving_simulation.mp4"
+      },
+      "error": ""
+    },
+    "pid_before": "1427",
+    "switch": {
+      "camera_id": "camera_04",
+      "state": {
+        "ok": true,
+        "source": "video",
+        "video_path": "/home/pi/camera/driving_simulation.mp4"
+      },
+      "error": "Camera failed to initialize after max retries"
+    },
+    "camera_inventory": "No cameras available!",
+    "switched_traffic": "12:21:06.564464 IP 11.0.0.5.51218 > 11.0.0.2.8485: UDP, length 35497\n12:21:06.597798 IP 11.0.0.5.51218 > 11.0.0.2.8485: UDP, length 35432\n12:21:06.631128 IP 11.0.0.5.51218 > 11.0.0.2.8485: UDP, length 35303",
+    "invalid_file": {
+      "camera_id": "camera_04",
+      "state": {
+        "ok": true,
+        "source": "video",
+        "video_path": "/home/pi/camera/driving_simulation.mp4"
+      },
+      "error": "Failed to open video file: /home/pi/camera/nonexistent-runtime-test.mp4"
+    },
+    "restored": {
+      "camera_id": "camera_04",
+      "state": {
+        "ok": true,
+        "source": "video",
+        "video_path": "/home/pi/camera/driving_simulation.mp4"
+      },
+      "error": ""
+    },
+    "restored_traffic": "12:21:11.177785 IP 11.0.0.5.51218 > 11.0.0.2.8485: UDP, length 33457\n12:21:11.211094 IP 11.0.0.5.51218 > 11.0.0.2.8485: UDP, length 33514\n12:21:11.244430 IP 11.0.0.5.51218 > 11.0.0.2.8485: UDP, length 35323",
+    "pid_after": "1427"
+  },
+  {
+    "camera": "camera_05",
+    "initial": {
+      "camera_id": "camera_05",
+      "state": {
+        "ok": true,
+        "source": "video",
+        "video_path": "/home/pi/camera/driving_simulation.mp4"
+      },
+      "error": ""
+    },
+    "pid_before": "1454",
+    "switch": {
+      "camera_id": "camera_05",
+      "state": {
+        "ok": true,
+        "source": "camera",
+        "video_path": "/home/pi/camera/driving_simulation.mp4"
+      },
+      "error": ""
+    },
+    "switched_traffic": "20:38:26.222815 IP 11.0.0.5.40086 > 11.0.0.2.8485: UDP, length 37197\n20:38:26.267521 IP 11.0.0.5.40086 > 11.0.0.2.8485: UDP, length 37173\n20:38:26.312269 IP 11.0.0.5.40086 > 11.0.0.2.8485: UDP, length 37132",
+    "invalid_file": {
+      "camera_id": "camera_05",
+      "state": {
+        "ok": true,
+        "source": "camera",
+        "video_path": "/home/pi/camera/driving_simulation.mp4"
+      },
+      "error": "Failed to open video file: /home/pi/camera/nonexistent-runtime-test.mp4"
+    },
+    "restored": {
+      "camera_id": "camera_05",
+      "state": {
+        "ok": true,
+        "source": "video",
+        "video_path": "/home/pi/camera/driving_simulation.mp4"
+      },
+      "error": ""
+    },
+    "restored_traffic": "20:38:31.597623 IP 11.0.0.5.40086 > 11.0.0.2.8485: UDP, length 53364\n20:38:31.630957 IP 11.0.0.5.40086 > 11.0.0.2.8485: UDP, length 53375\n20:38:31.664298 IP 11.0.0.5.40086 > 11.0.0.2.8485: UDP, length 53348",
+    "pid_after": "1454"
+  }
+]

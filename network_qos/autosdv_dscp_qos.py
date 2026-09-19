@@ -23,6 +23,11 @@ on is the router's listening port, which is per flow rather than per node:
 --middleware zenoh therefore marks CS6 on egress from the control port, which
 is wider than the Fast DDS rule -- it covers health diagnostics as well.  Give
 the safety supervisor its own router port if the experiment needs them apart.
+
+--middleware zenoh_bridge is the zenoh-DDS bridge environment and takes the
+same rule.  Its DDS traffic never leaves the loopback interface, and its two
+zenoh-bridge-ros2dds processes listen on the same 7447/7448 split as the
+router, so the port the flow is classified by is unchanged.
 """
 
 from __future__ import annotations
@@ -58,9 +63,15 @@ DEFAULT_MAX_PARTICIPANT_ID = 119
 FASTDDS = "fastdds"
 CYCLONEDDS = "cyclonedds"
 ZENOH = "zenoh"
-MIDDLEWARES = (FASTDDS, CYCLONEDDS, ZENOH)
+ZENOH_BRIDGE = "zenoh_bridge"
+MIDDLEWARES = (FASTDDS, CYCLONEDDS, ZENOH, ZENOH_BRIDGE)
 
-# Router ports from AutoSDV-HPC/zenoh_router_ivn.json5.
+# Middlewares whose control flow is identified by a fixed listening port rather
+# than by the safety supervisor's own ephemeral source port.
+PORT_CLASSIFIED = (ZENOH, ZENOH_BRIDGE)
+
+# Router ports from AutoSDV-HPC/zenoh_router_ivn.json5; the bridges in
+# zenoh_bridge_{camera,control}_ivn.json5 listen on the same two.
 ZENOH_CAMERA_PORT = 7447
 ZENOH_CONTROL_PORT = 7448
 
@@ -129,11 +140,11 @@ def render_ruleset(
     if middleware not in MIDDLEWARES:
         raise ValueError(f"unknown middleware: {middleware!r}")
 
-    if middleware == ZENOH:
+    if middleware in PORT_CLASSIFIED:
         control_rule = (
             f'oifname "{interface}" ip daddr @{ZCU_SET} meta l4proto {{ tcp, udp }} '
             f"th sport {ZENOH_CONTROL_PORT} ip dscp set cs6 counter "
-            f'comment "AutoSDV control Q6 (zenoh router control port)"'
+            f'comment "AutoSDV control Q6 (zenoh control port)"'
         )
         sets = f"""    set {ZCU_SET} {{
         type ipv4_addr
@@ -317,12 +328,12 @@ def update_ports(args: argparse.Namespace) -> tuple[int, ...]:
 
 def watch(args: argparse.Namespace) -> int:
     apply_rules(args)
-    if args.middleware == ZENOH:
-        # The zenoh rule matches the router's fixed control port, so there is no
+    if args.middleware in PORT_CLASSIFIED:
+        # The zenoh rule matches a fixed listening port, so there is no
         # per-process source-port set to keep current and nothing to poll.
         print(
             f"AutoSDV DSCP policy active on {args.interface}: "
-            f"default=CS1/Q1, control=CS6/Q6 (zenoh router port "
+            f"default=CS1/Q1, control=CS6/Q6 (zenoh control port "
             f"{ZENOH_CONTROL_PORT})",
             flush=True,
         )
@@ -417,9 +428,9 @@ def main(argv: list[str] | None = None) -> int:
                 Path(args.proc_root))))
         elif args.command == "once":
             apply_rules(args)
-            if args.middleware == ZENOH:
+            if args.middleware in PORT_CLASSIFIED:
                 print(
-                    "zenoh: control marked by router port "
+                    "zenoh: control marked by listening port "
                     f"{ZENOH_CONTROL_PORT}; no source-port tracking needed"
                 )
             else:

@@ -1,0 +1,35 @@
+{
+  "detections_messages": 206,
+  "max_boxes": 0,
+  "preview_frames": 22,
+  "preview_size": [
+    640,
+    480
+  ],
+  "errors": [],
+  "states": {
+    "camera_01": "RUNNING",
+    "camera_02": "STOPPED",
+    "camera_03": "STOPPED",
+    "camera_04": "STOPPED",
+    "camera_05": "STOPPED",
+    "yolo": "RUNNING",
+    "yolo_visualizer": "RUNNING",
+    "lane": "STOPPED",
+    "path_planner": "STOPPED",
+    "path_visualizer": "STOPPED",
+    "preview_bridge": "RUNNING",
+    "motion_planner": "STOPPED",
+    "drive": "STOPPED",
+    "safety_supervisor": "RUNNING",
+    "ivn_diagnostics": "RUNNING"
+  },
+  "stderr": {
+    "safety_supervisor": "[INFO] [1788868600.042655350] [safety_supervisor_node]: Safety supervisor ready: /control/manual_cmd, /control/auto_cmd -> /topic_control_signal",
+    "ivn_diagnostics": "[INFO] [1788868600.086595439] [IVN_diagnostics_node]: IVN automatic monitor: /ivn/diagnostics/status; ZCU health: /ivn/zcu_health; manual deep check: /ivn/diagnostics/run_manual",
+    "camera_01": "[INFO] [1788868600.298570935] [ethernet_image_publisher_node_1]: DDS Image Listener Node has started.",
+    "yolo": "[INFO] [1788868601.448260514] [yolov8_node]: Activating yolov8_node",
+    "preview_bridge": "[INFO] [1788868609.876180093] [autosdv_gui_preview_bridge]: Preview source: /yolov8_visualized_img",
+    "yolo_visualizer": "[INFO] [1788868611.483253487] [yolov8_visualizer_node]: Activating yolov8_visualizer_node"
+  }
+}

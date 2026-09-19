@@ -1,0 +1,63 @@
+// HPC-side zenoh-bridge-ros2dds for the control flow (AUTOSDV_RMW=zenoh_bridge).
+//
+// The second half of environment 3; see zenoh_bridge_camera_ivn.json5 for the
+// topology and for why the two flows are separate bridges rather than one.
+// This one carries everything that is not a camera image:
+//   /topic_control_signal   HPC -> ZCU   motion command
+//   /topic_status_signal    reserved; legacy feedback is disabled
+//   /ivn/zcu_health         ZCU -> HPC   diagnostics, 2 Hz per board
+//
+// Note that control and health share this port, so the CS6 rule that
+// network_qos/autosdv_dscp_qos.py installs for egress from 7448 covers health
+// as well.  That is the same compromise the native zenoh environment makes,
+// which is what keeps the two comparable; splitting them needs a third port
+// on both sides.
+{
+  plugins: {
+    ros2dds: {
+      nodename: "zenoh_bridge_control",
+
+      // See zenoh_bridge_camera_ivn.json5 on why the DDS domain is not pinned.
+
+      // Local DDS publisher: command out. Local DDS subscriber: health in.
+      allow: {
+        publishers: ["/topic_control_signal"],
+        subscribers: ["/ivn/zcu_health"],
+        service_servers: [],
+        service_clients: [],
+        action_servers: [],
+        action_clients: [],
+      },
+
+      // Applies only to RELIABLE DDS routes. MotionCommand currently uses
+      // BEST_EFFORT; this setting does not change its QoS or guarantee delivery.
+      reliable_routes_blocking: true,
+    },
+  },
+
+  mode: "router",
+
+  listen: {
+    endpoints: [
+      "tcp/0.0.0.0:7448",
+      "udp/0.0.0.0:7448",
+    ],
+  },
+
+  connect: {
+    endpoints: [],
+  },
+
+  scouting: {
+    multicast: { enabled: false },
+    gossip: { enabled: false },
+  },
+
+  transport: {
+    link: {
+      tx: {
+        batch_size: 1400,
+      },
+    },
+  },
+}

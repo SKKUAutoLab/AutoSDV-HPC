@@ -1,12 +1,16 @@
 """PyQt5 integrated control GUI for the AutoSDV HPC."""
 
 import html
+import json
 import os
 import sys
 import threading
 
 from ament_index_python.packages import get_package_share_directory
 from launch_pkg.rmw_profile import default_profile_env
+from launch_pkg.communication_mode import state as communication_state
+from .mode_dialog import ModeDialog
+from .camera_source_dialog import CameraSourceDialog
 from PyQt5.QtCore import (
     pyqtSignal,
     QEvent,
@@ -50,6 +54,7 @@ from .process_manager import (
     terminate_stale_safety_supervisors,
 )
 from .ros_bridge import GuiRosBridge
+from .gamepad import empty_input, GamepadGate, XboxController
 
 
 CAMERA_IDS = [f'camera_{index:02d}' for index in range(1, 6)]
@@ -89,6 +94,10 @@ def configure_default_dds_profile():
     Returns the profile path of whichever middleware AUTOSDV_RMW selected.
     """
     environment = default_profile_env(get_package_share_directory('launch_pkg'))
+    if communication_state():
+        for key in list(os.environ):
+            if key.startswith(('ZENOH_', 'CYCLONEDDS_', 'FASTRTPS_', 'FASTDDS_')):
+                os.environ.pop(key)
     os.environ.update(environment)
     return environment.get(
         'CYCLONEDDS_URI', environment.get('FASTDDS_DEFAULT_PROFILES_FILE', ''))
@@ -546,9 +555,14 @@ class VideoPreviewLabel(QLabel):
 class MainWindow(QMainWindow):
     preview_frame_ready = pyqtSignal()
 
-    def __init__(self, ros_bridge):
+    def __init__(self, ros_bridge, shutdown_ros=None):
         super().__init__()
         self.ros = ros_bridge
+        self.shutdown_ros = shutdown_ros
+        self.restart_requested = False
+        self._mode_dialog = None
+        self._camera_source_dialog = None
+        self._restart_nodes = []
         self.specs = load_node_specs()
         self.specs['safety_supervisor'].parameters['owner_pid'] = os.getpid()
         self.manager = NodeProcessManager(self.specs, self)
@@ -557,14 +571,12 @@ class MainWindow(QMainWindow):
         self.manager.process_error.connect(self._process_error)
 
         self.control_source = 'none'
-        self.drive_input = {
-            'forward': False,
-            'reverse': False,
-            'left': False,
-            'right': False,
-            'reset': False,
-            'emergency_stop': False,
-        }
+        self.gamepad = XboxController()
+        self.gamepad_gate = GamepadGate()
+        self._xbox_resume_after_estop = False
+        self._estop_reset_future = None
+        self._estop_reset_succeeded = False
+        self.drive_input = empty_input()
         self.latest_safety = None
         self._fallback_stop_ticks = 0
         self._supervisor_fault_handled = False
@@ -588,8 +600,8 @@ class MainWindow(QMainWindow):
         self.zcu_live_labels = []
 
         self.setWindowTitle('AutoSDV HPC Control')
-        self.resize(1180, 780)
-        self.setMinimumSize(980, 680)
+        self.resize(1180, 830)
+        self.setMinimumSize(980, 730)
         self._build_ui()
         self._apply_style()
         self.preview_frame_ready.connect(
@@ -643,6 +655,23 @@ class MainWindow(QMainWindow):
         header.addWidget(self.exit_button)
         layout.addLayout(header)
 
+        mode_row = QHBoxLayout()
+        saved = communication_state()
+        mode_label = QLabel(
+            f"Communication: {saved.get('mode', os.environ.get('AUTOSDV_RMW', 'fastdds'))}"
+            + (' — live data validation pending' if saved else ' — legacy selection'))
+        mode_label.setWordWrap(True)
+        mode_row.addWidget(mode_label, 1)
+        mode_button = QPushButton('Communication mode…')
+        mode_button.setMinimumHeight(36)
+        mode_button.clicked.connect(self._select_communication_mode)
+        mode_row.addWidget(mode_button)
+        camera_input_button = QPushButton('Camera inputs…')
+        camera_input_button.setMinimumHeight(36)
+        camera_input_button.clicked.connect(self._show_camera_inputs)
+        mode_row.addWidget(camera_input_button)
+        layout.addLayout(mode_row)
+
         splitter = QSplitter(Qt.Horizontal)
         splitter.addWidget(self._build_node_panel())
         splitter.addWidget(self._build_right_panel())
@@ -657,6 +686,13 @@ class MainWindow(QMainWindow):
         layout.addWidget(estop)
 
         self.setCentralWidget(root)
+
+    def _show_camera_inputs(self):
+        if self._camera_source_dialog is None:
+            self._camera_source_dialog = CameraSourceDialog(self)
+        self._camera_source_dialog.show()
+        self._camera_source_dialog.raise_()
+        self._camera_source_dialog.activateWindow()
 
     def _build_node_panel(self):
         container = QWidget()
@@ -795,9 +831,27 @@ class MainWindow(QMainWindow):
         reset = QPushButton('Center Steering [R]')
         reset.clicked.connect(self._pulse_reset)
         reset_estop = QPushButton('Reset E-Stop')
-        reset_estop.clicked.connect(self.ros.request_estop_reset)
+        reset_estop.clicked.connect(self._request_estop_reset)
         layout.addWidget(reset, 3, 0, 1, 2)
         layout.addWidget(reset_estop, 3, 2, 1, 2)
+        self.drive_input_selector = QComboBox()
+        self.drive_input_selector.addItems(['Keyboard / GUI', 'Xbox Controller'])
+        self.drive_input_selector.setAccessibleName('Manual driving input')
+        self.drive_input_selector.currentIndexChanged.connect(
+            self._change_drive_input)
+        layout.addWidget(QLabel('Manual input'), 4, 0)
+        layout.addWidget(self.drive_input_selector, 4, 1, 1, 3)
+        self.gamepad_status = QLabel('Controller: select Xbox Controller to connect')
+        self.gamepad_status.setWordWrap(True)
+        layout.addWidget(self.gamepad_status, 5, 0, 1, 4)
+        help_text = QLabel(
+            'Xbox: RT accelerates; LT brakes, then reverses while held.\n'
+            'Stick: position steering / auto-center; D-pad: adjust / hold angle.\n'
+            'X: center; B: E-Stop; Y: reset and restart Manual Drive '
+            '(after Xbox E-Stop; controls released). '
+            'Release all controls once after starting.')
+        help_text.setWordWrap(True)
+        layout.addWidget(help_text, 6, 0, 1, 4)
         return group
 
     def _build_diagnostic_panel(self):
@@ -912,6 +966,10 @@ class MainWindow(QMainWindow):
         """)
 
     def eventFilter(self, obj, event):
+        if (self._closing or QApplication.activeModalWidget() is not None
+                or (self._camera_source_dialog is not None
+                    and self._camera_source_dialog.isActiveWindow())):
+            return super().eventFilter(obj, event)
         if event.type() not in (QEvent.KeyPress, QEvent.KeyRelease):
             return super().eventFilter(obj, event)
         if event.isAutoRepeat():
@@ -935,6 +993,8 @@ class MainWindow(QMainWindow):
         return super().eventFilter(obj, event)
 
     def _set_drive_field(self, field, value):
+        if self.drive_input_selector.currentIndex() == 1:
+            return
         if self.control_source != 'manual' or self.manager.state('drive') != 'RUNNING':
             if value:
                 self.statusBar().showMessage(
@@ -943,12 +1003,51 @@ class MainWindow(QMainWindow):
         self.drive_input[field] = value
 
     def _pulse_reset(self):
-        if self.control_source == 'manual':
+        if (self.control_source == 'manual'
+                and self.drive_input_selector.currentIndex() == 0):
             self.drive_input['reset'] = True
+
+    def _change_drive_input(self, index):
+        if self.control_source == 'manual':
+            self.emergency_stop()
+        self._clear_drive_input()
+        self._cancel_estop_resume()
+        self.gamepad_gate.reset()
+        if index == 0:
+            self.gamepad.close()
+            self.gamepad_status.setText('Controller: keyboard / GUI selected')
+
+    def _poll_gamepad(self):
+        if self.drive_input_selector.currentIndex() != 1:
+            return
+        sample = self.gamepad.read()
+        reset_requested = self.gamepad_gate.reset_requested(sample)
+        focused = (self.isActiveWindow()
+                   and QApplication.activeModalWidget() is None)
+        if reset_requested and focused and self.control_source == 'none':
+            self._request_estop_reset()
+        active = (self.control_source == 'manual'
+                  and self.manager.state('drive') == 'RUNNING')
+        # A modal dialog or a different foreground app must not keep driving.
+        if active and not focused:
+            sample = None
+        command = self.gamepad_gate.update(sample, active)
+        status = self.gamepad.status
+        if active and sample is None and not command['emergency_stop']:
+            status += ' | Waiting for controller / GUI focus'
+        if active and sample is not None:
+            status += (' | Ready' if self.gamepad_gate.ready
+                       else ' | Release all controls to enable')
+        self.gamepad_status.setText(status)
+        if command['emergency_stop']:
+            self.emergency_stop()
+        else:
+            self.drive_input.update(command)
 
     def _publish_control(self):
         if self._closing:
             return
+        self._poll_gamepad()
         self.ros.publish_heartbeat(self.control_source)
         if self.manager.state('drive') == 'RUNNING':
             self.ros.publish_drive_input(self.drive_input)
@@ -957,6 +1056,52 @@ class MainWindow(QMainWindow):
             self._fallback_stop_ticks -= 1
         self.drive_input['reset'] = False
         self.drive_input['emergency_stop'] = False
+
+    def _cancel_estop_resume(self):
+        self._xbox_resume_after_estop = False
+        self._estop_reset_future = None
+        self._estop_reset_succeeded = False
+
+    def _request_estop_reset(self):
+        if self._estop_reset_future is not None:
+            return
+        future = self.ros.request_estop_reset()
+        if (self._xbox_resume_after_estop
+                and self.drive_input_selector.currentIndex() == 1):
+            self._estop_reset_future = future
+            self._estop_reset_succeeded = False
+
+    def _resume_after_estop_reset(self):
+        if not self._xbox_resume_after_estop or self._closing:
+            return
+        if (self.drive_input_selector.currentIndex() != 1
+                or self.control_source != 'none'):
+            self._cancel_estop_resume()
+            return
+        future = self._estop_reset_future
+        if future is not None and future.done():
+            self._estop_reset_future = None
+            try:
+                self._estop_reset_succeeded = bool(future.result().success)
+            except Exception:
+                # The bridge reports the service error through its event queue.
+                self._estop_reset_succeeded = False
+        if not self._estop_reset_succeeded:
+            return
+        # Reset response, supervisor status and process termination arrive
+        # independently. Wait for all three before the normal start checks.
+        if (self.latest_safety is None or self.latest_safety.emergency_stop
+                or self.manager.state('drive') not in ('STOPPED', 'ERROR')
+                or self._fallback_stop_ticks > 0):
+            return
+        sample = self.gamepad.read()
+        if (not self.isActiveWindow() or QApplication.activeModalWidget() is not None
+                or not self.gamepad_gate.neutral(sample)
+                or sample['estop_reset']):
+            return
+        self._cancel_estop_resume()
+        self._clear_drive_input()
+        self._start_node('drive')
 
     def _refresh_ros_status(self):
         command, safety, safety_age, events = self.ros.snapshot()
@@ -1011,6 +1156,7 @@ class MainWindow(QMainWindow):
             if not success:
                 self._show_error(message)
         self._refresh_ivn_diagnostics()
+        self._resume_after_estop_reset()
 
     @staticmethod
     def _diagnostic_level_state(level):
@@ -1118,6 +1264,8 @@ class MainWindow(QMainWindow):
                 self._stop_node(node_id)
 
     def _start_node(self, node_id):
+        if node_id in ('drive', 'motion_planner'):
+            self._cancel_estop_resume()
         if node_id == 'drive' and self.manager.is_running('motion_planner'):
             self._show_error('Stop Motion Planner before starting Manual Drive')
             return
@@ -1145,7 +1293,9 @@ class MainWindow(QMainWindow):
         if not ok:
             self._show_error(message)
 
-    def _stop_node(self, node_id):
+    def _stop_node(self, node_id, preserve_estop_resume=False):
+        if node_id in CONTROL_CHAIN and not preserve_estop_resume:
+            self._cancel_estop_resume()
         if node_id == 'path_planner' and self.manager.is_running(
                 'path_visualizer'):
             self.manager.stop('path_visualizer')
@@ -1322,7 +1472,8 @@ class MainWindow(QMainWindow):
             return
         if node_id == 'safety_supervisor':
             self._handle_supervisor_fault('Safety supervisor stopped unexpectedly')
-        elif node_id in CONTROL_CHAIN and self.control_source != 'none':
+        elif ((node_id == 'drive' and self.control_source == 'manual')
+              or (node_id in CONTROL_CHAIN and self.control_source == 'auto')):
             self.emergency_stop()
 
     def _process_error(self, node_id, detail):
@@ -1330,6 +1481,10 @@ class MainWindow(QMainWindow):
             f'{self.specs[node_id].label}: {detail}', 7000)
 
     def emergency_stop(self):
+        self._cancel_estop_resume()
+        self._xbox_resume_after_estop = (
+            self.control_source == 'manual'
+            and self.drive_input_selector.currentIndex() == 1)
         active_node = (
             'drive' if self.control_source == 'manual'
             else 'motion_planner' if self.control_source == 'auto'
@@ -1343,9 +1498,11 @@ class MainWindow(QMainWindow):
         self.ros.publish_heartbeat('none')
         self._clear_drive_input()
         if active_node is not None and self.manager.is_running(active_node):
-            QTimer.singleShot(100, lambda: self._stop_node(active_node))
+            QTimer.singleShot(100, lambda: self._stop_node(
+                active_node, preserve_estop_resume=True))
 
     def _handle_supervisor_fault(self, reason):
+        self._cancel_estop_resume()
         self._supervisor_fault_handled = True
         self._fallback_stop_ticks = max(self._fallback_stop_ticks, 40)
         active_node = (
@@ -1360,8 +1517,8 @@ class MainWindow(QMainWindow):
         self._show_error(reason + '. Fallback stop commands are being published.')
 
     def _clear_drive_input(self):
-        for key in self.drive_input:
-            self.drive_input[key] = False
+        self.gamepad_gate.reset()
+        self.drive_input = empty_input()
         self.ros.publish_drive_input(self.drive_input)
 
     def _run_manual_diagnostics(self):
@@ -1433,11 +1590,47 @@ class MainWindow(QMainWindow):
         if answer == QMessageBox.Yes:
             self.close()
 
-    def closeEvent(self, event):
+    def _select_communication_mode(self):
+        if self._ssh_process is not None:
+            self._show_error('Wait for the current ZCU operation to finish.')
+            return
+        dialog = ModeDialog(self, prepare=self._pause_for_mode_switch)
+        self._mode_dialog = dialog
+        accepted = dialog.exec_() == ModeDialog.Accepted
+        self._mode_dialog = None
+        if accepted:
+            self.restart_requested = True
+        if dialog.prepared:
+            self.close()
+
+    def _pause_for_mode_switch(self):
+        if not self._closing:
+            self._restart_nodes = [key for key in self.specs
+                                   if self.manager.is_running(key)
+                                   and key not in ('drive', 'motion_planner')]
+        self.control_timer.stop()
+        self.status_timer.stop()
+        self._shutdown_managed()
+        if self.shutdown_ros is not None:
+            self.shutdown_ros()
+
+    def _restore_mode_nodes(self, node_ids):
+        pending = [key for key in node_ids if key in self.specs
+                   and not self.manager.is_running(key)]
+        while pending:
+            ready = [key for key in pending if not self.manager.missing_dependencies(key)]
+            if not ready:
+                self._show_error('Could not restore node dependencies: ' + ', '.join(pending))
+                break
+            for key in ready:
+                pending.remove(key)
+                self._start_node(key)
+
+    def _shutdown_managed(self):
         if self._closing:
-            event.accept()
             return
         self._closing = True
+        self.gamepad.close()
         self.ros.set_preview_listener(None)
         self.ros.select_preview_source('')
         self.ros.select_preview_topic('')
@@ -1455,11 +1648,16 @@ class MainWindow(QMainWindow):
                 ssh_process.kill()
                 ssh_process.waitForFinished(500)
         self.manager.shutdown(SHUTDOWN_ORDER)
+
+    def closeEvent(self, event):
+        if self._mode_dialog is not None and self._mode_dialog.process is not None:
+            event.ignore()
+            return
+        self._shutdown_managed()
         event.accept()
 
 
 def main(args=None):
-    configure_default_dds_profile()
     remove_opencv_qt_plugin_paths()
     app = QApplication(sys.argv)
     app.setApplicationName('AutoSDV HPC Control')
@@ -1472,6 +1670,13 @@ def main(args=None):
             'Close the existing GUI before starting another instance.')
         return 1
 
+    saved = communication_state()
+    if saved and saved.get('status') != 'ready':
+        recovery = ModeDialog()
+        if recovery.exec_() != ModeDialog.Accepted:
+            return 1
+        os.environ.pop('AUTOSDV_RMW', None)
+    configure_default_dds_profile()
     rclpy.init(args=args)
     ros_bridge = GuiRosBridge()
     # MultiThreadedExecutor busy-spins at roughly one full CPU core when a
@@ -1487,15 +1692,38 @@ def main(args=None):
     palette = app.palette()
     palette.setColor(QPalette.Highlight, QColor('#477ba8'))
     app.setPalette(palette)
-    window = MainWindow(ros_bridge)
+    ros_stopped = False
+    def shutdown_ros():
+        nonlocal ros_stopped
+        if ros_stopped:
+            return
+        executor.shutdown(timeout_sec=2.0)
+        ros_thread.join(timeout=2.0)
+        if ros_thread.is_alive():
+            raise RuntimeError('ROS executor did not stop; mode change blocked')
+        ros_bridge.destroy_node()
+        rclpy.try_shutdown()
+        ros_stopped = True
+
+    window = MainWindow(ros_bridge, shutdown_ros)
     app.installEventFilter(window)
     window.show()
+    restore = os.environ.pop('AUTOSDV_RESTART_NODES', '[]')
+    try:
+        node_ids = json.loads(restore)
+        if not isinstance(node_ids, list) or not all(isinstance(x, str) for x in node_ids):
+            raise ValueError('invalid node list')
+        QTimer.singleShot(0, lambda: window._restore_mode_nodes(node_ids))
+    except (ValueError, TypeError):
+        window.statusBar().showMessage('Invalid node restore list; start nodes manually.')
     result = app.exec_()
 
-    executor.shutdown(timeout_sec=1.0)
-    ros_bridge.destroy_node()
-    rclpy.try_shutdown()
-    ros_thread.join(timeout=1.0)
+    shutdown_ros()
+    instance_lock.unlock()
+    if window.restart_requested:
+        os.environ.pop('AUTOSDV_RMW', None)
+        os.environ['AUTOSDV_RESTART_NODES'] = json.dumps(window._restart_nodes)
+        os.execv(sys.executable, [sys.executable, '-m', 'autosdv_gui_pkg.main'])
     return result
 
 

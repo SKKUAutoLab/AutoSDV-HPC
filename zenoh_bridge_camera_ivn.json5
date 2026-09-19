@@ -1,0 +1,88 @@
+// HPC-side zenoh-bridge-ros2dds for the camera flow (AUTOSDV_RMW=zenoh_bridge).
+//
+// Environment 3 of the middleware comparison.  The ZCU is a plain zenoh client
+// with no DDS of its own; this camera bridge runs on the HPC and it
+// turns those publications into Cyclone DDS on the HPC:
+//
+//   ZCU (zenoh client) --zenoh/enP2p1s0--> this bridge
+//   --DDS/loopback--> HPC image nodes
+//
+// What the ZCU has to send is just: keyexpr = the topic name without its
+// leading '/', payload = the encapsulated CDR it already produces.  See
+// docs/zenoh-dds-bridge.md and docs/examples/zcu_zenoh_client.c.
+//
+// Flow separation mirrors the native zenoh environment, where the router
+// listens on 7447 for camera images and 7448 for control and health.  One
+// zenoh session is one link is one 5-tuple, so a single bridge carrying both
+// flows would be indistinguishable to tc and to the SJA1110.  Hence two
+// bridges, each with a disjoint allow list, and two sessions on the ZCU.
+//   7447  camera images        <- this file
+//   7448  control, health
+//
+// The bridge is not a ROS node process; it is configured entirely from here
+// plus CYCLONEDDS_URI.  See scripts/run_zenoh_bridge.sh.
+{
+  plugins: {
+    ros2dds: {
+      // DDS endpoints are represented by this node on the HPC.
+      nodename: "zenoh_bridge_camera",
+
+      // 'domain' is deliberately unset: the plugin then takes $ROS_DOMAIN_ID,
+      // or 0 when it is unset, which is what the HPC nodes do as well. Pinning
+      // it here would silently route nothing the day someone runs the nodes on
+      // another domain.
+
+      // These lists describe local HPC DDS endpoints. Only subscriptions
+      // create camera Zenoh -> DDS routes; no DDS -> Zenoh camera route.
+      // Empty service/action lists keep those interfaces off the IVN.
+      allow: {
+        publishers: [],
+        subscribers: ["/image_0[1-5]_raw"],
+        service_servers: [],
+        service_clients: [],
+        action_servers: [],
+        action_clients: [],
+      },
+
+      // Do not block any reliable route on camera link congestion.
+      reliable_routes_blocking: false,
+    },
+  },
+
+  // The HPC is the fixed endpoint, as it is for the native zenoh router: the
+  // four ZCU clients connect in.  A bridge in router mode also routes between
+  // the ZCUs, which peer mode would not.
+  mode: "router",
+
+  listen: {
+    endpoints: [
+      "tcp/0.0.0.0:7447",
+      "udp/0.0.0.0:7447",
+    ],
+  },
+
+  connect: {
+    endpoints: [],
+  },
+
+  // Discovery is static in the wired IVN, exactly as in zenoh_router_ivn.json5.
+  // Gossip is off as well, which is the one difference from the native zenoh
+  // config: it is what keeps the camera and control bridges from discovering
+  // each other through a shared ZCU and collapsing the two flows onto one link.
+  scouting: {
+    multicast: { enabled: false },
+    gossip: { enabled: false },
+  },
+
+  transport: {
+    link: {
+      tx: {
+        // 1400 B datagrams, so the camera flow is measured against the same
+        // MTU-sized frames as RTPS maxMessageSize=1400 in the other two
+        // environments.  Without it a 44 KB image becomes one datagram and
+        // ~30 IP fragments, which is not a comparable condition.
+        batch_size: 1400,
+      },
+    },
+  },
+}

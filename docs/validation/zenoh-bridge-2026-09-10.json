@@ -1,0 +1,1422 @@
+{
+  "date": "2026-09-10",
+  "mode": "zenoh_bridge",
+  "gui_method": "offscreen Qt with actual MainWindow, ModeDialog, child ROS processes and four real ZCUs",
+  "gui": {
+    "mode": "zenoh_bridge",
+    "health": [
+      [
+        "IVN/ZCU/zone_1/Runtime",
+        "health publish loop is running"
+      ],
+      [
+        "IVN/ZCU/zone_1/Health",
+        "all components healthy"
+      ],
+      [
+        "IVN/ZCU/zone_2/Runtime",
+        "health publish loop is running"
+      ],
+      [
+        "IVN/ZCU/zone_2/Health",
+        "all components healthy"
+      ],
+      [
+        "IVN/ZCU/zone_3/Runtime",
+        "health publish loop is running"
+      ],
+      [
+        "IVN/ZCU/zone_3/Health",
+        "all components healthy"
+      ],
+      [
+        "IVN/ZCU/zone_4/Runtime",
+        "health publish loop is running"
+      ],
+      [
+        "IVN/ZCU/zone_4/Health",
+        "all components healthy"
+      ]
+    ],
+    "previews": {
+      "camera_01": {
+        "frames": 20,
+        "size": [
+          640,
+          480
+        ],
+        "ready_s": 0.91
+      },
+      "camera_02": {
+        "frames": 21,
+        "size": [
+          640,
+          480
+        ],
+        "ready_s": 0.71
+      },
+      "camera_03": {
+        "frames": 21,
+        "size": [
+          640,
+          480
+        ],
+        "ready_s": 0.7
+      },
+      "camera_04": {
+        "frames": 20,
+        "size": [
+          640,
+          480
+        ],
+        "ready_s": 0.7
+      },
+      "camera_05": {
+        "frames": 21,
+        "size": [
+          640,
+          480
+        ],
+        "ready_s": 0.71
+      }
+    },
+    "yolo_preview_frames": 20,
+    "control_source": "manual",
+    "counts": {
+      "detections": 130,
+      "manual": 21,
+      "output": 249
+    },
+    "process_rmw": {
+      "2227831": {
+        "command": "/usr/bin/python3 /home/nvidia/Workspace/update_AutoSDV/AutoSDV-HPC/install/autosdv_gui_pkg/lib/autosdv_gui_pkg/safety_supervisor_node --ros-args -r __node:=safety_supervisor_node -p zcu_disconnect_timeout_sec:=1.0 -p owner_pid:=2227804 ",
+        "libs": [
+          "/opt/ros/jazzy/lib/librmw_cyclonedds_cpp.so"
+        ]
+      },
+      "2227832": {
+        "command": "/usr/bin/python3 /home/nvidia/Workspace/update_AutoSDV/AutoSDV-HPC/install/ivn_diagnostics_pkg/lib/ivn_diagnostics_pkg/IVN_diagnostics_node --ros-args -r __node:=IVN_diagnostics_node -p monitor_period_sec:=1.0 -p zcu_health_topic:=/ivn/zcu_health -p zcu_health_timeout_sec:=2.0 -p expected_zone_ids:=[zone_1,zone_2,zone_3,zone_4] ",
+        "libs": [
+          "/opt/ros/jazzy/lib/librmw_cyclonedds_cpp.so"
+        ]
+      },
+      "2227833": {
+        "command": "/usr/bin/python3 /home/nvidia/Workspace/update_AutoSDV/AutoSDV-HPC/install/camera_perception_pkg/lib/camera_perception_pkg/ethernet_image_publisher_node --ros-args -r __node:=ethernet_image_publisher_node_1 -p image:=image_01 -p show_image:=false -p p2_log_enabled:=false ",
+        "libs": [
+          "/opt/ros/jazzy/lib/librmw_cyclonedds_cpp.so"
+        ]
+      },
+      "2227843": {
+        "command": "/usr/bin/python3 /home/nvidia/Workspace/update_AutoSDV/AutoSDV-HPC/install/camera_perception_pkg/lib/camera_perception_pkg/ethernet_image_publisher_node --ros-args -r __node:=ethernet_image_publisher_node_2 -p image:=image_02 -p show_image:=false -p p2_log_enabled:=false ",
+        "libs": [
+          "/opt/ros/jazzy/lib/librmw_cyclonedds_cpp.so"
+        ]
+      },
+      "2227858": {
+        "command": "/usr/bin/python3 /home/nvidia/Workspace/update_AutoSDV/AutoSDV-HPC/install/camera_perception_pkg/lib/camera_perception_pkg/ethernet_image_publisher_node --ros-args -r __node:=ethernet_image_publisher_node_3 -p image:=image_03 -p show_image:=false -p p2_log_enabled:=false ",
+        "libs": [
+          "/opt/ros/jazzy/lib/librmw_cyclonedds_cpp.so"
+        ]
+      },
+      "2227903": {
+        "command": "/usr/bin/python3 /home/nvidia/Workspace/update_AutoSDV/AutoSDV-HPC/install/camera_perception_pkg/lib/camera_perception_pkg/ethernet_image_publisher_node --ros-args -r __node:=ethernet_image_publisher_node_4 -p image:=image_04 -p show_image:=false -p p2_log_enabled:=false ",
+        "libs": [
+          "/opt/ros/jazzy/lib/librmw_cyclonedds_cpp.so"
+        ]
+      },
+      "2227920": {
+        "command": "/usr/bin/python3 /home/nvidia/Workspace/update_AutoSDV/AutoSDV-HPC/install/camera_perception_pkg/lib/camera_perception_pkg/ethernet_image_publisher_node --ros-args -r __node:=ethernet_image_publisher_node_5 -p image:=image_05 -p show_image:=false -p p2_log_enabled:=false ",
+        "libs": [
+          "/opt/ros/jazzy/lib/librmw_cyclonedds_cpp.so"
+        ]
+      },
+      "2228002": {
+        "command": "/home/nvidia/Workspace/update_AutoSDV/AutoSDV-HPC/install/autosdv_gui_preview_bridge_pkg/lib/autosdv_gui_preview_bridge_pkg/preview_bridge_node --ros-args -r __node:=autosdv_gui_preview_bridge -p jpeg_quality:=85 ",
+        "libs": [
+          "/opt/ros/jazzy/lib/librmw_cyclonedds_cpp.so"
+        ]
+      },
+      "2228112": {
+        "command": "/usr/bin/python3 /home/nvidia/Workspace/update_AutoSDV/AutoSDV-HPC/install/camera_perception_pkg/lib/camera_perception_pkg/yolov8_node --ros-args -r __node:=yolov8_node -p log_image_header:=false ",
+        "libs": [
+          "/opt/ros/jazzy/lib/librmw_cyclonedds_cpp.so"
+        ]
+      },
+      "2228393": {
+        "command": "/usr/bin/python3 /home/nvidia/Workspace/update_AutoSDV/AutoSDV-HPC/install/data_collection_pkg/lib/data_collection_pkg/drive_node --ros-args -r __node:=drive_node -p input_topic:=/gui/manual_input -p output_topic:=/control/manual_cmd -p terminal_input:=false ",
+        "libs": [
+          "/opt/ros/jazzy/lib/librmw_cyclonedds_cpp.so"
+        ]
+      }
+    },
+    "states": {
+      "camera_01": "RUNNING",
+      "camera_02": "RUNNING",
+      "camera_03": "RUNNING",
+      "camera_04": "RUNNING",
+      "camera_05": "RUNNING",
+      "yolo": "RUNNING",
+      "yolo_visualizer": "RUNNING",
+      "lane": "STOPPED",
+      "path_planner": "STOPPED",
+      "path_visualizer": "STOPPED",
+      "preview_bridge": "RUNNING",
+      "motion_planner": "STOPPED",
+      "drive": "RUNNING",
+      "safety_supervisor": "RUNNING",
+      "ivn_diagnostics": "RUNNING"
+    },
+    "errors": [],
+    "heartbeat_forced_disarmed": true,
+    "router_restart_recovered": {
+      "camera_01": 20,
+      "camera_02": 21,
+      "camera_03": 22,
+      "camera_04": 21,
+      "camera_05": 21
+    },
+    "dialog_apply_log": "HPC: check OK — {\"host\": \"hpc\", \"mode\": \"zenoh_bridge\", \"ready\": true}\n10.0.0.2: check OK — {\"host\": \"zcu\", \"mode\": \"zenoh_bridge\", \"ready\": true}\n10.0.0.5: check OK — {\"host\": \"zcu\", \"mode\": \"zenoh_bridge\", \"ready\": true}\n10.0.0.4: check OK — {\"host\": \"zcu\", \"mode\": \"zenoh_bridge\", \"ready\": true}\n10.0.0.3: check OK — {\"host\": \"zcu\", \"mode\": \"zenoh_bridge\", \"ready\": true}\nHPC: begin OK — {\"applying\": \"zenoh_bridge\"}\n10.0.0.5: begin OK — {\"applying\": \"zenoh_bridge\"}\n10.0.0.3: begin OK — {\"applying\": \"zenoh_bridge\"}\n10.0.0.2: begin OK — {\"applying\": \"zenoh_bridge\"}\n10.0.0.4: begin OK — {\"applying\": \"zenoh_bridge\"}\nHPC: stop OK — {\"stopped\": true}\n10.0.0.3: stop OK — {\"stopped\": true}\n10.0.0.2: stop OK — {\"stopped\": true}\n10.0.0.4: stop OK — {\"stopped\": true}\n10.0.0.5: stop OK — {\"stopped\": true}\nHPC: daemon OK — {\"daemon_stopped\": true}\nHPC: prepare OK — {\"prepared\": \"zenoh_bridge\"}\n10.0.0.5: prepare OK — {\"prepared\": \"zenoh_bridge\"}\n10.0.0.3: prepare OK — {\"prepared\": \"zenoh_bridge\"}\n10.0.0.2: prepare OK — {\"prepared\": \"zenoh_bridge\"}\n10.0.0.4: prepare OK — {\"prepared\": \"zenoh_bridge\"}\nHPC: start OK — {\"started\": \"zenoh_bridge\"}\nHPC: verify OK — {\"mode\": \"zenoh_bridge\", \"processes_verified\": true, \"data_path_verified\": false}\n10.0.0.4: start OK — {\"started\": \"zenoh_bridge\"}\n10.0.0.3: start OK — {\"started\": \"zenoh_bridge\"}\n10.0.0.2: start OK — {\"started\": \"zenoh_bridge\"}\n10.0.0.5: start OK — {\"started\": \"zenoh_bridge\"}\n10.0.0.5: verify OK — {\"mode\": \"zenoh_bridge\", \"processes_verified\": true, \"data_path_verified\": false}\n10.0.0.3: verify OK — {\"mode\": \"zenoh_bridge\", \"processes_verified\": true, \"data_path_verified\": false}\n10.0.0.2: verify OK — {\"mode\": \"zenoh_bridge\", \"processes_verified\": true, \"data_path_verified\": false}\n10.0.0.4: verify OK — {\"mode\": \"zenoh_bridge\", \"processes_verified\": true, \"data_path_verified\": false}\n10.0.0.3: commit OK — {\"status\": \"ready\", \"mode\": \"zenoh_bridge\", \"data_path_verified\": false}\n10.0.0.5: commit OK — {\"status\": \"ready\", \"mode\": \"zenoh_bridge\", \"data_path_verified\": false}\n10.0.0.4: commit OK — {\"status\": \"ready\", \"mode\": \"zenoh_bridge\", \"data_path_verified\": false}\n10.0.0.2: commit OK — {\"status\": \"ready\", \"mode\": \"zenoh_bridge\", \"data_path_verified\": false}\nHPC: commit OK — {\"status\": \"ready\", \"mode\": \"zenoh_bridge\", \"data_path_verified\": false}\nMode applied. Processes verified; live image/control/health validation pending.\n",
+    "restore_nodes": [
+      "camera_01",
+      "camera_02",
+      "camera_03",
+      "camera_04",
+      "camera_05",
+      "yolo",
+      "preview_bridge",
+      "safety_supervisor",
+      "ivn_diagnostics"
+    ]
+  },
+  "gui_relaunch": {
+    "mode": "zenoh_bridge",
+    "health": [
+      [
+        "IVN/ZCU/zone_1/Runtime",
+        "health publish loop is running"
+      ],
+      [
+        "IVN/ZCU/zone_1/Health",
+        "all components healthy"
+      ],
+      [
+        "IVN/ZCU/zone_2/Runtime",
+        "health publish loop is running"
+      ],
+      [
+        "IVN/ZCU/zone_2/Health",
+        "all components healthy"
+      ],
+      [
+        "IVN/ZCU/zone_3/Runtime",
+        "health publish loop is running"
+      ],
+      [
+        "IVN/ZCU/zone_3/Health",
+        "all components healthy"
+      ],
+      [
+        "IVN/ZCU/zone_4/Runtime",
+        "health publish loop is running"
+      ],
+      [
+        "IVN/ZCU/zone_4/Health",
+        "all components healthy"
+      ]
+    ],
+    "previews": {
+      "camera_01": {
+        "frames": 20,
+        "size": [
+          640,
+          480
+        ],
+        "ready_s": 0.91
+      },
+      "camera_02": {
+        "frames": 21,
+        "size": [
+          640,
+          480
+        ],
+        "ready_s": 0.71
+      },
+      "camera_03": {
+        "frames": 21,
+        "size": [
+          640,
+          480
+        ],
+        "ready_s": 0.7
+      },
+      "camera_04": {
+        "frames": 20,
+        "size": [
+          640,
+          480
+        ],
+        "ready_s": 0.7
+      },
+      "camera_05": {
+        "frames": 20,
+        "size": [
+          640,
+          480
+        ],
+        "ready_s": 0.7
+      }
+    },
+    "yolo_preview_frames": 20,
+    "control_source": "manual",
+    "counts": {
+      "detections": 142,
+      "manual": 20,
+      "output": 254
+    },
+    "autonomous_states": {
+      "lane": "RUNNING",
+      "path_planner": "RUNNING",
+      "motion_planner": "RUNNING"
+    },
+    "dds_endpoints": {
+      "/image_01_raw": [
+        {
+          "node": "zenoh_bridge_camera",
+          "reliability": "1",
+          "depth": 1,
+          "type": "sensor_msgs/msg/Image"
+        }
+      ],
+      "/ivn/zcu_health": [
+        {
+          "node": "zenoh_bridge_control",
+          "reliability": "1",
+          "depth": 10,
+          "type": "diagnostic_msgs/msg/DiagnosticArray"
+        }
+      ],
+      "/topic_control_signal": [
+        {
+          "node": "safety_supervisor_node",
+          "reliability": "2",
+          "depth": 1,
+          "type": "interfaces_pkg/msg/MotionCommand"
+        },
+        {
+          "node": "autosdv_gui",
+          "reliability": "2",
+          "depth": 1,
+          "type": "interfaces_pkg/msg/MotionCommand"
+        }
+      ]
+    },
+    "process_rmw": {
+      "2230436": {
+        "command": "/usr/bin/python3 /home/nvidia/Workspace/update_AutoSDV/AutoSDV-HPC/install/ivn_diagnostics_pkg/lib/ivn_diagnostics_pkg/IVN_diagnostics_node --ros-args -r __node:=IVN_diagnostics_node -p monitor_period_sec:=1.0 -p zcu_health_topic:=/ivn/zcu_health -p zcu_health_timeout_sec:=2.0 -p expected_zone_ids:=[zone_1,zone_2,zone_3,zone_4] ",
+        "libs": [
+          "/opt/ros/jazzy/lib/librmw_cyclonedds_cpp.so"
+        ]
+      },
+      "2230437": {
+        "command": "/usr/bin/python3 /home/nvidia/Workspace/update_AutoSDV/AutoSDV-HPC/install/autosdv_gui_pkg/lib/autosdv_gui_pkg/safety_supervisor_node --ros-args -r __node:=safety_supervisor_node -p zcu_disconnect_timeout_sec:=1.0 -p owner_pid:=2230405 ",
+        "libs": [
+          "/opt/ros/jazzy/lib/librmw_cyclonedds_cpp.so"
+        ]
+      },
+      "2230438": {
+        "command": "/usr/bin/python3 /home/nvidia/Workspace/update_AutoSDV/AutoSDV-HPC/install/camera_perception_pkg/lib/camera_perception_pkg/ethernet_image_publisher_node --ros-args -r __node:=ethernet_image_publisher_node_1 -p image:=image_01 -p show_image:=false -p p2_log_enabled:=false ",
+        "libs": [
+          "/opt/ros/jazzy/lib/librmw_cyclonedds_cpp.so"
+        ]
+      },
+      "2230448": {
+        "command": "/usr/bin/python3 /home/nvidia/Workspace/update_AutoSDV/AutoSDV-HPC/install/camera_perception_pkg/lib/camera_perception_pkg/ethernet_image_publisher_node --ros-args -r __node:=ethernet_image_publisher_node_2 -p image:=image_02 -p show_image:=false -p p2_log_enabled:=false ",
+        "libs": [
+          "/opt/ros/jazzy/lib/librmw_cyclonedds_cpp.so"
+        ]
+      },
+      "2230463": {
+        "command": "/usr/bin/python3 /home/nvidia/Workspace/update_AutoSDV/AutoSDV-HPC/install/camera_perception_pkg/lib/camera_perception_pkg/ethernet_image_publisher_node --ros-args -r __node:=ethernet_image_publisher_node_3 -p image:=image_03 -p show_image:=false -p p2_log_enabled:=false ",
+        "libs": [
+          "/opt/ros/jazzy/lib/librmw_cyclonedds_cpp.so"
+        ]
+      },
+      "2230505": {
+        "command": "/usr/bin/python3 /home/nvidia/Workspace/update_AutoSDV/AutoSDV-HPC/install/camera_perception_pkg/lib/camera_perception_pkg/ethernet_image_publisher_node --ros-args -r __node:=ethernet_image_publisher_node_4 -p image:=image_04 -p show_image:=false -p p2_log_enabled:=false ",
+        "libs": [
+          "/opt/ros/jazzy/lib/librmw_cyclonedds_cpp.so"
+        ]
+      },
+      "2230519": {
+        "command": "/usr/bin/python3 /home/nvidia/Workspace/update_AutoSDV/AutoSDV-HPC/install/camera_perception_pkg/lib/camera_perception_pkg/ethernet_image_publisher_node --ros-args -r __node:=ethernet_image_publisher_node_5 -p image:=image_05 -p show_image:=false -p p2_log_enabled:=false ",
+        "libs": [
+          "/opt/ros/jazzy/lib/librmw_cyclonedds_cpp.so"
+        ]
+      },
+      "2230630": {
+        "command": "/home/nvidia/Workspace/update_AutoSDV/AutoSDV-HPC/install/autosdv_gui_preview_bridge_pkg/lib/autosdv_gui_preview_bridge_pkg/preview_bridge_node --ros-args -r __node:=autosdv_gui_preview_bridge -p jpeg_quality:=85 ",
+        "libs": [
+          "/opt/ros/jazzy/lib/librmw_cyclonedds_cpp.so"
+        ]
+      },
+      "2230745": {
+        "command": "/usr/bin/python3 /home/nvidia/Workspace/update_AutoSDV/AutoSDV-HPC/install/camera_perception_pkg/lib/camera_perception_pkg/yolov8_node --ros-args -r __node:=yolov8_node -p log_image_header:=false ",
+        "libs": [
+          "/opt/ros/jazzy/lib/librmw_cyclonedds_cpp.so"
+        ]
+      },
+      "2231026": {
+        "command": "/usr/bin/python3 /home/nvidia/Workspace/update_AutoSDV/AutoSDV-HPC/install/camera_perception_pkg/lib/camera_perception_pkg/lane_info_extractor_node --ros-args -r __node:=lane_info_extractor_node -p show_image:=false -p publish_roi_image:=true ",
+        "libs": [
+          "/opt/ros/jazzy/lib/librmw_cyclonedds_cpp.so"
+        ]
+      },
+      "2231034": {
+        "command": "/usr/bin/python3 /home/nvidia/Workspace/update_AutoSDV/AutoSDV-HPC/install/decision_making_pkg/lib/decision_making_pkg/path_planner_node --ros-args -r __node:=path_planner_node -p log_planning:=false ",
+        "libs": [
+          "/opt/ros/jazzy/lib/librmw_cyclonedds_cpp.so"
+        ]
+      },
+      "2231039": {
+        "command": "/usr/bin/python3 /home/nvidia/Workspace/update_AutoSDV/AutoSDV-HPC/install/decision_making_pkg/lib/decision_making_pkg/motion_planner_node --ros-args -r __node:=motion_planner_node -p pub_topic:=/control/auto_cmd -p log_commands:=false ",
+        "libs": [
+          "/opt/ros/jazzy/lib/librmw_cyclonedds_cpp.so"
+        ]
+      }
+    },
+    "states": {
+      "camera_01": "RUNNING",
+      "camera_02": "RUNNING",
+      "camera_03": "RUNNING",
+      "camera_04": "RUNNING",
+      "camera_05": "RUNNING",
+      "yolo": "RUNNING",
+      "yolo_visualizer": "RUNNING",
+      "lane": "RUNNING",
+      "path_planner": "RUNNING",
+      "path_visualizer": "STOPPED",
+      "preview_bridge": "RUNNING",
+      "motion_planner": "RUNNING",
+      "drive": "STOPPED",
+      "safety_supervisor": "RUNNING",
+      "ivn_diagnostics": "RUNNING"
+    },
+    "errors": [],
+    "heartbeat_forced_disarmed": true
+  },
+  "native_zenoh_regression": {
+    "health": [
+      [
+        "IVN/ZCU/zone_1/Runtime",
+        "health publish loop is running"
+      ],
+      [
+        "IVN/ZCU/zone_1/Health",
+        "startup grace: camera producer and frame activity are healthy: OK=1 WARN=3 ERROR=0 STALE=0"
+      ],
+      [
+        "IVN/ZCU/zone_2/Runtime",
+        "health publish loop is running"
+      ],
+      [
+        "IVN/ZCU/zone_2/Health",
+        "startup grace: camera producer and frame activity are healthy: OK=1 WARN=2 ERROR=0 STALE=0"
+      ],
+      [
+        "IVN/ZCU/zone_3/Runtime",
+        "health publish loop is running"
+      ],
+      [
+        "IVN/ZCU/zone_3/Health",
+        "startup grace: camera producer and frame activity are healthy: OK=1 WARN=2 ERROR=0 STALE=0"
+      ],
+      [
+        "IVN/ZCU/zone_4/Runtime",
+        "health publish loop is running"
+      ],
+      [
+        "IVN/ZCU/zone_4/Health",
+        "startup grace: camera producer and frame activity are healthy: OK=1 WARN=2 ERROR=0 STALE=0"
+      ]
+    ],
+    "previews": {
+      "camera_01": {
+        "frames": 21,
+        "size": [
+          640,
+          480
+        ],
+        "ready_s": 0.9
+      },
+      "camera_02": {
+        "frames": 20,
+        "size": [
+          640,
+          480
+        ],
+        "ready_s": 0.7
+      },
+      "camera_03": {
+        "frames": 22,
+        "size": [
+          640,
+          480
+        ],
+        "ready_s": 0.71
+      },
+      "camera_04": {
+        "frames": 21,
+        "size": [
+          640,
+          480
+        ],
+        "ready_s": 0.7
+      },
+      "camera_05": {
+        "frames": 21,
+        "size": [
+          640,
+          480
+        ],
+        "ready_s": 0.7
+      }
+    },
+    "yolo_preview_frames": 22,
+    "control_source": "manual",
+    "counts": {
+      "detections": 144,
+      "manual": 21,
+      "output": 251
+    },
+    "process_rmw": {
+      "2232958": {
+        "command": "/usr/bin/python3 /home/nvidia/Workspace/update_AutoSDV/AutoSDV-HPC/install/autosdv_gui_pkg/lib/autosdv_gui_pkg/safety_supervisor_node --ros-args -r __node:=safety_supervisor_node -p zcu_disconnect_timeout_sec:=1.0 -p owner_pid:=2232929 ",
+        "libs": [
+          "/opt/ros/jazzy/lib/librmw_zenoh_cpp.so"
+        ]
+      },
+      "2232959": {
+        "command": "/usr/bin/python3 /home/nvidia/Workspace/update_AutoSDV/AutoSDV-HPC/install/ivn_diagnostics_pkg/lib/ivn_diagnostics_pkg/IVN_diagnostics_node --ros-args -r __node:=IVN_diagnostics_node -p monitor_period_sec:=1.0 -p zcu_health_topic:=/ivn/zcu_health -p zcu_health_timeout_sec:=2.0 -p expected_zone_ids:=[zone_1,zone_2,zone_3,zone_4] ",
+        "libs": [
+          "/opt/ros/jazzy/lib/librmw_zenoh_cpp.so"
+        ]
+      },
+      "2232960": {
+        "command": "/usr/bin/python3 /home/nvidia/Workspace/update_AutoSDV/AutoSDV-HPC/install/camera_perception_pkg/lib/camera_perception_pkg/ethernet_image_publisher_node --ros-args -r __node:=ethernet_image_publisher_node_1 -p image:=image_01 -p show_image:=false -p p2_log_enabled:=false ",
+        "libs": [
+          "/opt/ros/jazzy/lib/librmw_zenoh_cpp.so"
+        ]
+      },
+      "2232971": {
+        "command": "/usr/bin/python3 /home/nvidia/Workspace/update_AutoSDV/AutoSDV-HPC/install/camera_perception_pkg/lib/camera_perception_pkg/ethernet_image_publisher_node --ros-args -r __node:=ethernet_image_publisher_node_2 -p image:=image_02 -p show_image:=false -p p2_log_enabled:=false ",
+        "libs": [
+          "/opt/ros/jazzy/lib/librmw_zenoh_cpp.so"
+        ]
+      },
+      "2233001": {
+        "command": "/usr/bin/python3 /home/nvidia/Workspace/update_AutoSDV/AutoSDV-HPC/install/camera_perception_pkg/lib/camera_perception_pkg/ethernet_image_publisher_node --ros-args -r __node:=ethernet_image_publisher_node_3 -p image:=image_03 -p show_image:=false -p p2_log_enabled:=false ",
+        "libs": [
+          "/opt/ros/jazzy/lib/librmw_zenoh_cpp.so"
+        ]
+      },
+      "2233011": {
+        "command": "/usr/bin/python3 /home/nvidia/Workspace/update_AutoSDV/AutoSDV-HPC/install/camera_perception_pkg/lib/camera_perception_pkg/ethernet_image_publisher_node --ros-args -r __node:=ethernet_image_publisher_node_4 -p image:=image_04 -p show_image:=false -p p2_log_enabled:=false ",
+        "libs": [
+          "/opt/ros/jazzy/lib/librmw_zenoh_cpp.so"
+        ]
+      },
+      "2233031": {
+        "command": "/usr/bin/python3 /home/nvidia/Workspace/update_AutoSDV/AutoSDV-HPC/install/camera_perception_pkg/lib/camera_perception_pkg/ethernet_image_publisher_node --ros-args -r __node:=ethernet_image_publisher_node_5 -p image:=image_05 -p show_image:=false -p p2_log_enabled:=false ",
+        "libs": [
+          "/opt/ros/jazzy/lib/librmw_zenoh_cpp.so"
+        ]
+      },
+      "2233136": {
+        "command": "/home/nvidia/Workspace/update_AutoSDV/AutoSDV-HPC/install/autosdv_gui_preview_bridge_pkg/lib/autosdv_gui_preview_bridge_pkg/preview_bridge_node --ros-args -r __node:=autosdv_gui_preview_bridge -p jpeg_quality:=85 ",
+        "libs": [
+          "/opt/ros/jazzy/lib/librmw_zenoh_cpp.so"
+        ]
+      },
+      "2233260": {
+        "command": "/usr/bin/python3 /home/nvidia/Workspace/update_AutoSDV/AutoSDV-HPC/install/camera_perception_pkg/lib/camera_perception_pkg/yolov8_node --ros-args -r __node:=yolov8_node -p log_image_header:=false ",
+        "libs": [
+          "/opt/ros/jazzy/lib/librmw_zenoh_cpp.so"
+        ]
+      },
+      "2233479": {
+        "command": "/usr/bin/python3 /home/nvidia/Workspace/update_AutoSDV/AutoSDV-HPC/install/data_collection_pkg/lib/data_collection_pkg/drive_node --ros-args -r __node:=drive_node -p input_topic:=/gui/manual_input -p output_topic:=/control/manual_cmd -p terminal_input:=false ",
+        "libs": [
+          "/opt/ros/jazzy/lib/librmw_zenoh_cpp.so"
+        ]
+      }
+    },
+    "states": {
+      "camera_01": "RUNNING",
+      "camera_02": "RUNNING",
+      "camera_03": "RUNNING",
+      "camera_04": "RUNNING",
+      "camera_05": "RUNNING",
+      "yolo": "RUNNING",
+      "yolo_visualizer": "RUNNING",
+      "lane": "STOPPED",
+      "path_planner": "STOPPED",
+      "path_visualizer": "STOPPED",
+      "preview_bridge": "RUNNING",
+      "motion_planner": "STOPPED",
+      "drive": "RUNNING",
+      "safety_supervisor": "RUNNING",
+      "ivn_diagnostics": "RUNNING"
+    },
+    "errors": [],
+    "heartbeat_forced_disarmed": true
+  },
+  "wire": {
+    "seconds": 30,
+    "rtps_packets": 0,
+    "ip_fragments": 0,
+    "zenoh_udp_flows": {
+      "10.0.0.5:38070->10.0.0.10:7448 TOS=0x00": 54,
+      "10.0.0.10:7447->10.0.0.3:35598 TOS=0x20": 6,
+      "10.0.0.3:57986->10.0.0.10:7448 TOS=0x00": 7,
+      "10.0.0.3:35598->10.0.0.10:7447 TOS=0xa0": 9894,
+      "10.0.0.2:59293->10.0.0.10:7448 TOS=0x00": 81,
+      "10.0.0.4:59320->10.0.0.10:7448 TOS=0x00": 54,
+      "10.0.0.10:7448->10.0.0.3:57986 TOS=0xc0": 249,
+      "10.0.0.10:7448->10.0.0.5:35156 TOS=0xc0": 248,
+      "10.0.0.10:7448->10.0.0.2:34358 TOS=0xc0": 248,
+      "10.0.0.10:7448->10.0.0.4:42247 TOS=0xc0": 248,
+      "10.0.0.10:7447->10.0.0.5:55926 TOS=0x20": 6,
+      "10.0.0.5:55926->10.0.0.10:7447 TOS=0xa0": 11509,
+      "10.0.0.5:35156->10.0.0.10:7448 TOS=0x00": 6,
+      "10.0.0.10:7447->10.0.0.2:45004 TOS=0x20": 7,
+      "10.0.0.2:45004->10.0.0.10:7447 TOS=0xa0": 27252,
+      "10.0.0.2:34358->10.0.0.10:7448 TOS=0x00": 6,
+      "10.0.0.10:7447->10.0.0.4:51414 TOS=0x20": 6,
+      "10.0.0.4:42247->10.0.0.10:7448 TOS=0x00": 6,
+      "10.0.0.4:51414->10.0.0.10:7447 TOS=0xa0": 11348,
+      "10.0.0.3:60578->10.0.0.10:7448 TOS=0x00": 52,
+      "10.0.0.10:7448->10.0.0.4:59320 TOS=0xc0": 5,
+      "10.0.0.10:7448->10.0.0.3:60578 TOS=0xc0": 5,
+      "10.0.0.10:7448->10.0.0.5:38070 TOS=0xc0": 5,
+      "10.0.0.10:7448->10.0.0.2:59293 TOS=0xc0": 6,
+      "10.0.0.2:39941->10.0.0.10:7447 TOS=0xa0": 1,
+      "10.0.0.5:35345->10.0.0.10:7447 TOS=0xa0": 1,
+      "10.0.0.3:35320->10.0.0.10:7447 TOS=0xa0": 1,
+      "10.0.0.4:55550->10.0.0.10:7447 TOS=0xa0": 1,
+      "10.0.0.10:7448->10.0.0.5:35156 TOS=0x00": 1,
+      "10.0.0.5:57859->10.0.0.10:7448 TOS=0x00": 9,
+      "10.0.0.10:7448->10.0.0.5:57859 TOS=0x00": 2,
+      "10.0.0.10:7448->10.0.0.2:34358 TOS=0x00": 1,
+      "10.0.0.2:34137->10.0.0.10:7448 TOS=0x00": 9,
+      "10.0.0.10:7448->10.0.0.2:34137 TOS=0x00": 2,
+      "10.0.0.10:7448->10.0.0.4:42247 TOS=0x00": 1,
+      "10.0.0.4:48801->10.0.0.10:7448 TOS=0x00": 9,
+      "10.0.0.10:7448->10.0.0.4:48801 TOS=0x00": 2,
+      "10.0.0.10:7448->10.0.0.5:57859 TOS=0xc0": 347,
+      "10.0.0.10:7448->10.0.0.2:34137 TOS=0xc0": 347,
+      "10.0.0.10:7448->10.0.0.4:48801 TOS=0xc0": 347,
+      "10.0.0.3:54116->10.0.0.10:7448 TOS=0x00": 69,
+      "10.0.0.10:7448->10.0.0.3:54116 TOS=0xc0": 9,
+      "10.0.0.5:60512->10.0.0.10:7448 TOS=0x00": 69,
+      "10.0.0.10:7448->10.0.0.5:60512 TOS=0xc0": 9,
+      "10.0.0.2:41497->10.0.0.10:7448 TOS=0x00": 102,
+      "10.0.0.10:7448->10.0.0.2:41497 TOS=0xc0": 9,
+      "10.0.0.4:51099->10.0.0.10:7448 TOS=0x00": 69,
+      "10.0.0.10:7448->10.0.0.4:51099 TOS=0xc0": 9,
+      "10.0.0.3:59560->10.0.0.10:7448 TOS=0x00": 8,
+      "10.0.0.10:7448->10.0.0.3:59560 TOS=0xc0": 302,
+      "10.0.0.2:39233->10.0.0.10:7447 TOS=0xa0": 14908,
+      "10.0.0.10:7447->10.0.0.2:39233 TOS=0x20": 6,
+      "10.0.0.5:43294->10.0.0.10:7447 TOS=0xa0": 4945,
+      "10.0.0.10:7447->10.0.0.5:43294 TOS=0x20": 5,
+      "10.0.0.3:37587->10.0.0.10:7447 TOS=0xa0": 6184,
+      "10.0.0.10:7447->10.0.0.3:37587 TOS=0x20": 5,
+      "10.0.0.4:56157->10.0.0.10:7447 TOS=0xa0": 5991,
+      "10.0.0.10:7447->10.0.0.4:56157 TOS=0x20": 5
+    }
+  },
+  "allowlist_negative": {
+    "allowed": 210,
+    "denied": 0
+  },
+  "optional_payload_monitor": {
+    "payload_count": 90,
+    "publisher_discovered": false
+  },
+  "final_data": {
+    "counts": {
+      "image_01": 359,
+      "image_02": 359,
+      "image_03": 359,
+      "image_04": 359,
+      "image_05": 359
+    },
+    "images": {
+      "image_03": {
+        "width": 640,
+        "height": 480,
+        "encoding": "jpeg",
+        "bytes": 32879
+      },
+      "image_04": {
+        "width": 640,
+        "height": 480,
+        "encoding": "jpeg",
+        "bytes": 41929
+      },
+      "image_02": {
+        "width": 640,
+        "height": 480,
+        "encoding": "jpeg",
+        "bytes": 41546
+      },
+      "image_01": {
+        "width": 640,
+        "height": 480,
+        "encoding": "jpeg",
+        "bytes": 63262
+      },
+      "image_05": {
+        "width": 640,
+        "height": 480,
+        "encoding": "jpeg",
+        "bytes": 53276
+      }
+    },
+    "health": {
+      "zone_2": [
+        {
+          "sequence": "195",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "196",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "197",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "198",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "199",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "200",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "201",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "202",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "203",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "204",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "205",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "206",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "207",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "208",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "209",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "210",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "211",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "212",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "213",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "214",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "215",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "216",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "217",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "218",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+        }
+      ],
+      "zone_3": [
+        {
+          "sequence": "195",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "196",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "197",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "198",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "199",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "200",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "201",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "202",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "203",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "204",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "205",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "206",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "207",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "208",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "209",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "210",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "211",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "212",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "213",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "214",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "215",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "216",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "217",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "218",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+        }
+      ],
+      "zone_4": [
+        {
+          "sequence": "195",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "196",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "197",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "198",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "199",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "200",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "201",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "202",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "203",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "204",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "205",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "206",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "207",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "208",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "209",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "210",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "211",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "212",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "213",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "214",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "215",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "216",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "217",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "218",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=2 WARN=0 ERROR=1 STALE=0"
+        }
+      ],
+      "zone_1": [
+        {
+          "sequence": "195",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=3 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "196",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=3 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "197",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=3 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "198",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=3 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "199",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=3 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "200",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=3 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "201",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=3 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "202",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=3 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "203",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=3 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "204",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=3 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "205",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=3 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "206",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=3 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "207",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=3 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "208",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=3 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "209",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=3 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "210",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=3 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "211",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=3 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "212",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=3 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "213",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=3 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "214",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=3 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "215",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=3 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "216",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=3 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "217",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=3 WARN=0 ERROR=1 STALE=0"
+        },
+        {
+          "sequence": "218",
+          "level": 2,
+          "message": "CAN RX activity has not been observed: OK=3 WARN=0 ERROR=1 STALE=0"
+        }
+      ]
+    }
+  },
+  "final_hosts": {
+    "2": {
+      "state": {
+        "status": "ready",
+        "mode": "zenoh_bridge",
+        "data_path_verified": false
+      },
+      "libraries": {
+        "zcu.service": [
+          "/lib/ld-linux-aarch64.so.1",
+          "/lib/libc.so.6",
+          "/lib/libgcc_s.so.1",
+          "/lib/libm.so.6",
+          "/lib/libpthread.so.0",
+          "/usr/lib/libstdc++.so.6.0.29",
+          "/usr/local/lib/libzenohc.so"
+        ],
+        "zcu-health@zone_1.service": [
+          "/lib/ld-linux-aarch64.so.1",
+          "/lib/libc.so.6",
+          "/lib/libgcc_s.so.1",
+          "/lib/libm.so.6",
+          "/lib/libpthread.so.0",
+          "/usr/lib/libstdc++.so.6.0.29",
+          "/usr/local/lib/libzenohc.so"
+        ]
+      },
+      "sources": {
+        "CMakeLists.txt": "44b626ba08bcc51d6aedaba05aaaf911df995ff90404ca47ba87c73042364108",
+        "src/backend/zenoh/backend_internal.hpp": "92bfe4c1094015279474571b42e7911c7f968cc2cb3fa501fd0194a1e32cbc33",
+        "src/backend/zenoh/diagnostic_publisher.cpp": "f169a0c2d63bc3477bb38dac331bb274ccef3a3fc6b283fd52b5a6a99c5475bb",
+        "src/backend/zenoh/graph_probe.cpp": "7decd9cbb0040a9506708c4271f9fbe6512397369dade71fceae48c8cf1132e8",
+        "src/backend/zenoh/image_publisher.cpp": "7692357ccf7bbd14c6c022cb5128ae8bf5f6e39af72e8b3996012d6576026068",
+        "src/backend/zenoh/motion_command_subscriber.cpp": "456fb26e382c5d0b7aa0762c80535db2f67171ca83104a49041fc3f398e94aae",
+        "src/backend/zenoh/ros_keyexpr.cpp": "02496c48fc7a6957ef007c36780e3a8dc979cb2e567c6247978461b7d98915b7",
+        "test/zenoh_keyexpr_test.cpp": "aad2236890451b0e5467463744faea39ffe9a3eec657aab191740f36069a5202"
+      }
+    },
+    "3": {
+      "state": {
+        "status": "ready",
+        "mode": "zenoh_bridge",
+        "data_path_verified": false
+      },
+      "libraries": {
+        "zcu.service": [
+          "/lib/ld-linux-aarch64.so.1",
+          "/lib/libc.so.6",
+          "/lib/libgcc_s.so.1",
+          "/lib/libm.so.6",
+          "/lib/libpthread.so.0",
+          "/usr/lib/libstdc++.so.6.0.29",
+          "/usr/local/lib/libzenohc.so"
+        ],
+        "zcu-health@zone_2.service": [
+          "/lib/ld-linux-aarch64.so.1",
+          "/lib/libc.so.6",
+          "/lib/libgcc_s.so.1",
+          "/lib/libm.so.6",
+          "/lib/libpthread.so.0",
+          "/usr/lib/libstdc++.so.6.0.29",
+          "/usr/local/lib/libzenohc.so"
+        ]
+      },
+      "sources": {
+        "CMakeLists.txt": "44b626ba08bcc51d6aedaba05aaaf911df995ff90404ca47ba87c73042364108",
+        "src/backend/zenoh/backend_internal.hpp": "92bfe4c1094015279474571b42e7911c7f968cc2cb3fa501fd0194a1e32cbc33",
+        "src/backend/zenoh/diagnostic_publisher.cpp": "f169a0c2d63bc3477bb38dac331bb274ccef3a3fc6b283fd52b5a6a99c5475bb",
+        "src/backend/zenoh/graph_probe.cpp": "7decd9cbb0040a9506708c4271f9fbe6512397369dade71fceae48c8cf1132e8",
+        "src/backend/zenoh/image_publisher.cpp": "7692357ccf7bbd14c6c022cb5128ae8bf5f6e39af72e8b3996012d6576026068",
+        "src/backend/zenoh/motion_command_subscriber.cpp": "456fb26e382c5d0b7aa0762c80535db2f67171ca83104a49041fc3f398e94aae",
+        "src/backend/zenoh/ros_keyexpr.cpp": "02496c48fc7a6957ef007c36780e3a8dc979cb2e567c6247978461b7d98915b7",
+        "test/zenoh_keyexpr_test.cpp": "aad2236890451b0e5467463744faea39ffe9a3eec657aab191740f36069a5202"
+      }
+    },
+    "4": {
+      "state": {
+        "status": "ready",
+        "mode": "zenoh_bridge",
+        "data_path_verified": false
+      },
+      "libraries": {
+        "zcu.service": [
+          "/lib/ld-linux-aarch64.so.1",
+          "/lib/libc.so.6",
+          "/lib/libgcc_s.so.1",
+          "/lib/libm.so.6",
+          "/lib/libpthread.so.0",
+          "/usr/lib/libstdc++.so.6.0.29",
+          "/usr/local/lib/libzenohc.so"
+        ],
+        "zcu-health@zone_3.service": [
+          "/lib/ld-linux-aarch64.so.1",
+          "/lib/libc.so.6",
+          "/lib/libgcc_s.so.1",
+          "/lib/libm.so.6",
+          "/lib/libpthread.so.0",
+          "/usr/lib/libstdc++.so.6.0.29",
+          "/usr/local/lib/libzenohc.so"
+        ]
+      },
+      "sources": {
+        "CMakeLists.txt": "44b626ba08bcc51d6aedaba05aaaf911df995ff90404ca47ba87c73042364108",
+        "src/backend/zenoh/backend_internal.hpp": "92bfe4c1094015279474571b42e7911c7f968cc2cb3fa501fd0194a1e32cbc33",
+        "src/backend/zenoh/diagnostic_publisher.cpp": "f169a0c2d63bc3477bb38dac331bb274ccef3a3fc6b283fd52b5a6a99c5475bb",
+        "src/backend/zenoh/graph_probe.cpp": "7decd9cbb0040a9506708c4271f9fbe6512397369dade71fceae48c8cf1132e8",
+        "src/backend/zenoh/image_publisher.cpp": "7692357ccf7bbd14c6c022cb5128ae8bf5f6e39af72e8b3996012d6576026068",
+        "src/backend/zenoh/motion_command_subscriber.cpp": "456fb26e382c5d0b7aa0762c80535db2f67171ca83104a49041fc3f398e94aae",
+        "src/backend/zenoh/ros_keyexpr.cpp": "02496c48fc7a6957ef007c36780e3a8dc979cb2e567c6247978461b7d98915b7",
+        "test/zenoh_keyexpr_test.cpp": "aad2236890451b0e5467463744faea39ffe9a3eec657aab191740f36069a5202"
+      }
+    },
+    "5": {
+      "state": {
+        "status": "ready",
+        "mode": "zenoh_bridge",
+        "data_path_verified": false
+      },
+      "libraries": {
+        "zcu.service": [
+          "/lib/ld-linux-aarch64.so.1",
+          "/lib/libc.so.6",
+          "/lib/libgcc_s.so.1",
+          "/lib/libm.so.6",
+          "/lib/libpthread.so.0",
+          "/usr/lib/libstdc++.so.6.0.29",
+          "/usr/local/lib/libzenohc.so"
+        ],
+        "zcu-health@zone_4.service": [
+          "/lib/ld-linux-aarch64.so.1",
+          "/lib/libc.so.6",
+          "/lib/libgcc_s.so.1",
+          "/lib/libm.so.6",
+          "/lib/libpthread.so.0",
+          "/usr/lib/libstdc++.so.6.0.29",
+          "/usr/local/lib/libzenohc.so"
+        ]
+      },
+      "sources": {
+        "CMakeLists.txt": "44b626ba08bcc51d6aedaba05aaaf911df995ff90404ca47ba87c73042364108",
+        "src/backend/zenoh/backend_internal.hpp": "92bfe4c1094015279474571b42e7911c7f968cc2cb3fa501fd0194a1e32cbc33",
+        "src/backend/zenoh/diagnostic_publisher.cpp": "f169a0c2d63bc3477bb38dac331bb274ccef3a3fc6b283fd52b5a6a99c5475bb",
+        "src/backend/zenoh/graph_probe.cpp": "7decd9cbb0040a9506708c4271f9fbe6512397369dade71fceae48c8cf1132e8",
+        "src/backend/zenoh/image_publisher.cpp": "7692357ccf7bbd14c6c022cb5128ae8bf5f6e39af72e8b3996012d6576026068",
+        "src/backend/zenoh/motion_command_subscriber.cpp": "456fb26e382c5d0b7aa0762c80535db2f67171ca83104a49041fc3f398e94aae",
+        "src/backend/zenoh/ros_keyexpr.cpp": "02496c48fc7a6957ef007c36780e3a8dc979cb2e567c6247978461b7d98915b7",
+        "test/zenoh_keyexpr_test.cpp": "aad2236890451b0e5467463744faea39ffe9a3eec657aab191740f36069a5202"
+      }
+    }
+  },
+  "hpc_state": {
+    "status": "ready",
+    "mode": "zenoh_bridge",
+    "data_path_verified": false
+  },
+  "apply": "HPC: check OK — {\"host\": \"hpc\", \"mode\": \"zenoh_bridge\", \"ready\": true}\n10.0.0.5: check OK — {\"host\": \"zcu\", \"mode\": \"zenoh_bridge\", \"ready\": true}\n10.0.0.3: check OK — {\"host\": \"zcu\", \"mode\": \"zenoh_bridge\", \"ready\": true}\n10.0.0.2: check OK — {\"host\": \"zcu\", \"mode\": \"zenoh_bridge\", \"ready\": true}\n10.0.0.4: check OK — {\"host\": \"zcu\", \"mode\": \"zenoh_bridge\", \"ready\": true}\nHPC: begin OK — {\"applying\": \"zenoh_bridge\"}\n10.0.0.3: begin OK — {\"applying\": \"zenoh_bridge\"}\n10.0.0.5: begin OK — {\"applying\": \"zenoh_bridge\"}\n10.0.0.2: begin OK — {\"applying\": \"zenoh_bridge\"}\n10.0.0.4: begin OK — {\"applying\": \"zenoh_bridge\"}\nHPC: stop OK — {\"stopped\": true}\n10.0.0.3: stop OK — {\"stopped\": true}\n10.0.0.2: stop OK — {\"stopped\": true}\n10.0.0.4: stop OK — {\"stopped\": true}\n10.0.0.5: stop OK — {\"stopped\": true}\nHPC: daemon OK — {\"daemon_stopped\": true}\nHPC: prepare OK — {\"prepared\": \"zenoh_bridge\"}\n10.0.0.5: prepare OK — {\"prepared\": \"zenoh_bridge\"}\n10.0.0.2: prepare OK — {\"prepared\": \"zenoh_bridge\"}\n10.0.0.3: prepare OK — {\"prepared\": \"zenoh_bridge\"}\n10.0.0.4: prepare OK — {\"prepared\": \"zenoh_bridge\"}\nHPC: start OK — {\"started\": \"zenoh_bridge\"}\nHPC: verify OK — {\"mode\": \"zenoh_bridge\", \"processes_verified\": true, \"data_path_verified\": false}\n10.0.0.3: start OK — {\"started\": \"zenoh_bridge\"}\n10.0.0.5: start OK — {\"started\": \"zenoh_bridge\"}\n10.0.0.4: start OK — {\"started\": \"zenoh_bridge\"}\n10.0.0.2: start OK — {\"started\": \"zenoh_bridge\"}\n10.0.0.3: verify OK — {\"mode\": \"zenoh_bridge\", \"processes_verified\": true, \"data_path_verified\": false}\n10.0.0.4: verify OK — {\"mode\": \"zenoh_bridge\", \"processes_verified\": true, \"data_path_verified\": false}\n10.0.0.2: verify OK — {\"mode\": \"zenoh_bridge\", \"processes_verified\": true, \"data_path_verified\": false}\n10.0.0.5: verify OK — {\"mode\": \"zenoh_bridge\", \"processes_verified\": true, \"data_path_verified\": false}\n10.0.0.3: commit OK — {\"status\": \"ready\", \"mode\": \"zenoh_bridge\", \"data_path_verified\": false}\n10.0.0.4: commit OK — {\"status\": \"ready\", \"mode\": \"zenoh_bridge\", \"data_path_verified\": false}\n10.0.0.5: commit OK — {\"status\": \"ready\", \"mode\": \"zenoh_bridge\", \"data_path_verified\": false}\n10.0.0.2: commit OK — {\"status\": \"ready\", \"mode\": \"zenoh_bridge\", \"data_path_verified\": false}\nHPC: commit OK — {\"status\": \"ready\", \"mode\": \"zenoh_bridge\", \"data_path_verified\": false}\nMode applied. Processes verified; live image/control/health validation pending.\n",
+  "final_apply": "HPC: check OK — {\"host\": \"hpc\", \"mode\": \"zenoh_bridge\", \"ready\": true}\n10.0.0.2: check OK — {\"host\": \"zcu\", \"mode\": \"zenoh_bridge\", \"ready\": true}\n10.0.0.4: check OK — {\"host\": \"zcu\", \"mode\": \"zenoh_bridge\", \"ready\": true}\n10.0.0.3: check OK — {\"host\": \"zcu\", \"mode\": \"zenoh_bridge\", \"ready\": true}\n10.0.0.5: check OK — {\"host\": \"zcu\", \"mode\": \"zenoh_bridge\", \"ready\": true}\nHPC: begin OK — {\"applying\": \"zenoh_bridge\"}\n10.0.0.2: begin OK — {\"applying\": \"zenoh_bridge\"}\n10.0.0.3: begin OK — {\"applying\": \"zenoh_bridge\"}\n10.0.0.4: begin OK — {\"applying\": \"zenoh_bridge\"}\n10.0.0.5: begin OK — {\"applying\": \"zenoh_bridge\"}\nHPC: stop OK — {\"stopped\": true}\n10.0.0.3: stop OK — {\"stopped\": true}\n10.0.0.4: stop OK — {\"stopped\": true}\n10.0.0.5: stop OK — {\"stopped\": true}\n10.0.0.2: stop OK — {\"stopped\": true}\nHPC: daemon OK — {\"daemon_stopped\": true}\nHPC: prepare OK — {\"prepared\": \"zenoh_bridge\"}\n10.0.0.2: prepare OK — {\"prepared\": \"zenoh_bridge\"}\n10.0.0.5: prepare OK — {\"prepared\": \"zenoh_bridge\"}\n10.0.0.3: prepare OK — {\"prepared\": \"zenoh_bridge\"}\n10.0.0.4: prepare OK — {\"prepared\": \"zenoh_bridge\"}\nHPC: start OK — {\"started\": \"zenoh_bridge\"}\nHPC: verify OK — {\"mode\": \"zenoh_bridge\", \"processes_verified\": true, \"data_path_verified\": false}\n10.0.0.3: start OK — {\"started\": \"zenoh_bridge\"}\n10.0.0.4: start OK — {\"started\": \"zenoh_bridge\"}\n10.0.0.5: start OK — {\"started\": \"zenoh_bridge\"}\n10.0.0.2: start OK — {\"started\": \"zenoh_bridge\"}\n10.0.0.2: verify OK — {\"mode\": \"zenoh_bridge\", \"processes_verified\": true, \"data_path_verified\": false}\n10.0.0.5: verify OK — {\"mode\": \"zenoh_bridge\", \"processes_verified\": true, \"data_path_verified\": false}\n10.0.0.3: verify OK — {\"mode\": \"zenoh_bridge\", \"processes_verified\": true, \"data_path_verified\": false}\n10.0.0.4: verify OK — {\"mode\": \"zenoh_bridge\", \"processes_verified\": true, \"data_path_verified\": false}\n10.0.0.3: commit OK — {\"status\": \"ready\", \"mode\": \"zenoh_bridge\", \"data_path_verified\": false}\n10.0.0.5: commit OK — {\"status\": \"ready\", \"mode\": \"zenoh_bridge\", \"data_path_verified\": false}\n10.0.0.4: commit OK — {\"status\": \"ready\", \"mode\": \"zenoh_bridge\", \"data_path_verified\": false}\n10.0.0.2: commit OK — {\"status\": \"ready\", \"mode\": \"zenoh_bridge\", \"data_path_verified\": false}\nHPC: commit OK — {\"status\": \"ready\", \"mode\": \"zenoh_bridge\", \"data_path_verified\": false}\nMode applied. Processes verified; live image/control/health validation pending.\n",
+  "native_regression_apply": "HPC: check OK — {\"host\": \"hpc\", \"mode\": \"zenoh\", \"ready\": true}\n10.0.0.4: check OK — {\"host\": \"zcu\", \"mode\": \"zenoh\", \"ready\": true}\n10.0.0.2: check OK — {\"host\": \"zcu\", \"mode\": \"zenoh\", \"ready\": true}\n10.0.0.5: check OK — {\"host\": \"zcu\", \"mode\": \"zenoh\", \"ready\": true}\n10.0.0.3: check OK — {\"host\": \"zcu\", \"mode\": \"zenoh\", \"ready\": true}\nHPC: begin OK — {\"applying\": \"zenoh\"}\n10.0.0.2: begin OK — {\"applying\": \"zenoh\"}\n10.0.0.5: begin OK — {\"applying\": \"zenoh\"}\n10.0.0.4: begin OK — {\"applying\": \"zenoh\"}\n10.0.0.3: begin OK — {\"applying\": \"zenoh\"}\nHPC: stop OK — {\"stopped\": true}\n10.0.0.4: stop OK — {\"stopped\": true}\n10.0.0.3: stop OK — {\"stopped\": true}\n10.0.0.5: stop OK — {\"stopped\": true}\n10.0.0.2: stop OK — {\"stopped\": true}\nHPC: daemon OK — {\"daemon_stopped\": true}\nHPC: prepare OK — {\"prepared\": \"zenoh\"}\n10.0.0.2: prepare OK — {\"prepared\": \"zenoh\"}\n10.0.0.3: prepare OK — {\"prepared\": \"zenoh\"}\n10.0.0.5: prepare OK — {\"prepared\": \"zenoh\"}\n10.0.0.4: prepare OK — {\"prepared\": \"zenoh\"}\nHPC: start OK — {\"started\": \"zenoh\"}\nHPC: verify: Zenoh UDP listeners not ready on 7447/7448\nHPC: verify OK — {\"mode\": \"zenoh\", \"processes_verified\": true, \"data_path_verified\": false}\n10.0.0.3: start OK — {\"started\": \"zenoh\"}\n10.0.0.4: start OK — {\"started\": \"zenoh\"}\n10.0.0.5: start OK — {\"started\": \"zenoh\"}\n10.0.0.2: start OK — {\"started\": \"zenoh\"}\n10.0.0.3: verify OK — {\"mode\": \"zenoh\", \"processes_verified\": true, \"data_path_verified\": false}\n10.0.0.5: verify OK — {\"mode\": \"zenoh\", \"processes_verified\": true, \"data_path_verified\": false}\n10.0.0.4: verify OK — {\"mode\": \"zenoh\", \"processes_verified\": true, \"data_path_verified\": false}\n10.0.0.2: verify OK — {\"mode\": \"zenoh\", \"processes_verified\": true, \"data_path_verified\": false}\n10.0.0.5: commit OK — {\"status\": \"ready\", \"mode\": \"zenoh\", \"data_path_verified\": false}\n10.0.0.3: commit OK — {\"status\": \"ready\", \"mode\": \"zenoh\", \"data_path_verified\": false}\n10.0.0.4: commit OK — {\"status\": \"ready\", \"mode\": \"zenoh\", \"data_path_verified\": false}\n10.0.0.2: commit OK — {\"status\": \"ready\", \"mode\": \"zenoh\", \"data_path_verified\": false}\nHPC: commit OK — {\"status\": \"ready\", \"mode\": \"zenoh\", \"data_path_verified\": false}\nMode applied. Processes verified; live image/control/health validation pending.\n",
+  "can": {
+    "2": [
+      "(1780621713.825358) can0 111#00000007",
+      "(1780621713.825611) can0 123#0000000000000000",
+      "(1780621713.874255) can0 111#00000007",
+      "(1780621713.874507) can0 123#0000000000000000",
+      "(1780621713.924322) can0 111#00000007",
+      "(1780621713.924575) can0 123#0000000000000000",
+      "(1780621713.974245) can0 111#00000007",
+      "(1780621713.974497) can0 123#0000000000000000",
+      "(1780621714.024239) can0 111#00000007",
+      "(1780621714.024491) can0 123#0000000000000000"
+    ],
+    "3": [
+      "(1780593169.134832) can0 111#00000007",
+      "(1780593169.135082) can0 123#0000000000000000",
+      "(1780593169.183719) can0 111#00000007",
+      "(1780593169.183970) can0 123#0000000000000000",
+      "(1780593169.233687) can0 111#00000007",
+      "(1780593169.233938) can0 123#0000000000000000",
+      "(1780593169.283646) can0 111#00000007",
+      "(1780593169.283897) can0 123#0000000000000000",
+      "(1780593169.334688) can0 111#00000007",
+      "(1780593169.334938) can0 123#0000000000000000"
+    ],
+    "4": [
+      "(1786107436.118743) can0 111#00000007",
+      "(1786107436.118994) can0 123#0000000000000000",
+      "(1786107436.167645) can0 111#00000007",
+      "(1786107436.167897) can0 123#0000000000000000",
+      "(1786107436.217670) can0 111#00000007",
+      "(1786107436.217922) can0 123#0000000000000000",
+      "(1786107436.267630) can0 111#00000007",
+      "(1786107436.267881) can0 123#0000000000000000",
+      "(1786107436.318642) can0 111#00000007",
+      "(1786107436.318895) can0 123#0000000000000000"
+    ],
+    "5": [
+      "(1780521235.307755) can0 111#00000007",
+      "(1780521235.308005) can0 123#0000000000000000",
+      "(1780521235.356581) can0 111#00000007",
+      "(1780521235.356832) can0 123#0000000000000000",
+      "(1780521235.406643) can0 111#00000007",
+      "(1780521235.406897) can0 123#0000000000000000",
+      "(1780521235.456578) can0 111#00000007",
+      "(1780521235.456829) can0 123#0000000000000000",
+      "(1780521235.506591) can0 111#00000007",
+      "(1780521235.506842) can0 123#0000000000000000"
+    ]
+  },
+  "builds": {
+    "2": {
+      "bridge": "tar: CMakeLists.txt: time stamp 2026-09-10 01:15:44 is 8381415.6120202 s in the future\ntar: src/backend/zenoh/backend_internal.hpp: time stamp 2026-09-10 01:15:44 is 8381415.6117152 s in the future\ntar: src/backend/zenoh/diagnostic_publisher.cpp: time stamp 2026-09-10 01:15:44 is 8381415.6115206 s in the future\ntar: src/backend/zenoh/graph_probe.cpp: time stamp 2026-09-10 01:15:44 is 8381415.6113012 s in the future\ntar: src/backend/zenoh/image_publisher.cpp: time stamp 2026-09-10 01:15:44 is 8381415.611072 s in the future\ntar: src/backend/zenoh/motion_command_subscriber.cpp: time stamp 2026-09-10 01:15:44 is 8381415.61085 s in the future\ntar: src/backend/zenoh/ros_keyexpr.cpp: time stamp 2026-09-10 01:15:44 is 8381415.6106082 s in the future\ntar: test/zenoh_keyexpr_test.cpp: time stamp 2026-09-10 01:15:44 is 8381415.610403 s in the future\n-- The C compiler identification is GNU 11.4.0\n-- The CXX compiler identification is GNU 11.4.0\n-- Detecting C compiler ABI info\n-- Detecting C compiler ABI info - done\n-- Check for working C compiler: /usr/bin/cc - skipped\n-- Detecting C compile features\n-- Detecting C compile features - done\n-- Detecting CXX compiler ABI info\n-- Detecting CXX compiler ABI info - done\n-- Check for working CXX compiler: /usr/bin/c++ - skipped\n-- Detecting CXX compile features\n-- Detecting CXX compile features - done\n-- ZCU DDS backend: zenoh_bridge\n-- Configuring done\n-- Generating done\n-- Build files have been written to: /home/root/Workspace/S32G3_ZCU/build-zenoh_bridge\n-- ZCU DDS backend: zenoh_bridge\n-- Configuring done\n-- Generating done\n-- Build files have been written to: /home/root/Workspace/S32G3_ZCU/build-zenoh_bridge\nmake[2]: Warning: File '../src/zcu_health_main.cpp' has modification time 5983777 s in the future\nmake[2]: Warning: File '../src/main.cpp' has modification time 7295485 s in the future\n[  5%] Building CXX object CMakeFiles/zcu.dir/src/main.cpp.o\n[  5%] Building CXX object CMakeFiles/zcu_health_node.dir/src/zcu_health_main.cpp.o\n[  8%] Building CXX object CMakeFiles/zcu_health_node.dir/src/health_module/zcu_health_node.cpp.o\n[ 11%] Building CXX object CMakeFiles/zcu.dir/src/health_state.cpp.o\n[ 14%] Building CXX object CMakeFiles/zcu.dir/src/backend/zenoh/transport.cpp.o\n[ 17%] Building CXX object CMakeFiles/zcu_health_node.dir/src/health_module/health_policy.cpp.o\n[ 20%] Building CXX object CMakeFiles/zcu.dir/src/backend/zenoh/ros_keyexpr.cpp.o\n[ 23%] Building CXX object CMakeFiles/zcu.dir/src/backend/zenoh/image_publisher.cpp.o\n[ 26%] Building CXX object CMakeFiles/zcu_health_node.dir/src/backend/zenoh/transport.cpp.o\n[ 29%] Building CXX object CMakeFiles/zcu.dir/src/camera_module/Image.cxx.o\n[ 32%] Building CXX object CMakeFiles/zcu.dir/src/backend/zenoh/motion_command_subscriber.cpp.o\n[ 35%] Building CXX object CMakeFiles/zcu_health_node.dir/src/backend/zenoh/ros_keyexpr.cpp.o\n[ 38%] Building CXX object CMakeFiles/zcu_health_node.dir/src/camera_module/Image.cxx.o\n[ 41%] Building CXX object CMakeFiles/zcu.dir/src/control_module/ControlCommand.cxx.o\n[ 44%] Building CXX object CMakeFiles/zcu_health_node.dir/src/backend/zenoh/diagnostic_publisher.cpp.o\n[ 47%] Building CXX object CMakeFiles/zcu.dir/src/camera_module/camera_server.cpp.o\n[ 50%] Building CXX object CMakeFiles/zcu.dir/src/control_module/control_subscriber.cpp.o\n[ 52%] Building CXX object CMakeFiles/zcu_health_node.dir/src/backend/zenoh/graph_probe.cpp.o\n[ 55%] Building C object CMakeFiles/zcu.dir/src/control_module/s32g3_skku_can_setting.c.o\n[ 58%] Linking CXX executable zcu\nmake[2]: warning:  Clock skew detected.  Your build may be incomplete.\n[ 58%] Built target zcu\nmake[2]: Warning: File '../test/health_policy_test.cpp' has modification time 5985039 s in the future\n[ 61%] Building CXX object CMakeFiles/zcu_health_policy_test.dir/test/health_policy_test.cpp.o\n[ 64%] Building CXX object CMakeFiles/zcu_health_policy_test.dir/src/health_module/health_policy.cpp.o\n[ 67%] Building CXX object CMakeFiles/zcu_health_node.dir/src/common/diagnostic_cdr.cpp.o\n[ 70%] Linking CXX executable zcu_health_node\nmake[2]: warning:  Clock skew detected.  Your build may be incomplete.\n[ 70%] Built target zcu_health_node\nmake[2]: Warning: File '../test/transport_test.cpp' has modification time 7214370 s in the future\n[ 73%] Building CXX object CMakeFiles/zcu_transport_test.dir/test/transport_test.cpp.o\n[ 76%] Building CXX object CMakeFiles/zcu_transport_test.dir/src/backend/zenoh/transport.cpp.o\n[ 79%] Linking CXX executable zcu_health_policy_test\nmake[2]: warning:  Clock skew detected.  Your build may be incomplete.\n[ 79%] Built target zcu_health_policy_test\n[ 82%] Building CXX object CMakeFiles/zcu_transport_test.dir/src/backend/zenoh/ros_keyexpr.cpp.o\nmake[2]: Warning: File '../test/zenoh_keyexpr_test.cpp' has modification time 8381322 s in the future\n[ 85%] Building CXX object CMakeFiles/zcu_zenoh_keyexpr_test.dir/test/zenoh_keyexpr_test.cpp.o\n[ 88%] Building CXX object CMakeFiles/zcu_transport_test.dir/src/backend/zenoh/graph_probe.cpp.o\n[ 91%] Building CXX object CMakeFiles/zcu_zenoh_keyexpr_test.dir/src/backend/zenoh/ros_keyexpr.cpp.o\n[ 94%] Linking CXX executable zcu_zenoh_keyexpr_test\nmake[2]: warning:  Clock skew detected.  Your build may be incomplete.\n[ 94%] Built target zcu_zenoh_keyexpr_test\n[ 97%] Building CXX object CMakeFiles/zcu_transport_test.dir/src/camera_module/Image.cxx.o\n[100%] Linking CXX executable zcu_transport_test\nmake[2]: warning:  Clock skew detected.  Your build may be incomplete.\n[100%] Built target zcu_transport_test\nInternal ctest changing into directory: /home/root/Workspace/S32G3_ZCU/build-zenoh_bridge\nTest project /home/root/Workspace/S32G3_ZCU/build-zenoh_bridge\n    Start 1: zcu_health_policy_test\n1/3 Test #1: zcu_health_policy_test ...........   Passed    0.02 sec\n    Start 2: zcu_transport_test\n2/3 Test #2: zcu_transport_test ...............***Skipped   2.40 sec\n    Start 3: zcu_zenoh_keyexpr_test\n3/3 Test #3: zcu_zenoh_keyexpr_test ...........   Passed    0.01 sec\n\n100% tests passed, 0 tests failed out of 3\n\nTotal Test time (real) =   2.45 sec\n\nThe following tests did not run:\n\t  2 - zcu_transport_test (Skipped)\n",
+      "native_zenoh": "-- ZCU DDS backend: zenoh\n-- Configuring done\n-- Generating done\n-- Build files have been written to: /home/root/Workspace/S32G3_ZCU/build-zenoh\nConsolidate compiler generated dependencies of target zcu_health_node\nConsolidate compiler generated dependencies of target zcu\nmake[2]: Warning: File '../src/zcu_health_main.cpp' has modification time 5983549 s in the future\nmake[2]: Warning: File '../src/main.cpp' has modification time 7295257 s in the future\n[  2%] Building CXX object CMakeFiles/zcu_health_node.dir/src/zcu_health_main.cpp.o\n[  5%] Building CXX object CMakeFiles/zcu.dir/src/main.cpp.o\n[  8%] Building CXX object CMakeFiles/zcu_health_node.dir/src/health_module/zcu_health_node.cpp.o\n[ 11%] Building CXX object CMakeFiles/zcu.dir/src/health_state.cpp.o\n[ 14%] Building CXX object CMakeFiles/zcu.dir/src/backend/zenoh/transport.cpp.o\n[ 17%] Building CXX object CMakeFiles/zcu_health_node.dir/src/health_module/health_policy.cpp.o\n[ 20%] Building CXX object CMakeFiles/zcu.dir/src/backend/zenoh/ros_keyexpr.cpp.o\n[ 23%] Building CXX object CMakeFiles/zcu.dir/src/backend/zenoh/image_publisher.cpp.o\n[ 26%] Building CXX object CMakeFiles/zcu_health_node.dir/src/backend/zenoh/transport.cpp.o\n[ 29%] Building CXX object CMakeFiles/zcu.dir/src/backend/zenoh/motion_command_subscriber.cpp.o\n[ 32%] Building CXX object CMakeFiles/zcu_health_node.dir/src/backend/zenoh/ros_keyexpr.cpp.o\n[ 35%] Building CXX object CMakeFiles/zcu.dir/src/camera_module/camera_server.cpp.o\n[ 38%] Building CXX object CMakeFiles/zcu_health_node.dir/src/backend/zenoh/diagnostic_publisher.cpp.o\n[ 41%] Building CXX object CMakeFiles/zcu.dir/src/control_module/control_subscriber.cpp.o\n[ 44%] Building C object CMakeFiles/zcu.dir/src/control_module/s32g3_skku_can_setting.c.o\n[ 47%] Linking CXX executable zcu\nmake[2]: warning:  Clock skew detected.  Your build may be incomplete.\n[ 52%] Built target zcu\nConsolidate compiler generated dependencies of target zcu_health_policy_test\nmake[2]: Warning: File '../test/health_policy_test.cpp' has modification time 5984821 s in the future\n[ 55%] Building CXX object CMakeFiles/zcu_health_policy_test.dir/test/health_policy_test.cpp.o\n[ 58%] Building CXX object CMakeFiles/zcu_health_node.dir/src/backend/zenoh/graph_probe.cpp.o\n[ 61%] Building CXX object CMakeFiles/zcu_health_policy_test.dir/src/health_module/health_policy.cpp.o\n[ 64%] Building CXX object CMakeFiles/zcu_health_node.dir/src/common/diagnostic_cdr.cpp.o\n[ 67%] Linking CXX executable zcu_health_node\nmake[2]: warning:  Clock skew detected.  Your build may be incomplete.\n[ 70%] Built target zcu_health_node\nConsolidate compiler generated dependencies of target zcu_transport_test\nmake[2]: Warning: File '../test/transport_test.cpp' has modification time 7214145 s in the future\n[ 73%] Building CXX object CMakeFiles/zcu_transport_test.dir/test/transport_test.cpp.o\n[ 76%] Linking CXX executable zcu_health_policy_test\n[ 79%] Building CXX object CMakeFiles/zcu_transport_test.dir/src/backend/zenoh/transport.cpp.o\nmake[2]: warning:  Clock skew detected.  Your build may be incomplete.\n[ 79%] Built target zcu_health_policy_test\nConsolidate compiler generated dependencies of target zcu_zenoh_keyexpr_test\nmake[2]: Warning: File '../test/zenoh_keyexpr_test.cpp' has modification time 8381106 s in the future\n[ 82%] Building CXX object CMakeFiles/zcu_zenoh_keyexpr_test.dir/test/zenoh_keyexpr_test.cpp.o\n[ 85%] Building CXX object CMakeFiles/zcu_zenoh_keyexpr_test.dir/src/backend/zenoh/ros_keyexpr.cpp.o\n[ 88%] Linking CXX executable zcu_zenoh_keyexpr_test\nmake[2]: warning:  Clock skew detected.  Your build may be incomplete.\n[ 88%] Built target zcu_zenoh_keyexpr_test\n[ 91%] Building CXX object CMakeFiles/zcu_transport_test.dir/src/backend/zenoh/ros_keyexpr.cpp.o\n[ 94%] Building CXX object CMakeFiles/zcu_transport_test.dir/src/backend/zenoh/graph_probe.cpp.o\n[ 97%] Linking CXX executable zcu_transport_test\nmake[2]: warning:  Clock skew detected.  Your build may be incomplete.\n[100%] Built target zcu_transport_test\nInternal ctest changing into directory: /home/root/Workspace/S32G3_ZCU/build-zenoh\nTest project /home/root/Workspace/S32G3_ZCU/build-zenoh\n    Start 1: zcu_health_policy_test\n1/3 Test #1: zcu_health_policy_test ...........   Passed    0.02 sec\n    Start 2: zcu_transport_test\n2/3 Test #2: zcu_transport_test ...............***Skipped   2.02 sec\n    Start 3: zcu_zenoh_keyexpr_test\n3/3 Test #3: zcu_zenoh_keyexpr_test ...........   Passed    0.01 sec\n\n100% tests passed, 0 tests failed out of 3\n\nTotal Test time (real) =   2.05 sec\n\nThe following tests did not run:\n\t  2 - zcu_transport_test (Skipped)\n"
+    },
+    "3": {
+      "bridge": "tar: CMakeLists.txt: time stamp 2026-09-10 01:15:44 is 8409959.9505558 s in the future\ntar: src/backend/zenoh/backend_internal.hpp: time stamp 2026-09-10 01:15:44 is 8409959.9502074 s in the future\ntar: src/backend/zenoh/diagnostic_publisher.cpp: time stamp 2026-09-10 01:15:44 is 8409959.9500154 s in the future\ntar: src/backend/zenoh/graph_probe.cpp: time stamp 2026-09-10 01:15:44 is 8409959.949795 s in the future\ntar: src/backend/zenoh/image_publisher.cpp: time stamp 2026-09-10 01:15:44 is 8409959.9496032 s in the future\ntar: src/backend/zenoh/motion_command_subscriber.cpp: time stamp 2026-09-10 01:15:44 is 8409959.9494166 s in the future\ntar: src/backend/zenoh/ros_keyexpr.cpp: time stamp 2026-09-10 01:15:44 is 8409959.9492054 s in the future\ntar: test/zenoh_keyexpr_test.cpp: time stamp 2026-09-10 01:15:44 is 8409959.9490014 s in the future\n-- The C compiler identification is GNU 11.4.0\n-- The CXX compiler identification is GNU 11.4.0\n-- Detecting C compiler ABI info\n-- Detecting C compiler ABI info - done\n-- Check for working C compiler: /usr/bin/cc - skipped\n-- Detecting C compile features\n-- Detecting C compile features - done\n-- Detecting CXX compiler ABI info\n-- Detecting CXX compiler ABI info - done\n-- Check for working CXX compiler: /usr/bin/c++ - skipped\n-- Detecting CXX compile features\n-- Detecting CXX compile features - done\n-- ZCU DDS backend: zenoh_bridge\n-- Configuring done\n-- Generating done\n-- Build files have been written to: /home/root/Workspace/S32G3_ZCU/build-zenoh_bridge\n-- ZCU DDS backend: zenoh_bridge\n-- Configuring done\n-- Generating done\n-- Build files have been written to: /home/root/Workspace/S32G3_ZCU/build-zenoh_bridge\nmake[2]: Warning: File '../src/main.cpp' has modification time 7324029 s in the future\nmake[2]: Warning: File '../src/zcu_health_main.cpp' has modification time 6012321 s in the future\n[  5%] Building CXX object CMakeFiles/zcu.dir/src/main.cpp.o\n[  5%] Building CXX object CMakeFiles/zcu_health_node.dir/src/zcu_health_main.cpp.o\n[  8%] Building CXX object CMakeFiles/zcu_health_node.dir/src/health_module/zcu_health_node.cpp.o\n[ 11%] Building CXX object CMakeFiles/zcu.dir/src/health_state.cpp.o\n[ 14%] Building CXX object CMakeFiles/zcu.dir/src/backend/zenoh/transport.cpp.o\n[ 17%] Building CXX object CMakeFiles/zcu_health_node.dir/src/health_module/health_policy.cpp.o\n[ 20%] Building CXX object CMakeFiles/zcu.dir/src/backend/zenoh/ros_keyexpr.cpp.o\n[ 23%] Building CXX object CMakeFiles/zcu.dir/src/backend/zenoh/image_publisher.cpp.o\n[ 26%] Building CXX object CMakeFiles/zcu_health_node.dir/src/backend/zenoh/transport.cpp.o\n[ 29%] Building CXX object CMakeFiles/zcu.dir/src/camera_module/Image.cxx.o\n[ 32%] Building CXX object CMakeFiles/zcu.dir/src/backend/zenoh/motion_command_subscriber.cpp.o\n[ 35%] Building CXX object CMakeFiles/zcu_health_node.dir/src/backend/zenoh/ros_keyexpr.cpp.o\n[ 38%] Building CXX object CMakeFiles/zcu_health_node.dir/src/camera_module/Image.cxx.o\n[ 41%] Building CXX object CMakeFiles/zcu.dir/src/control_module/ControlCommand.cxx.o\n[ 44%] Building CXX object CMakeFiles/zcu_health_node.dir/src/backend/zenoh/diagnostic_publisher.cpp.o\n[ 47%] Building CXX object CMakeFiles/zcu.dir/src/camera_module/camera_server.cpp.o\n[ 50%] Building CXX object CMakeFiles/zcu.dir/src/control_module/control_subscriber.cpp.o\n[ 52%] Building CXX object CMakeFiles/zcu_health_node.dir/src/backend/zenoh/graph_probe.cpp.o\n[ 55%] Building C object CMakeFiles/zcu.dir/src/control_module/s32g3_skku_can_setting.c.o\n[ 58%] Linking CXX executable zcu\nmake[2]: warning:  Clock skew detected.  Your build may be incomplete.\n[ 58%] Built target zcu\nmake[2]: Warning: File '../test/health_policy_test.cpp' has modification time 6013584 s in the future\n[ 61%] Building CXX object CMakeFiles/zcu_health_policy_test.dir/test/health_policy_test.cpp.o\n[ 64%] Building CXX object CMakeFiles/zcu_health_policy_test.dir/src/health_module/health_policy.cpp.o\n[ 67%] Building CXX object CMakeFiles/zcu_health_node.dir/src/common/diagnostic_cdr.cpp.o\n[ 70%] Linking CXX executable zcu_health_node\nmake[2]: warning:  Clock skew detected.  Your build may be incomplete.\n[ 70%] Built target zcu_health_node\nmake[2]: Warning: File '../test/transport_test.cpp' has modification time 7242914 s in the future\n[ 73%] Building CXX object CMakeFiles/zcu_transport_test.dir/test/transport_test.cpp.o\n[ 76%] Building CXX object CMakeFiles/zcu_transport_test.dir/src/backend/zenoh/transport.cpp.o\n[ 79%] Linking CXX executable zcu_health_policy_test\nmake[2]: warning:  Clock skew detected.  Your build may be incomplete.\n[ 79%] Built target zcu_health_policy_test\nmake[2]: Warning: File '../test/zenoh_keyexpr_test.cpp' has modification time 8409869 s in the future\n[ 82%] Building CXX object CMakeFiles/zcu_zenoh_keyexpr_test.dir/test/zenoh_keyexpr_test.cpp.o\n[ 85%] Building CXX object CMakeFiles/zcu_zenoh_keyexpr_test.dir/src/backend/zenoh/ros_keyexpr.cpp.o\n[ 88%] Building CXX object CMakeFiles/zcu_transport_test.dir/src/backend/zenoh/ros_keyexpr.cpp.o\n[ 91%] Linking CXX executable zcu_zenoh_keyexpr_test\n[ 94%] Building CXX object CMakeFiles/zcu_transport_test.dir/src/backend/zenoh/graph_probe.cpp.o\nmake[2]: warning:  Clock skew detected.  Your build may be incomplete.\n[ 94%] Built target zcu_zenoh_keyexpr_test\n[ 97%] Building CXX object CMakeFiles/zcu_transport_test.dir/src/camera_module/Image.cxx.o\n[100%] Linking CXX executable zcu_transport_test\nmake[2]: warning:  Clock skew detected.  Your build may be incomplete.\n[100%] Built target zcu_transport_test\nInternal ctest changing into directory: /home/root/Workspace/S32G3_ZCU/build-zenoh_bridge\nTest project /home/root/Workspace/S32G3_ZCU/build-zenoh_bridge\n    Start 1: zcu_health_policy_test\n1/3 Test #1: zcu_health_policy_test ...........   Passed    0.02 sec\n    Start 2: zcu_transport_test\n2/3 Test #2: zcu_transport_test ...............***Skipped   2.40 sec\n    Start 3: zcu_zenoh_keyexpr_test\n3/3 Test #3: zcu_zenoh_keyexpr_test ...........   Passed    0.01 sec\n\n100% tests passed, 0 tests failed out of 3\n\nTotal Test time (real) =   2.45 sec\n\nThe following tests did not run:\n\t  2 - zcu_transport_test (Skipped)\n",
+      "native_zenoh": "-- ZCU DDS backend: zenoh\n-- Configuring done\n-- Generating done\n-- Build files have been written to: /home/root/Workspace/S32G3_ZCU/build-zenoh\nConsolidate compiler generated dependencies of target zcu_health_node\nConsolidate compiler generated dependencies of target zcu\nmake[2]: Warning: File '../src/zcu_health_main.cpp' has modification time 6012094 s in the future\nmake[2]: Warning: File '../src/main.cpp' has modification time 7323802 s in the future\n[  2%] Building CXX object CMakeFiles/zcu_health_node.dir/src/zcu_health_main.cpp.o\n[  5%] Building CXX object CMakeFiles/zcu.dir/src/main.cpp.o\n[  8%] Building CXX object CMakeFiles/zcu_health_node.dir/src/health_module/zcu_health_node.cpp.o\n[ 11%] Building CXX object CMakeFiles/zcu.dir/src/health_state.cpp.o\n[ 14%] Building CXX object CMakeFiles/zcu.dir/src/backend/zenoh/transport.cpp.o\n[ 17%] Building CXX object CMakeFiles/zcu_health_node.dir/src/health_module/health_policy.cpp.o\n[ 20%] Building CXX object CMakeFiles/zcu.dir/src/backend/zenoh/ros_keyexpr.cpp.o\n[ 23%] Building CXX object CMakeFiles/zcu.dir/src/backend/zenoh/image_publisher.cpp.o\n[ 26%] Building CXX object CMakeFiles/zcu_health_node.dir/src/backend/zenoh/transport.cpp.o\n[ 29%] Building CXX object CMakeFiles/zcu.dir/src/backend/zenoh/motion_command_subscriber.cpp.o\n[ 32%] Building CXX object CMakeFiles/zcu_health_node.dir/src/backend/zenoh/ros_keyexpr.cpp.o\n[ 35%] Building CXX object CMakeFiles/zcu.dir/src/camera_module/camera_server.cpp.o\n[ 38%] Building CXX object CMakeFiles/zcu_health_node.dir/src/backend/zenoh/diagnostic_publisher.cpp.o\n[ 41%] Building CXX object CMakeFiles/zcu.dir/src/control_module/control_subscriber.cpp.o\n[ 44%] Building C object CMakeFiles/zcu.dir/src/control_module/s32g3_skku_can_setting.c.o\n[ 47%] Linking CXX executable zcu\nmake[2]: warning:  Clock skew detected.  Your build may be incomplete.\n[ 52%] Built target zcu\nConsolidate compiler generated dependencies of target zcu_health_policy_test\nmake[2]: Warning: File '../test/health_policy_test.cpp' has modification time 6013365 s in the future\n[ 55%] Building CXX object CMakeFiles/zcu_health_policy_test.dir/test/health_policy_test.cpp.o\n[ 58%] Building CXX object CMakeFiles/zcu_health_node.dir/src/backend/zenoh/graph_probe.cpp.o\n[ 61%] Building CXX object CMakeFiles/zcu_health_policy_test.dir/src/health_module/health_policy.cpp.o\n[ 64%] Building CXX object CMakeFiles/zcu_health_node.dir/src/common/diagnostic_cdr.cpp.o\n[ 67%] Linking CXX executable zcu_health_node\nmake[2]: warning:  Clock skew detected.  Your build may be incomplete.\n[ 70%] Built target zcu_health_node\nConsolidate compiler generated dependencies of target zcu_transport_test\nmake[2]: Warning: File '../test/transport_test.cpp' has modification time 7242691 s in the future\n[ 73%] Building CXX object CMakeFiles/zcu_transport_test.dir/test/transport_test.cpp.o\n[ 76%] Building CXX object CMakeFiles/zcu_transport_test.dir/src/backend/zenoh/transport.cpp.o\n[ 79%] Linking CXX executable zcu_health_policy_test\nmake[2]: warning:  Clock skew detected.  Your build may be incomplete.\n[ 79%] Built target zcu_health_policy_test\nConsolidate compiler generated dependencies of target zcu_zenoh_keyexpr_test\nmake[2]: Warning: File '../test/zenoh_keyexpr_test.cpp' has modification time 8409650 s in the future\n[ 82%] Building CXX object CMakeFiles/zcu_zenoh_keyexpr_test.dir/test/zenoh_keyexpr_test.cpp.o\n[ 85%] Building CXX object CMakeFiles/zcu_zenoh_keyexpr_test.dir/src/backend/zenoh/ros_keyexpr.cpp.o\n[ 88%] Linking CXX executable zcu_zenoh_keyexpr_test\nmake[2]: warning:  Clock skew detected.  Your build may be incomplete.\n[ 88%] Built target zcu_zenoh_keyexpr_test\n[ 91%] Building CXX object CMakeFiles/zcu_transport_test.dir/src/backend/zenoh/ros_keyexpr.cpp.o\n[ 94%] Building CXX object CMakeFiles/zcu_transport_test.dir/src/backend/zenoh/graph_probe.cpp.o\n[ 97%] Linking CXX executable zcu_transport_test\nmake[2]: warning:  Clock skew detected.  Your build may be incomplete.\n[100%] Built target zcu_transport_test\nInternal ctest changing into directory: /home/root/Workspace/S32G3_ZCU/build-zenoh\nTest project /home/root/Workspace/S32G3_ZCU/build-zenoh\n    Start 1: zcu_health_policy_test\n1/3 Test #1: zcu_health_policy_test ...........   Passed    0.02 sec\n    Start 2: zcu_transport_test\n2/3 Test #2: zcu_transport_test ...............***Skipped   2.02 sec\n    Start 3: zcu_zenoh_keyexpr_test\n3/3 Test #3: zcu_zenoh_keyexpr_test ...........   Passed    0.01 sec\n\n100% tests passed, 0 tests failed out of 3\n\nTotal Test time (real) =   2.05 sec\n\nThe following tests did not run:\n\t  2 - zcu_transport_test (Skipped)\n"
+    },
+    "4": {
+      "bridge": "tar: CMakeLists.txt: time stamp 2026-09-10 01:15:44 is 2895692.9734268 s in the future\ntar: src/backend/zenoh/backend_internal.hpp: time stamp 2026-09-10 01:15:44 is 2895692.9731136 s in the future\ntar: src/backend/zenoh/diagnostic_publisher.cpp: time stamp 2026-09-10 01:15:44 is 2895692.9729254 s in the future\ntar: src/backend/zenoh/graph_probe.cpp: time stamp 2026-09-10 01:15:44 is 2895692.972711 s in the future\ntar: src/backend/zenoh/image_publisher.cpp: time stamp 2026-09-10 01:15:44 is 2895692.9725232 s in the future\ntar: src/backend/zenoh/motion_command_subscriber.cpp: time stamp 2026-09-10 01:15:44 is 2895692.9723402 s in the future\ntar: src/backend/zenoh/ros_keyexpr.cpp: time stamp 2026-09-10 01:15:44 is 2895692.9721372 s in the future\ntar: test/zenoh_keyexpr_test.cpp: time stamp 2026-09-10 01:15:44 is 2895692.9719024 s in the future\n-- The C compiler identification is GNU 11.4.0\n-- The CXX compiler identification is GNU 11.4.0\n-- Detecting C compiler ABI info\n-- Detecting C compiler ABI info - done\n-- Check for working C compiler: /usr/bin/cc - skipped\n-- Detecting C compile features\n-- Detecting C compile features - done\n-- Detecting CXX compiler ABI info\n-- Detecting CXX compiler ABI info - done\n-- Check for working CXX compiler: /usr/bin/c++ - skipped\n-- Detecting CXX compile features\n-- Detecting CXX compile features - done\n-- ZCU DDS backend: zenoh_bridge\n-- Configuring done\n-- Generating done\n-- Build files have been written to: /home/root/Workspace/S32G3_ZCU/build-zenoh_bridge\n-- ZCU DDS backend: zenoh_bridge\n-- Configuring done\n-- Generating done\n-- Build files have been written to: /home/root/Workspace/S32G3_ZCU/build-zenoh_bridge\nmake[2]: Warning: File '../src/zcu_health_main.cpp' has modification time 498054 s in the future\nmake[2]: Warning: File '../src/main.cpp' has modification time 1809762 s in the future\n[  5%] Building CXX object CMakeFiles/zcu_health_node.dir/src/zcu_health_main.cpp.o\n[  5%] Building CXX object CMakeFiles/zcu.dir/src/main.cpp.o\n[  8%] Building CXX object CMakeFiles/zcu_health_node.dir/src/health_module/zcu_health_node.cpp.o\n[ 11%] Building CXX object CMakeFiles/zcu.dir/src/health_state.cpp.o\n[ 14%] Building CXX object CMakeFiles/zcu.dir/src/backend/zenoh/transport.cpp.o\n[ 17%] Building CXX object CMakeFiles/zcu_health_node.dir/src/health_module/health_policy.cpp.o\n[ 20%] Building CXX object CMakeFiles/zcu.dir/src/backend/zenoh/ros_keyexpr.cpp.o\n[ 23%] Building CXX object CMakeFiles/zcu.dir/src/backend/zenoh/image_publisher.cpp.o\n[ 26%] Building CXX object CMakeFiles/zcu_health_node.dir/src/backend/zenoh/transport.cpp.o\n[ 29%] Building CXX object CMakeFiles/zcu.dir/src/camera_module/Image.cxx.o\n[ 32%] Building CXX object CMakeFiles/zcu.dir/src/backend/zenoh/motion_command_subscriber.cpp.o\n[ 35%] Building CXX object CMakeFiles/zcu_health_node.dir/src/backend/zenoh/ros_keyexpr.cpp.o\n[ 38%] Building CXX object CMakeFiles/zcu_health_node.dir/src/camera_module/Image.cxx.o\n[ 41%] Building CXX object CMakeFiles/zcu.dir/src/control_module/ControlCommand.cxx.o\n[ 44%] Building CXX object CMakeFiles/zcu_health_node.dir/src/backend/zenoh/diagnostic_publisher.cpp.o\n[ 47%] Building CXX object CMakeFiles/zcu.dir/src/camera_module/camera_server.cpp.o\n[ 50%] Building CXX object CMakeFiles/zcu.dir/src/control_module/control_subscriber.cpp.o\n[ 52%] Building CXX object CMakeFiles/zcu_health_node.dir/src/backend/zenoh/graph_probe.cpp.o\n[ 55%] Building C object CMakeFiles/zcu.dir/src/control_module/s32g3_skku_can_setting.c.o\n[ 58%] Linking CXX executable zcu\nmake[2]: warning:  Clock skew detected.  Your build may be incomplete.\n[ 58%] Built target zcu\nmake[2]: Warning: File '../test/health_policy_test.cpp' has modification time 499317 s in the future\n[ 61%] Building CXX object CMakeFiles/zcu_health_policy_test.dir/test/health_policy_test.cpp.o\n[ 64%] Building CXX object CMakeFiles/zcu_health_policy_test.dir/src/health_module/health_policy.cpp.o\n[ 67%] Building CXX object CMakeFiles/zcu_health_node.dir/src/common/diagnostic_cdr.cpp.o\n[ 70%] Linking CXX executable zcu_health_node\nmake[2]: warning:  Clock skew detected.  Your build may be incomplete.\n[ 70%] Built target zcu_health_node\nmake[2]: Warning: File '../test/transport_test.cpp' has modification time 1728647 s in the future\n[ 73%] Building CXX object CMakeFiles/zcu_transport_test.dir/test/transport_test.cpp.o\n[ 76%] Building CXX object CMakeFiles/zcu_transport_test.dir/src/backend/zenoh/transport.cpp.o\n[ 79%] Linking CXX executable zcu_health_policy_test\nmake[2]: warning:  Clock skew detected.  Your build may be incomplete.\n[ 79%] Built target zcu_health_policy_test\nmake[2]: Warning: File '../test/zenoh_keyexpr_test.cpp' has modification time 2895603 s in the future\n[ 82%] Building CXX object CMakeFiles/zcu_zenoh_keyexpr_test.dir/test/zenoh_keyexpr_test.cpp.o\n[ 85%] Building CXX object CMakeFiles/zcu_zenoh_keyexpr_test.dir/src/backend/zenoh/ros_keyexpr.cpp.o\n[ 88%] Building CXX object CMakeFiles/zcu_transport_test.dir/src/backend/zenoh/ros_keyexpr.cpp.o\n[ 91%] Linking CXX executable zcu_zenoh_keyexpr_test\nmake[2]: warning:  Clock skew detected.  Your build may be incomplete.\n[ 91%] Built target zcu_zenoh_keyexpr_test\n[ 94%] Building CXX object CMakeFiles/zcu_transport_test.dir/src/backend/zenoh/graph_probe.cpp.o\n[ 97%] Building CXX object CMakeFiles/zcu_transport_test.dir/src/camera_module/Image.cxx.o\n[100%] Linking CXX executable zcu_transport_test\nmake[2]: warning:  Clock skew detected.  Your build may be incomplete.\n[100%] Built target zcu_transport_test\nInternal ctest changing into directory: /home/root/Workspace/S32G3_ZCU/build-zenoh_bridge\nTest project /home/root/Workspace/S32G3_ZCU/build-zenoh_bridge\n    Start 1: zcu_health_policy_test\n1/3 Test #1: zcu_health_policy_test ...........   Passed    0.02 sec\n    Start 2: zcu_transport_test\n2/3 Test #2: zcu_transport_test ...............***Skipped   2.40 sec\n    Start 3: zcu_zenoh_keyexpr_test\n3/3 Test #3: zcu_zenoh_keyexpr_test ...........   Passed    0.01 sec\n\n100% tests passed, 0 tests failed out of 3\n\nTotal Test time (real) =   2.45 sec\n\nThe following tests did not run:\n\t  2 - zcu_transport_test (Skipped)\n",
+      "native_zenoh": "-- ZCU DDS backend: zenoh\n-- Configuring done\n-- Generating done\n-- Build files have been written to: /home/root/Workspace/S32G3_ZCU/build-zenoh\nConsolidate compiler generated dependencies of target zcu_health_node\nConsolidate compiler generated dependencies of target zcu\nmake[2]: Warning: File '../src/zcu_health_main.cpp' has modification time 497827 s in the future\nmake[2]: Warning: File '../src/main.cpp' has modification time 1809535 s in the future\n[  2%] Building CXX object CMakeFiles/zcu_health_node.dir/src/zcu_health_main.cpp.o\n[  5%] Building CXX object CMakeFiles/zcu.dir/src/main.cpp.o\n[  8%] Building CXX object CMakeFiles/zcu_health_node.dir/src/health_module/zcu_health_node.cpp.o\n[ 11%] Building CXX object CMakeFiles/zcu.dir/src/health_state.cpp.o\n[ 14%] Building CXX object CMakeFiles/zcu.dir/src/backend/zenoh/transport.cpp.o\n[ 17%] Building CXX object CMakeFiles/zcu_health_node.dir/src/health_module/health_policy.cpp.o\n[ 20%] Building CXX object CMakeFiles/zcu.dir/src/backend/zenoh/ros_keyexpr.cpp.o\n[ 23%] Building CXX object CMakeFiles/zcu.dir/src/backend/zenoh/image_publisher.cpp.o\n[ 26%] Building CXX object CMakeFiles/zcu_health_node.dir/src/backend/zenoh/transport.cpp.o\n[ 29%] Building CXX object CMakeFiles/zcu.dir/src/backend/zenoh/motion_command_subscriber.cpp.o\n[ 32%] Building CXX object CMakeFiles/zcu_health_node.dir/src/backend/zenoh/ros_keyexpr.cpp.o\n[ 35%] Building CXX object CMakeFiles/zcu.dir/src/camera_module/camera_server.cpp.o\n[ 38%] Building CXX object CMakeFiles/zcu_health_node.dir/src/backend/zenoh/diagnostic_publisher.cpp.o\n[ 41%] Building CXX object CMakeFiles/zcu.dir/src/control_module/control_subscriber.cpp.o\n[ 44%] Building C object CMakeFiles/zcu.dir/src/control_module/s32g3_skku_can_setting.c.o\n[ 47%] Linking CXX executable zcu\nmake[2]: warning:  Clock skew detected.  Your build may be incomplete.\n[ 52%] Built target zcu\n[ 55%] Building CXX object CMakeFiles/zcu_health_node.dir/src/backend/zenoh/graph_probe.cpp.o\n[ 58%] Building CXX object CMakeFiles/zcu_health_node.dir/src/common/diagnostic_cdr.cpp.o\nConsolidate compiler generated dependencies of target zcu_health_policy_test\nmake[2]: Warning: File '../test/health_policy_test.cpp' has modification time 499094 s in the future\n[ 61%] Building CXX object CMakeFiles/zcu_health_policy_test.dir/test/health_policy_test.cpp.o\n[ 64%] Building CXX object CMakeFiles/zcu_health_policy_test.dir/src/health_module/health_policy.cpp.o\n[ 67%] Linking CXX executable zcu_health_node\nmake[2]: warning:  Clock skew detected.  Your build may be incomplete.\n[ 70%] Built target zcu_health_node\nConsolidate compiler generated dependencies of target zcu_transport_test\nmake[2]: Warning: File '../test/transport_test.cpp' has modification time 1728429 s in the future\n[ 73%] Building CXX object CMakeFiles/zcu_transport_test.dir/test/transport_test.cpp.o\n[ 76%] Building CXX object CMakeFiles/zcu_transport_test.dir/src/backend/zenoh/transport.cpp.o\n[ 79%] Building CXX object CMakeFiles/zcu_transport_test.dir/src/backend/zenoh/ros_keyexpr.cpp.o\n[ 82%] Linking CXX executable zcu_health_policy_test\nmake[2]: warning:  Clock skew detected.  Your build may be incomplete.\n[ 82%] Built target zcu_health_policy_test\nConsolidate compiler generated dependencies of target zcu_zenoh_keyexpr_test\nmake[2]: Warning: File '../test/zenoh_keyexpr_test.cpp' has modification time 2895379 s in the future\n[ 85%] Building CXX object CMakeFiles/zcu_zenoh_keyexpr_test.dir/test/zenoh_keyexpr_test.cpp.o\n[ 88%] Building CXX object CMakeFiles/zcu_transport_test.dir/src/backend/zenoh/graph_probe.cpp.o\n[ 91%] Building CXX object CMakeFiles/zcu_zenoh_keyexpr_test.dir/src/backend/zenoh/ros_keyexpr.cpp.o\n[ 94%] Linking CXX executable zcu_zenoh_keyexpr_test\nmake[2]: warning:  Clock skew detected.  Your build may be incomplete.\n[ 94%] Built target zcu_zenoh_keyexpr_test\n[ 97%] Linking CXX executable zcu_transport_test\nmake[2]: warning:  Clock skew detected.  Your build may be incomplete.\n[100%] Built target zcu_transport_test\nInternal ctest changing into directory: /home/root/Workspace/S32G3_ZCU/build-zenoh\nTest project /home/root/Workspace/S32G3_ZCU/build-zenoh\n    Start 1: zcu_health_policy_test\n1/3 Test #1: zcu_health_policy_test ...........   Passed    0.02 sec\n    Start 2: zcu_transport_test\n2/3 Test #2: zcu_transport_test ...............***Skipped   2.02 sec\n    Start 3: zcu_zenoh_keyexpr_test\n3/3 Test #3: zcu_zenoh_keyexpr_test ...........   Passed    0.01 sec\n\n100% tests passed, 0 tests failed out of 3\n\nTotal Test time (real) =   2.05 sec\n\nThe following tests did not run:\n\t  2 - zcu_transport_test (Skipped)\n"
+    },
+    "5": {
+      "bridge": "tar: CMakeLists.txt: time stamp 2026-09-10 01:15:44 is 8481893.7866682 s in the future\ntar: src/backend/zenoh/backend_internal.hpp: time stamp 2026-09-10 01:15:44 is 8481893.7863752 s in the future\ntar: src/backend/zenoh/diagnostic_publisher.cpp: time stamp 2026-09-10 01:15:44 is 8481893.786184 s in the future\ntar: src/backend/zenoh/graph_probe.cpp: time stamp 2026-09-10 01:15:44 is 8481893.7859688 s in the future\ntar: src/backend/zenoh/image_publisher.cpp: time stamp 2026-09-10 01:15:44 is 8481893.7857842 s in the future\ntar: src/backend/zenoh/motion_command_subscriber.cpp: time stamp 2026-09-10 01:15:44 is 8481893.7855998 s in the future\ntar: src/backend/zenoh/ros_keyexpr.cpp: time stamp 2026-09-10 01:15:44 is 8481893.7853914 s in the future\ntar: test/zenoh_keyexpr_test.cpp: time stamp 2026-09-10 01:15:44 is 8481893.7851592 s in the future\n-- The C compiler identification is GNU 11.4.0\n-- The CXX compiler identification is GNU 11.4.0\n-- Detecting C compiler ABI info\n-- Detecting C compiler ABI info - done\n-- Check for working C compiler: /usr/bin/cc - skipped\n-- Detecting C compile features\n-- Detecting C compile features - done\n-- Detecting CXX compiler ABI info\n-- Detecting CXX compiler ABI info - done\n-- Check for working CXX compiler: /usr/bin/c++ - skipped\n-- Detecting CXX compile features\n-- Detecting CXX compile features - done\n-- ZCU DDS backend: zenoh_bridge\n-- Configuring done\n-- Generating done\n-- Build files have been written to: /home/root/Workspace/S32G3_ZCU/build-zenoh_bridge\n-- ZCU DDS backend: zenoh_bridge\n-- Configuring done\n-- Generating done\n-- Build files have been written to: /home/root/Workspace/S32G3_ZCU/build-zenoh_bridge\nmake[2]: Warning: File '../src/zcu_health_main.cpp' has modification time 6084255 s in the future\nmake[2]: Warning: File '../src/main.cpp' has modification time 7395963 s in the future\n[  5%] Building CXX object CMakeFiles/zcu.dir/src/main.cpp.o\n[  5%] Building CXX object CMakeFiles/zcu_health_node.dir/src/zcu_health_main.cpp.o\n[  8%] Building CXX object CMakeFiles/zcu_health_node.dir/src/health_module/zcu_health_node.cpp.o\n[ 11%] Building CXX object CMakeFiles/zcu.dir/src/health_state.cpp.o\n[ 14%] Building CXX object CMakeFiles/zcu.dir/src/backend/zenoh/transport.cpp.o\n[ 17%] Building CXX object CMakeFiles/zcu_health_node.dir/src/health_module/health_policy.cpp.o\n[ 20%] Building CXX object CMakeFiles/zcu.dir/src/backend/zenoh/ros_keyexpr.cpp.o\n[ 23%] Building CXX object CMakeFiles/zcu.dir/src/backend/zenoh/image_publisher.cpp.o\n[ 26%] Building CXX object CMakeFiles/zcu_health_node.dir/src/backend/zenoh/transport.cpp.o\n[ 29%] Building CXX object CMakeFiles/zcu.dir/src/camera_module/Image.cxx.o\n[ 32%] Building CXX object CMakeFiles/zcu.dir/src/backend/zenoh/motion_command_subscriber.cpp.o\n[ 35%] Building CXX object CMakeFiles/zcu_health_node.dir/src/backend/zenoh/ros_keyexpr.cpp.o\n[ 38%] Building CXX object CMakeFiles/zcu_health_node.dir/src/camera_module/Image.cxx.o\n[ 41%] Building CXX object CMakeFiles/zcu.dir/src/control_module/ControlCommand.cxx.o\n[ 44%] Building CXX object CMakeFiles/zcu_health_node.dir/src/backend/zenoh/diagnostic_publisher.cpp.o\n[ 47%] Building CXX object CMakeFiles/zcu.dir/src/camera_module/camera_server.cpp.o\n[ 50%] Building CXX object CMakeFiles/zcu.dir/src/control_module/control_subscriber.cpp.o\n[ 52%] Building CXX object CMakeFiles/zcu_health_node.dir/src/backend/zenoh/graph_probe.cpp.o\n[ 55%] Building C object CMakeFiles/zcu.dir/src/control_module/s32g3_skku_can_setting.c.o\n[ 58%] Linking CXX executable zcu\nmake[2]: warning:  Clock skew detected.  Your build may be incomplete.\n[ 58%] Built target zcu\nmake[2]: Warning: File '../test/health_policy_test.cpp' has modification time 6085518 s in the future\n[ 61%] Building CXX object CMakeFiles/zcu_health_policy_test.dir/test/health_policy_test.cpp.o\n[ 64%] Building CXX object CMakeFiles/zcu_health_policy_test.dir/src/health_module/health_policy.cpp.o\n[ 67%] Building CXX object CMakeFiles/zcu_health_node.dir/src/common/diagnostic_cdr.cpp.o\n[ 70%] Linking CXX executable zcu_health_node\nmake[2]: warning:  Clock skew detected.  Your build may be incomplete.\n[ 70%] Built target zcu_health_node\nmake[2]: Warning: File '../test/transport_test.cpp' has modification time 7314847 s in the future\n[ 73%] Building CXX object CMakeFiles/zcu_transport_test.dir/test/transport_test.cpp.o\n[ 76%] Building CXX object CMakeFiles/zcu_transport_test.dir/src/backend/zenoh/transport.cpp.o\n[ 79%] Linking CXX executable zcu_health_policy_test\nmake[2]: warning:  Clock skew detected.  Your build may be incomplete.\n[ 79%] Built target zcu_health_policy_test\nmake[2]: Warning: File '../test/zenoh_keyexpr_test.cpp' has modification time 8481804 s in the future\n[ 82%] Building CXX object CMakeFiles/zcu_zenoh_keyexpr_test.dir/test/zenoh_keyexpr_test.cpp.o\n[ 85%] Building CXX object CMakeFiles/zcu_zenoh_keyexpr_test.dir/src/backend/zenoh/ros_keyexpr.cpp.o\n[ 88%] Building CXX object CMakeFiles/zcu_transport_test.dir/src/backend/zenoh/ros_keyexpr.cpp.o\n[ 91%] Linking CXX executable zcu_zenoh_keyexpr_test\nmake[2]: warning:  Clock skew detected.  Your build may be incomplete.\n[ 91%] Built target zcu_zenoh_keyexpr_test\n[ 94%] Building CXX object CMakeFiles/zcu_transport_test.dir/src/backend/zenoh/graph_probe.cpp.o\n[ 97%] Building CXX object CMakeFiles/zcu_transport_test.dir/src/camera_module/Image.cxx.o\n[100%] Linking CXX executable zcu_transport_test\nmake[2]: warning:  Clock skew detected.  Your build may be incomplete.\n[100%] Built target zcu_transport_test\nInternal ctest changing into directory: /home/root/Workspace/S32G3_ZCU/build-zenoh_bridge\nTest project /home/root/Workspace/S32G3_ZCU/build-zenoh_bridge\n    Start 1: zcu_health_policy_test\n1/3 Test #1: zcu_health_policy_test ...........   Passed    0.02 sec\n    Start 2: zcu_transport_test\n2/3 Test #2: zcu_transport_test ...............***Skipped   2.40 sec\n    Start 3: zcu_zenoh_keyexpr_test\n3/3 Test #3: zcu_zenoh_keyexpr_test ...........   Passed    0.01 sec\n\n100% tests passed, 0 tests failed out of 3\n\nTotal Test time (real) =   2.45 sec\n\nThe following tests did not run:\n\t  2 - zcu_transport_test (Skipped)\n",
+      "native_zenoh": "-- ZCU DDS backend: zenoh\n-- Configuring done\n-- Generating done\n-- Build files have been written to: /home/root/Workspace/S32G3_ZCU/build-zenoh\nConsolidate compiler generated dependencies of target zcu_health_node\nConsolidate compiler generated dependencies of target zcu\nmake[2]: Warning: File '../src/zcu_health_main.cpp' has modification time 6084028 s in the future\nmake[2]: Warning: File '../src/main.cpp' has modification time 7395736 s in the future\n[  2%] Building CXX object CMakeFiles/zcu_health_node.dir/src/zcu_health_main.cpp.o\n[  5%] Building CXX object CMakeFiles/zcu.dir/src/main.cpp.o\n[  8%] Building CXX object CMakeFiles/zcu_health_node.dir/src/health_module/zcu_health_node.cpp.o\n[ 11%] Building CXX object CMakeFiles/zcu.dir/src/health_state.cpp.o\n[ 14%] Building CXX object CMakeFiles/zcu.dir/src/backend/zenoh/transport.cpp.o\n[ 17%] Building CXX object CMakeFiles/zcu_health_node.dir/src/health_module/health_policy.cpp.o\n[ 20%] Building CXX object CMakeFiles/zcu.dir/src/backend/zenoh/ros_keyexpr.cpp.o\n[ 23%] Building CXX object CMakeFiles/zcu.dir/src/backend/zenoh/image_publisher.cpp.o\n[ 26%] Building CXX object CMakeFiles/zcu_health_node.dir/src/backend/zenoh/transport.cpp.o\n[ 29%] Building CXX object CMakeFiles/zcu.dir/src/backend/zenoh/motion_command_subscriber.cpp.o\n[ 32%] Building CXX object CMakeFiles/zcu_health_node.dir/src/backend/zenoh/ros_keyexpr.cpp.o\n[ 35%] Building CXX object CMakeFiles/zcu.dir/src/camera_module/camera_server.cpp.o\n[ 38%] Building CXX object CMakeFiles/zcu_health_node.dir/src/backend/zenoh/diagnostic_publisher.cpp.o\n[ 41%] Building CXX object CMakeFiles/zcu.dir/src/control_module/control_subscriber.cpp.o\n[ 44%] Building C object CMakeFiles/zcu.dir/src/control_module/s32g3_skku_can_setting.c.o\n[ 47%] Linking CXX executable zcu\nmake[2]: warning:  Clock skew detected.  Your build may be incomplete.\n[ 52%] Built target zcu\n[ 55%] Building CXX object CMakeFiles/zcu_health_node.dir/src/backend/zenoh/graph_probe.cpp.o\nConsolidate compiler generated dependencies of target zcu_health_policy_test\nmake[2]: Warning: File '../test/health_policy_test.cpp' has modification time 6085298 s in the future\n[ 58%] Building CXX object CMakeFiles/zcu_health_policy_test.dir/test/health_policy_test.cpp.o\n[ 61%] Building CXX object CMakeFiles/zcu_health_policy_test.dir/src/health_module/health_policy.cpp.o\n[ 64%] Building CXX object CMakeFiles/zcu_health_node.dir/src/common/diagnostic_cdr.cpp.o\n[ 67%] Linking CXX executable zcu_health_node\nmake[2]: warning:  Clock skew detected.  Your build may be incomplete.\n[ 70%] Built target zcu_health_node\nConsolidate compiler generated dependencies of target zcu_transport_test\nmake[2]: Warning: File '../test/transport_test.cpp' has modification time 7314626 s in the future\n[ 73%] Building CXX object CMakeFiles/zcu_transport_test.dir/test/transport_test.cpp.o\n[ 76%] Building CXX object CMakeFiles/zcu_transport_test.dir/src/backend/zenoh/transport.cpp.o\n[ 79%] Linking CXX executable zcu_health_policy_test\nmake[2]: warning:  Clock skew detected.  Your build may be incomplete.\n[ 79%] Built target zcu_health_policy_test\nConsolidate compiler generated dependencies of target zcu_zenoh_keyexpr_test\nmake[2]: Warning: File '../test/zenoh_keyexpr_test.cpp' has modification time 8481583 s in the future\n[ 82%] Building CXX object CMakeFiles/zcu_zenoh_keyexpr_test.dir/test/zenoh_keyexpr_test.cpp.o\n[ 85%] Building CXX object CMakeFiles/zcu_zenoh_keyexpr_test.dir/src/backend/zenoh/ros_keyexpr.cpp.o\n[ 88%] Linking CXX executable zcu_zenoh_keyexpr_test\n[ 91%] Building CXX object CMakeFiles/zcu_transport_test.dir/src/backend/zenoh/ros_keyexpr.cpp.o\nmake[2]: warning:  Clock skew detected.  Your build may be incomplete.\n[ 91%] Built target zcu_zenoh_keyexpr_test\n[ 94%] Building CXX object CMakeFiles/zcu_transport_test.dir/src/backend/zenoh/graph_probe.cpp.o\n[ 97%] Linking CXX executable zcu_transport_test\nmake[2]: warning:  Clock skew detected.  Your build may be incomplete.\n[100%] Built target zcu_transport_test\nInternal ctest changing into directory: /home/root/Workspace/S32G3_ZCU/build-zenoh\nTest project /home/root/Workspace/S32G3_ZCU/build-zenoh\n    Start 1: zcu_health_policy_test\n1/3 Test #1: zcu_health_policy_test ...........   Passed    0.02 sec\n    Start 2: zcu_transport_test\n2/3 Test #2: zcu_transport_test ...............***Skipped   2.02 sec\n    Start 3: zcu_zenoh_keyexpr_test\n3/3 Test #3: zcu_zenoh_keyexpr_test ...........   Passed    0.01 sec\n\n100% tests passed, 0 tests failed out of 3\n\nTotal Test time (real) =   2.05 sec\n\nThe following tests did not run:\n\t  2 - zcu_transport_test (Skipped)\n"
+    }
+  },
+  "pytest": {
+    "passed": 89,
+    "exit_code": 0,
+    "command": "QT_QPA_PLATFORM=offscreen /usr/bin/python3 -m pytest -q src/launch_pkg/test src/autosdv_gui_pkg/test network_qos/test_autosdv_dscp_qos.py"
+  },
+  "harness_sha256": {
+    "bridge-gui-validation.py": "ac8ab60d8417e4185c5fbd04971adfd464599f6b458fc816dfb7cbe46539b16a",
+    "bridge-final-check.py": "20b4e9d3bcb1f9107b6e4bcecf12163bec03a7fba3ac56a42a966a5d1082d932",
+    "bridge-wire-check.py": "eecbcc24e6efcfd31ee1ee5689aec767dd5b61a0f9b9ff57b1186a8952499609",
+    "bridge-negative-check.py": "8d9c1a5bef4c19091e95d8b661820f30a2b599b8a5351ff5644f1bb8d54703ef",
+    "bridge-negative-pub.c": "d9167ed34877fd322d496c8dce3e0357d552fccd0a92fad817c6c647d883b2b3",
+    "bridge-probe-check.cpp": "3f3af93ec87bf21ffd86b2ad511a49999c2c1afe1ff23e1a7495b1b69276c596"
+  },
+  "notes": [
+    "No driving activation or latency measurements. Existing image settings retained.",
+    "ModeDialog and fresh GUI process verified separately; automatic main exec + full node restore not end-to-end tested.",
+    "First final_data serialization failed on byte-valued DiagnosticStatus.level; harness normalized to integer and rerun.",
+    "After final mode reapply with GUI/control nodes closed, camera and health delivery passed; existing health policy reported CAN RX activity not observed (ERROR) on all four zones. During GUI operation all components healthy was observed."
+  ]
+}

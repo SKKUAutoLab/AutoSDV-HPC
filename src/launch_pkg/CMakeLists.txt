@@ -14,6 +14,9 @@ find_package(ament_cmake_python REQUIRED)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
+  find_package(ament_cmake_pytest REQUIRED)
+  ament_add_pytest_test(communication_mode test/test_communication_mode.py
+    APPEND_ENV PYTHONPATH=${CMAKE_CURRENT_SOURCE_DIR})
   # the following line skips the linter which checks for copyrights
   # comment the line when a copyright and license is added to all source files
   set(ament_cmake_copyright_FOUND TRUE)
@@ -38,6 +41,9 @@ install(
     "${CMAKE_CURRENT_SOURCE_DIR}/../../cyclonedds_ivn.xml"
     "${CMAKE_CURRENT_SOURCE_DIR}/../../zenoh_session_ivn.json5"
     "${CMAKE_CURRENT_SOURCE_DIR}/../../zenoh_router_ivn.json5"
+    "${CMAKE_CURRENT_SOURCE_DIR}/../../cyclonedds_bridge_local.xml"
+    "${CMAKE_CURRENT_SOURCE_DIR}/../../zenoh_bridge_camera_ivn.json5"
+    "${CMAKE_CURRENT_SOURCE_DIR}/../../zenoh_bridge_control_ivn.json5"
   DESTINATION share/${PROJECT_NAME}/config
 )
 

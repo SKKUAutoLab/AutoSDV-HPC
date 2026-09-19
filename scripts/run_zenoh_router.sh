@@ -9,11 +9,15 @@
 # See AutoSDV-HPC/zenoh_router_ivn.json5 for the full config.
 set -euo pipefail
 
+# The ROS setup scripts read AMENT_TRACE_SETUP_FILES unguarded, which aborts
+# under `set -u`, so nounset is lifted only across the sourcing.
+set +u
 source /opt/ros/jazzy/setup.bash
 WORKSPACE="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 if [ -f "$WORKSPACE/install/local_setup.bash" ]; then
     source "$WORKSPACE/install/local_setup.bash"
 fi
+set -u
 
 CONFIG="${ZENOH_ROUTER_CONFIG_URI:-$WORKSPACE/zenoh_router_ivn.json5}"
 if [ ! -f "$CONFIG" ]; then

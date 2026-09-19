@@ -1,5 +1,6 @@
 """Manual drive node with GUI and optional terminal input."""
 
+import math
 import os
 import select
 import signal
@@ -53,6 +54,11 @@ class DriveController:
         self._reverse = False
         self._left = False
         self._right = False
+        self._analog = False
+        self._throttle = 0.0
+        self._brake = 0.0
+        self._steering_position = False
+        self._steering_target = 0.0
         self._terminal_drive_until = 0.0
         self._terminal_direction = 0
         self.steering = 0.0
@@ -65,9 +71,20 @@ class DriveController:
             self._reverse = bool(msg.reverse)
             self._left = bool(msg.steer_left)
             self._right = bool(msg.steer_right)
+            self._analog = bool(msg.analog)
+            self._throttle = max(0.0, min(1.0, float(msg.throttle)))
+            self._brake = max(0.0, min(1.0, float(msg.brake)))
+            self._steering_position = bool(msg.steering_position)
+            self._steering_target = (
+                max(-1.0, min(1.0, float(msg.steering))) * self.max_steering)
             if msg.reset:
                 self.steering = 0.0
-            if msg.emergency_stop:
+            invalid_axes = self._analog and not all(math.isfinite(value) for value in (
+                msg.throttle, msg.brake, msg.steering))
+            if msg.emergency_stop or invalid_axes:
+                self._forward = self._reverse = self._left = self._right = False
+                self._throttle = self._brake = self._steering_target = 0.0
+                self._terminal_drive_until = 0.0
                 self.steering = 0.0
                 self.speed = 0.0
 
@@ -121,7 +138,27 @@ class DriveController:
                 forward = self._terminal_direction > 0
                 reverse = self._terminal_direction < 0
 
-            if forward == reverse:
+            if gui_fresh and self._analog:
+                throttle, brake = self._throttle, self._brake
+                if throttle and brake:
+                    # Simultaneous triggers only brake; never reverse through zero.
+                    self.speed = _move_toward_zero(
+                        self.speed, self.deceleration_rate * brake * dt)
+                elif throttle or brake:
+                    direction = 1.0 if throttle else -1.0
+                    pressure = throttle or brake
+                    if self.speed * direction < 0.0:
+                        # Reach zero before entering the opposite direction on
+                        # the next tick with the trigger still held.
+                        self.speed = _move_toward_zero(
+                            self.speed, self.deceleration_rate * pressure * dt)
+                    else:
+                        self.speed += direction * self.acceleration_rate * pressure * dt
+                        self.speed = max(-self.max_speed, min(self.max_speed, self.speed))
+                else:
+                    self.speed = _move_toward_zero(
+                        self.speed, self.deceleration_rate * dt)
+            elif forward == reverse:
                 self.speed = _move_toward_zero(
                     self.speed, self.deceleration_rate * dt)
             elif forward:
@@ -131,7 +168,11 @@ class DriveController:
                 self.speed = max(
                     -self.max_speed, self.speed - self.acceleration_rate * dt)
 
-            if left != right:
+            if gui_fresh and self._analog and self._steering_position:
+                error = self._steering_target - self.steering
+                step = self.steering_rate * dt
+                self.steering += max(-step, min(step, error))
+            elif left != right:
                 direction = -1.0 if left else 1.0
                 self.steering += direction * self.steering_rate * dt
                 self.steering = max(

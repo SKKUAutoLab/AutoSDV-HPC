@@ -76,3 +76,9 @@ Thumbs.db
 *.local.xml
 .env
 .env.local
+
+# zenoh-bridge-ros2dds binary, fetched by scripts/install_zenoh_bridge.sh
+tools/
+
+# Local credentials (e.g. autosdv-hpc.env), never committed
+*.env

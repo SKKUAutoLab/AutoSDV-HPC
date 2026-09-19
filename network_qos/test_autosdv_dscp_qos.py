@@ -86,6 +86,15 @@ def test_zenoh_ruleset_matches_the_router_control_port():
     assert str(qos.ZENOH_CAMERA_PORT) not in ruleset
 
 
+def test_zenoh_bridge_takes_the_same_rule_as_native_zenoh():
+    # The bridge environment keeps DDS on loopback and puts the same two
+    # listening ports on the wire, so the classification is identical and the
+    # two environments stay comparable.
+    assert (
+        qos.render_ruleset("enp4s0", ("10.0.0.5",), 0, 119, qos.ZENOH_BRIDGE)
+        == qos.render_ruleset("enp4s0", ("10.0.0.5",), 0, 119, qos.ZENOH))
+
+
 def test_rtps_rulesets_are_unchanged_for_both_dds_middlewares():
     fastdds = qos.render_ruleset(
         "enp4s0", ("10.0.0.5",), 0, 119, qos.FASTDDS)
