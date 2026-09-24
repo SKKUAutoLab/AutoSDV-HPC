@@ -6,9 +6,8 @@
 # host that touch the wired IVN.  Nothing reaches a ZCU until they are running,
 # the same way the native zenoh environment needs scripts/run_zenoh_router.sh.
 #
-# One bridge per flow, so each flow is its own zenoh session and therefore its
-# own 5-tuple for tc and for the switch:
-#   camera   7447   /image_01_raw .. /image_05_raw
+# One camera bridge serves five camera sessions, each with its own 5-tuple:
+#   camera   17451/17453/17455/17457/17459   /image_01_raw .. /image_05_raw
 #   control  7448   /topic_control_signal, /topic_status_signal, /ivn/zcu_health
 #
 # usage: run_zenoh_bridge.sh [camera|control|all]      (default: all)

@@ -82,8 +82,8 @@ def test_zenoh_ruleset_matches_the_router_control_port():
     assert f"th sport {qos.ZENOH_CONTROL_PORT}" in ruleset
     assert "ip dscp set cs6" in ruleset
     assert "ip dscp set cs1" in ruleset
-    # The camera port must not be marked CS6; it is CS5 at the ZCU already.
-    assert str(qos.ZENOH_CAMERA_PORT) not in ruleset
+    # Camera ports must not be marked CS6; they are CS5 at the ZCUs already.
+    assert all(str(port) not in ruleset for port in (17451, 17453, 17455, 17457, 17459))
 
 
 def test_zenoh_bridge_takes_the_same_rule_as_native_zenoh():

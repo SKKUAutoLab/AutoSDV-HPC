@@ -19,15 +19,16 @@ Zenoh is different in kind.  Every HPC node reaches a ZCU through the zenohd
 router, so nothing a ZCU receives originates from the safety supervisor's own
 socket and the procfs tracking has nothing to attach to.  What is left to match
 on is the router's listening port, which is per flow rather than per node:
-7447 carries camera images and 7448 carries control together with health.
+17451/17453/17455/17457/17459 carry individual cameras and 7448 carries control
+together with health.
 --middleware zenoh therefore marks CS6 on egress from the control port, which
 is wider than the Fast DDS rule -- it covers health diagnostics as well.  Give
 the safety supervisor its own router port if the experiment needs them apart.
 
 --middleware zenoh_bridge is the zenoh-DDS bridge environment and takes the
 same rule.  Its DDS traffic never leaves the loopback interface, and its two
-zenoh-bridge-ros2dds processes listen on the same 7447/7448 split as the
-router, so the port the flow is classified by is unchanged.
+zenoh-bridge-ros2dds processes listen on the same camera/control ports as the
+router, so the control port the flow is classified by is unchanged.
 """
 
 from __future__ import annotations
@@ -70,9 +71,8 @@ MIDDLEWARES = (FASTDDS, CYCLONEDDS, ZENOH, ZENOH_BRIDGE)
 # than by the safety supervisor's own ephemeral source port.
 PORT_CLASSIFIED = (ZENOH, ZENOH_BRIDGE)
 
-# Router ports from AutoSDV-HPC/zenoh_router_ivn.json5; the bridges in
-# zenoh_bridge_{camera,control}_ivn.json5 listen on the same two.
-ZENOH_CAMERA_PORT = 7447
+# Router control port from AutoSDV-HPC/zenoh_router_ivn.json5; the control
+# bridge listens on the same port.
 ZENOH_CONTROL_PORT = 7448
 
 _INTERFACE_RE = re.compile(r"^[A-Za-z0-9_.:-]+$")

@@ -84,8 +84,9 @@ profiles. Wired CycloneDDS profiles explicitly disable multicast and include the
 address as a discovery peer, so both ZCU traffic and local GUI/processing
 traffic use unicast. Generic HPC nodes use automatic participant indices 0–19;
 camera nodes keep indices 20–24. This first controller fixes IVN addresses to 10.0.0.10 and .2–.5,
-ROS domain to 0, and ZCU UDP camera/control endpoints to 7447/7448, matching the
-current builds. It is not a multi-domain or alternative-topology selector.
+ROS domain to 0, ZCU UDP camera endpoints to 17451/17453/17455/17457/17459,
+and the control endpoint to 7448, matching the current builds. It is not a
+multi-domain or alternative-topology selector.
 
 HPC owns nftables through the communication service. Legacy autosdv-dscp-qos
 is stopped during switching. ZCU retires legacy camera DSCP units, removes only

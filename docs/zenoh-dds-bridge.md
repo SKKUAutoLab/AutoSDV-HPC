@@ -23,7 +23,7 @@ ZCU (순수 zenoh 클라이언트)  ──zenoh/IVN──▶  HPC: zenoh-bridge-
 | Zenoh | rmw_zenoh, 라우터 경유 | zenoh | zenoh 백엔드 (rmw_zenoh 규약) |
 | **Zenoh-DDS Bridge** | **rmw_cyclonedds, 127.0.0.1** | **zenoh** | **zenoh 백엔드 (ros2dds 규약)** |
 
-세 환경 모두 ZCU 쪽 전송 설정(client 모드, 10.0.0.10의 7447/7448, `#dscp`)은
+세 환경 모두 ZCU 쪽 전송 설정(client 모드, 10.0.0.10의 카메라별 17451~17459 및 제어 7448, `#dscp`)은
 같은 모양이고, 바뀌는 건 keyexpr과 프레이밍뿐이다.
 
 ---
@@ -50,7 +50,7 @@ payload  = DDS 직렬화 샘플 = 캡슐화된 CDR        ZCU가 지금 만드�
 | attachment | (seq, source_timestamp, gid) **필수** | **없음** — payload만 |
 | liveliness | `@ros2_lv/...` 토큰 필수 | ros2dds MP 토큰 사용 (§1.1) |
 | payload | 캡슐화 XCDRv1 | 그대로 |
-| 세션 설정 | client, 7447/7448, `#dscp` | 그대로 |
+| 세션 설정 | client, 카메라별 17451~17459/제어 7448, `#dscp` | 그대로 |
 
 CDR payload와 Zenoh 세션은 재사용한다. 타입 해시는 data key 대신 광고 토큰의
 USER_DATA로 전달하며, 광고 형식은 ros2dds 1.10.0에 맞춰 검증한다.
@@ -87,7 +87,7 @@ ZCU 원래 노드 이름을 복원하는 기능은 아니며 DDS endpoint는 HPC
 | 파일 | 역할 |
 | --- | --- |
 | `cyclonedds_bridge_local.xml` | HPC 노드와 브릿지가 공유하는 loopback 전용 DDS 프로파일 |
-| `zenoh_bridge_camera_ivn.json5` | 카메라 브릿지 (7447) |
+| `zenoh_bridge_camera_ivn.json5` | 카메라 브릿지 (UDP 17451/17453/17455/17457/17459) |
 | `zenoh_bridge_control_ivn.json5` | 제어 브릿지 (7448) |
 | `scripts/install_zenoh_bridge.sh` | 브릿지 바이너리 내려받기 |
 | `scripts/run_zenoh_bridge.sh` | 브릿지 기동 (`camera` / `control` / `all`) |
@@ -231,7 +231,7 @@ rmw_zenoh attachment와 토큰은 발행하지 않고 ros2dds MP 토큰을 발�
 
 Health는 fresh producer hook을 사용한다. ZCU의 GraphProbe는 HPC의 DDS discovery를 조회하지 않으므로
 ZCU Health 값의 `publisher_discovered=false`가 정상이며 `publisher_configured`와 프레임 신선도로
-판정한다. 선택 기능인 `monitor_camera_payload=true`는 별도 카메라 세션(7447)을
+판정한다. 선택 기능인 `monitor_camera_payload=true`는 카메라별 별도 세션(17451~17459)을
 필요할 때만 열어 직접 샘플을 센다. 기본값에서는 추가 이미지 구독을 만들지 않는다.
 
 HPC allow 목록은 로컬 DDS endpoint 기준으로 카메라 bridge는 이미지 구독자만,

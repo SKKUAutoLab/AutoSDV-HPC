@@ -1,7 +1,7 @@
 // HPC-side zenoh-bridge-ros2dds for the control flow (AUTOSDV_RMW=zenoh_bridge).
 //
 // The second half of environment 3; see zenoh_bridge_camera_ivn.json5 for the
-// topology and for why the two flows are separate bridges rather than one.
+// topology and the per-camera ports on the other bridge.
 // This one carries everything that is not a camera image:
 //   /topic_control_signal   HPC -> ZCU   motion command
 //   /topic_status_signal    reserved; legacy feedback is disabled

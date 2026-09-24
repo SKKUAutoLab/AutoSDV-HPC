@@ -9,8 +9,8 @@
 // whose pool exceeds the host's memlock limit and aborts every node with
 //   Failed to create POSIX SHM provider (OS error 12).
 //
-// Port 7447 carries camera images and 7448 everything else; see
-// zenoh_router_ivn.json5 for why the two are separate.
+// This generic HPC node connects on 7447. ZCU camera sessions connect on
+// 17451/17453/17455/17457/17459; ZCU control and health use 7448.
 /// This file attempts to list and document available configuration elements.
 /// For a more complete view of the configuration's structure, check out `zenoh/src/config.rs`'s `Config` structure.
 /// Note that the values here are correctly typed, but may not be sensible, so copying this file to change only the parts that matter to you is not good practice.

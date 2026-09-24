@@ -12,6 +12,11 @@ import sys
 import time
 
 MODES = ('cyclonedds', 'zenoh', 'zenoh_bridge', 'zenoh_bridge_pico')
+CYCLONE_CAMERA_PORTS_BY_ZONE = {'zone_1': [7451, 7453], 'zone_2': [7455],
+                                'zone_3': [7457], 'zone_4': [7459]}
+ZENOH_CAMERA_PORTS_BY_ZONE = {'zone_1': [17451, 17453], 'zone_2': [17455],
+                              'zone_3': [17457], 'zone_4': [17459]}
+ZENOH_UDP_PORTS = (7447, 7448, 17451, 17453, 17455, 17457, 17459)
 CONFIG = Path('/etc/autosdv/communication-host.json')
 STATE = Path('/var/lib/autosdv/communication-mode.json')
 RUNTIME = Path('/run/autosdv-communication-mode')
@@ -168,8 +173,8 @@ def qos(config, mode):
         run('/sbin/tc', 'filter', 'del', 'dev', 'pfe0', 'egress', 'protocol',
             'ip', 'pref', str(pref), check=False)
     zone = (root / '.zone').read_text().strip()
-    ports = {'zone_1': [7451, 7453], 'zone_2': [7455],
-             'zone_3': [7457], 'zone_4': [7459]}[zone] if mode == 'cyclonedds' else [7447]
+    ports = (CYCLONE_CAMERA_PORTS_BY_ZONE if mode == 'cyclonedds'
+             else ZENOH_CAMERA_PORTS_BY_ZONE)[zone]
     for index, port in enumerate(ports, 101):
         run('/sbin/tc', 'filter', 'replace', 'dev', 'pfe0', 'egress', 'protocol',
             'ip', 'pref', str(index), 'flower', 'ip_proto', 'udp',
@@ -237,8 +242,8 @@ def verify(config, mode):
                 raise RuntimeError(f'{unit}: running binary does not match {mode}')
     elif mode != 'cyclonedds':
         sockets = run('ss', '-H', '-lun')
-        if not all(f':{port} ' in sockets for port in (7447, 7448)):
-            raise RuntimeError('Zenoh UDP listeners not ready on 7447/7448')
+        if not all(f':{port} ' in sockets for port in ZENOH_UDP_PORTS):
+            raise RuntimeError('Zenoh UDP listeners not ready on all camera/control ports')
     return {'mode': mode, 'processes_verified': True,
             'data_path_verified': False}
 

@@ -2,14 +2,14 @@
 // /opt/ros/jazzy/share/rmw_zenoh_cpp/config/DEFAULT_RMW_ZENOH_ROUTER_CONFIG.json5
 // with one change: the listen endpoints.
 //
-// The ZCU opens two sessions, one per flow, because a zenoh session is a single
-// link with a single 5-tuple - camera and control multiplexed onto one session
-// cannot be told apart by any header a switch or tc rule can see. Two listen
-// ports give them separate links:
-//   7447  camera images  (the ZCU marks this link CS5 via #dscp on its endpoint)
+// The ZCU opens one session per camera plus one for control. Each camera uses
+// a dedicated destination port outside the local DDS participant range,
+// giving the switch a stable per-camera 5-tuple:
+//   17451/17453/17455/17457/17459  image_01..05 (ZCU sends CS5)
+//   7447  legacy/local Zenoh clients
 //   7448  control, health and everything else
-// udp/ is offered alongside tcp/ on both ports so the ZCU can use a datagram
-// link, which is the closer comparison against the RTPS backends. The ZCU
+// udp/ is offered alongside tcp/ on the original ports; cameras use UDP.
+// The datagram link is the closer comparison against the RTPS backends. The ZCU
 // connects as a client rather than a peer: a peer joined to a router does not
 // receive other peers' liveliness declarations, so it would publish fine but
 // never appear in the ROS graph.
@@ -106,10 +106,14 @@
     ///
     /// See https://docs.rs/zenoh/latest/zenoh/config/struct.EndPoint.html
     endpoints: [
-      // Camera flow. The ZCU camera session connects here, which is what makes
-      // it separable from control traffic by destination port for DSCP.
+      // Legacy/local clients and one UDP listener per camera stream.
       "tcp/[::]:7447",
       "udp/[::]:7447",
+      "udp/10.0.0.10:17451",
+      "udp/10.0.0.10:17453",
+      "udp/10.0.0.10:17455",
+      "udp/10.0.0.10:17457",
+      "udp/10.0.0.10:17459",
       // Control, health and everything else.
       "tcp/[::]:7448",
       "udp/[::]:7448"

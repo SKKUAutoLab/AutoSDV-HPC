@@ -143,6 +143,24 @@ def test_hpc_qos_rejects_missing_ivn_address(host_adapter, monkeypatch):
         host_adapter.qos({'role': 'hpc', 'workspace': '/tmp/hpc'}, 'cyclonedds')
 
 
+@pytest.mark.parametrize('mode,zone,expected', [
+    ('cyclonedds', 'zone_1', ['7451', '7453']),
+    ('zenoh', 'zone_1', ['17451', '17453']),
+    ('zenoh', 'zone_2', ['17455']),
+    ('zenoh', 'zone_3', ['17457']),
+    ('zenoh', 'zone_4', ['17459']),
+    ('zenoh_bridge', 'zone_1', ['17451', '17453']),
+    ('zenoh_bridge_pico', 'zone_1', ['17451', '17453']),
+])
+def test_zcu_camera_dscp_ports_follow_middleware(host_adapter, monkeypatch, tmp_path,
+                                                 mode, zone, expected):
+    (tmp_path / '.zone').write_text(zone)
+    calls = []
+    monkeypatch.setattr(host_adapter, 'run', lambda *args, **kwargs: calls.append(args) or '')
+    host_adapter.qos({'role': 'zcu', 'workspace': str(tmp_path)}, mode)
+    assert [args[args.index('dst_port') + 1] for args in calls if 'dst_port' in args] == expected
+
+
 def test_wired_cyclone_profiles_use_unicast():
     import xml.etree.ElementTree as ET
     root = Path(__file__).resolve().parents[3]

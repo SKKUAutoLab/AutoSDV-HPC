@@ -11,12 +11,11 @@
 // leading '/', payload = the encapsulated CDR it already produces.  See
 // docs/zenoh-dds-bridge.md and docs/examples/zcu_zenoh_client.c.
 //
-// Flow separation mirrors the native zenoh environment, where the router
-// listens on 7447 for camera images and 7448 for control and health.  One
-// zenoh session is one link is one 5-tuple, so a single bridge carrying both
-// flows would be indistinguishable to tc and to the SJA1110.  Hence two
-// bridges, each with a disjoint allow list, and two sessions on the ZCU.
-//   7447  camera images        <- this file
+// Flow separation mirrors the native zenoh environment. Each camera has a
+// separate ZCU session and UDP destination port, while this one bridge process
+// serves all five camera links with its existing camera-only allow list.
+//   17451/17453/17455/17457/17459  image_01..05  <- this file
+//   7447  legacy/local clients
 //   7448  control, health
 //
 // The bridge is not a ROS node process; it is configured entirely from here
@@ -58,6 +57,11 @@
     endpoints: [
       "tcp/0.0.0.0:7447",
       "udp/0.0.0.0:7447",
+      "udp/10.0.0.10:17451",
+      "udp/10.0.0.10:17453",
+      "udp/10.0.0.10:17455",
+      "udp/10.0.0.10:17457",
+      "udp/10.0.0.10:17459",
     ],
   },
 

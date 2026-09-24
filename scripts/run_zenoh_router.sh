@@ -2,9 +2,9 @@
 # Starts the Zenoh router for the wired IVN.
 #
 # rmw_zenoh disables multicast discovery, so with AUTOSDV_RMW=zenoh nothing
-# finds anything until this is running. It listens on two ports so the ZCU can
-# keep its camera and control flows on separate links:
-#   7447  camera images
+# finds anything until this is running. Each camera has its own UDP endpoint:
+#   17451/17453/17455/17457/17459  image_01..05
+#   7447  legacy/local clients
 #   7448  control, health and everything else
 # See AutoSDV-HPC/zenoh_router_ivn.json5 for the full config.
 set -euo pipefail
