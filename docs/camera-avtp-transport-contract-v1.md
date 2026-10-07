@@ -41,7 +41,7 @@ flowchart LR
 | [ZCU zcu_health_node.cpp](../../S32G3_ZCU/src/health_module/zcu_health_node.cpp) | 이미지 publisher 발견 및 입력 활동으로 상태 판단 | AVTP 모드에서는 입력·구독·송신을 별도 판단 |
 | [HPC JPEG 디코더](../src/camera_perception_pkg/camera_perception_pkg/ethernet_image_publisher_node.py) | `/image_0N_raw`의 JPEG를 디코딩해 `/image_0N` 발행 | AVTP 수신기가 기존 JPEG 입력 계약으로 연결 |
 | [통신 모드 관리자](../src/launch_pkg/launch_pkg/communication_mode.py) | HPC/ZCU 미들웨어 모드 전환 | 이미지 전송 설정 검증, 전환 시 기존 구독 해제 및 재설정 |
-| [Zenoh 카메라 브리지](../zenoh_bridge_camera_ivn.json5) | 이미지 경로를 7447에 연결 | 이미지 본문 전달만 차단하고 필요한 discovery·구독 정보 유지; 상태는 기존 제어 경로 사용 |
+| [Zenoh 카메라 브리지](../config/zenoh/zenoh_bridge_camera_ivn.json5) | 이미지 경로를 7447에 연결 | 이미지 본문 전달만 차단하고 필요한 discovery·구독 정보 유지; 상태는 기존 제어 경로 사용 |
 
 이 문서 기준으로 소스만 조사했다. 실행 중인 장비·스위치 설정은 조회하거나 변경하지 않았다.
 

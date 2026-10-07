@@ -1,6 +1,7 @@
 import os
 import threading
 from types import SimpleNamespace
+from unittest.mock import Mock
 
 from diagnostic_msgs.msg import DiagnosticStatus
 import pytest
@@ -202,6 +203,115 @@ def test_supervisor_does_not_timeout_selected_control_command():
         SafetySupervisorNode._control_tick(supervisor)
 
         assert publisher.messages == [command]
+
+
+@pytest.mark.parametrize('node_id,starts', [
+    ('drive', True), ('motion_planner', False),
+])
+def test_start_with_zcus_offline(node_id, starts):
+    window = SimpleNamespace(
+        _cancel_estop_resume=Mock(),
+        manager=SimpleNamespace(
+            is_running=Mock(return_value=False),
+            start=Mock(return_value=(True, '')),
+        ),
+        ros=SimpleNamespace(safety_supervisor_count=lambda: 1),
+        latest_safety=SimpleNamespace(
+            emergency_stop=False, zcu_connected=[False] * 4),
+        _show_error=Mock(),
+    )
+    MainWindow._start_node(window, node_id)
+    assert window.manager.start.called is starts
+    assert window._show_error.called is not starts
+
+
+@pytest.mark.parametrize('connected', [
+    [False] * 4, [True, False, True, True], [True] * 4,
+])
+@pytest.mark.parametrize('source,armed,estop', [
+    ('manual', True, False), ('auto', True, False),
+    ('manual', True, True), ('manual', False, False),
+])
+def test_supervisor_zcu_gate_and_emergency_stop(connected, source, armed, estop):
+    command = MotionCommand(steering=3, left_speed=77, right_speed=77)
+    supervisor = SimpleNamespace(
+        _lock=threading.Lock(), _requested_source=source, _gui_armed=armed,
+        _commands={source: command}, _estop_latched=estop,
+        _stop_ticks_remaining=0,
+        _zcu_connected=connected, zcu_ips=['z1', 'z2', 'z3', 'z4'],
+        output_pub=Mock(), _latch_estop=Mock(),
+        _zero_command=SafetySupervisorNode._zero_command,
+    )
+    SafetySupervisorNode._control_tick(supervisor)
+    zcu_fault = armed and source == 'auto' and not all(connected)
+    expected = command if armed and not estop and not zcu_fault else MotionCommand()
+    if armed or estop:
+        supervisor.output_pub.publish.assert_called_once_with(expected)
+    else:
+        supervisor.output_pub.publish.assert_not_called()
+    assert supervisor._latch_estop.called is zcu_fault
+
+
+@pytest.mark.parametrize('source', ['manual', 'auto'])
+def test_supervisor_stop_burst_then_silence_and_restart(source):
+    command = MotionCommand(steering=3, left_speed=77, right_speed=77)
+    supervisor = SimpleNamespace(
+        _lock=threading.Lock(), _requested_source='none', _gui_armed=False,
+        _commands={source: command}, _estop_latched=False,
+        _stop_ticks_remaining=0, _zcu_connected=[True] * 4,
+        output_pub=Mock(), _zero_command=SafetySupervisorNode._zero_command,
+    )
+    SafetySupervisorNode._control_tick(supervisor)
+    supervisor.output_pub.publish.assert_not_called()
+
+    supervisor._requested_source = source
+    supervisor._gui_armed = True
+    SafetySupervisorNode._control_tick(supervisor)
+    supervisor.output_pub.publish.assert_called_once_with(command)
+    supervisor.output_pub.reset_mock()
+
+    supervisor._requested_source = 'none'
+    supervisor._gui_armed = False
+    for _ in range(25):
+        SafetySupervisorNode._control_tick(supervisor)
+    assert supervisor.output_pub.publish.call_count == 5
+    assert all(call.args == (MotionCommand(),)
+               for call in supervisor.output_pub.publish.call_args_list)
+
+    supervisor.output_pub.reset_mock()
+    supervisor._requested_source = source
+    supervisor._gui_armed = True
+    SafetySupervisorNode._control_tick(supervisor)
+    supervisor.output_pub.publish.assert_called_once_with(command)
+
+
+def test_supervisor_estop_keeps_publishing_zero_while_disarmed():
+    supervisor = SimpleNamespace(
+        _lock=threading.Lock(), _requested_source='none', _gui_armed=False,
+        _commands={}, _estop_latched=True, _stop_ticks_remaining=0,
+        output_pub=Mock(), _zero_command=SafetySupervisorNode._zero_command,
+    )
+    for _ in range(10):
+        SafetySupervisorNode._control_tick(supervisor)
+    assert supervisor.output_pub.publish.call_count == 10
+    assert all(call.args == (MotionCommand(),)
+               for call in supervisor.output_pub.publish.call_args_list)
+
+
+@pytest.mark.parametrize('source,armed,can_reset', [
+    ('none', False, True), ('manual', True, False),
+    ('auto', True, False), ('none', True, False), ('manual', False, False),
+])
+def test_reset_with_zcus_offline_requires_stopped_source(source, armed, can_reset):
+    supervisor = SimpleNamespace(
+        _lock=threading.Lock(), _requested_source=source, _gui_armed=armed,
+        _zcu_connected=[False] * 4,
+        _estop_latched=True, _estop_reason='Emergency stop requested by GUI',
+    )
+    response = SafetySupervisorNode._reset_service(
+        supervisor, None, SimpleNamespace())
+    assert response.success is can_reset
+    assert supervisor._estop_latched is not can_reset
 
 
 def test_exit_button_requires_confirmation(monkeypatch):

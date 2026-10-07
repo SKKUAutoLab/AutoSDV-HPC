@@ -37,13 +37,13 @@ install(
 
 install(
   FILES
-    "${CMAKE_CURRENT_SOURCE_DIR}/../../fastdds_whitelist.xml"
-    "${CMAKE_CURRENT_SOURCE_DIR}/../../cyclonedds_ivn.xml"
-    "${CMAKE_CURRENT_SOURCE_DIR}/../../zenoh_session_ivn.json5"
-    "${CMAKE_CURRENT_SOURCE_DIR}/../../zenoh_router_ivn.json5"
-    "${CMAKE_CURRENT_SOURCE_DIR}/../../cyclonedds_bridge_local.xml"
-    "${CMAKE_CURRENT_SOURCE_DIR}/../../zenoh_bridge_camera_ivn.json5"
-    "${CMAKE_CURRENT_SOURCE_DIR}/../../zenoh_bridge_control_ivn.json5"
+    "${CMAKE_CURRENT_SOURCE_DIR}/../../config/dds/fastdds_whitelist.xml"
+    "${CMAKE_CURRENT_SOURCE_DIR}/../../config/dds/cyclonedds_ivn.xml"
+    "${CMAKE_CURRENT_SOURCE_DIR}/../../config/zenoh/zenoh_session_ivn.json5"
+    "${CMAKE_CURRENT_SOURCE_DIR}/../../config/zenoh/zenoh_router_ivn.json5"
+    "${CMAKE_CURRENT_SOURCE_DIR}/../../config/dds/cyclonedds_bridge_local.xml"
+    "${CMAKE_CURRENT_SOURCE_DIR}/../../config/zenoh/zenoh_bridge_camera_ivn.json5"
+    "${CMAKE_CURRENT_SOURCE_DIR}/../../config/zenoh/zenoh_bridge_control_ivn.json5"
   DESTINATION share/${PROJECT_NAME}/config
 )
 

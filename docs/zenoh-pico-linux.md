@@ -102,7 +102,7 @@ HPC 저장소에서 별도 터미널의 격리 bridge를 띄운다.
 ```sh
 source /opt/ros/jazzy/setup.bash
 source install/setup.bash
-ROS_DISTRO=jazzy CYCLONEDDS_URI="file://$PWD/cyclonedds_bridge_local.xml" \
+ROS_DISTRO=jazzy CYCLONEDDS_URI="file://$PWD/config/dds/cyclonedds_bridge_local.xml" \
   tools/zenoh-bridge-ros2dds/zenoh-bridge-ros2dds -c docs/examples/pico_interop.json5
 # 다른 터미널에서도 위 두 setup 파일을 source한 뒤
 python3 docs/examples/pico_interop.py

@@ -6,7 +6,7 @@ The test intentionally sends boundary-valued commands ONLY on that domain.
 import os,subprocess,time,json
 from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
-os.environ['RMW_IMPLEMENTATION']='rmw_cyclonedds_cpp';os.environ['ROS_DOMAIN_ID']='93';os.environ['CYCLONEDDS_URI']=(ROOT / 'cyclonedds_bridge_local.xml').as_uri()
+os.environ['RMW_IMPLEMENTATION']='rmw_cyclonedds_cpp';os.environ['ROS_DOMAIN_ID']='93';os.environ['CYCLONEDDS_URI']=(ROOT / 'config/dds/cyclonedds_bridge_local.xml').as_uri()
 os.environ['ROS_LOCALHOST_ONLY']='';os.environ['ROS_AUTOMATIC_DISCOVERY_RANGE']='SYSTEM_DEFAULT'
 import rclpy
 from sensor_msgs.msg import Image

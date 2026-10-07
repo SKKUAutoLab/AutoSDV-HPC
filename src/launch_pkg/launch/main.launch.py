@@ -2,8 +2,6 @@ import os
 
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
-from launch.actions import IncludeLaunchDescription
-from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch_ros.actions import Node
 from launch_pkg.rmw_profile import image_profile_env
 
@@ -12,12 +10,6 @@ from launch_pkg.rmw_profile import image_profile_env
 
 def generate_launch_description():
     launch_pkg_share = get_package_share_directory('launch_pkg')
-    bev_launch = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(
-            os.path.join(
-                get_package_share_directory('bev_perception_pkg'),
-                'launch', 'bev.launch.py')))
-
     return LaunchDescription([
         Node(
             package='camera_perception_pkg',
@@ -34,15 +26,6 @@ def generate_launch_description():
                     '/home/autolab/update/P2_log/hpc_image_receive_p2.csv'),
             }]  #카메라 추가되면 변경해야 함
         ),
-        # 아래 예시대로 사용해야 함.
-        # ex)
-        # Node(
-        #     package='camera_perception_pkg',
-        #     executable='image_publisher_node',
-        #     name='ethernet_image_publisher_node_2',  
-        #     output='screen',
-        #     parameters=[{'image_num': 'image_02'}]  
-        # ),
         # Node(
         #     package='camera_perception_pkg',
         #     executable='ethernet_image_publisher_node',
@@ -88,9 +71,6 @@ def generate_launch_description():
         #     }]
         # ),
 
-        # BEV/SVM perception (image_02..05 -> bev_surround)
-        ##bev_launch,
-
         ##Node(
         ##    package='camera_perception_pkg',
         ##    executable='yolov8_node',
@@ -112,12 +92,6 @@ def generate_launch_description():
         ##    output='screen',
         ##    parameters=[{'log_planning': True}]
         ##),
-        ## Node(
-        ##    package='serial_communication_pkg',
-        ##    executable='serial_sender_node',
-        ##    name='serial_sender_node',
-        ##    output='screen'
-        ## ),
         ##Node(
         ##    package='decision_making_pkg',
         ##    executable='motion_planner_node',

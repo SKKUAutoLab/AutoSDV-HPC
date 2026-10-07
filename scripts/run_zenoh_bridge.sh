@@ -35,11 +35,11 @@ export ROS_DISTRO="${ROS_DISTRO:-jazzy}"
 # Pointing it at the same loopback profile the nodes use is what keeps DDS off
 # enP2p1s0 -- without it the bridge would pick an interface automatically,
 # reach the ZCUs as plain RTPS, and the measurement would not be of a bridge.
-DDS_CONFIG="file://$WORKSPACE/cyclonedds_bridge_local.xml"
+DDS_CONFIG="file://$WORKSPACE/config/dds/cyclonedds_bridge_local.xml"
 export CYCLONEDDS_URI="$DDS_CONFIG"
 
 bridge_config() {
-    local config="$WORKSPACE/zenoh_bridge_${1}_ivn.json5"
+    local config="$WORKSPACE/config/zenoh/zenoh_bridge_${1}_ivn.json5"
     if [ ! -f "$config" ]; then
         echo "bridge config not found: $config" >&2
         exit 1

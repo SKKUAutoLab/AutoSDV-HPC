@@ -6,7 +6,7 @@
 #   17451/17453/17455/17457/17459  image_01..05
 #   7447  legacy/local clients
 #   7448  control, health and everything else
-# See AutoSDV-HPC/zenoh_router_ivn.json5 for the full config.
+# See AutoSDV-HPC/config/zenoh/zenoh_router_ivn.json5 for the full config.
 set -euo pipefail
 
 # The ROS setup scripts read AMENT_TRACE_SETUP_FILES unguarded, which aborts
@@ -19,7 +19,7 @@ if [ -f "$WORKSPACE/install/local_setup.bash" ]; then
 fi
 set -u
 
-CONFIG="${ZENOH_ROUTER_CONFIG_URI:-$WORKSPACE/zenoh_router_ivn.json5}"
+CONFIG="${ZENOH_ROUTER_CONFIG_URI:-$WORKSPACE/config/zenoh/zenoh_router_ivn.json5}"
 if [ ! -f "$CONFIG" ]; then
     echo "router config not found: $CONFIG" >&2
     exit 1

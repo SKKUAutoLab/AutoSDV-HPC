@@ -22,7 +22,6 @@ setup(
         'console_scripts': [
             'path_visualizer_node = debug_pkg.path_visualizer_node:main',	
             'yolov8_visualizer_node = debug_pkg.yolov8_visualizer_node:main',	
-            'image_saver_node = debug_pkg.image_saver_node:main'
         ],
     },
 )

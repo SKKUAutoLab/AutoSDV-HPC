@@ -9,6 +9,7 @@ log/
 # ament/colcon 부산물
 **/COLCON_IGNORE
 **/AMENT_IGNORE
+!archive/COLCON_IGNORE
 
 # =============================================================================
 # Python build artifacts (ros2 pkg가 setup.py 기반이라 src/ 안에도 생김)

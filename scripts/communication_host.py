@@ -91,10 +91,10 @@ def check(config, mode):
         run('bash', '-c', f'source /opt/ros/jazzy/setup.bash; ros2 pkg prefix {rmw}')
         required = ['install/local_setup.bash', 'network_qos/autosdv_dscp_qos.py']
         if mode == 'zenoh':
-            required += ['scripts/run_zenoh_router.sh', 'zenoh_router_ivn.json5']
+            required += ['scripts/run_zenoh_router.sh', 'config/zenoh/zenoh_router_ivn.json5']
         elif mode.startswith('zenoh_bridge'):
-            required += ['scripts/run_zenoh_bridge.sh', 'cyclonedds_bridge_local.xml',
-                         'zenoh_bridge_camera_ivn.json5', 'zenoh_bridge_control_ivn.json5',
+            required += ['scripts/run_zenoh_bridge.sh', 'config/dds/cyclonedds_bridge_local.xml',
+                         'config/zenoh/zenoh_bridge_camera_ivn.json5', 'config/zenoh/zenoh_bridge_control_ivn.json5',
                          'tools/zenoh-bridge-ros2dds/zenoh-bridge-ros2dds']
             version = run(str(root / required[-1]), '--version')
             if 'v1.10.0' not in version:

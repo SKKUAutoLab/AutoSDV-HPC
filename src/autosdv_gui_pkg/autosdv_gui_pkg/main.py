@@ -1285,7 +1285,8 @@ class MainWindow(QMainWindow):
             if self.latest_safety.emergency_stop:
                 self._show_error('Reset E-Stop before starting a control node')
                 return
-            if not all(self.latest_safety.zcu_connected):
+            if (node_id == 'motion_planner'
+                    and not all(self.latest_safety.zcu_connected)):
                 self._show_error('All four ZCUs must be connected before driving')
                 return
 

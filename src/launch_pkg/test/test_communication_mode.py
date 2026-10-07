@@ -164,7 +164,7 @@ def test_zcu_camera_dscp_ports_follow_middleware(host_adapter, monkeypatch, tmp_
 def test_wired_cyclone_profiles_use_unicast():
     import xml.etree.ElementTree as ET
     root = Path(__file__).resolve().parents[3]
-    files = [root / 'cyclonedds_ivn.xml'] + sorted(
+    files = [root / 'config/dds/cyclonedds_ivn.xml'] + sorted(
         (root / 'src/launch_pkg/config').glob('cyclonedds_image_*.xml'))
     assert len(files) == 6
     for path in files:

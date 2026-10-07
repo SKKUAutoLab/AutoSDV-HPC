@@ -25,10 +25,17 @@ workspace root from the installed package so that the existing
 - `R`: center steering without resetting speed
 - `Space`: latched emergency stop
 
-Manual Drive can start without camera or perception/planning nodes. Autonomous
-driving still requires its pipeline dependencies. Both modes require the Safety
-Supervisor, all four ZCUs reachable, and E-Stop reset.
+Manual Drive can start without camera or perception/planning nodes and publishes
+control commands even when some or all ZCUs are offline for experiments.
+Autonomous driving still requires its pipeline dependencies and all four ZCUs
+reachable. Both modes require the Safety Supervisor and E-Stop reset.
+E-Stop can be reset while the control source is stopped, even with ZCUs offline.
 Manual Drive and Motion Planner are mutually exclusive.
+
+On ordinary Stop, the Safety Supervisor sends five zero commands (about 250 ms
+at the default output period), then stops publishing `/topic_control_signal`.
+It also stays silent before driving starts. While E-Stop is latched, it continues
+publishing zero commands. Supervisor shutdown still sends its final stop burst.
 
 ### Xbox Controller
 
@@ -77,7 +84,7 @@ pressing Y (or GUI Reset E-Stop) automatically restarts that node after a
 successful reset. Release Y and all driving controls: restart waits for neutral
 input, GUI focus, node termination, completion of fallback stop commands, and
 the supervisor's cleared E-Stop status. Normal start checks still apply,
-including supervisor and ZCU connectivity checks. Failed reset requests do
+including the supervisor check. Failed reset requests do
 not restart the node. Y sends one reset request per press and requires no active
 control source. B takes priority over Y.
 

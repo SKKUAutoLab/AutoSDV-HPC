@@ -71,7 +71,7 @@ MIDDLEWARES = (FASTDDS, CYCLONEDDS, ZENOH, ZENOH_BRIDGE)
 # than by the safety supervisor's own ephemeral source port.
 PORT_CLASSIFIED = (ZENOH, ZENOH_BRIDGE)
 
-# Router control port from AutoSDV-HPC/zenoh_router_ivn.json5; the control
+# Router control port from AutoSDV-HPC/config/zenoh/zenoh_router_ivn.json5; the control
 # bridge listens on the same port.
 ZENOH_CONTROL_PORT = 7448
 

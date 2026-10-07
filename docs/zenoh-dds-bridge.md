@@ -86,9 +86,9 @@ ZCU 원래 노드 이름을 복원하는 기능은 아니며 DDS endpoint는 HPC
 
 | 파일 | 역할 |
 | --- | --- |
-| `cyclonedds_bridge_local.xml` | HPC 노드와 브릿지가 공유하는 loopback 전용 DDS 프로파일 |
-| `zenoh_bridge_camera_ivn.json5` | 카메라 브릿지 (UDP 17451/17453/17455/17457/17459) |
-| `zenoh_bridge_control_ivn.json5` | 제어 브릿지 (7448) |
+| `config/dds/cyclonedds_bridge_local.xml` | HPC 노드와 브릿지가 공유하는 loopback 전용 DDS 프로파일 |
+| `config/zenoh/zenoh_bridge_camera_ivn.json5` | 카메라 브릿지 (UDP 17451/17453/17455/17457/17459) |
+| `config/zenoh/zenoh_bridge_control_ivn.json5` | 제어 브릿지 (7448) |
 | `scripts/install_zenoh_bridge.sh` | 브릿지 바이너리 내려받기 |
 | `scripts/run_zenoh_bridge.sh` | 브릿지 기동 (`camera` / `control` / `all`) |
 | `docs/examples/zcu_zenoh_client.c` | ZCU 쪽 최소 참조 구현 |

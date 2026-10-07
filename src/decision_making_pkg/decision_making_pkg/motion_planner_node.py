@@ -8,15 +8,12 @@ from rclpy.qos import QoSHistoryPolicy
 from rclpy.qos import QoSDurabilityPolicy
 from rclpy.qos import QoSReliabilityPolicy
 
-from std_msgs.msg import String, Bool
 from interfaces_pkg.msg import PathPlanningResult, DetectionArray, MotionCommand
 from .lib import decision_making_func_lib as DMFL
 
 #---------------Variable Setting---------------
 SUB_DETECTION_TOPIC_NAME = "detections"
 SUB_PATH_TOPIC_NAME = "path_planning_result"
-SUB_TRAFFIC_LIGHT_TOPIC_NAME = "yolov8_traffic_light_info"
-SUB_LIDAR_OBSTACLE_TOPIC_NAME = "lidar_obstacle_info"
 PUB_TOPIC_NAME = "topic_control_signal"
 
 # 제어 모드 ('event' = path 들어올 때 즉시 발행 + watchdog 정지 폴백,
@@ -55,8 +52,6 @@ class MotionPlanningNode(Node):
         # 토픽 이름 설정
         self.sub_detection_topic = self.declare_parameter('sub_detection_topic', SUB_DETECTION_TOPIC_NAME).value
         self.sub_path_topic = self.declare_parameter('sub_lane_topic', SUB_PATH_TOPIC_NAME).value
-        self.sub_traffic_light_topic = self.declare_parameter('sub_traffic_light_topic', SUB_TRAFFIC_LIGHT_TOPIC_NAME).value
-        self.sub_lidar_obstacle_topic = self.declare_parameter('sub_lidar_obstacle_topic', SUB_LIDAR_OBSTACLE_TOPIC_NAME).value
         self.pub_topic = self.declare_parameter('pub_topic', PUB_TOPIC_NAME).value
 
         # 제어 모드 파라미터
@@ -84,8 +79,6 @@ class MotionPlanningNode(Node):
         # 변수 초기화
         self.detection_data = None
         self.path_data = None
-        self.traffic_light_data = None
-        self.lidar_data = None
 
         self.last_path_time = None  # event 모드 watchdog용
 
@@ -98,15 +91,9 @@ class MotionPlanningNode(Node):
         self.path_sub = self.create_subscription(
             PathPlanningResult, self.sub_path_topic, self.path_callback, self.qos_profile)
         self.detection_sub = None
-        self.traffic_light_sub = None
-        self.lidar_sub = None
         if self.enable_aux_subscriptions:
             self.detection_sub = self.create_subscription(
                 DetectionArray, self.sub_detection_topic, self.detection_callback, self.qos_profile)
-            self.traffic_light_sub = self.create_subscription(
-                String, self.sub_traffic_light_topic, self.traffic_light_callback, self.qos_profile)
-            self.lidar_sub = self.create_subscription(
-                Bool, self.sub_lidar_obstacle_topic, self.lidar_callback, self.qos_profile)
 
         # 퍼블리셔 설정
         self.publisher = self.create_publisher(MotionCommand, self.pub_topic, self.qos_profile)
@@ -145,30 +132,8 @@ class MotionPlanningNode(Node):
         if self.control_mode == 'event':
             self._publish_current_command()
 
-    def traffic_light_callback(self, msg: String):
-        self.traffic_light_data = msg
-
-    def lidar_callback(self, msg: Bool):
-        self.lidar_data = msg
-
     # ---------- Periodic mode ----------
     def periodic_callback(self):
-        # # 라이다가 장애물을 감지한 경우 (현 구현에서 라이다 미사용)
-        # if self.lidar_data is not None and self.lidar_data.data is True:
-        #     self.publish_stop()
-        #     return
-        #
-        # # 빨간색 신호등을 감지한 경우 (현 구현에서 신호등 미사용)
-        # if (self.traffic_light_data is not None
-        #         and self.traffic_light_data.data == 'Red'
-        #         and self.detection_data is not None):
-        #     for detection in self.detection_data.detections:
-        #         if detection.class_name == 'traffic_light':
-        #             y_max = int(detection.bbox.center.position.y + detection.bbox.size.y / 2)
-        #             if y_max < 150:
-        #                 self.publish_stop()
-        #                 return
-
         self._publish_current_command()
 
     # ---------- Event mode watchdog ----------

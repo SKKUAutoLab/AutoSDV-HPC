@@ -77,6 +77,7 @@ class SafetySupervisorNode(Node):
         self._lock = threading.Lock()
         self._requested_source = SOURCE_NONE
         self._gui_armed = False
+        self._stop_ticks_remaining = 0
         self._commands = {SOURCE_MANUAL: None, SOURCE_AUTO: None}
         self._estop_latched = False
         self._estop_reason = ''
@@ -209,11 +210,8 @@ class SafetySupervisorNode(Node):
         with self._lock:
             source_stopped = (
                 self._requested_source == SOURCE_NONE and not self._gui_armed)
-            zcus_ok = all(self._zcu_connected)
             if not source_stopped:
                 message = 'Stop the active control node before reset'
-            elif not zcus_ok:
-                message = 'All ZCUs must be connected before reset'
             else:
                 self._estop_latched = False
                 self._estop_reason = ''
@@ -236,7 +234,8 @@ class SafetySupervisorNode(Node):
             command = self._commands.get(source)
             estop = self._estop_latched
 
-        if armed and source in (SOURCE_MANUAL, SOURCE_AUTO):
+        # Manual Drive experiments may publish with some or all ZCUs offline.
+        if armed and source == SOURCE_AUTO:
             if not all(self._zcu_connected):
                 failed = [
                     self.zcu_ips[i] for i, connected
@@ -245,12 +244,17 @@ class SafetySupervisorNode(Node):
                 self._latch_estop('ZCU disconnected: ' + ', '.join(failed))
                 estop = True
 
-        if estop or not armed or source not in (SOURCE_MANUAL, SOURCE_AUTO):
+        if estop:
             self.output_pub.publish(self._zero_command())
-        elif command is not None:
-            self.output_pub.publish(command)
+        elif not armed or source not in (SOURCE_MANUAL, SOURCE_AUTO):
+            # Send a short stop burst, then leave the control topic silent.
+            if self._stop_ticks_remaining > 0:
+                self.output_pub.publish(self._zero_command())
+                self._stop_ticks_remaining -= 1
         else:
-            self.output_pub.publish(self._zero_command())
+            self._stop_ticks_remaining = 5
+            self.output_pub.publish(
+                command if command is not None else self._zero_command())
 
     def _publish_status(self):
         with self._lock:
