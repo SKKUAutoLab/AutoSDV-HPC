@@ -1,0 +1,58 @@
+// HPC-side zenoh-bridge-ros2dds for the health flow (AUTOSDV_RMW=zenoh_bridge).
+//
+// The third bridge of environment 3, next to the camera bridge
+// (zenoh_bridge_camera_ivn.json5) and the control bridge
+// (zenoh_bridge_control_ivn.json5). It carries one topic:
+//   /ivn/zcu_health         ZCU -> HPC   diagnostics, 2 Hz per board
+//
+// Health is CS0, so network_qos/autosdv_dscp_qos.py installs no rule for 7449.
+// Being its own process and port, it keeps reporting while the control link is
+// down or its Q6 queue is closed.
+{
+  plugins: {
+    ros2dds: {
+      nodename: "zenoh_bridge_health",
+
+      // See zenoh_bridge_camera_ivn.json5 on why the DDS domain is not pinned.
+
+      // Local DDS subscriber: health in.
+      allow: {
+        publishers: [],
+        subscribers: ["/ivn/zcu_health"],
+        service_servers: [],
+        service_clients: [],
+        action_servers: [],
+        action_clients: [],
+      },
+
+      // DiagnosticArray is RELIABLE, so this route blocks rather than drops.
+      reliable_routes_blocking: true,
+    },
+  },
+
+  mode: "router",
+
+  listen: {
+    endpoints: [
+      "tcp/0.0.0.0:7449",
+      "udp/0.0.0.0:7449",
+    ],
+  },
+
+  connect: {
+    endpoints: [],
+  },
+
+  scouting: {
+    multicast: { enabled: false },
+    gossip: { enabled: false },
+  },
+
+  transport: {
+    link: {
+      tx: {
+        batch_size: 1400,
+      },
+    },
+  },
+}

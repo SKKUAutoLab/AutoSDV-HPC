@@ -2,12 +2,13 @@
 // /opt/ros/jazzy/share/rmw_zenoh_cpp/config/DEFAULT_RMW_ZENOH_ROUTER_CONFIG.json5
 // with one change: the listen endpoints.
 //
-// The ZCU opens one session per camera plus one for control. Each camera uses
-// a dedicated destination port outside the local DDS participant range,
-// giving the switch a stable per-camera 5-tuple:
-//   17451/17453/17455/17457/17459  image_01..05 (ZCU sends CS5)
+// The ZCU opens one session per camera, one for control and one for health.
+// Each uses a dedicated HPC port, giving the switch a stable 5-tuple per flow
+// and letting the HPC classify its replies by source port:
+//   17451/17453/17455/17457/17459  image_01..05 (CS5 both ways)
 //   7447  legacy/local Zenoh clients
-//   7448  control, health and everything else
+//   7448  control (CS6 both ways)
+//   7449  health (CS0)
 // udp/ is offered alongside tcp/ on the original ports; cameras use UDP.
 // The datagram link is the closer comparison against the RTPS backends. The ZCU
 // connects as a client rather than a peer: a peer joined to a router does not
@@ -116,7 +117,9 @@
       "udp/10.0.0.10:17459",
       // Control, health and everything else.
       "tcp/[::]:7448",
-      "udp/[::]:7448"
+      "udp/[::]:7448",
+      "tcp/[::]:7449",
+      "udp/[::]:7449"
     ],
 
     /// Global listen configuration,

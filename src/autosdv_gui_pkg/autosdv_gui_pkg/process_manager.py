@@ -9,7 +9,7 @@ from ament_index_python.packages import (
     get_package_prefix,
     get_package_share_directory,
 )
-from launch_pkg.rmw_profile import profile_env
+from launch_pkg.rmw_profile import dscp_env, profile_env
 from PyQt5.QtCore import (
     pyqtSignal,
     QObject,
@@ -106,6 +106,9 @@ class NodeSpec:
     dependencies: list = field(default_factory=list)
     parameters: dict = field(default_factory=dict)
     dds_profile: str = ''
+    # 'control' or 'camera': marks the process's IVN traffic CS6/CS5 through
+    # the DSCP shim. Empty leaves it CS0.
+    traffic_class: str = ''
 
 
 def load_node_specs():
@@ -125,6 +128,7 @@ def load_node_specs():
             dependencies=list(values.get('dependencies', [])),
             parameters=dict(values.get('parameters', {})),
             dds_profile=values.get('dds_profile', ''),
+            traffic_class=values.get('traffic_class', ''),
         )
     return specs
 
@@ -197,6 +201,10 @@ class NodeProcessManager(QObject):
             # nodes.yaml names the Fast DDS profile; rmw_profile maps it to the
             # selected middleware's equivalent.
             for name, value in profile_env(launch_share, spec.dds_profile).items():
+                environment.insert(name, value)
+        if spec.traffic_class:
+            for name, value in dscp_env(
+                    spec.traffic_class, environment.value('LD_PRELOAD', '')).items():
                 environment.insert(name, value)
         process.setProcessEnvironment(environment)
 

@@ -33,8 +33,10 @@ ssh root@10.0.0.2 'python3 /tmp/install_communication_mode.py zcu --workspace /h
 Repeat for 10.0.0.3, .4 and .5. SSH host keys must already be trusted and
 key-based root login must work. The installer does not start or stop vehicle
 processes. It installs `/usr/local/libexec/autosdv-communication-host`, a root-owned
-configuration, and `autosdv-communication.service`. ZCU drop-ins order gateway
-and health after the communication policy. Services are enabled at successful
+configuration, and `autosdv-communication.service`. On a ZCU it also installs
+`zcu-camera.service`, `zcu-control.service` and `zcu-health@.service` from the
+ZCU workspace's `systemd/`, so update the workspace first, and adds drop-ins that
+order them after the communication policy. Services are enabled at successful
 commit; before the first selection the ZCU boot hook preserves its legacy policy.
 
 The CLI/GUI invokes the local helper with `sudo -n`: configure the operator's
@@ -85,14 +87,27 @@ address as a discovery peer, so both ZCU traffic and local GUI/processing
 traffic use unicast. Generic HPC nodes use automatic participant indices 0–19;
 camera nodes keep indices 20–24. This first controller fixes IVN addresses to 10.0.0.10 and .2–.5,
 ROS domain to 0, ZCU UDP camera endpoints to 17451/17453/17455/17457/17459,
-and the control endpoint to 7448, matching the current builds. It is not a
+the control endpoint to 7448 and the health endpoint to 7449, matching the
+current builds. It is not a
 multi-domain or alternative-topology selector.
 
 HPC owns nftables through the communication service. Legacy autosdv-dscp-qos
-is stopped during switching. ZCU retires legacy camera DSCP units, removes only
-their pref 10 and the new reserved prefs 101–105, and installs per-flow CS5 rules.
-Other tc filters are preserved. An unmanaged Zenoh UDP listener on 7447/7448 must
-be stopped before the controller can take ownership.
+is stopped during switching. The DSCP policy is per role (control CS6, camera
+CS5, health and the rest CS0); see the
+[SJA1110 mapping](sja1110-stream-identification-tc-mapping.md). ZCUs mark their
+egress per process through the DSCP shim in the camera/control units, so the
+switch installs no tc rule; it retires the legacy camera DSCP units and removes
+only their pref 10 and the reserved prefs 101–105. Other tc filters are
+preserved. The single-process `zcu.service` is disabled when switching. An
+unmanaged Zenoh UDP listener on 7447–7449 must be stopped before the controller
+can take ownership.
+
+In the Zenoh modes the communication service watches the IVN carrier. When the
+link comes back after a drop (for example an SJA1110 reflash) and has stayed up,
+with the 10.0.0.10 address back, for 10 s without another drop, it restarts the
+router or bridges once, because a link flap with live ZCU
+sessions was observed to leave the router's UDP listener silently deaf. The
+bridges are supervised individually, so one exiting does not stop the others.
 
 ## Meaning of success and validation limits
 

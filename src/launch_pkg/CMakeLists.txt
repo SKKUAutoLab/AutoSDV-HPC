@@ -30,6 +30,12 @@ endif()
 # rmw_profile is imported by the launch files here and by autosdv_gui_pkg.
 ament_python_install_package(${PROJECT_NAME})
 
+# Per-process DSCP marking for nodes that own a traffic class; rmw_profile's
+# dscp_env() preloads it.
+add_library(autosdv_dscp_shim SHARED src/dscp_shim.c)
+target_link_libraries(autosdv_dscp_shim dl)
+install(TARGETS autosdv_dscp_shim LIBRARY DESTINATION lib)
+
 install(
   DIRECTORY launch config
   DESTINATION share/${PROJECT_NAME}/
@@ -44,6 +50,7 @@ install(
     "${CMAKE_CURRENT_SOURCE_DIR}/../../config/dds/cyclonedds_bridge_local.xml"
     "${CMAKE_CURRENT_SOURCE_DIR}/../../config/zenoh/zenoh_bridge_camera_ivn.json5"
     "${CMAKE_CURRENT_SOURCE_DIR}/../../config/zenoh/zenoh_bridge_control_ivn.json5"
+    "${CMAKE_CURRENT_SOURCE_DIR}/../../config/zenoh/zenoh_bridge_health_ivn.json5"
   DESTINATION share/${PROJECT_NAME}/config
 )
 

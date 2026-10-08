@@ -134,9 +134,46 @@ def profile_env(share_dir, fastdds_filename):
 
 def image_profile_env(share_dir, image_index, participant_id):
     """Environment for one image node, which pins its own participant index."""
-    return profile_env(
+    environment = profile_env(
         share_dir,
         f'fastdds_image_{image_index:02d}_participant{participant_id}.xml')
+    environment.update(dscp_env(CAMERA_CLASS))
+    return environment
+
+
+# Per-process DSCP on the wired IVN. libautosdv_dscp_shim.so (built by this
+# package) sets IP_TOS on every UDP socket of the process, so a node's
+# discovery and data leave in its class from the first packet. Health and
+# everything else stay CS0 and get no shim.
+CONTROL_CLASS = 'control'
+CAMERA_CLASS = 'camera'
+TRAFFIC_CLASS_TOS = {
+    CONTROL_CLASS: 0xc0,  # CS6 -> SJA1110 Q6
+    CAMERA_CLASS: 0xa0,   # CS5 -> SJA1110 Q5
+}
+
+
+def dscp_shim_path():
+    from ament_index_python.packages import get_package_prefix
+    return os.path.join(get_package_prefix('launch_pkg'), 'lib', 'libautosdv_dscp_shim.so')
+
+
+def dscp_env(traffic_class, inherited_preload=''):
+    """Environment that marks one process with its traffic class."""
+    if not traffic_class:
+        return {}
+    if traffic_class not in TRAFFIC_CLASS_TOS:
+        raise RuntimeError(
+            f'traffic_class must be one of {sorted(TRAFFIC_CLASS_TOS)}, '
+            f'got {traffic_class!r}')
+    shim = dscp_shim_path()
+    if not os.path.isfile(shim):
+        raise RuntimeError(f'DSCP shim not found: {shim}; rebuild launch_pkg')
+    preload = ' '.join(item for item in (shim, inherited_preload) if item)
+    return {
+        'LD_PRELOAD': preload,
+        'AUTOSDV_IP_TOS': f'0x{TRAFFIC_CLASS_TOS[traffic_class]:02x}',
+    }
 
 
 def default_profile_env(share_dir):

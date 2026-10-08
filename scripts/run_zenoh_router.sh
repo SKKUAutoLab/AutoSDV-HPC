@@ -5,7 +5,8 @@
 # finds anything until this is running. Each camera has its own UDP endpoint:
 #   17451/17453/17455/17457/17459  image_01..05
 #   7447  legacy/local clients
-#   7448  control, health and everything else
+#   7448  control
+#   7449  health
 # See AutoSDV-HPC/config/zenoh/zenoh_router_ivn.json5 for the full config.
 set -euo pipefail
 

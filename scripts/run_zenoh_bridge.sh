@@ -6,11 +6,12 @@
 # host that touch the wired IVN.  Nothing reaches a ZCU until they are running,
 # the same way the native zenoh environment needs scripts/run_zenoh_router.sh.
 #
-# One camera bridge serves five camera sessions, each with its own 5-tuple:
-#   camera   17451/17453/17455/17457/17459   /image_01_raw .. /image_05_raw
-#   control  7448   /topic_control_signal, /topic_status_signal, /ivn/zcu_health
+# Three bridges, one per traffic class, each on its own ports:
+#   camera   17451/17453/17455/17457/17459   /image_01_raw .. /image_05_raw (CS5)
+#   control  7448                            /topic_control_signal          (CS6)
+#   health   7449                            /ivn/zcu_health                (CS0)
 #
-# usage: run_zenoh_bridge.sh [camera|control|all]      (default: all)
+# usage: run_zenoh_bridge.sh [camera|control|health|all]      (default: all)
 set -euo pipefail
 
 WORKSPACE="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
@@ -48,7 +49,7 @@ bridge_config() {
 }
 
 case "$FLOW" in
-    camera|control)
+    camera|control|health)
         config="$(bridge_config "$FLOW")"
         echo "starting zenoh-bridge-ros2dds ($FLOW) with $config"
         # exec, so a Ctrl-C or a systemd stop reaches the bridge itself instead
@@ -56,22 +57,32 @@ case "$FLOW" in
         exec "$BINARY" -c "$config"
         ;;
     all)
-        # Both bridges share this shell's lifetime: stopping it takes the IVN
-        # down as a whole rather than leaving one flow half-connected.
+        # Each bridge is supervised on its own: one that exits is restarted
+        # without touching the others, so a control-side failure does not take
+        # the cameras or health down. Stopping this shell stops all three.
         pids=()
         trap 'kill "${pids[@]}" 2>/dev/null || true' EXIT INT TERM
-        for flow in camera control; do
+        for flow in camera control health; do
             config="$(bridge_config "$flow")"
-            echo "starting zenoh-bridge-ros2dds ($flow) with $config"
-            "$BINARY" -c "$config" &
+            (
+                # The supervisor takes its bridge with it when stopped.
+                child=
+                trap 'kill "$child" 2>/dev/null; exit 0' INT TERM
+                while true; do
+                    echo "starting zenoh-bridge-ros2dds ($flow) with $config"
+                    "$BINARY" -c "$config" &
+                    child=$!
+                    wait "$child" || true
+                    echo "zenoh-bridge-ros2dds ($flow) exited; restarting in 2 s" >&2
+                    sleep 2
+                done
+            ) &
             pids+=("$!")
         done
-        wait -n
-        echo "a bridge exited; stopping the other" >&2
-        exit 1
+        wait
         ;;
     *)
-        echo "usage: $0 [camera|control|all]" >&2
+        echo "usage: $0 [camera|control|health|all]" >&2
         exit 1
         ;;
 esac

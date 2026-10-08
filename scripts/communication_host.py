@@ -12,11 +12,12 @@ import sys
 import time
 
 MODES = ('cyclonedds', 'zenoh', 'zenoh_bridge', 'zenoh_bridge_pico')
-CYCLONE_CAMERA_PORTS_BY_ZONE = {'zone_1': [7451, 7453], 'zone_2': [7455],
-                                'zone_3': [7457], 'zone_4': [7459]}
-ZENOH_CAMERA_PORTS_BY_ZONE = {'zone_1': [17451, 17453], 'zone_2': [17455],
-                              'zone_3': [17457], 'zone_4': [17459]}
-ZENOH_UDP_PORTS = (7447, 7448, 17451, 17453, 17455, 17457, 17459)
+ZENOH_UDP_PORTS = (7447, 7448, 7449, 17451, 17453, 17455, 17457, 17459)
+# ZCU processes, one per traffic class. Camera and control preload the DSCP
+# shim from their unit; health has no shim and stays CS0.
+ZCU_BINARIES = ('zcu_camera', 'zcu_control', 'zcu_health_node')
+ZCU_SHIM = 'libautosdv_dscp_shim.so'
+ZCU_LEGACY_UNITS = ('zcu.service', 'zcu-camera-dscp.service')
 CONFIG = Path('/etc/autosdv/communication-host.json')
 STATE = Path('/var/lib/autosdv/communication-mode.json')
 RUNTIME = Path('/run/autosdv-communication-mode')
@@ -68,7 +69,9 @@ def hpc_ivn_interface():
 def check(config, mode):
     root = Path(config['workspace'])
     if config['role'] == 'zcu':
-        for name in ('zcu', 'zcu_health_node'):
+        if not (root / f'build-{mode}' / ZCU_SHIM).is_file():
+            raise RuntimeError(f'Not built: {root / f"build-{mode}" / ZCU_SHIM}')
+        for name in ZCU_BINARIES:
             binary = root / f'build-{mode}' / name
             if not os.access(binary, os.X_OK):
                 raise RuntimeError(f'Not built: {binary}')
@@ -82,19 +85,21 @@ def check(config, mode):
             raise RuntimeError('Invalid .zone')
         if not (root / 'config' / f'{zone}.conf').is_file():
             raise RuntimeError(f'Missing zone configuration: {zone}')
-        for unit in ('zcu.service', f'zcu-health@{zone}.service'):
+        for unit in ('zcu-camera.service', 'zcu-control.service', f'zcu-health@{zone}.service'):
             run('systemctl', 'cat', unit)
         run('/sbin/tc', '-V')
     else:
         hpc_ivn_interface()
         rmw = 'rmw_zenoh_cpp' if mode == 'zenoh' else 'rmw_cyclonedds_cpp'
         run('bash', '-c', f'source /opt/ros/jazzy/setup.bash; ros2 pkg prefix {rmw}')
-        required = ['install/local_setup.bash', 'network_qos/autosdv_dscp_qos.py']
+        required = ['install/local_setup.bash', 'network_qos/autosdv_dscp_qos.py',
+                    'install/launch_pkg/lib/libautosdv_dscp_shim.so']
         if mode == 'zenoh':
             required += ['scripts/run_zenoh_router.sh', 'config/zenoh/zenoh_router_ivn.json5']
         elif mode.startswith('zenoh_bridge'):
             required += ['scripts/run_zenoh_bridge.sh', 'config/dds/cyclonedds_bridge_local.xml',
                          'config/zenoh/zenoh_bridge_camera_ivn.json5', 'config/zenoh/zenoh_bridge_control_ivn.json5',
+                         'config/zenoh/zenoh_bridge_health_ivn.json5',
                          'tools/zenoh-bridge-ros2dds/zenoh-bridge-ros2dds']
             version = run(str(root / required[-1]), '--version')
             if 'v1.10.0' not in version:
@@ -120,8 +125,8 @@ def check(config, mode):
                 raise RuntimeError(f'Rebuild launch_pkg: missing installed {file}')
         active = run('systemctl', 'is-active', UNIT, check=False) == 'active'
         sockets = run('ss', '-H', '-lun')
-        if not active and any(f':{port} ' in sockets for port in (7447, 7448)):
-            raise RuntimeError('Unmanaged Zenoh listener on 7447/7448; stop it before switching')
+        if not active and any(f':{port} ' in sockets for port in (7447, 7448, 7449)):
+            raise RuntimeError('Unmanaged Zenoh listener on 7447-7449; stop it before switching')
     return {'host': config['role'], 'mode': mode, 'ready': True}
 
 
@@ -129,11 +134,15 @@ def units(config):
     if config['role'] == 'hpc':
         return [UNIT]
     zone = (Path(config['workspace']) / '.zone').read_text().strip()
-    return ['zcu.service', f'zcu-health@{zone}.service', UNIT]
+    return ['zcu-camera.service', 'zcu-control.service', f'zcu-health@{zone}.service', UNIT]
 
 
 def stop(config):
     run('systemctl', 'stop', *units(config))
+    if config['role'] == 'zcu':
+        # The single-process gateway this split replaced.
+        for unit in ZCU_LEGACY_UNITS:
+            run('systemctl', 'disable', '--now', unit, check=False)
     if config['role'] == 'hpc':
         # Stop only executables registered by the installer from this workspace.
         pids = []
@@ -162,25 +171,17 @@ def qos(config, mode):
         return [sys.executable, str(root / 'network_qos/autosdv_dscp_qos.py'),
                 'watch', '--middleware', mapped, '--interface', hpc_ivn_interface(),
                 '--cleanup-on-exit']
-    # Retire only the existing AutoSDV DSCP units and their reserved pref 10.
+    # ZCU egress is marked per process by the shim in zcu-camera/zcu-control,
+    # for every backend. Only retire the tc rules earlier versions installed:
+    # a leftover port rule would re-mark a flow the shim already classified.
     old = run('systemctl', 'list-units', '--all', '--plain', '--no-legend',
               'zcu-camera-dscp*').splitlines()
     names = [line.split()[0] for line in old if line.split()]
     if names:
         run('systemctl', 'disable', '--now', *names)
-    run('/sbin/tc', 'qdisc', 'add', 'dev', 'pfe0', 'clsact', check=False)
     for pref in (10, 101, 102, 103, 104, 105):
         run('/sbin/tc', 'filter', 'del', 'dev', 'pfe0', 'egress', 'protocol',
             'ip', 'pref', str(pref), check=False)
-    zone = (root / '.zone').read_text().strip()
-    ports = (CYCLONE_CAMERA_PORTS_BY_ZONE if mode == 'cyclonedds'
-             else ZENOH_CAMERA_PORTS_BY_ZONE)[zone]
-    for index, port in enumerate(ports, 101):
-        run('/sbin/tc', 'filter', 'replace', 'dev', 'pfe0', 'egress', 'protocol',
-            'ip', 'pref', str(index), 'flower', 'ip_proto', 'udp',
-            'dst_ip', '10.0.0.10', 'dst_port', str(port), 'action', 'pedit',
-            'ex', 'munge', 'ip', 'dsfield', 'set', '0xa0', 'retain', '0xfc',
-            'pipe', 'action', 'csum', 'ip')
 
 
 def serve(config):
@@ -201,21 +202,55 @@ def serve(config):
         if key.startswith(('ZENOH_', 'ROS_', 'CYCLONEDDS_', 'FASTRTPS_', 'FASTDDS_')):
             env.pop(key)
     env.update(AUTOSDV_RMW=mode, ROS_DOMAIN_ID='0', ROS_DISTRO='jazzy')
+    launcher = ('run_zenoh_router.sh' if mode == 'zenoh' else
+                'run_zenoh_bridge.sh' if mode.startswith('zenoh_bridge') else None)
+    interface = hpc_ivn_interface()
+
+    def start_launcher():
+        # Own process group, so a restart takes rmw_zenohd/the bridges along
+        # with their wrapper instead of leaving them holding the ports.
+        return subprocess.Popen(['bash', str(root / 'scripts' / launcher)], env=env,
+                                start_new_session=True)
+
+    def stop_launcher(process):
+        if process.poll() is None:
+            os.killpg(process.pid, signal.SIGTERM)
+            try:
+                process.wait(timeout=5)
+            except subprocess.TimeoutExpired:
+                os.killpg(process.pid, signal.SIGKILL)
+                process.wait()
+
     children = []
+    router = None
     def terminate(*_):
         raise SystemExit(0)
     signal.signal(signal.SIGTERM, terminate)
     signal.signal(signal.SIGINT, terminate)
     try:
         children.append(subprocess.Popen(qos(config, mode), env=env))
-        launcher = ('run_zenoh_router.sh' if mode == 'zenoh' else
-                    'run_zenoh_bridge.sh' if mode.startswith('zenoh_bridge') else None)
         if launcher:
-            children.append(subprocess.Popen(['bash', str(root / 'scripts' / launcher)], env=env))
+            router = start_launcher()
+            children.append(router)
+        settle = LinkSettle()
         while all(p.poll() is None for p in children):
+            # An IVN link flap while ZCU sessions are live has left the zenoh
+            # router's UDP listener silently deaf (seen after SJA1110
+            # reflashes). Restarting the router/bridges once the link is back
+            # restores it; the ZCUs and HPC nodes reconnect on their own.
+            if settle.update(ivn_carrier(interface), ivn_address_ready, time.monotonic()) \
+                    and router is not None:
+                print(f'{interface} link stable for {settle.hold:.0f} s after a drop; '
+                      f'restarting {launcher}', flush=True)
+                stop_launcher(router)
+                children.remove(router)
+                router = start_launcher()
+                children.append(router)
             time.sleep(.2)
         raise RuntimeError('A communication child exited')
     finally:
+        if router is not None:
+            stop_launcher(router)
         for p in children:
             if p.poll() is None:
                 p.terminate()
@@ -224,6 +259,55 @@ def serve(config):
                 p.wait(timeout=5)
             except subprocess.TimeoutExpired:
                 p.kill(); p.wait()
+
+
+class LinkSettle:
+    """Decides when to restart the router/bridges after an IVN link drop.
+
+    A switch reboot flaps the link several times within seconds. Restarting on
+    every rising edge restarted the bridges while the link was still going down
+    again; instead wait until the carrier has been up, with the 10.0.0.10
+    address back (the router binds 10.0.0.10:1745x), for `hold` seconds without
+    a further drop, then restart once.
+    """
+
+    def __init__(self, hold=10.0):
+        self.hold = hold
+        self.dropped = False
+        self.up_since = None
+
+    def update(self, carrier_up, address_ready, now):
+        if carrier_up is False:
+            self.dropped = True
+            self.up_since = None
+            return False
+        if not self.dropped or not carrier_up or not address_ready():
+            self.up_since = None if self.dropped else self.up_since
+            return False
+        if self.up_since is None:
+            self.up_since = now
+            return False
+        if now - self.up_since < self.hold:
+            return False
+        self.dropped = False
+        self.up_since = None
+        return True
+
+
+def ivn_address_ready():
+    try:
+        hpc_ivn_interface()
+        return True
+    except RuntimeError:
+        return False
+
+
+def ivn_carrier(interface):
+    """True/False for the interface carrier, None if it cannot be read."""
+    try:
+        return Path(f'/sys/class/net/{interface}/carrier').read_text().strip() == '1'
+    except OSError:
+        return None
 
 
 def verify(config, mode):
@@ -235,7 +319,8 @@ def verify(config, mode):
     root = Path(config['workspace'])
     if config['role'] == 'zcu':
         zone = (root / '.zone').read_text().strip()
-        for name, unit in [('zcu', 'zcu.service'),
+        for name, unit in [('zcu_camera', 'zcu-camera.service'),
+                           ('zcu_control', 'zcu-control.service'),
                            ('zcu_health_node', f'zcu-health@{zone}.service')]:
             pid = run('systemctl', 'show', '-p', 'MainPID', '--value', unit)
             if digest(f'/proc/{pid}/exe') != digest(root / f'build-{mode}' / name):
@@ -274,7 +359,7 @@ def main():
         save(STATE, {'status': 'applying', 'mode': previous, 'requested': mode})
         if config['role'] == 'zcu':
             root = Path(config['workspace'])
-            for name in ('zcu', 'zcu_health_node'):
+            for name in ZCU_BINARIES + (ZCU_SHIM,):
                 run('install', '-m', '0755', str(root / f'build-{mode}' / name),
                     str(root / 'build' / name))
         RUNTIME.write_text(mode + '\n')

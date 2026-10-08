@@ -143,22 +143,25 @@ def test_hpc_qos_rejects_missing_ivn_address(host_adapter, monkeypatch):
         host_adapter.qos({'role': 'hpc', 'workspace': '/tmp/hpc'}, 'cyclonedds')
 
 
-@pytest.mark.parametrize('mode,zone,expected', [
-    ('cyclonedds', 'zone_1', ['7451', '7453']),
-    ('zenoh', 'zone_1', ['17451', '17453']),
-    ('zenoh', 'zone_2', ['17455']),
-    ('zenoh', 'zone_3', ['17457']),
-    ('zenoh', 'zone_4', ['17459']),
-    ('zenoh_bridge', 'zone_1', ['17451', '17453']),
-    ('zenoh_bridge_pico', 'zone_1', ['17451', '17453']),
-])
-def test_zcu_camera_dscp_ports_follow_middleware(host_adapter, monkeypatch, tmp_path,
-                                                 mode, zone, expected):
-    (tmp_path / '.zone').write_text(zone)
+@pytest.mark.parametrize('mode', ['cyclonedds', 'zenoh', 'zenoh_bridge', 'zenoh_bridge_pico'])
+def test_zcu_qos_installs_no_tc_rule_and_retires_old_ones(host_adapter, monkeypatch, tmp_path,
+                                                         mode):
+    # ZCU egress is marked per process by the DSCP shim in the units; a tc
+    # port rule would re-mark flows, so qos() only deletes the old prefs.
+    (tmp_path / '.zone').write_text('zone_1')
     calls = []
     monkeypatch.setattr(host_adapter, 'run', lambda *args, **kwargs: calls.append(args) or '')
     host_adapter.qos({'role': 'zcu', 'workspace': str(tmp_path)}, mode)
-    assert [args[args.index('dst_port') + 1] for args in calls if 'dst_port' in args] == expected
+    tc = [args for args in calls if args[0] == '/sbin/tc']
+    assert tc and all(args[1:3] == ('filter', 'del') for args in tc)
+    assert {args[args.index('pref') + 1] for args in tc} == {'10', '101', '102', '103', '104', '105'}
+
+
+def test_zcu_units_are_one_per_traffic_class(host_adapter, tmp_path):
+    (tmp_path / '.zone').write_text('zone_3')
+    assert host_adapter.units({'role': 'zcu', 'workspace': str(tmp_path)}) == [
+        'zcu-camera.service', 'zcu-control.service', 'zcu-health@zone_3.service',
+        host_adapter.UNIT]
 
 
 def test_wired_cyclone_profiles_use_unicast():
@@ -181,11 +184,71 @@ def test_wired_cyclone_profiles_use_unicast():
 def test_pico_check_rejects_non_pico_health_binary(host_adapter, tmp_path, monkeypatch):
     build = tmp_path / 'build-zenoh_bridge_pico'
     build.mkdir()
-    for name in ('zcu', 'zcu_health_node'):
+    (build / host_adapter.ZCU_SHIM).touch()
+    for name in host_adapter.ZCU_BINARIES:
         binary = build / name
         binary.touch()
         binary.chmod(0o755)
     monkeypatch.setattr(host_adapter, 'linked_libraries', lambda binary:
-                        'libzenohpico.so' if binary.name == 'zcu' else 'libzenohc.so')
+                        'libzenohc.so' if binary.name == 'zcu_health_node' else 'libzenohpico.so')
     with pytest.raises(RuntimeError, match='zcu_health_node'):
         host_adapter.check({'role': 'zcu', 'workspace': str(tmp_path)}, 'zenoh_bridge_pico')
+
+
+def test_zcu_check_requires_the_dscp_shim(host_adapter, tmp_path):
+    build = tmp_path / 'build-zenoh'
+    build.mkdir()
+    for name in host_adapter.ZCU_BINARIES:
+        (build / name).touch()
+        (build / name).chmod(0o755)
+    with pytest.raises(RuntimeError, match='libautosdv_dscp_shim.so'):
+        host_adapter.check({'role': 'zcu', 'workspace': str(tmp_path)}, 'zenoh')
+
+
+@pytest.mark.parametrize('traffic_class,tos', [('control', '0xc0'), ('camera', '0xa0')])
+def test_dscp_env_preloads_the_shim_with_the_class_tos(monkeypatch, tmp_path, traffic_class, tos):
+    shim = tmp_path / 'libautosdv_dscp_shim.so'
+    shim.touch()
+    monkeypatch.setattr(rmw_profile, 'dscp_shim_path', lambda: str(shim))
+    env = rmw_profile.dscp_env(traffic_class, inherited_preload='/opt/other.so')
+    assert env == {'LD_PRELOAD': f'{shim} /opt/other.so', 'AUTOSDV_IP_TOS': tos}
+
+
+def test_dscp_env_leaves_unclassified_nodes_alone():
+    assert rmw_profile.dscp_env('') == {}
+
+
+def test_dscp_env_rejects_unknown_class_and_missing_shim(monkeypatch, tmp_path):
+    monkeypatch.setattr(rmw_profile, 'dscp_shim_path', lambda: str(tmp_path / 'missing.so'))
+    with pytest.raises(RuntimeError, match='traffic_class'):
+        rmw_profile.dscp_env('health')
+    with pytest.raises(RuntimeError, match='rebuild launch_pkg'):
+        rmw_profile.dscp_env('camera')
+
+
+def _settle_run(host_adapter, samples, address=True, hold=10.0):
+    """Feed (time, carrier) samples; return the times a restart was requested."""
+    settle = host_adapter.LinkSettle(hold=hold)
+    return [t for t, up in samples if settle.update(up, lambda: address, t)]
+
+
+def test_link_settle_restarts_once_after_the_link_is_stable(host_adapter):
+    samples = [(0, True), (1, False), (2, False), (3, True)] + [(3 + i, True) for i in range(1, 20)]
+    assert _settle_run(host_adapter, samples) == [13]
+
+
+def test_link_settle_waits_out_a_flapping_switch(host_adapter):
+    # Down/up twice within 20 s, as an SJA1110 reboot does: one restart, after
+    # the second recovery has held for the full window.
+    samples = ([(0, False), (4, True), (8, True), (12, False), (16, True)]
+               + [(16 + i, True) for i in range(1, 15)])
+    assert _settle_run(host_adapter, samples) == [26]
+
+
+def test_link_settle_waits_for_the_ivn_address(host_adapter):
+    samples = [(0, False), (1, True)] + [(1 + i, True) for i in range(1, 30)]
+    assert _settle_run(host_adapter, samples, address=False) == []
+
+
+def test_link_settle_never_restarts_without_a_drop(host_adapter):
+    assert _settle_run(host_adapter, [(i, True) for i in range(60)]) == []

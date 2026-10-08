@@ -9,6 +9,7 @@ nodes:
       show_image: true
       p2_log_enabled: false
     dds_profile: fastdds_image_01_participant20.xml
+    traffic_class: camera
 
   camera_02:
     label: Camera 02 - Fish-eye (Zone 1 Front Left)
@@ -20,6 +21,7 @@ nodes:
       show_image: true
       p2_log_enabled: false
     dds_profile: fastdds_image_02_participant21.xml
+    traffic_class: camera
 
   camera_03:
     label: Camera 03 - Fish-eye (Zone 2 Front Right)
@@ -31,6 +33,7 @@ nodes:
       show_image: true
       p2_log_enabled: false
     dds_profile: fastdds_image_03_participant22.xml
+    traffic_class: camera
 
   camera_04:
     label: Camera 04 - Fish-eye (Zone 3 Rear Left)
@@ -42,6 +45,7 @@ nodes:
       show_image: true
       p2_log_enabled: false
     dds_profile: fastdds_image_04_participant23.xml
+    traffic_class: camera
 
   camera_05:
     label: Camera 05 - Fish-eye (Zone 4 Rear Right)
@@ -53,6 +57,7 @@ nodes:
       show_image: true
       p2_log_enabled: false
     dds_profile: fastdds_image_05_participant24.xml
+    traffic_class: camera
 
   yolo:
     label: YOLO
@@ -134,6 +139,7 @@ nodes:
     package: autosdv_gui_pkg
     executable: safety_supervisor_node
     node_name: safety_supervisor_node
+    traffic_class: control
     parameters:
       zcu_disconnect_timeout_sec: 1.0
 

@@ -46,7 +46,15 @@ service += ('Type=oneshot\nRemainAfterExit=yes\n' if a.role == 'zcu' else
 service += '\n[Install]\nWantedBy=multi-user.target\n'
 Path('/etc/systemd/system/autosdv-communication.service').write_text(service)
 if a.role == 'zcu':
-    for unit in ('zcu.service', 'zcu-health@.service'):
+    # One unit per traffic class, shipped in the ZCU repository. The units
+    # carry the DSCP shim environment, so they are refreshed on every install.
+    zcu_units = ('zcu-camera.service', 'zcu-control.service', 'zcu-health@.service')
+    for unit in zcu_units:
+        source = root / 'systemd' / unit
+        if not source.is_file():
+            p.error(f'missing {source}; update the ZCU workspace first')
+        shutil.copyfile(source, Path('/etc/systemd/system') / unit)
+    for unit in zcu_units:
         d = Path('/etc/systemd/system') / (unit + '.d')
         d.mkdir(exist_ok=True)
         (d / 'communication-mode.conf').write_text(

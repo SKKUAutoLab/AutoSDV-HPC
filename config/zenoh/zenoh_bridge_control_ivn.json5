@@ -2,16 +2,12 @@
 //
 // The second half of environment 3; see zenoh_bridge_camera_ivn.json5 for the
 // topology and the per-camera ports on the other bridge.
-// This one carries everything that is not a camera image:
+// This one carries the control flow only:
 //   /topic_control_signal   HPC -> ZCU   motion command
-//   /topic_status_signal    reserved; legacy feedback is disabled
-//   /ivn/zcu_health         ZCU -> HPC   diagnostics, 2 Hz per board
 //
-// Note that control and health share this port, so the CS6 rule that
-// network_qos/autosdv_dscp_qos.py installs for egress from 7448 covers health
-// as well.  That is the same compromise the native zenoh environment makes,
-// which is what keeps the two comparable; splitting them needs a third port
-// on both sides.
+// Health has its own bridge on 7449 (zenoh_bridge_health_ivn.json5), so the
+// CS6 rule network_qos/autosdv_dscp_qos.py installs for egress from 7448 is
+// control traffic alone, and a closed Q6 gate no longer takes health with it.
 {
   plugins: {
     ros2dds: {
@@ -19,10 +15,10 @@
 
       // See zenoh_bridge_camera_ivn.json5 on why the DDS domain is not pinned.
 
-      // Local DDS publisher: command out. Local DDS subscriber: health in.
+      // Local DDS publisher: command out.
       allow: {
         publishers: ["/topic_control_signal"],
-        subscribers: ["/ivn/zcu_health"],
+        subscribers: [],
         service_servers: [],
         service_clients: [],
         action_servers: [],
