@@ -104,7 +104,8 @@ can take ownership.
 
 In the Zenoh modes the communication service watches the IVN carrier. When the
 link comes back after a drop (for example an SJA1110 reflash) and has stayed up,
-with the 10.0.0.10 address back, for 10 s without another drop, it restarts the
+with the 10.0.0.10 address back, for 20 s without another drop (an SJA1110
+reflash flaps it twice, 11-12 s apart), it restarts the
 router or bridges once, because a link flap with live ZCU
 sessions was observed to leave the router's UDP listener silently deaf. The
 bridges are supervised individually, so one exiting does not stop the others.

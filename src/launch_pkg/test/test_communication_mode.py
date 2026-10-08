@@ -268,3 +268,12 @@ def test_cyclone_profiles_request_large_receive_buffers(host_adapter):
     sysctl = (root / 'config/sysctl/90-autosdv-udp-buffers.conf').read_text()
     value = int(sysctl.split('net.core.rmem_max =')[1].split()[0])
     assert value >= host_adapter.MIN_RMEM_MAX
+
+
+def test_link_settle_default_covers_a_gm_reflash(host_adapter):
+    # Measured SJA1110 GM reflash: down 5 s, up 12 s, down 4 s, up.
+    settle = host_adapter.LinkSettle()
+    samples = [(t, False) for t in range(0, 5)] + [(t, True) for t in range(5, 17)] + \
+        [(t, False) for t in range(17, 21)] + [(t, True) for t in range(21, 60)]
+    restarts = [t for t, up in samples if settle.update(up, lambda: True, t)]
+    assert restarts == [41]

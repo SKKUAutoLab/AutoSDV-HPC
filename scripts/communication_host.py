@@ -277,10 +277,12 @@ class LinkSettle:
     every rising edge restarted the bridges while the link was still going down
     again; instead wait until the carrier has been up, with the 10.0.0.10
     address back (the router binds 10.0.0.10:1745x), for `hold` seconds without
-    a further drop, then restart once.
+    a further drop, then restart once. An SJA1110 GM reflash drops the link
+    twice with 11-12 s of carrier in between (measured four times), so `hold`
+    must be longer than that.
     """
 
-    def __init__(self, hold=10.0):
+    def __init__(self, hold=20.0):
         self.hold = hold
         self.dropped = False
         self.up_since = None
