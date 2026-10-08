@@ -104,6 +104,23 @@ def configure_default_dds_profile():
         'CYCLONEDDS_URI', environment.get('FASTDDS_DEFAULT_PROFILES_FILE', ''))
 
 
+def stop_socket_inheritance():
+    """Mark this process's sockets close-on-exec.
+
+    The middleware opens its sockets without FD_CLOEXEC. Without this, every
+    node the GUI starts inherited the GUI's DDS sockets, and every mode-switch
+    re-exec carried the previous participant's sockets into the new GUI, where
+    nobody reads them and they overflow (UDP RcvbufErrors).
+    """
+    for name in os.listdir('/proc/self/fd'):
+        try:
+            fd = int(name)
+            if os.readlink(f'/proc/self/fd/{fd}').startswith('socket:'):
+                os.set_inheritable(fd, False)
+        except (OSError, ValueError):
+            continue
+
+
 def ros_image_to_qimage(message):
     """Convert common sensor_msgs/Image encodings without importing OpenCV."""
     encoding = str(message.encoding).strip().lower()
@@ -1686,6 +1703,7 @@ def main(args=None):
     configure_default_dds_profile()
     rclpy.init(args=args)
     ros_bridge = GuiRosBridge()
+    stop_socket_inheritance()
     # MultiThreadedExecutor busy-spins at roughly one full CPU core when a
     # 30 FPS image subscription is active on this ROS 2/Python stack. All GUI
     # callbacks are intentionally lightweight, so one executor thread is both
@@ -1744,6 +1762,7 @@ def main(args=None):
         os.environ['AUTOSDV_GUI_GEOMETRY'] = bytes(
             window.saveGeometry().toBase64()).decode('ascii')
         os.environ['AUTOSDV_GUI_MAXIMIZED'] = '1' if window.isMaximized() else '0'
+        stop_socket_inheritance()
         os.execv(sys.executable, [sys.executable, '-m', 'autosdv_gui_pkg.main'])
     return result
 
