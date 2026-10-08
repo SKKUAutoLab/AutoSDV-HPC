@@ -60,5 +60,11 @@ if a.role == 'zcu':
         (d / 'communication-mode.conf').write_text(
             '[Unit]\nRequires=autosdv-communication.service\n'
             'After=autosdv-communication.service\n')
+if a.role == 'hpc':
+    # Lets the Cyclone DDS profiles get the 8 MiB receive buffer they request.
+    sysctl = root / 'config/sysctl/90-autosdv-udp-buffers.conf'
+    target = Path('/etc/sysctl.d') / sysctl.name
+    shutil.copyfile(sysctl, target)
+    subprocess.run(['sysctl', '-q', '-p', str(target)], check=True)
 subprocess.run(['systemctl', 'daemon-reload'], check=True)
 print('Installed. Run preflight/apply from HPC. Services are enabled on successful commit; no services started.')

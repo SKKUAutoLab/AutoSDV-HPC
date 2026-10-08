@@ -37,5 +37,12 @@
         <Peer address="10.0.0.5"/>
       </Peers>
     </Discovery>
+    <Internal>
+      <!-- Request 8 MiB: the ~900 KB images republished on the HPC overflow the
+           default buffer. Needs net.core.rmem_max >= 8 MiB
+           (config/sysctl/90-autosdv-udp-buffers.conf); no hard minimum, so a
+           host without it degrades instead of failing to start. -->
+      <SocketReceiveBufferSize max="8MiB"/>
+    </Internal>
   </Domain>
 </CycloneDDS>

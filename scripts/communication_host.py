@@ -18,6 +18,8 @@ ZENOH_UDP_PORTS = (7447, 7448, 7449, 17451, 17453, 17455, 17457, 17459)
 ZCU_BINARIES = ('zcu_camera', 'zcu_control', 'zcu_health_node')
 ZCU_SHIM = 'libautosdv_dscp_shim.so'
 ZCU_LEGACY_UNITS = ('zcu.service', 'zcu-camera-dscp.service')
+# Cyclone DDS profiles request an 8 MiB socket receive buffer.
+MIN_RMEM_MAX = 8 * 1024 * 1024
 CONFIG = Path('/etc/autosdv/communication-host.json')
 STATE = Path('/var/lib/autosdv/communication-mode.json')
 RUNTIME = Path('/run/autosdv-communication-mode')
@@ -107,6 +109,13 @@ def check(config, mode):
         for file in required:
             if not (root / file).is_file():
                 raise RuntimeError(f'Missing: {root / file}')
+        if mode != 'zenoh':
+            # Cyclone carries the republished ~900 KB images; see
+            # config/sysctl/90-autosdv-udp-buffers.conf.
+            rmem_max = int(Path('/proc/sys/net/core/rmem_max').read_text())
+            if rmem_max < MIN_RMEM_MAX:
+                raise RuntimeError(f'net.core.rmem_max is {rmem_max}; Cyclone DDS needs >= '
+                                   f'{MIN_RMEM_MAX}. Rerun install_communication_mode.py hpc')
         run('/usr/sbin/nft', '--version')
     run('systemctl', 'cat', UNIT)
     if config['role'] == 'hpc':

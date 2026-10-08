@@ -252,3 +252,19 @@ def test_link_settle_waits_for_the_ivn_address(host_adapter):
 
 def test_link_settle_never_restarts_without_a_drop(host_adapter):
     assert _settle_run(host_adapter, [(i, True) for i in range(60)]) == []
+
+
+def test_cyclone_profiles_request_large_receive_buffers(host_adapter):
+    import xml.etree.ElementTree as ET
+    root = Path(__file__).resolve().parents[3]
+    files = [root / 'config/dds/cyclonedds_ivn.xml', root / 'config/dds/cyclonedds_bridge_local.xml'] + \
+        sorted((root / 'src/launch_pkg/config').glob('cyclonedds_image_*.xml'))
+    assert len(files) == 7
+    ns = {'c': 'https://cdds.io/config'}
+    for path in files:
+        element = ET.parse(path).find('.//c:Internal/c:SocketReceiveBufferSize', ns)
+        assert element is not None and element.attrib == {'max': '8MiB'}, path
+    # The installed sysctl must allow what the profiles request.
+    sysctl = (root / 'config/sysctl/90-autosdv-udp-buffers.conf').read_text()
+    value = int(sysctl.split('net.core.rmem_max =')[1].split()[0])
+    assert value >= host_adapter.MIN_RMEM_MAX
