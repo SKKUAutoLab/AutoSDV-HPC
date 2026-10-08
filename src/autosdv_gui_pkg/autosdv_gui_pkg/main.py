@@ -13,6 +13,7 @@ from .mode_dialog import ModeDialog
 from .camera_source_dialog import CameraSourceDialog
 from PyQt5.QtCore import (
     pyqtSignal,
+    QByteArray,
     QEvent,
     QLockFile,
     QProcess,
@@ -600,8 +601,9 @@ class MainWindow(QMainWindow):
         self.zcu_live_labels = []
 
         self.setWindowTitle('AutoSDV HPC Control')
+        # No explicit minimum: the layout's own minimum keeps the panels from
+        # being painted over each other when the window is made small.
         self.resize(1180, 830)
-        self.setMinimumSize(980, 730)
         self._build_ui()
         self._apply_style()
         self.preview_frame_ready.connect(
@@ -902,7 +904,7 @@ class MainWindow(QMainWindow):
         layout.addWidget(self.zcu_selector, 1)
         for label, action in (
                 ('Service Status', 'status'),
-                ('Restart zcu.service', 'restart'),
+                ('Restart ZCU services', 'restart'),
                 ('Reboot ZCU', 'reboot')):
             button = QPushButton(label)
             button.clicked.connect(
@@ -1537,13 +1539,17 @@ class MainWindow(QMainWindow):
             self._show_error('Another ZCU command is still running')
             return
         ip = self.zcu_selector.currentData()
+        # The gateway runs as one unit per traffic class (camera CS5,
+        # control CS6); zcu-health@<zone> is left to its own restart policy.
+        units = ['zcu-camera.service', 'zcu-control.service']
         commands = {
-            'status': ['systemctl', 'is-active', 'zcu.service'],
-            'restart': ['systemctl', 'restart', 'zcu.service'],
+            'status': ['systemctl', 'is-active', *units],
+            'restart': ['systemctl', 'restart', *units],
             'reboot': ['systemctl', 'reboot'],
         }
         if action != 'status':
-            description = 'restart zcu.service' if action == 'restart' else 'reboot the ZCU'
+            description = ('restart the camera and control services'
+                           if action == 'restart' else 'reboot the ZCU')
             answer = QMessageBox.question(
                 self, 'Confirm ZCU action',
                 f'Do you want to {description} on {ip}?',
@@ -1708,7 +1714,18 @@ def main(args=None):
 
     window = MainWindow(ros_bridge, shutdown_ros)
     app.installEventFilter(window)
-    window.show()
+    # A mode switch re-executes the GUI; keep the window where the operator
+    # had it. Without this it comes back at the 1180x830 default, where the
+    # ZCU Diagnostics drawing is overlapped by the widgets below it.
+    # A first launch opens maximized; the panels are sized for the full screen.
+    geometry = os.environ.pop('AUTOSDV_GUI_GEOMETRY', '')
+    maximized = os.environ.pop('AUTOSDV_GUI_MAXIMIZED', '1' if not geometry else '0') == '1'
+    if geometry:
+        window.restoreGeometry(QByteArray.fromBase64(geometry.encode('ascii')))
+    if maximized:
+        window.showMaximized()
+    else:
+        window.show()
     restore = os.environ.pop('AUTOSDV_RESTART_NODES', '[]')
     try:
         node_ids = json.loads(restore)
@@ -1724,6 +1741,9 @@ def main(args=None):
     if window.restart_requested:
         os.environ.pop('AUTOSDV_RMW', None)
         os.environ['AUTOSDV_RESTART_NODES'] = json.dumps(window._restart_nodes)
+        os.environ['AUTOSDV_GUI_GEOMETRY'] = bytes(
+            window.saveGeometry().toBase64()).decode('ascii')
+        os.environ['AUTOSDV_GUI_MAXIMIZED'] = '1' if window.isMaximized() else '0'
         os.execv(sys.executable, [sys.executable, '-m', 'autosdv_gui_pkg.main'])
     return result
 
